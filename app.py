@@ -20,4 +20,23 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+st.markdown(
+    """
+    <style>
+    .gif-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+    </style>
+
+    <div class="gif-container">
+        <img src="https://cdn.dribbble.com/userupload/23126508/file/original-30a242076b14a726d12e900ea9d8e47f.gif" width="120">
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+
 
