@@ -33,7 +33,7 @@ h2 {
     transition: background-color 0.3s ease;
 }
 .stButton>button:hover {
-    background-color:#D4E4C6;
+    background-color:#E0EDD7;
 }
 </style>
 """, unsafe_allow_html=True)
