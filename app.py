@@ -88,22 +88,7 @@ def millet_page(title, tag):
         go_to("home")
 
 
-"""def ec_page(title, tag):
-    st.title(f"{title} - EC Analysis")
-    suffix = tag_to_suffix.get(tag, "")
-    try:
-        df = pd.read_csv(f"ec{suffix}.csv")
-        st.dataframe(df, use_container_width=True)
-    except FileNotFoundError:
-        st.error(f"File ec{suffix}.csv not found.")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Back to Millet Page"):
-            go_to(tag)
-    with col2:
-        if st.button("Back to Home"):
-            go_to("home")"""
 
 def ec_page(title, tag):
     st.title(f"{title} - EC Analysis")
