@@ -24,7 +24,7 @@ h2 {
     gap: 60px !important;
 }
 .stButton>button {
-    background-color:#FEF7A2;
+    background-color:#b3cf99;
     color:#2c3e50;
     font-size:20px;
     border-radius:10px;
