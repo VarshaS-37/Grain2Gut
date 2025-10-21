@@ -21,3 +21,5 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+st.image('background.jpg') 
