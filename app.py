@@ -50,7 +50,7 @@ def home():
     st.write("")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        if st.button("Proso Millet\nEnterococcus casseliflavus\nPP355677"):
+        if st.button("Proso Millet PP355677"):
             go_to("millet1")
     with col2:
         if st.button("Foxtail Millet PP355678"):
