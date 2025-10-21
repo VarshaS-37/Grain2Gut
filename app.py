@@ -5,7 +5,7 @@ import plotly.express as px
 
 st.markdown(
     """
-    <h1 style='text-align: center; font-family: Verdana; color: #2c3e50; white-space: nowrap;'>
+    <h1 style='text-align: center; font-family: Verdana; color: #2c3e50; '>
         Millet derived Lactic Acid Bacteria 16srRNA Analysis
     </h1>
     """,
