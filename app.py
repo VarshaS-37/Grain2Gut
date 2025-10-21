@@ -4,7 +4,7 @@ import plotly.express as px
 
 st.set_page_config(layout="wide")
 
-# --- Custom CSS ---
+
 st.markdown("""
 <style>
 .stApp {
@@ -38,13 +38,13 @@ h2 {
 </style>
 """, unsafe_allow_html=True)
 
-# --- Title ---
+
 st.markdown(
     "<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>",
     unsafe_allow_html=True
 )
 
-# --- Navigation ---
+
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
@@ -83,7 +83,6 @@ def page_4():
     st.title("Little Millet PP355680")
     st.write("This is content for Page 4.")
 
-# --- Page Routing ---
 if st.session_state.page == "home":
     main()
 elif st.session_state.page == "page_1":
