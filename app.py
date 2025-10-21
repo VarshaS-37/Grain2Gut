@@ -19,7 +19,7 @@ st.markdown("""
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 100vh;
+            
         }
     </style>
 """, unsafe_allow_html=True)
