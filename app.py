@@ -72,7 +72,7 @@ tag_to_suffix = {
 
 def millet_page(title, tag):
     st.title(title)
-    st.write("Select which type of analysis you want to explore:")
+    
     col1, col2, col3 = st.columns(3)
     with col1:
         if st.button("EC Analysis"):
