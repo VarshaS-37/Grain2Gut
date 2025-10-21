@@ -23,7 +23,7 @@ st.markdown("""
 st.markdown(
     """
     <style>
-    .gif-container {
+    .image-container {
         position: fixed;
         bottom: 20px;
         left: 20px;
@@ -31,12 +31,13 @@ st.markdown(
     }
     </style>
 
-    <div class="gif-container">
-        <img src="https://cdn.dribbble.com/userupload/23126508/file/original-30a242076b14a726d12e900ea9d8e47f.gif" width="240">
+    <div class="image-container">
+        <img src="https://png.pngtree.com/png-vector/20250604/ourlarge/pngtree-cute-bacteria-character-cartoon-png-image_16454248.png" width="120">
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 
