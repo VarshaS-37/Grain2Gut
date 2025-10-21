@@ -62,6 +62,13 @@ def home():
         if st.button("Little Millet PP355680"):
             go_to("millet4")
 
+tag_to_suffix = {
+    "millet1": "77",
+    "millet2": "78",
+    "millet3": "79",
+    "millet4": "80",
+}
+
 
 def millet_page(title, tag):
     st.title(title)
@@ -83,8 +90,13 @@ def millet_page(title, tag):
 
 def ec_page(title, tag):
     st.title(f"{title} - EC Analysis")
-    st.write("Display EC analysis results for this millet here.")
-    st.markdown("<br>", unsafe_allow_html=True)
+    suffix = tag_to_suffix.get(tag, "")
+    try:
+        df = pd.read_csv(f"ec{suffix}.csv")
+        st.dataframe(df, use_container_width=True)
+    except FileNotFoundError:
+        st.error(f"File ec{suffix}.csv not found.")
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Back to Millet Page"):
@@ -93,13 +105,19 @@ def ec_page(title, tag):
         if st.button("Back to Home"):
             go_to("home")
 
+
 def ko_page(title, tag):
     st.title(f"{title} - KO Analysis")
-    st.write("Display KO analysis results for this millet here.")
-    st.markdown("<br>", unsafe_allow_html=True)
+    suffix = tag_to_suffix.get(tag, "")
+    try:
+        df = pd.read_csv(f"ko{suffix}.csv")
+        st.dataframe(df, use_container_width=True)
+    except FileNotFoundError:
+        st.error(f"File ko{suffix}.csv not found.")
+
     col1, col2 = st.columns(2)
     with col1:
-        if st.button(" Back to Millet Page"):
+        if st.button("Back to Millet Page"):
             go_to(tag)
     with col2:
         if st.button("Back to Home"):
@@ -107,8 +125,13 @@ def ko_page(title, tag):
 
 def pwy_page(title, tag):
     st.title(f"{title} - Pathway Analysis")
-    st.write("Display Pathway analysis results for this millet here.")
-    st.markdown("<br>", unsafe_allow_html=True)
+    suffix = tag_to_suffix.get(tag, "")
+    try:
+        df = pd.read_csv(f"pwy_{suffix}.csv")
+        st.dataframe(df, use_container_width=True)
+    except FileNotFoundError:
+        st.error(f"File pwy_{suffix}.csv not found.")
+
     col1, col2 = st.columns(2)
     with col1:
         if st.button("Back to Millet Page"):
@@ -116,6 +139,7 @@ def pwy_page(title, tag):
     with col2:
         if st.button("Back to Home"):
             go_to("home")
+
 
 page = st.session_state.page
 
