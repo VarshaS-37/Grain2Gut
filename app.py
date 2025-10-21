@@ -2,7 +2,6 @@ import streamlit as st
 
 st.set_page_config(layout="wide")
 
-# ---------- GLOBAL STYLING ----------
 st.markdown("""
 <style>
 .stApp {
@@ -37,7 +36,7 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------- SESSION STATE ----------
+
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
@@ -45,7 +44,6 @@ def go_to(page):
     st.session_state.page = page
     st.rerun()
 
-# ---------- HOME PAGE ----------
 def home():
     st.markdown("<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     st.write("")
@@ -64,7 +62,7 @@ def home():
         if st.button("Little Millet PP355680"):
             go_to("millet4")
 
-# ---------- MILLET PAGE ----------
+
 def millet_page(title, tag):
     st.title(title)
     st.write("Select which type of analysis you want to explore:")
@@ -81,53 +79,53 @@ def millet_page(title, tag):
             go_to(f"{tag}_pwy")
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("🏠 Back to Home"):
+    if st.button(" Back to Home"):
         go_to("home")
 
-# ---------- ANALYSIS PAGES ----------
+
 def ec_page(title, tag):
     st.title(f"{title} - EC Analysis")
-    st.write("👉 Display EC analysis results for this millet here.")
+    st.write(" Display EC analysis results for this millet here.")
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("⬅️ Back to Millet Page"):
+        if st.button(" Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button("🏠 Back to Home"):
+        if st.button(" Back to Home"):
             go_to("home")
 
 def ko_page(title, tag):
     st.title(f"{title} - KO Analysis")
-    st.write("👉 Display KO analysis results for this millet here.")
+    st.write(" Display KO analysis results for this millet here.")
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("⬅️ Back to Millet Page"):
+        if st.button(" Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button("🏠 Back to Home"):
+        if st.button(" Back to Home"):
             go_to("home")
 
 def pwy_page(title, tag):
     st.title(f"{title} - Pathway Analysis")
-    st.write("👉 Display Pathway analysis results for this millet here.")
+    st.write(" Display Pathway analysis results for this millet here.")
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("⬅️ Back to Millet Page"):
+        if st.button(" Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button("🏠 Back to Home"):
+        if st.button(" Back to Home"):
             go_to("home")
 
-# ---------- ROUTER ----------
+
 page = st.session_state.page
 
 if page == "home":
     home()
 
-# Millet Pages
+
 elif page == "millet1":
     millet_page("Proso Millet PP355677", "millet1")
 elif page == "millet2":
@@ -137,7 +135,7 @@ elif page == "millet3":
 elif page == "millet4":
     millet_page("Little Millet PP355680", "millet4")
 
-# EC Pages
+
 elif page == "millet1_ec":
     ec_page("Proso Millet PP355677", "millet1")
 elif page == "millet2_ec":
@@ -147,7 +145,7 @@ elif page == "millet3_ec":
 elif page == "millet4_ec":
     ec_page("Little Millet PP355680", "millet4")
 
-# KO Pages
+
 elif page == "millet1_ko":
     ko_page("Proso Millet PP355677", "millet1")
 elif page == "millet2_ko":
@@ -157,7 +155,7 @@ elif page == "millet3_ko":
 elif page == "millet4_ko":
     ko_page("Little Millet PP355680", "millet4")
 
-# Pathway Pages
+
 elif page == "millet1_pwy":
     pwy_page("Proso Millet PP355677", "millet1")
 elif page == "millet2_pwy":
