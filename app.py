@@ -43,7 +43,7 @@ def inject_custom_css():
 
         /* Add space between buttons */
         .stColumns>div {
-            padding: 0 20px;  /* Horizontal space between buttons */
+            padding: 0 30px;  /* Horizontal space between buttons */
         }
 
         </style>
