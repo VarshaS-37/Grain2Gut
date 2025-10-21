@@ -11,7 +11,7 @@ st.subheader("Pathways of millet PP355677")
 st.markdown("""
     <style>
         .stApp {
-            background-image: url('background.jpg');  /* Local file path */
+            background-image: url('https://media.istockphoto.com/id/541113276/vector/seamless-vector-pattern-of-germs-and-bacteria.jpg?s=612x612&w=0&k=20&c=M_kNtcWdpMHXNtOe6kxE32NnE3wDvxD7-Jma3ZNXaEs=');  /* Local file path */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
