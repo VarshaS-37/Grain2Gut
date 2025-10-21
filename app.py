@@ -5,9 +5,9 @@ import plotly.express as px
 
 st.markdown(
     """
-    <h3 style='white-space: nowrap;'>
+    <h2 style='white-space: nowrap;'>
         Millet derived Lactic Acid Bacteria 16srRNA Analysis
-    </h3>
+    </h2>
     """,
     unsafe_allow_html=True
 )
