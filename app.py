@@ -15,7 +15,7 @@ st.markdown(
 st.markdown("""
     <style>
         .stApp {
-            background-image: url('https://t3.ftcdn.net/jpg/01/94/82/02/360_F_194820208_QfSZW8rzs2E9Lq8dWouacJiK2Tzyz4iF.jpg');  
+            background-image: url('https://media.istockphoto.com/id/1364601532/vector/illustration-of-a-field-of-millet-drawn-in-watercolor.jpg?s=612x612&w=0&k=20&c=p91DSTjLU401_esbPiGUG_2uR6_-1g9CQVnDjTTKP1I=');  
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
