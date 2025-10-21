@@ -15,7 +15,7 @@ st.markdown(
 st.markdown("""
     <style>
         .stApp {
-            background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
+            background-image: url('https://static.vecteezy.com/system/resources/previews/000/123/771/non_2x/free-vector-rice-field-illustration.jpg');  
             background-size: cover;
            
             background-attachment: fixed;
