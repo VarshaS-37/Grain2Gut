@@ -107,21 +107,23 @@ def millet_page(title, tag):
 
 def ec_page(title, tag):
     st.title(f"{title} - EC Analysis")
-    suffix = tag_to_suffix.get(tag, "")
 
+    suffix = tag_to_suffix.get(tag, "")
+    
     try:
         df = pd.read_csv(f"ec{suffix}.csv")
 
-        # Assuming first column is EC number
-        st.write("Click on an EC number to view its summary:")
+        st.markdown("### Click on an EC number to view more details:")
 
-        # Display table with ECs as clickable links
+        # Display each row with first column as clickable button
         for index, row in df.iterrows():
-            ec_number = str(row.iloc[0])  # First column = EC number
+            ec_number = str(row.iloc[0])  # assuming EC number is in the first column
+
+            # Create columns to simulate a row
             cols = st.columns(len(row))
             for i, val in enumerate(row):
                 if i == 0:
-                    if cols[i].button(f"{ec_number}", key=f"{tag}_ec_{ec_number}"):
+                    if cols[i].button(ec_number, key=f"{ec_number}_{tag}"):
                         st.session_state.selected_ec = ec_number
                         st.session_state.back_page = f"{tag}_ec"
                         go_to("ec_detail")
@@ -138,27 +140,26 @@ def ec_page(title, tag):
     with col2:
         if st.button("Back to Home"):
             go_to("home")
-def ec_detail_page():
-    ec_number = st.session_state.get("selected_ec", None)
 
-    if ec_number is None:
+def ec_detail_page():
+    ec_number = st.session_state.get("selected_ec")
+
+    if not ec_number:
         st.error("No EC number selected.")
         return
 
     st.title(f"EC Detail: {ec_number}")
 
-    # Sample static summary — replace with dynamic logic or dictionary
+    # Static example – replace with real data if available
     ec_summaries = {
-        "1.1.1.1": "Alcohol dehydrogenase — converts alcohols to aldehydes.",
-        "2.7.1.1": "Hexokinase — catalyzes glucose to glucose-6-phosphate.",
-        # Add more EC summaries as needed
+        "1.1.1.1": "Alcohol dehydrogenase: Converts alcohols to aldehydes.",
+        "2.7.1.1": "Hexokinase: Catalyzes glucose to glucose-6-phosphate.",
     }
 
     summary = ec_summaries.get(ec_number, "No summary available for this EC number.")
     st.markdown(f"### Summary\n{summary}")
 
-    st.markdown("---")
-    st.markdown(f"**External Link**: [KEGG EC {ec_number}](https://www.genome.jp/dbget-bin/www_bget?ec:{ec_number})")
+    st.markdown(f"**External Resource:** [KEGG EC {ec_number}](https://www.genome.jp/dbget-bin/www_bget?ec:{ec_number})")
 
     if st.button("Back"):
         go_to(st.session_state.get("back_page", "home"))
