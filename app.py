@@ -12,7 +12,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1pmfcg0I7dbMfe33dtp0DqbWexfMIZHaDgtQ_-ClkYu1KuvSPKpM6Jvn0tmdvuqicv48&usqp=CAU');
+        background-image: url('https://drive.google.com/file/d/17a-B3xs-ReX-nKKZe9wazVuh-0FZ3Ssb/view?usp=sharing');
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
