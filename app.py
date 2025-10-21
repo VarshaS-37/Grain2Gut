@@ -2,91 +2,95 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+st.set_page_config(layout="wide")
 
+# --- Custom CSS ---
+st.markdown("""
+<style>
+.stApp {
+    background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
+    background-size: cover;
+    background-attachment: fixed;
+}
+.block-container {
+    padding-top: 2rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+h2 {
+    text-align: center !important;
+}
+.stColumns {
+    gap: 60px !important;
+}
+.stButton>button {
+    background-color:#FEF7A2;
+    color:#2c3e50;
+    font-size:20px;
+    border-radius:10px;
+    padding:10px 20px;
+    border:none;
+    transition: background-color 0.3s ease;
+}
+.stButton>button:hover {
+    background-color:#DFFBB9;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# --- Title ---
 st.markdown(
-    """
-    <h2 style='text-align: center; color: #2c3e50; white-space: nowrap; '>
-        16srRNA Analysis of Millet derived Lactic Acid Bacteria 
-    </h2>
-    """,
+    "<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>",
     unsafe_allow_html=True
 )
 
-st.markdown("""
-    <style>
-        .stApp {
-            background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
-            background-size: cover;
-            background-attachment: fixed;
-        }
-    </style>
-""", unsafe_allow_html=True)
+# --- Navigation ---
+if "page" not in st.session_state:
+    st.session_state.page = "home"
 
-def inject_custom_css():
-    
-    st.markdown("""
-        <style>
-        .stButton>button {
-            background-color:#FEF7A2 ;  
-            color:  #2c3e50;  
-            font-size: 20px;  
-            border-radius: 10px;  /* Round corners */
-            padding: 10px 20px;  /* Padding around text */
-            border: none;
-            transition: background-color 0.3s ease;
-        }
-        .stButton>button:hover {
-            background-color: #DFFBB9;  /* Button hover background */
-        }
-
-        /* Add space between buttons */
-        .stColumns>div {
-            padding: 20px 40px;  /* Horizontal space between buttons */
-        }
-
-        </style>
-    """, unsafe_allow_html=True)
+def go_to(page_name):
+    st.session_state.page = page_name
+    st.rerun()
 
 def main():
     col1, col2, col3, col4 = st.columns(4)
-    inject_custom_css()
     with col1:
         if st.button("Proso Millet PP355677"):
-            page_1()
-
+            go_to("page_1")
     with col2:
         if st.button("Foxtail Millet PP355678"):
-            page_2()
-
+            go_to("page_2")
     with col3:
         if st.button("Little Millet PP355679"):
-            page_3()
-
+            go_to("page_3")
     with col4:
         if st.button("Little Millet PP355680"):
-            page_4()
-
+            go_to("page_4")
 
 def page_1():
-    st.subheader("Page 1")
+    st.title("Proso Millet PP355677")
     st.write("This is content for Page 1.")
 
-
 def page_2():
-    st.subheader("Page 2")
+    st.title("Foxtail Millet PP355678")
     st.write("This is content for Page 2.")
 
-
 def page_3():
-    st.subheader("Page 3")
+    st.title("Little Millet PP355679")
     st.write("This is content for Page 3.")
 
-
 def page_4():
-    st.subheader("Page 4")
+    st.title("Little Millet PP355680")
     st.write("This is content for Page 4.")
 
-if __name__ == "__main__":
+# --- Page Routing ---
+if st.session_state.page == "home":
     main()
-
-
+elif st.session_state.page == "page_1":
+    page_1()
+elif st.session_state.page == "page_2":
+    page_2()
+elif st.session_state.page == "page_3":
+    page_3()
+elif st.session_state.page == "page_4":
+    page_4()
