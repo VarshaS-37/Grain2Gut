@@ -1,9 +1,6 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
 
 st.set_page_config(layout="wide")
-
 
 st.markdown("""
 <style>
@@ -33,71 +30,127 @@ h2 {
     transition: background-color 0.3s ease;
 }
 .stButton>button:hover {
-    background-color:#E0EDD7;
+    background-color:#DFFBB9;
 }
 </style>
 """, unsafe_allow_html=True)
 
 
-st.markdown(
-    "<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>",
-    unsafe_allow_html=True
-)
-
-
-if "page" not in st.session_state:
-    st.session_state.page = "home"
 
 def go_to(page_name):
     st.session_state.page = page_name
     st.rerun()
 
-def main():
+
+
+if "page" not in st.session_state:
+    st.session_state.page = "home"
+
+
+def home():
+    st.markdown("<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         if st.button("Proso Millet PP355677"):
-            go_to("page_1")
+            go_to("millet1")
     with col2:
         if st.button("Foxtail Millet PP355678"):
-            go_to("page_2")
+            go_to("millet2")
     with col3:
         if st.button("Little Millet PP355679"):
-            go_to("page_3")
+            go_to("millet3")
     with col4:
         if st.button("Little Millet PP355680"):
-            go_to("page_4")
+            go_to("millet4")
 
-def page_1():
-    st.title("Proso Millet PP355677")
-    st.write("This is content for Page 1.")
-    if st.button("Back to Home"):
+
+
+def millet_page(title, tag):
+    st.title(title)
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        if st.button("EC Analysis"):
+            go_to(f"{tag}_ec")
+    with col2:
+        if st.button("KO Analysis"):
+            go_to(f"{tag}_ko")
+    with col3:
+        if st.button("Pathway Analysis"):
+            go_to(f"{tag}_pwy")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button(" Back to Home"):
         go_to("home")
 
-def page_2():
-    st.title("Foxtail Millet PP355678")
-    st.write("This is content for Page 2.")
-    if st.button("Back to Home"):
+
+
+def ec_page(title, tag):
+    st.title(f"{title} - EC Analysis")
+    st.write("Display EC analysis results here...")
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button(" Back to Millet Page"):
+        go_to(tag)
+    if st.button(" Back to Home"):
         go_to("home")
 
-def page_3():
-    st.title("Little Millet PP355679")
-    st.write("This is content for Page 3.")
-    if st.button("Back to Home"):
+def ko_page(title, tag):
+    st.title(f"{title} - KO Analysis")
+    st.write("Display KO analysis results here...")
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button(" Back to Millet Page"):
+        go_to(tag)
+    if st.button(" Back to Home"):
         go_to("home")
 
-def page_4():
-    st.title("Little Millet PP355680")
-    st.write("This is content for Page 4.")
-    if st.button("Back to Home"):
+def pwy_page(title, tag):
+    st.title(f"{title} - Pathway Analysis")
+    st.write("Display Pathway analysis results here...")
+    st.markdown("<br>", unsafe_allow_html=True)
+    if st.button(" Back to Millet Page"):
+        go_to(tag)
+    if st.button(" Back to Home"):
         go_to("home")
 
-if st.session_state.page == "home":
-    main()
-elif st.session_state.page == "page_1":
-    page_1()
-elif st.session_state.page == "page_2":
-    page_2()
-elif st.session_state.page == "page_3":
-    page_3()
-elif st.session_state.page == "page_4":
-    page_4()
+
+
+page = st.session_state.page
+
+if page == "home":
+    home()
+elif page == "millet1":
+    millet_page("Proso Millet PP355677", "millet1")
+elif page == "millet2":
+    millet_page("Foxtail Millet PP355678", "millet2")
+elif page == "millet3":
+    millet_page("Little Millet PP355679", "millet3")
+elif page == "millet4":
+    millet_page("Little Millet PP355680", "millet4")
+
+elif page == "millet1_ec":
+    ec_page("Proso Millet PP355677", "millet1")
+elif page == "millet1_ko":
+    ko_page("Proso Millet PP355677", "millet1")
+elif page == "millet1_pwy":
+    pwy_page("Proso Millet PP355677", "millet1")
+
+elif page == "millet2_ec":
+    ec_page("Foxtail Millet PP355678", "millet2")
+elif page == "millet2_ko":
+    ko_page("Foxtail Millet PP355678", "millet2")
+elif page == "millet2_pwy":
+    pwy_page("Foxtail Millet PP355678", "millet2")
+
+elif page == "millet3_ec":
+    ec_page("Little Millet PP355679", "millet3")
+elif page == "millet3_ko":
+    ko_page("Little Millet PP355679", "millet3")
+elif page == "millet3_pwy":
+    pwy_page("Little Millet PP355679", "millet3")
+
+elif page == "millet4_ec":
+    ec_page("Little Millet PP355680", "millet4")
+elif page == "millet4_ko":
+    ko_page("Little Millet PP355680", "millet4")
+elif page == "millet4_pwy":
+    pwy_page("Little Millet PP355680", "millet4")
