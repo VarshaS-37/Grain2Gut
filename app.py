@@ -15,7 +15,7 @@ st.markdown(
 st.markdown("""
     <style>
         .stApp {
-            background-image: url('https://static.vecteezy.com/system/resources/previews/000/123/771/non_2x/free-vector-rice-field-illustration.jpg');  
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhB1cPycyBDGNM8ISj5taD319eohh4UsYJO-15wYV_hKemFMXw3jtZCWXCcpc5wAFVYgo&usqp=CAU');  
             background-size: cover;
            
             background-attachment: fixed;
