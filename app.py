@@ -70,18 +70,26 @@ def main():
 def page_1():
     st.title("Proso Millet PP355677")
     st.write("This is content for Page 1.")
+    if st.button("Back to Home"):
+        go_to("home")
 
 def page_2():
     st.title("Foxtail Millet PP355678")
     st.write("This is content for Page 2.")
+    if st.button("Back to Home"):
+        go_to("home")
 
 def page_3():
     st.title("Little Millet PP355679")
     st.write("This is content for Page 3.")
+    if st.button("Back to Home"):
+        go_to("home")
 
 def page_4():
     st.title("Little Millet PP355680")
     st.write("This is content for Page 4.")
+    if st.button("Back to Home"):
+        go_to("home")
 
 if st.session_state.page == "home":
     main()
