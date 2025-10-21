@@ -27,22 +27,21 @@ def inject_custom_css():
     st.markdown("""
         <style>
         .stButton>button {
-            background-color: #f7d8e2;  /* Button background */
-            color:  #2c3e50;  /* Text color */
-            font-size: 18px;  /* Font size */
+            background-color: #E4FEA2;  
+            color:  #2c3e50;  
+            font-size: 20px;  
             border-radius: 10px;  /* Round corners */
             padding: 10px 20px;  /* Padding around text */
             border: none;
             transition: background-color 0.3s ease;
         }
-        
         .stButton>button:hover {
-            background-color: #45a049;  /* Button hover background */
+            background-color: #FEF7A2;  /* Button hover background */
         }
 
         /* Add space between buttons */
         .stColumns>div {
-            padding: 0 30px;  /* Horizontal space between buttons */
+            padding: 0 40px;  /* Horizontal space between buttons */
         }
 
         </style>
