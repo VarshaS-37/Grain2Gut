@@ -8,19 +8,16 @@ st.title("Millet derived Latic Acid Bacteria 16sRNA Analysis")
 st.subheader("Pathways of millet PP355677")
 
 
-st.markdown(
-    """
+st.markdown("""
     <style>
-    .stApp {
-        background-image: url('https://drive.google.com/file/d/17a-B3xs-ReX-nKKZe9wazVuh-0FZ3Ssb/view?usp=sharing');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        height: 100vh;
-    }
+        .stApp {
+            background-image: url('background.jpg');  /* Local file path */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;  /* Full height background */
+        }
     </style>
-    """,
-    unsafe_allow_html=True
-)
+""", unsafe_allow_html=True)
 
 
