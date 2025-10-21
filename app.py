@@ -1,7 +1,10 @@
 import streamlit as st
+import pandas as pd
+import os
 
 st.set_page_config(layout="wide")
 
+# ---------------------- CSS ----------------------
 st.markdown("""
 <style>
 .stApp {
@@ -36,18 +39,21 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 
-
+# ---------------------- NAVIGATION ----------------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
+if "selected_id" not in st.session_state:
+    st.session_state.selected_id = None
 
-def go_to(page):
+def go_to(page, selected_id=None):
     st.session_state.page = page
+    st.session_state.selected_id = selected_id
     st.rerun()
 
+# ---------------------- HOME PAGE ----------------------
 def home():
     st.markdown("<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     st.write("")
-
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         if st.button("Proso Millet PP355677"):
@@ -62,7 +68,7 @@ def home():
         if st.button("Little Millet PP355680"):
             go_to("millet4")
 
-
+# ---------------------- MILLET PAGE ----------------------
 def millet_page(title, tag):
     st.title(title)
     st.write("Select which type of analysis you want to explore:")
@@ -79,52 +85,97 @@ def millet_page(title, tag):
             go_to(f"{tag}_pwy")
 
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button(" Back to Home"):
+    if st.button("⬅ Back to Home"):
         go_to("home")
 
+# ---------------------- EC, KO, PWY TABLE FUNCTIONS ----------------------
+def show_table(csv_file, tag, analysis_type):
+    if not os.path.exists(csv_file):
+        st.error(f"{csv_file} not found.")
+        return
+    df = pd.read_csv(csv_file)
+    st.write(f"### {analysis_type.upper()} Table")
+    st.write("Click on an ID to view details:")
 
-def ec_page(title, tag):
-    st.title(f"{title} - EC Analysis")
-    st.write(" Display EC analysis results for this millet here.")
+    for _, row in df.iterrows():
+        id_col = f"{analysis_type}_id" if f"{analysis_type}_id" in df.columns else df.columns[0]
+        func = row.get("function", "")
+        item_id = str(row[id_col])
+        if st.button(f"{item_id} — {func}", key=f"{item_id}_{analysis_type}"):
+            go_to(f"{tag}_{analysis_type}_detail", selected_id=item_id)
+
+# ---------------------- DETAIL PAGE FUNCTION ----------------------
+def show_detail_page(title, tag, analysis_type):
+    item_id = st.session_state.selected_id
+    st.title(f"{title} - {analysis_type.upper()} Detail")
+
+    if not item_id:
+        st.warning(f"No {analysis_type.upper()} ID selected.")
+        return
+
+    st.subheader(f"Details for {item_id}")
+    file_name = f"{item_id}.txt"  # expects file in same folder
+    if os.path.exists(file_name):
+        with open(file_name, "r") as f:
+            desc = f.read()
+        st.write(desc)
+    else:
+        st.info(f"No detailed description available for {item_id} yet.")
+
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button(" Back to Millet Page"):
+        if st.button(f"⬅ Back to {analysis_type.upper()} Table"):
+            go_to(f"{tag}_{analysis_type}")
+    with col2:
+        if st.button("🏠 Back to Home"):
+            go_to("home")
+
+# ---------------------- EC/KO/PWY PAGE WRAPPERS ----------------------
+def ec_page(title, tag):
+    st.title(f"{title} - EC Analysis")
+    show_table(f"{tag}_ec.csv", tag, "ec")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("⬅ Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button(" Back to Home"):
+        if st.button("🏠 Back to Home"):
             go_to("home")
 
 def ko_page(title, tag):
     st.title(f"{title} - KO Analysis")
-    st.write(" Display KO analysis results for this millet here.")
+    show_table(f"{tag}_ko.csv", tag, "ko")
+
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button(" Back to Millet Page"):
+        if st.button("⬅ Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button(" Back to Home"):
+        if st.button("🏠 Back to Home"):
             go_to("home")
 
 def pwy_page(title, tag):
     st.title(f"{title} - Pathway Analysis")
-    st.write(" Display Pathway analysis results for this millet here.")
+    show_table(f"{tag}_pwy.csv", tag, "pwy")
+
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button(" Back to Millet Page"):
+        if st.button("⬅ Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button(" Back to Home"):
+        if st.button("🏠 Back to Home"):
             go_to("home")
 
-
+# ---------------------- ROUTING ----------------------
 page = st.session_state.page
 
 if page == "home":
     home()
-
 
 elif page == "millet1":
     millet_page("Proso Millet PP355677", "millet1")
@@ -135,7 +186,6 @@ elif page == "millet3":
 elif page == "millet4":
     millet_page("Little Millet PP355680", "millet4")
 
-
 elif page == "millet1_ec":
     ec_page("Proso Millet PP355677", "millet1")
 elif page == "millet2_ec":
@@ -144,7 +194,6 @@ elif page == "millet3_ec":
     ec_page("Little Millet PP355679", "millet3")
 elif page == "millet4_ec":
     ec_page("Little Millet PP355680", "millet4")
-
 
 elif page == "millet1_ko":
     ko_page("Proso Millet PP355677", "millet1")
@@ -155,7 +204,6 @@ elif page == "millet3_ko":
 elif page == "millet4_ko":
     ko_page("Little Millet PP355680", "millet4")
 
-
 elif page == "millet1_pwy":
     pwy_page("Proso Millet PP355677", "millet1")
 elif page == "millet2_pwy":
@@ -164,3 +212,32 @@ elif page == "millet3_pwy":
     pwy_page("Little Millet PP355679", "millet3")
 elif page == "millet4_pwy":
     pwy_page("Little Millet PP355680", "millet4")
+
+# detail pages for EC / KO / Pathway
+elif page == "millet1_ec_detail":
+    show_detail_page("Proso Millet PP355677", "millet1", "ec")
+elif page == "millet2_ec_detail":
+    show_detail_page("Foxtail Millet PP355678", "millet2", "ec")
+elif page == "millet3_ec_detail":
+    show_detail_page("Little Millet PP355679", "millet3", "ec")
+elif page == "millet4_ec_detail":
+    show_detail_page("Little Millet PP355680", "millet4", "ec")
+
+elif page == "millet1_ko_detail":
+    show_detail_page("Proso Millet PP355677", "millet1", "ko")
+elif page == "millet2_ko_detail":
+    show_detail_page("Foxtail Millet PP355678", "millet2", "ko")
+elif page == "millet3_ko_detail":
+    show_detail_page("Little Millet PP355679", "millet3", "ko")
+elif page == "millet4_ko_detail":
+    show_detail_page("Little Millet PP355680", "millet4", "ko")
+
+elif page == "millet1_pwy_detail":
+    show_detail_page("Proso Millet PP355677", "millet1", "pwy")
+elif page == "millet2_pwy_detail":
+    show_detail_page("Foxtail Millet PP355678", "millet2", "pwy")
+elif page == "millet3_pwy_detail":
+    show_detail_page("Little Millet PP355679", "millet3", "pwy")
+elif page == "millet4_pwy_detail":
+    show_detail_page("Little Millet PP355680", "millet4", "pwy")
+
