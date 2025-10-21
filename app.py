@@ -38,7 +38,6 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------------- SESSION STATE ----------------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
@@ -46,7 +45,6 @@ def go_to(page):
     st.session_state.page = page
     st.rerun()
 
-# ---------------------- HOME PAGE ----------------------
 def home():
     st.markdown("<h2>16S rRNA Analysis of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     st.write("")
@@ -64,7 +62,7 @@ def home():
         if st.button("Little Millet PP355680"):
             go_to("millet4")
 
-# ---------------------- MILLET PAGE ----------------------
+
 def millet_page(title, tag):
     st.title(title)
     st.write("Select which type of analysis you want to explore:")
@@ -79,20 +77,20 @@ def millet_page(title, tag):
         if st.button("Pathway Analysis"):
             go_to(f"{tag}_pwy")
     st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("⬅ Back to Home"):
+    if st.button("Back to Home"):
         go_to("home")
 
-# ---------------------- EC / KO / PWY PAGES ----------------------
+
 def ec_page(title, tag):
     st.title(f"{title} - EC Analysis")
     st.write("Display EC analysis results for this millet here.")
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("⬅ Back to Millet Page"):
+        if st.button("Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button("🏠 Back to Home"):
+        if st.button("Back to Home"):
             go_to("home")
 
 def ko_page(title, tag):
@@ -101,10 +99,10 @@ def ko_page(title, tag):
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("⬅ Back to Millet Page"):
+        if st.button(" Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button("🏠 Back to Home"):
+        if st.button("Back to Home"):
             go_to("home")
 
 def pwy_page(title, tag):
@@ -113,13 +111,12 @@ def pwy_page(title, tag):
     st.markdown("<br>", unsafe_allow_html=True)
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("⬅ Back to Millet Page"):
+        if st.button("Back to Millet Page"):
             go_to(tag)
     with col2:
-        if st.button("🏠 Back to Home"):
+        if st.button("Back to Home"):
             go_to("home")
 
-# ---------------------- ROUTING ----------------------
 page = st.session_state.page
 
 if page == "home":
