@@ -36,7 +36,7 @@ def inject_custom_css():
             transition: background-color 0.3s ease;
         }
         .stButton>button:hover {
-            background-color: #E4FEA2;  /* Button hover background */
+            background-color: #DFFBB9;  /* Button hover background */
         }
 
         /* Add space between buttons */
