@@ -23,11 +23,35 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+def inject_custom_css():
+    
+    st.markdown("""
+        <style>
+        .stButton>button {
+            background-color: #f7d8e2;  /* Button background */
+            color:  #2c3e50;  /* Text color */
+            font-size: 18px;  /* Font size */
+            border-radius: 10px;  /* Round corners */
+            padding: 10px 20px;  /* Padding around text */
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .stButton>button:hover {
+            background-color: #45a049;  /* Button hover background */
+        }
 
+        /* Add space between buttons */
+        .stColumns>div {
+            padding: 0 20px;  /* Horizontal space between buttons */
+        }
+
+        </style>
+    """, unsafe_allow_html=True)
 
 def main():
     col1, col2, col3, col4 = st.columns(4)
-
+    inject_custom_css()
     with col1:
         if st.button("Proso Millet PP355677"):
             page_1()
