@@ -27,7 +27,7 @@ def inject_custom_css():
     st.markdown("""
         <style>
         .stButton>button {
-            background-color: #E4FEA2;  
+            background-color:#FEF7A2 ;  
             color:  #2c3e50;  
             font-size: 20px;  
             border-radius: 10px;  /* Round corners */
@@ -36,7 +36,7 @@ def inject_custom_css():
             transition: background-color 0.3s ease;
         }
         .stButton>button:hover {
-            background-color: #FEF7A2;  /* Button hover background */
+            background-color: #E4FEA2;  /* Button hover background */
         }
 
         /* Add space between buttons */
