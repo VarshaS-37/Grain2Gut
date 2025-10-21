@@ -5,9 +5,9 @@ import plotly.express as px
 
 st.markdown(
     """
-    <h1 style='text-align: center; color: #2c3e50; white-space: nowrap; '>
+    <h2 style='text-align: center; color: #2c3e50; white-space: nowrap; '>
         16srRNA Analysis of Millet derived Lactic Acid Bacteria 
-    </h1>
+    </h2>
     """,
     unsafe_allow_html=True
 )
@@ -17,12 +17,11 @@ st.markdown("""
         .stApp {
             background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
             background-size: cover;
-           
             background-attachment: fixed;
-            
         }
     </style>
 """, unsafe_allow_html=True)
+
 def inject_custom_css():
     
     st.markdown("""
