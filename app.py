@@ -63,26 +63,27 @@ def home():
     st.write("")  # spacing
 
    # ---------------------- Main Page Layout ----------------------
-    left_col, right_col = st.columns([1, 2])  # left for summarized/millet-wise, right for Detailed Analysis
+    # ---------------------- Main Page Layout ----------------------
+    left_col, middle_col, right_col = st.columns([1, 1, 2])  # left & middle for extra buttons/spaces, right for Detailed Analysis
     
-    # ---- Left Column: Summarized & Millet-wise Analysis ----
+    # ---- Left Column: additional buttons ----
     with left_col:
-        # Summarized Analysis box
-        st.markdown("<h4 style='text-align:center; margin-bottom:10px;'>Summarized Analysis</h4>", unsafe_allow_html=True)
-        if st.button("Go to Summarized Analysis", key="summarized"):
-            go_to("summarized_analysis")  # replace with actual page function
+        if st.button("Summarized Analysis", key="left_summarized"):
+            go_to("summarized_analysis")
+        if st.button("Millet-wise Analysis", key="left_milletwise"):
+            go_to("milletwise_analysis")
     
-        st.write("")  # spacing
-    
-        # Millet-wise Analysis box
-        st.markdown("<h4 style='text-align:center; margin-bottom:10px;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
-        if st.button("Go to Millet-wise Analysis", key="milletwise"):
-            go_to("milletwise_analysis")  # replace with actual page function
+    # ---- Middle Column: additional buttons ----
+    with middle_col:
+        if st.button("Other Analysis 1", key="middle_1"):
+            go_to("other_analysis_1")
+        if st.button("Other Analysis 2", key="middle_2"):
+            go_to("other_analysis_2")
     
     # ---- Right Column: Detailed Analysis ----
     with right_col:
         # Detailed Analysis heading
-        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Meta Data</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>", unsafe_allow_html=True)
         st.write("")  # spacing
     
         # Three buttons stacked vertically
@@ -94,7 +95,6 @@ def home():
         
         if st.button("Pathway Analysis", key="detailed_pwy"):
             go_to("pwy_analysis")
-
 
 
 # ---------------------- Millet Data Mapping ----------------------
