@@ -159,7 +159,7 @@ def ko_page():
         **Instructions:**
         1. Select the millet LAB from the dropdown at the top.
         2. On the left, the entire KO dataframe for the selected LAB is displayed.
-        3. Use the **KO number dropdown** above the dataframe to select a KO number.
+        3. Use the **KO ID dropdown** above the dataframe to select a KO ID.
         4. The right column will show the textual interpretation for the selected KO number.
         5. Use the "Back to Home" button at the bottom to return to the home page.
         """)
@@ -197,7 +197,7 @@ def ko_page():
 
     # ---- Left Column: KO number dropdown + Full KO DataFrame ----
     with left_col:
-        st.markdown("<h4 style='text-align:center;'>Select a KO Number</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>Select a KO ID</h4>", unsafe_allow_html=True)
         if 'ko_id' in df.columns:
             selected_ko = st.selectbox("", df['ko_id'].unique(), key="ko_select")
         else:
