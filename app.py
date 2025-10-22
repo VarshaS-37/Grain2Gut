@@ -63,69 +63,24 @@ def home():
     st.write("")  # spacing
 
     # ---------------------- Main Page Layout ----------------------
-   # ---------------------- Main Page Layout ----------------------
+
     left_col, right_col = st.columns([1, 2])  # left for future boxes, right for Detailed Analysis
     
     with right_col:
         # Detailed Analysis heading
         st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>", unsafe_allow_html=True)
+        st.write("")  # spacing
     
-        # ---- EC Analysis Box ----
-        if st.button("EC Analysis", key="home_ec"):
+        # Three buttons stacked vertically
+        if st.button("EC Analysis"):
             go_to("ec_analysis")
-        st.markdown(
-            """
-            <div style="
-                background-color:#FEF7A2;
-                padding:20px;
-                border-radius:10px;
-                margin-bottom:15px;
-                text-align:center;
-                font-weight:bold;
-            ">
-            EC Analysis
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    
-        # ---- KO Analysis Box ----
-        if st.button("KO Analysis", key="home_ko"):
+        
+        if st.button("KO Analysis"):
             go_to("ko_analysis")
-        st.markdown(
-            """
-            <div style="
-                background-color:#FEF7A2;
-                padding:20px;
-                border-radius:10px;
-                margin-bottom:15px;
-                text-align:center;
-                font-weight:bold;
-            ">
-            KO Analysis
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-    
-        # ---- Pathway Analysis Box ----
-        if st.button("Pathway Analysis", key="home_pwy"):
+        
+        if st.button("Pathway Analysis"):
             go_to("pwy_analysis")
-        st.markdown(
-            """
-            <div style="
-                background-color:#FEF7A2;
-                padding:20px;
-                border-radius:10px;
-                margin-bottom:15px;
-                text-align:center;
-                font-weight:bold;
-            ">
-            Pathway Analysis
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+
 
 # ---------------------- Millet Data Mapping ----------------------
 millet_map = {
