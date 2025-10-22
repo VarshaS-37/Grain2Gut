@@ -50,8 +50,8 @@ def go_to(page):
 
 # ---------------------- Home Page ----------------------
 def home():
-    st.markdown("<h1>Grain2Gut</h1>", unsafe_allow_html=True)
-    st.markdown("<h2>Functional Prediction of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
+    st.markdown("<h2>Grain2Gut</h2>", unsafe_allow_html=True)
+    st.markdown("<h3>Functional Prediction of Millet-derived Lactic Acid Bacteria</h3>", unsafe_allow_html=True)
     st.write("")
 
     col1, col2, col3 = st.columns(3)
