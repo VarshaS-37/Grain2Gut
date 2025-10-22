@@ -78,9 +78,9 @@ millet_map = {
 # ---------------------- EC Page ----------------------
 def ec_page():
     st.title("EC Analysis")
-    col1, col2, col3 = st.columns([1, 2, 8])
+    col1, col2, col3 = st.columns([3, 2, 3])
     with col2:
-        st.markdown("#### Select Millet Strain")
+        st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
         selected = st.selectbox(
             "",
             list(millet_map.keys()),
@@ -102,9 +102,9 @@ def ec_page():
 # ---------------------- KO Page ----------------------
 def ko_page():
     st.title("KO Analysis")
-    col1, col2, col3 = st.columns([1, 2, 8])
+    col1, col2, col3 = st.columns([3, 2, 3])
     with col2:
-        st.markdown("#### Select Millet Strain")
+        st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
         selected = st.selectbox(
             "",
             list(millet_map.keys()),
@@ -126,9 +126,9 @@ def ko_page():
 # ---------------------- Pathway Page ----------------------
 def pwy_page():
     st.title("Pathway Analysis")
-    col1, col2, col3 = st.columns([1, 2, 8])
+    col1, col2, col3 = st.columns([3, 2, 3])
     with col2:
-        st.markdown("#### Select Millet Strain")
+        st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
         selected = st.selectbox(
             "",
             list(millet_map.keys()),
