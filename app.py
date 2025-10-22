@@ -92,7 +92,7 @@ def ec_page(title, tag):
     st.title(f"{title} - EC Analysis")
     suffix = tag_to_suffix.get(tag, "")
     try:
-        df = pd.read_csv(f"ec{suffix}.csv")
+        df = pd.read_csv(f"picrust_output_files/ec{suffix}.csv")
         st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File ec{suffix}.csv not found.")
@@ -109,7 +109,7 @@ def ko_page(title, tag):
     st.title(f"{title} - KO Analysis")
     suffix = tag_to_suffix.get(tag, "")
     try:
-        df = pd.read_csv(f"ko{suffix}.csv")
+        df = pd.read_csv(f"picrust_output_files/ko{suffix}.csv")
         st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File ko{suffix}.csv not found.")
@@ -126,7 +126,7 @@ def pwy_page(title, tag):
     st.title(f"{title} - Pathway Analysis")
     suffix = tag_to_suffix.get(tag, "")
     try:
-        df = pd.read_csv(f"pwy_{suffix}.csv")
+        df = pd.read_csv(f"picrust_output_files/pwy_{suffix}.csv")
         st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File pwy_{suffix}.csv not found.")
