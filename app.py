@@ -57,13 +57,8 @@ def home():
     # ---------------------- Sidebar with Project Description ----------------------
     with st.sidebar.expander("About This Project", expanded=True):
         st.markdown("""
-        **Grain2Gut** is an interactive app for analyzing millet-derived lactic acid bacteria (LAB).  
-        Features include:  
-        - Functional prediction using PICRUSt.  
-        - Exploration of EC numbers, KO identifiers, and metabolic pathways.  
-        - Textual interpretation for each feature.  
-
-        Use the **Detailed Analysis** box on the main page to access EC, KO, and Pathway analyses.  
+        An interactive app containing the results of functional prediction of the millet-derived lactic acid bacteria (LAB).  
+        Click the **Detailed Analysis** box  to access EC, KO, and Pathway analysis.  
         """)
     
     st.write("")  # spacing
@@ -82,14 +77,28 @@ def home():
                 border-radius: 10px;
                 box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
             ">
-                <h4 style='text-align:center;'>Detailed Analysis</h4>
+                <h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-        # Buttons inside Detailed Analysis box
-        st.write("")  # spacing
+        # Create buttons inside a sub-container to appear part of the box
+        st.markdown(
+            """
+            <div style="
+                background-color: #FEF7A2;
+                padding: 10px;
+                border-radius: 10px;
+                display: flex;
+                justify-content: space-around;
+            ">
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Buttons inside the box using columns for alignment
         col1, col2, col3 = st.columns(3)
         with col1:
             if st.button("EC Analysis"):
@@ -100,8 +109,6 @@ def home():
         with col3:
             if st.button("Pathway Analysis"):
                 go_to("pwy_analysis")
-
-
 
 # ---------------------- Millet Data Mapping ----------------------
 millet_map = {
