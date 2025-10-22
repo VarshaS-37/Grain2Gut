@@ -77,8 +77,7 @@ millet_map = {
 }
 # ---------------------- EC Page: Dropdown Above Full DF ----------------------
 def ec_page():
-    st.title("EC Analysis")
-    
+    st.markdown("<h4 style='text-align:center;'>EC Analysis</h4>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
