@@ -78,7 +78,15 @@ millet_map = {
 # ---------------------- EC Page ----------------------
 def ec_page():
     st.title("EC Analysis")
-    selected = st.selectbox("Select Millet Strain", list(millet_map.keys()))
+    col1, col2, col3 = st.columns([1, 2, 8])
+    with col2:
+        st.markdown("#### Select Millet Strain")
+        selected = st.selectbox(
+            "",
+            list(millet_map.keys()),
+            label_visibility="collapsed",
+            key=f"select_{st.session_state.page}",
+        )
     suffix = millet_map[selected]
 
     try:
@@ -94,7 +102,15 @@ def ec_page():
 # ---------------------- KO Page ----------------------
 def ko_page():
     st.title("KO Analysis")
-    selected = st.selectbox("Select Millet Strain", list(millet_map.keys()))
+    col1, col2, col3 = st.columns([1, 2, 8])
+    with col2:
+        st.markdown("#### Select Millet Strain")
+        selected = st.selectbox(
+            "",
+            list(millet_map.keys()),
+            label_visibility="collapsed",
+            key=f"select_{st.session_state.page}",
+        )
     suffix = millet_map[selected]
 
     try:
@@ -110,7 +126,15 @@ def ko_page():
 # ---------------------- Pathway Page ----------------------
 def pwy_page():
     st.title("Pathway Analysis")
-    selected = st.selectbox("Select Millet Strain", list(millet_map.keys()))
+    col1, col2, col3 = st.columns([1, 2, 8])
+    with col2:
+        st.markdown("#### Select Millet Strain")
+        selected = st.selectbox(
+            "",
+            list(millet_map.keys()),
+            label_visibility="collapsed",
+            key=f"select_{st.session_state.page}",
+        )
     suffix = millet_map[selected]
 
     try:
