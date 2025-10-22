@@ -1,9 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(
-    layout="wide"
-)
+st.set_page_config(layout="wide")
 
 # ---------------------- CSS ----------------------
 st.markdown("""
@@ -40,6 +38,8 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 
+
+# ---------------------- Page Control ----------------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
@@ -47,140 +47,90 @@ def go_to(page):
     st.session_state.page = page
     st.rerun()
 
+
+# ---------------------- Home Page ----------------------
 def home():
     st.markdown("<h1>Grain2Gut</h1>", unsafe_allow_html=True)
     st.markdown("<h2>Functional Prediction of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     st.write("")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        if st.button("Proso Millet PP355677"):
-            go_to("millet1")
-    with col2:
-        if st.button("Foxtail Millet PP355678"):
-            go_to("millet2")
-    with col3:
-        if st.button("Little Millet PP355679"):
-            go_to("millet3")
-    with col4:
-        if st.button("Little Millet PP355680"):
-            go_to("millet4")
 
-tag_to_suffix = {
-    "millet1": "77",
-    "millet2": "78",
-    "millet3": "79",
-    "millet4": "80",
-}
-
-
-def millet_page(title, tag):
-    st.title(title)
-    
     col1, col2, col3 = st.columns(3)
     with col1:
         if st.button("EC Analysis"):
-            go_to(f"{tag}_ec")
+            go_to("ec_analysis")
     with col2:
         if st.button("KO Analysis"):
-            go_to(f"{tag}_ko")
+            go_to("ko_analysis")
     with col3:
         if st.button("Pathway Analysis"):
-            go_to(f"{tag}_pwy")
-    st.markdown("<br>", unsafe_allow_html=True)
-    if st.button("Back to Home"):
-        go_to("home")
+            go_to("pwy_analysis")
 
 
-def ec_page(title, tag):
-    st.title(f"{title} - EC Analysis")
-    suffix = tag_to_suffix.get(tag, "")
+# ---------------------- Millet Data Mapping ----------------------
+millet_map = {
+    "Proso Millet PP355677": "77",
+    "Foxtail Millet PP355678": "78",
+    "Little Millet PP355679": "79",
+    "Little Millet PP355680": "80"
+}
+
+
+# ---------------------- EC Page ----------------------
+def ec_page():
+    st.title("EC Analysis")
+    selected = st.selectbox("Select Millet Strain", list(millet_map.keys()))
+    suffix = millet_map[selected]
+
     try:
         df = pd.read_csv(f"picrust_output_files/ec{suffix}.csv")
         st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File ec{suffix}.csv not found.")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Back to Millet Page"):
-            go_to(tag)
-    with col2:
-        if st.button("Back to Home"):
-            go_to("home")
+    if st.button("Back to Home"):
+        go_to("home")
 
-def ko_page(title, tag):
-    st.title(f"{title} - KO Analysis")
-    suffix = tag_to_suffix.get(tag, "")
+
+# ---------------------- KO Page ----------------------
+def ko_page():
+    st.title("KO Analysis")
+    selected = st.selectbox("Select Millet Strain", list(millet_map.keys()))
+    suffix = millet_map[selected]
+
     try:
         df = pd.read_csv(f"picrust_output_files/ko{suffix}.csv")
         st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File ko{suffix}.csv not found.")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Back to Millet Page"):
-            go_to(tag)
-    with col2:
-        if st.button("Back to Home"):
-            go_to("home")
+    if st.button("Back to Home"):
+        go_to("home")
 
-def pwy_page(title, tag):
-    st.title(f"{title} - Pathway Analysis")
-    suffix = tag_to_suffix.get(tag, "")
+
+# ---------------------- Pathway Page ----------------------
+def pwy_page():
+    st.title("Pathway Analysis")
+    selected = st.selectbox("Select Millet Strain", list(millet_map.keys()))
+    suffix = millet_map[selected]
+
     try:
         df = pd.read_csv(f"picrust_output_files/pwy_{suffix}.csv")
         st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File pwy_{suffix}.csv not found.")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("Back to Millet Page"):
-            go_to(tag)
-    with col2:
-        if st.button("Back to Home"):
-            go_to("home")
+    if st.button("Back to Home"):
+        go_to("home")
 
 
+# ---------------------- Navigation ----------------------
 page = st.session_state.page
 
 if page == "home":
     home()
-
-elif page == "millet1":
-    millet_page("Proso Millet PP355677", "millet1")
-elif page == "millet2":
-    millet_page("Foxtail Millet PP355678", "millet2")
-elif page == "millet3":
-    millet_page("Little Millet PP355679", "millet3")
-elif page == "millet4":
-    millet_page("Little Millet PP355680", "millet4")
-
-elif page == "millet1_ec":
-    ec_page("Proso Millet PP355677", "millet1")
-elif page == "millet2_ec":
-    ec_page("Foxtail Millet PP355678", "millet2")
-elif page == "millet3_ec":
-    ec_page("Little Millet PP355679", "millet3")
-elif page == "millet4_ec":
-    ec_page("Little Millet PP355680", "millet4")
-
-elif page == "millet1_ko":
-    ko_page("Proso Millet PP355677", "millet1")
-elif page == "millet2_ko":
-    ko_page("Foxtail Millet PP355678", "millet2")
-elif page == "millet3_ko":
-    ko_page("Little Millet PP355679", "millet3")
-elif page == "millet4_ko":
-    ko_page("Little Millet PP355680", "millet4")
-
-elif page == "millet1_pwy":
-    pwy_page("Proso Millet PP355677", "millet1")
-elif page == "millet2_pwy":
-    pwy_page("Foxtail Millet PP355678", "millet2")
-elif page == "millet3_pwy":
-    pwy_page("Little Millet PP355679", "millet3")
-elif page == "millet4_pwy":
-    pwy_page("Little Millet PP355680", "millet4")
-
+elif page == "ec_analysis":
+    ec_page()
+elif page == "ko_analysis":
+    ko_page()
+elif page == "pwy_analysis":
+    pwy_page()
