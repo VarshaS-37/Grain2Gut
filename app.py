@@ -78,25 +78,65 @@ millet_map = {
 
 
 # ---------------------- EC Page ----------------------
+# ---------------------- EC Page with 3 Clickable Boxes ----------------------
 def ec_page():
     st.title("EC Analysis")
+    
+    # Select Millet Strain at the top
     col1, col2, col3 = st.columns([3, 2, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
-        selected = st.selectbox(
+        selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
             label_visibility="collapsed",
-            key=f"select_{st.session_state.page}",
+            key=f"strain_select_{st.session_state.page}",
         )
-    suffix = millet_map[selected]
+    suffix = millet_map[selected_strain]
 
+    # Load dataframe if available
     try:
         df = pd.read_csv(f"picrust_output_files/ec{suffix}.csv")
-        st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File ec{suffix}.csv not found.")
+        return
 
+    st.write("")  # spacing
+
+    # 3 boxes for EC analysis inside the page
+    box1, box2, box3 = st.columns(3)
+
+    # ---- Box 1: DataFrame Display ----
+    with box1:
+        st.markdown("<h4 style='text-align:center;'>View EC DataFrame</h4>", unsafe_allow_html=True)
+        # Dropdown to select a view (full or top N)
+        display_option = st.selectbox("Select view", ["Full DataFrame", "Top 5 rows"], key="display_option")
+        if display_option == "Full DataFrame":
+            st.dataframe(df, use_container_width=True)
+        else:
+            st.dataframe(df.head(), use_container_width=True)
+
+    # ---- Box 2: Textual Interpretation ----
+    with box2:
+        st.markdown("<h4 style='text-align:center;'>Textual Interpretation</h4>", unsafe_allow_html=True)
+        ec_ids = df['EC_ID'].unique().tolist() if 'EC_ID' in df.columns else []
+        selected_ec = st.selectbox("Select EC ID", ec_ids, key="ec_select")
+        if selected_ec:
+            ec_summary = df[df['EC_ID'] == selected_ec]
+            st.write(f"Summary for EC ID {selected_ec}:")
+            st.dataframe(ec_summary, use_container_width=True)
+
+    # ---- Box 3: Summary by Strain ----
+    with box3:
+        st.markdown("<h4 style='text-align:center;'>Summary by Strain</h4>", unsafe_allow_html=True)
+        strains = df['Strain'].unique().tolist() if 'Strain' in df.columns else []
+        selected_summary_strain = st.selectbox("Select Strain", strains, key="strain_summary")
+        if selected_summary_strain:
+            strain_summary = df[df['Strain'] == selected_summary_strain]
+            st.write(f"Summary for strain {selected_summary_strain}:")
+            st.dataframe(strain_summary, use_container_width=True)
+
+    st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
 
