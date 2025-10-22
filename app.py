@@ -75,9 +75,7 @@ millet_map = {
     "Little Millet PP355679": "79",
     "Little Millet PP355680": "80"
 }
-
-
-# ---------------------- EC Page: Full DF on LHS + Textual Interpretation ----------------------
+# ---------------------- EC Page: Dropdown Above Full DF ----------------------
 def ec_page():
     st.title("EC Analysis")
     
@@ -112,17 +110,17 @@ def ec_page():
     # ---------------------- Side-by-Side Columns ----------------------
     left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
 
-    # ---- Left Column: Full EC DataFrame ----
+    # ---- Left Column: EC number dropdown + Full EC DataFrame ----
     with left_col:
-        st.markdown("<h4 style='text-align:center;'>Full EC DataFrame</h4>", unsafe_allow_html=True)
-        st.dataframe(df, use_container_width=True)
-
-        # EC number selection dropdown for textual interpretation
+        st.markdown("<h4 style='text-align:center;'>Select EC Number</h4>", unsafe_allow_html=True)
         if 'ec_number' in df.columns:
-            selected_ec = st.selectbox("Select EC number", df['ec_number'].unique(), key="ec_select")
+            selected_ec = st.selectbox("Choose EC number", df['ec_number'].unique(), key="ec_select")
         else:
             st.warning("Column 'ec_number' not found in dataframe.")
             selected_ec = None
+
+        st.markdown("<h4 style='text-align:center;'>Full EC DataFrame</h4>", unsafe_allow_html=True)
+        st.dataframe(df, use_container_width=True)
 
     # ---- Right Column: Textual Interpretation ----
     with right_col:
@@ -138,7 +136,6 @@ def ec_page():
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
-
 
 
 # ---------------------- KO Page ----------------------
