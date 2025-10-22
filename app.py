@@ -113,7 +113,7 @@ def ec_page():
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a EC Number</h4>", unsafe_allow_html=True)
         if 'ec_number' in df.columns:
-            selected_ec = st.selectbox(df['ec_number'].unique(), key="ec_select")
+            selected_ec = st.selectbox("",df['ec_number'].unique(), key="ec_select")
         else:
             st.warning("Column 'ec_number' not found in dataframe.")
             selected_ec = None
