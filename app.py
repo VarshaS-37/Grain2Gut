@@ -35,12 +35,7 @@ h2, h1 {
 .stButton>button:hover {
     background-color:#DFFBB9;
 }
-div[data-baseweb="select"] > div {
-    background-color: #FEF7A2 !important;  /* background color */
-    color:#DFFBB9 !important;             /* text color */
-    border-radius: 10px !important;
-    padding: 5px 10px !important;
-}
+
 </style>
 """, unsafe_allow_html=True)
 
