@@ -59,8 +59,7 @@ def home():
         1. An interactive app containing the results of functional prediction of the millet-derived lactic acid bacteria (LAB).  
         2. Click the **Detailed Analysis** box  to access EC, KO, and Pathway analysis.  
         """)
-    
-    st.write("")  # spacing
+
 
    
     # ---------------------- Main Page Layout ----------------------
@@ -80,8 +79,8 @@ def home():
     
     with right_col:
         # Detailed Analysis heading
-        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>", unsafe_allow_html=True)
-        st.write("")  # spacing
+        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Meta Data</h4>", unsafe_allow_html=True)
+       
     
         # Center buttons below the heading
         for label, page_key in [("EC Analysis", "ec_analysis"), ("KO Analysis", "ko_analysis"), ("Pathway Analysis", "pwy_analysis")]:
@@ -89,7 +88,7 @@ def home():
             with col2:
                 if st.button(label, key=label):
                     go_to(page_key)
-            st.write("")  # spacing between buttons
+           
     
 
 # ---------------------- Millet Data Mapping ----------------------
