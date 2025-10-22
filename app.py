@@ -77,8 +77,7 @@ millet_map = {
 }
 
 
-# ---------------------- EC Page ----------------------
-# ---------------------- EC Page: Side-by-Side Layout ----------------------
+# ---------------------- EC Page: Interactive Side-by-Side ----------------------
 def ec_page():
     st.title("EC Analysis")
     
@@ -94,37 +93,49 @@ def ec_page():
         )
     suffix = millet_map[selected_strain]
 
-    # Load dataframe if available
+    # Load EC dataframe
     try:
         df = pd.read_csv(f"picrust_output_files/ec{suffix}.csv")
+        # Show only first 10 rows to keep it small
+        df_small = df.head(10)
     except FileNotFoundError:
         st.error(f"File ec{suffix}.csv not found.")
+        return
+
+    # Load textual interpretation CSV
+    try:
+        text_df = pd.read_csv(f"picrust_output_files/ec{suffix}_text.csv")  # contains columns ec_number, description
+    except FileNotFoundError:
+        st.error(f"Text file ec{suffix}_text.csv not found.")
         return
 
     st.write("")  # spacing
 
     # ---------------------- Side-by-Side Columns ----------------------
-    left_col, right_col = st.columns([2, 1])  # left bigger than right
+    left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
 
-    # ---- Left Column: Full DataFrame ----
+    # ---- Left Column: EC DataFrame ----
     with left_col:
-        st.markdown("<h4 style='text-align:center;'>EC DataFrame</h4>", unsafe_allow_html=True)
-        st.dataframe(df, use_container_width=True)
+        st.markdown("<h4 style='text-align:center;'>EC DataFrame (Top 10)</h4>", unsafe_allow_html=True)
+        # Make EC numbers clickable by using a selectbox
+        selected_ec = st.selectbox("Select EC number", df_small['ec_number'].tolist(), key="ec_select")
+        st.dataframe(df_small, use_container_width=True)
 
     # ---- Right Column: Textual Interpretation ----
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Textual Interpretation</h4>", unsafe_allow_html=True)
-        ec_ids = df['EC_ID'].unique().tolist() if 'EC_ID' in df.columns else []
-        selected_ec = st.selectbox("Select EC ID", ec_ids, key="ec_select")
-        
         if selected_ec:
-            ec_summary = df[df['EC_ID'] == selected_ec]
-            st.markdown(f"**Summary for EC ID {selected_ec}:**")
-            st.dataframe(ec_summary, use_container_width=True)
+            ec_text = text_df[text_df['ec_number'] == selected_ec]
+            if not ec_text.empty:
+                st.markdown(f"**EC Number: {selected_ec}**")
+                st.markdown(ec_text.iloc[0]['description'])
+            else:
+                st.warning("No textual description found for this EC number.")
 
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
+
 
 
 # ---------------------- KO Page ----------------------
