@@ -83,7 +83,7 @@ def ec_page():
         st.markdown("""
         **Instructions:**
         1. Select the millet LAB from the dropdown at the top.
-        2. On the left, the full EC dataframe for the selected strain is displayed.
+        2. On the left, the full EC dataframe for the selected LAB is displayed.
         3. Use the **EC number dropdown** above the dataframe to select an EC number.
         4. The right column will show the textual interpretation for the selected EC number.
         5. Use the "Back to Home" button to return to the main menu.
