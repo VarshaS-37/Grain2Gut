@@ -261,7 +261,7 @@ def pwy_page():
 
     # Load textual interpretation CSV
     try:
-        text_df = pd.read_csv(f"picrust_output_files/pwy_{suffix}_text.csv")  # columns: pathway_id, description
+        text_df = pd.read_csv(f"picrust_output_files/pwy{suffix}_text.csv")  # columns: pathway_id, description
     except FileNotFoundError:
         st.error(f"Text file pwy{suffix}_text.csv not found.")
         return
