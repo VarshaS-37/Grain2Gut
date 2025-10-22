@@ -111,23 +111,23 @@ def ec_page():
 
     # ---- Left Column: EC number dropdown + Full EC DataFrame ----
     with left_col:
-        st.markdown("<h4 style='text-align:center;'>Select EC Number</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>Select a EC Number</h4>", unsafe_allow_html=True)
         if 'ec_number' in df.columns:
-            selected_ec = st.selectbox("Choose EC number", df['ec_number'].unique(), key="ec_select")
+            selected_ec = st.selectbox(df['ec_number'].unique(), key="ec_select")
         else:
             st.warning("Column 'ec_number' not found in dataframe.")
             selected_ec = None
 
-        st.markdown("<h4 style='text-align:center;'>Full EC DataFrame</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>EC DataFrame</h4>", unsafe_allow_html=True)
         st.dataframe(df, use_container_width=True)
 
     # ---- Right Column: Textual Interpretation ----
     with right_col:
-        st.markdown("<h4 style='text-align:center;'>Textual Interpretation</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         if selected_ec:
             ec_text = text_df[text_df['ec_number'] == selected_ec]
             if not ec_text.empty:
-                st.markdown(f"**EC Number: {selected_ec}**")
+                st.markdown(f"**{selected_ec}**")
                 st.markdown(ec_text.iloc[0]['description'])
             else:
                 st.warning("No textual description found for this EC number.")
