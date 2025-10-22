@@ -46,7 +46,7 @@ def go_to(page):
     st.rerun()
 
 def home():
-    st.markdown("<h2>Functional Prediction of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
+    st.markdown("<h2>GrainGuts: Functional Prediction of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     st.write("")
     col1, col2, col3, col4 = st.columns(4)
     with col1:
