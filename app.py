@@ -56,29 +56,27 @@ def home():
     # ---------------------- Sidebar with Project Description ----------------------
     with st.sidebar.expander("About This App", expanded=True):
         st.markdown("""
-        An interactive app containing the results of functional prediction of the millet-derived lactic acid bacteria (LAB).  
-        Click the **Detailed Analysis** box  to access EC, KO, and Pathway analysis.  
+        1. An interactive app containing the results of functional prediction of the millet-derived lactic acid bacteria (LAB).  
+        2. Click the **Detailed Analysis** box  to access EC, KO, and Pathway analysis.  
         """)
     
     st.write("")  # spacing
 
-   # ---------------------- Main Page Layout ----------------------
+   
     # ---------------------- Main Page Layout ----------------------
-    left_col, middle_col, right_col = st.columns([1, 1, 2])  # left & middle for extra buttons/spaces, right for Detailed Analysis
+    left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
     
     # ---- Left Column: additional buttons ----
     with left_col:
-        if st.button("Summarized Analysis", key="left_summarized"):
+        if st.button("Summarized Analysis"):
             go_to("summarized_analysis")
-        if st.button("Millet-wise Analysis", key="left_milletwise"):
-            go_to("milletwise_analysis")
+        
     
     # ---- Middle Column: additional buttons ----
     with middle_col:
-        if st.button("Other Analysis 1", key="middle_1"):
-            go_to("other_analysis_1")
-        if st.button("Other Analysis 2", key="middle_2"):
-            go_to("other_analysis_2")
+        if st.button("Millet-wise Analysis"):
+            go_to("milletwise_analysis")
+        
     
     # ---- Right Column: Detailed Analysis ----
     with right_col:
@@ -87,13 +85,13 @@ def home():
         st.write("")  # spacing
     
         # Three buttons stacked vertically
-        if st.button("EC Analysis", key="detailed_ec"):
+        if st.button("EC Analysis"):
             go_to("ec_analysis")
         
-        if st.button("KO Analysis", key="detailed_ko"):
+        if st.button("KO Analysis"):
             go_to("ko_analysis")
         
-        if st.button("Pathway Analysis", key="detailed_pwy"):
+        if st.button("Pathway Analysis"):
             go_to("pwy_analysis")
 
 
