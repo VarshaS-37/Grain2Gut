@@ -148,28 +148,80 @@ def ec_page():
         go_to("home")
 
 
-# ---------------------- KO Page ----------------------
+# ---------------------- KO Page: Side-by-Side + Sidebar ----------------------
 def ko_page():
-    st.title("KO Analysis")
-    col1, col2, col3 = st.columns([3, 2, 3])
+    
+    st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
+    
+    # ---------------------- Sidebar with instructions ----------------------
+    with st.sidebar.expander("How to Use this Page", expanded=True):
+        st.markdown("""
+        **Instructions:**
+        1. Select the millet LAB from the dropdown at the top.
+        2. On the left, the entire KO dataframe for the selected LAB is displayed.
+        3. Use the **KO number dropdown** above the dataframe to select a KO number.
+        4. The right column will show the textual interpretation for the selected KO number.
+        5. Use the "Back to Home" button at the bottom to return to the home page.
+        """)
+    
+    # ---------------------- Millet LAB Selection ----------------------
+    col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
-        st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
-        selected = st.selectbox(
+        st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
+        selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
             label_visibility="collapsed",
-            key=f"select_{st.session_state.page}",
+            key=f"ko_strain_select_{st.session_state.page}",
         )
-    suffix = millet_map[selected]
+    suffix = millet_map[selected_strain]
 
+    # ---------------------- Load KO DataFrame ----------------------
     try:
         df = pd.read_csv(f"picrust_output_files/ko{suffix}.csv")
-        st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File ko{suffix}.csv not found.")
+        return
 
+    # Load textual interpretation CSV
+    try:
+        text_df = pd.read_csv(f"picrust_output_files/ko{suffix}_text.csv")  # columns: ko_number, description
+    except FileNotFoundError:
+        st.error(f"Text file ko{suffix}_text.csv not found.")
+        return
+
+    st.write("")  # spacing
+
+    # ---------------------- Side-by-Side Columns ----------------------
+    left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
+
+    # ---- Left Column: KO number dropdown + Full KO DataFrame ----
+    with left_col:
+        st.markdown("<h4 style='text-align:center;'>Select a KO Number</h4>", unsafe_allow_html=True)
+        if 'ko_number' in df.columns:
+            selected_ko = st.selectbox("", df['ko_number'].unique(), key="ko_select")
+        else:
+            st.warning("Column 'ko_number' not found in dataframe.")
+            selected_ko = None
+
+        st.markdown("<h4 style='text-align:center;'>KO DataFrame</h4>", unsafe_allow_html=True)
+        st.dataframe(df, use_container_width=True)
+
+    # ---- Right Column: Textual Interpretation ----
+    with right_col:
+        st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
+        if selected_ko:
+            ko_text = text_df[text_df['ko_number'] == selected_ko]
+            if not ko_text.empty:
+                st.markdown(f"**{selected_ko}**")
+                st.markdown(ko_text.iloc[0]['description'])
+            else:
+                st.warning("No textual description found for this KO number.")
+
+    st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
+
 
 
 # ---------------------- Pathway Page ----------------------
