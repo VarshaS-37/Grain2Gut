@@ -57,7 +57,7 @@ def home():
     with st.sidebar.expander("About This App", expanded=True):
         st.markdown("""
         1. An interactive app containing the results of functional prediction of the millet-derived lactic acid bacteria (LAB).  
-        2. Click the **Detailed Analysis** box  to access EC, KO, and Pathway analysis.  
+        2. The Meta Data contains EC, KO, and Pathway analysis in detail.  
         """)
 
 
