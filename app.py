@@ -48,14 +48,13 @@ def go_to(page):
     st.session_state.page = page
     st.rerun()
 
-
 # ---------------------- Home Page ----------------------
 def home():
     st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center;'>Functional Prediction of Millet-derived Lactic Acid Bacteria</h3>", unsafe_allow_html=True)
 
     # ---------------------- Sidebar with Project Description ----------------------
-    with st.sidebar.expander("About This Project", expanded=True):
+    with st.sidebar.expander("About This App", expanded=True):
         st.markdown("""
         An interactive app containing the results of functional prediction of the millet-derived lactic acid bacteria (LAB).  
         Click the **Detailed Analysis** box  to access EC, KO, and Pathway analysis.  
@@ -64,51 +63,77 @@ def home():
     st.write("")  # spacing
 
     # ---------------------- Main Page Layout ----------------------
-    # Two columns: left for spacing or future boxes, right for Detailed Analysis box
-    left_col, right_col = st.columns([1, 2])
+    left_col, right_col = st.columns([1, 2])  # left for future boxes, right for Detailed Analysis
 
-    # ---- Right Column: Detailed Analysis Box ----
     with right_col:
+        # Detailed Analysis heading
+        st.markdown(
+            "<h4 style='text-align:center;'>Detailed Analysis</h4>", unsafe_allow_html=True
+        )
+        st.write("")  # spacing
+
+        # Three boxes stacked vertically
+        # EC Analysis Box
         st.markdown(
             """
             <div style="
-                background-color: #FEF7A2;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+                background-color:#FEF7A2;
+                padding:20px;
+                border-radius:10px;
+                margin-bottom:15px;
+                text-align:center;
+                font-weight:bold;
+                cursor:pointer;
             ">
-                <h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>
+                EC Analysis
             </div>
             """,
             unsafe_allow_html=True
         )
+        if st.button("Go to EC Analysis"):
+            go_to("ec_analysis")
 
-        # Create buttons inside a sub-container to appear part of the box
+        # KO Analysis Box
         st.markdown(
             """
             <div style="
-                background-color: #FEF7A2;
-                padding: 10px;
-                border-radius: 10px;
-                display: flex;
-                justify-content: space-around;
+                background-color:#FEF7A2;
+                padding:20px;
+                border-radius:10px;
+                margin-bottom:15px;
+                text-align:center;
+                font-weight:bold;
+                cursor:pointer;
             ">
+                KO Analysis
             </div>
             """,
             unsafe_allow_html=True
         )
+        if st.button("Go to KO Analysis"):
+            go_to("ko_analysis")
 
-        # Buttons inside the box using columns for alignment
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            if st.button("EC Analysis"):
-                go_to("ec_analysis")
-        with col2:
-            if st.button("KO Analysis"):
-                go_to("ko_analysis")
-        with col3:
-            if st.button("Pathway Analysis"):
-                go_to("pwy_analysis")
+        # Pathway Analysis Box
+        st.markdown(
+            """
+            <div style="
+                background-color:#FEF7A2;
+                padding:20px;
+                border-radius:10px;
+                margin-bottom:15px;
+                text-align:center;
+                font-weight:bold;
+                cursor:pointer;
+            ">
+                Pathway Analysis
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        if st.button("Go to Pathway Analysis"):
+            go_to("pwy_analysis")
+
+
 
 # ---------------------- Millet Data Mapping ----------------------
 millet_map = {
