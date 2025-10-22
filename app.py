@@ -53,7 +53,7 @@ def home():
     st.markdown("<h2>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h2>Functional Prediction of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
     st.markdown("<h4>About App:</h4>", unsafe_allow_html=True)
-    st.markdown("<h4>There are four millets which canbe selected n analyis of mille wise n overall analysis can also be done</h4>", unsafe_allow_html=True)
+    st.markdown("There are four millets which canbe selected n analyis of mille wise n overall analysis can also be done", unsafe_allow_html=True)
     st.write("")
 
     col1, col2, col3 = st.columns(3)
