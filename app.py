@@ -77,6 +77,9 @@ millet_map = {
 }
 # ---------------------- EC Page: Dropdown Above Full DF ----------------------
 def ec_page():
+    st.write("")  # spacing
+    if st.button("Back to Home"):
+        go_to("home")
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
      # ---------------------- Sidebar with instructions ----------------------
     with st.sidebar.expander("How to Use this Page", expanded=True):
@@ -141,9 +144,7 @@ def ec_page():
             else:
                 st.warning("No textual description found for this EC number.")
 
-    st.write("")  # spacing
-    if st.button("Back to Home"):
-        go_to("home")
+    
 
 
 # ---------------------- KO Page ----------------------
