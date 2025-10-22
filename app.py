@@ -51,22 +51,56 @@ def go_to(page):
 
 # ---------------------- Home Page ----------------------
 def home():
-    st.markdown("<h2>Grain2Gut</h2>", unsafe_allow_html=True)
-    st.markdown("<h2>Functional Prediction of Millet-derived Lactic Acid Bacteria</h2>", unsafe_allow_html=True)
-    st.markdown("<h4>About App:</h4>", unsafe_allow_html=True)
-    st.markdown("There are four millets which canbe selected n analyis of mille wise n overall analysis can also be done", unsafe_allow_html=True)
-    st.write("")
+    st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center;'>Functional Prediction of Millet-derived Lactic Acid Bacteria</h3>", unsafe_allow_html=True)
 
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        if st.button("EC Analysis"):
-            go_to("ec_analysis")
-    with col2:
-        if st.button("KO Analysis"):
-            go_to("ko_analysis")
-    with col3:
-        if st.button("Pathway Analysis"):
-            go_to("pwy_analysis")
+    # ---------------------- Sidebar with Project Description ----------------------
+    with st.sidebar.expander("About This Project", expanded=True):
+        st.markdown("""
+        **Grain2Gut** is an interactive app for analyzing millet-derived lactic acid bacteria (LAB).  
+        Features include:  
+        - Functional prediction using PICRUSt.  
+        - Exploration of EC numbers, KO identifiers, and metabolic pathways.  
+        - Textual interpretation for each feature.  
+
+        Use the **Detailed Analysis** box on the main page to access EC, KO, and Pathway analyses.  
+        """)
+    
+    st.write("")  # spacing
+
+    # ---------------------- Main Page Layout ----------------------
+    # Two columns: left for spacing or future boxes, right for Detailed Analysis box
+    left_col, right_col = st.columns([1, 2])
+
+    # ---- Right Column: Detailed Analysis Box ----
+    with right_col:
+        st.markdown(
+            """
+            <div style="
+                background-color: #FEF7A2;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            ">
+                <h4 style='text-align:center;'>Detailed Analysis</h4>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Buttons inside Detailed Analysis box
+        st.write("")  # spacing
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            if st.button("EC Analysis"):
+                go_to("ec_analysis")
+        with col2:
+            if st.button("KO Analysis"):
+                go_to("ko_analysis")
+        with col3:
+            if st.button("Pathway Analysis"):
+                go_to("pwy_analysis")
+
 
 
 # ---------------------- Millet Data Mapping ----------------------
