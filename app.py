@@ -70,19 +70,18 @@ def home():
 
 # ---------------------- Millet Data Mapping ----------------------
 millet_map = {
-    "Proso Millet PP355677": "77",
-    "Foxtail Millet PP355678": "78",
-    "Little Millet PP355679": "79",
-    "Little Millet PP355680": "80"
+    "Enterococcus casseliflavus (Proso Millet)": "77",
+    "Weisella cibaria NM01 (Foxtail Millet)": "78",
+    "Weisella cibaria NM01 (Little Millet)": "79",
+    "Lactococcus lactis (Little Millet)": "80"
 }
 # ---------------------- EC Page: Dropdown Above Full DF ----------------------
 def ec_page():
     st.title("EC Analysis")
     
-    # Select Millet Strain at the top
     col1, col2, col3 = st.columns([3, 2, 3])
     with col2:
-        st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
