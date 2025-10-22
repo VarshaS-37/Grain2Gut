@@ -78,18 +78,18 @@ def home():
             go_to("milletwise_analysis")
         
     
-       with right_col:
-        # Detailed Analysis heading
-        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>", unsafe_allow_html=True)
-        st.write("")  # spacing
-    
-        # Center buttons below the heading
-        for label, page_key in [("EC Analysis", "ec_analysis"), ("KO Analysis", "ko_analysis"), ("Pathway Analysis", "pwy_analysis")]:
-            col1, col2, col3 = st.columns([1, 2, 1])  # middle column holds the button
-            with col2:
-                if st.button(label, key=label):
-                    go_to(page_key)
-            st.write("")  # spacing between buttons
+   with right_col:
+    # Detailed Analysis heading
+    st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>", unsafe_allow_html=True)
+    st.write("")  # spacing
+
+    # Center buttons below the heading
+    for label, page_key in [("EC Analysis", "ec_analysis"), ("KO Analysis", "ko_analysis"), ("Pathway Analysis", "pwy_analysis")]:
+        col1, col2, col3 = st.columns([1, 2, 1])  # middle column holds the button
+        with col2:
+            if st.button(label, key=label):
+                go_to(page_key)
+        st.write("")  # spacing between buttons
     
 
 # ---------------------- Millet Data Mapping ----------------------
