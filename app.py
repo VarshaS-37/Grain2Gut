@@ -77,7 +77,7 @@ millet_map = {
 }
 
 
-# ---------------------- EC Page: Interactive Side-by-Side ----------------------
+# ---------------------- EC Page: Full DF on LHS + Textual Interpretation ----------------------
 def ec_page():
     st.title("EC Analysis")
     
@@ -96,15 +96,13 @@ def ec_page():
     # Load EC dataframe
     try:
         df = pd.read_csv(f"picrust_output_files/ec{suffix}.csv")
-        # Show only first 10 rows to keep it small
-        df_small = df.head(10)
     except FileNotFoundError:
         st.error(f"File ec{suffix}.csv not found.")
         return
 
     # Load textual interpretation CSV
     try:
-        text_df = pd.read_csv(f"picrust_output_files/ec{suffix}_text.csv")  # contains columns ec_number, description
+        text_df = pd.read_csv(f"picrust_output_files/ec{suffix}_text.csv")  # columns: ec_number, description
     except FileNotFoundError:
         st.error(f"Text file ec{suffix}_text.csv not found.")
         return
@@ -114,12 +112,17 @@ def ec_page():
     # ---------------------- Side-by-Side Columns ----------------------
     left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
 
-    # ---- Left Column: EC DataFrame ----
+    # ---- Left Column: Full EC DataFrame ----
     with left_col:
-        st.markdown("<h4 style='text-align:center;'>EC DataFrame (Top 10)</h4>", unsafe_allow_html=True)
-        # Make EC numbers clickable by using a selectbox
-        selected_ec = st.selectbox("Select EC number", df_small['ec_number'].tolist(), key="ec_select")
-        st.dataframe(df_small, use_container_width=True)
+        st.markdown("<h4 style='text-align:center;'>Full EC DataFrame</h4>", unsafe_allow_html=True)
+        st.dataframe(df, use_container_width=True)
+
+        # EC number selection dropdown for textual interpretation
+        if 'ec_number' in df.columns:
+            selected_ec = st.selectbox("Select EC number", df['ec_number'].unique(), key="ec_select")
+        else:
+            st.warning("Column 'ec_number' not found in dataframe.")
+            selected_ec = None
 
     # ---- Right Column: Textual Interpretation ----
     with right_col:
