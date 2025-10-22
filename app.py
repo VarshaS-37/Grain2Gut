@@ -78,9 +78,7 @@ millet_map = {
 }
 # ---------------------- EC Page: Dropdown Above Full DF ----------------------
 def ec_page():
-    st.write("")  # spacing
-    if st.button("Back to Home"):
-        go_to("home")
+    
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
      # ---------------------- Sidebar with instructions ----------------------
     with st.sidebar.expander("How to Use this Page", expanded=True):
@@ -90,7 +88,7 @@ def ec_page():
         2. On the left, the full EC dataframe for the selected LAB is displayed.
         3. Use the **EC number dropdown** above the dataframe to select an EC number.
         4. The right column will show the textual interpretation for the selected EC number.
-        5. Use the "Back to Home" button to return to the main menu.
+        5. Use the "Back to Home" button at the bottom to return to the home page.
         """)
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
@@ -145,7 +143,9 @@ def ec_page():
             else:
                 st.warning("No textual description found for this EC number.")
 
-    
+    st.write("")  # spacing
+    if st.button("Back to Home"):
+        go_to("home")
 
 
 # ---------------------- KO Page ----------------------
