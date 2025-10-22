@@ -224,28 +224,80 @@ def ko_page():
 
 
 
-# ---------------------- Pathway Page ----------------------
+# ---------------------- Pathway Page: Side-by-Side + Sidebar ----------------------
 def pwy_page():
-    st.title("Pathway Analysis")
-    col1, col2, col3 = st.columns([3, 2, 3])
+    
+    st.markdown("<h3 style='text-align:center;'>Pathway Analysis</h3>", unsafe_allow_html=True)
+    
+    # ---------------------- Sidebar with instructions ----------------------
+    with st.sidebar.expander("How to Use this Page", expanded=True):
+        st.markdown("""
+        **Instructions:**
+        1. Select the millet LAB from the dropdown at the top.
+        2. On the left, the entire pathway dataframe for the selected LAB is displayed.
+        3. Use the **Pathway ID dropdown** above the dataframe to select a pathway.
+        4. The right column will show the textual interpretation for the selected pathway.
+        5. Use the "Back to Home" button at the bottom to return to the home page.
+        """)
+    
+    # ---------------------- Millet LAB Selection ----------------------
+    col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
-        st.markdown("<h4 style='text-align:center;'>Select Millet Strain</h4>", unsafe_allow_html=True)
-        selected = st.selectbox(
+        st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
+        selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
             label_visibility="collapsed",
-            key=f"select_{st.session_state.page}",
+            key=f"pwy_strain_select_{st.session_state.page}",
         )
-    suffix = millet_map[selected]
+    suffix = millet_map[selected_strain]
 
+    # ---------------------- Load Pathway DataFrame ----------------------
     try:
         df = pd.read_csv(f"picrust_output_files/pwy_{suffix}.csv")
-        st.dataframe(df, use_container_width=True)
     except FileNotFoundError:
         st.error(f"File pwy_{suffix}.csv not found.")
+        return
 
+    # Load textual interpretation CSV
+    try:
+        text_df = pd.read_csv(f"picrust_output_files/pwy_{suffix}_text.csv")  # columns: pathway_id, description
+    except FileNotFoundError:
+        st.error(f"Text file pwy_{suffix}_text.csv not found.")
+        return
+
+    st.write("")  # spacing
+
+    # ---------------------- Side-by-Side Columns ----------------------
+    left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
+
+    # ---- Left Column: Pathway ID dropdown + Full Pathway DataFrame ----
+    with left_col:
+        st.markdown("<h4 style='text-align:center;'>Select a Pathway</h4>", unsafe_allow_html=True)
+        if 'Pathway' in df.columns:
+            selected_pwy = st.selectbox("", df['Pathway'].unique(), key="pwy_select")
+        else:
+            st.warning("Column 'pathway_id' not found in dataframe.")
+            selected_pwy = None
+
+        st.markdown("<h4 style='text-align:center;'>Pathway DataFrame</h4>", unsafe_allow_html=True)
+        st.dataframe(df, use_container_width=True)
+
+    # ---- Right Column: Textual Interpretation ----
+    with right_col:
+        st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
+        if selected_pwy:
+            pwy_text = text_df[text_df['Pathway'] == selected_pwy]
+            if not pwy_text.empty:
+                st.markdown(f"**{selected_pwy}**")
+                st.markdown(pwy_text.iloc[0]['description'])
+            else:
+                st.warning("No textual description found for this pathway.")
+
+    st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
+
 
 
 # ---------------------- Navigation ----------------------
