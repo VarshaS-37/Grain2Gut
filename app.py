@@ -198,8 +198,8 @@ def ko_page():
     # ---- Left Column: KO number dropdown + Full KO DataFrame ----
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a KO Number</h4>", unsafe_allow_html=True)
-        if 'ko_number' in df.columns:
-            selected_ko = st.selectbox("", df['ko_number'].unique(), key="ko_select")
+        if 'ko_id' in df.columns:
+            selected_ko = st.selectbox("", df['ko_id'].unique(), key="ko_select")
         else:
             st.warning("Column 'ko_number' not found in dataframe.")
             selected_ko = None
@@ -211,7 +211,7 @@ def ko_page():
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         if selected_ko:
-            ko_text = text_df[text_df['ko_number'] == selected_ko]
+            ko_text = text_df[text_df['ko_id'] == selected_ko]
             if not ko_text.empty:
                 st.markdown(f"**{selected_ko}**")
                 st.markdown(ko_text.iloc[0]['description'])
