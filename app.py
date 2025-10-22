@@ -263,7 +263,7 @@ def pwy_page():
     try:
         text_df = pd.read_csv(f"picrust_output_files/pwy_{suffix}_text.csv")  # columns: pathway_id, description
     except FileNotFoundError:
-        st.error(f"Text file pwy_{suffix}_text.csv not found.")
+        st.error(f"Text file pwy{suffix}_text.csv not found.")
         return
 
     st.write("")  # spacing
