@@ -73,64 +73,15 @@ def home():
         st.write("")  # spacing
 
         # Three boxes stacked vertically
-        # EC Analysis Box
-        st.markdown(
-            """
-            <div style="
-                background-color:#FEF7A2;
-                padding:20px;
-                border-radius:10px;
-                margin-bottom:15px;
-                text-align:center;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-                EC Analysis
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        if st.button("Go to EC Analysis"):
+       
+        if st.button("EC Analysis"):
             go_to("ec_analysis")
 
-        # KO Analysis Box
-        st.markdown(
-            """
-            <div style="
-                background-color:#FEF7A2;
-                padding:20px;
-                border-radius:10px;
-                margin-bottom:15px;
-                text-align:center;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-                KO Analysis
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        if st.button("Go to KO Analysis"):
+        if st.button("KO Analysis"):
             go_to("ko_analysis")
 
-        # Pathway Analysis Box
-        st.markdown(
-            """
-            <div style="
-                background-color:#FEF7A2;
-                padding:20px;
-                border-radius:10px;
-                margin-bottom:15px;
-                text-align:center;
-                font-weight:bold;
-                cursor:pointer;
-            ">
-                Pathway Analysis
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-        if st.button("Go to Pathway Analysis"):
+        
+        if st.button("Pathway Analysis"):
             go_to("pwy_analysis")
 
 
