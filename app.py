@@ -79,7 +79,7 @@ millet_map = {
 def ec_page():
     st.title("EC Analysis")
     
-    col1, col2, col3 = st.columns([3, 4, 3])
+    col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
