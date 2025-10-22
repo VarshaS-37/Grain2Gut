@@ -21,7 +21,7 @@ h2, h1 {
     color: #2c3e50;
 }
 .stColumns {
-    gap: 60px !important;
+    gap: 40px !important;
 }
 .stButton>button {
     background-color:#FEF7A2;
