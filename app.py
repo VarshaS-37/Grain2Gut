@@ -62,24 +62,39 @@ def home():
     
     st.write("")  # spacing
 
-    # ---------------------- Main Page Layout ----------------------
-
-    left_col, right_col = st.columns([1, 2])  # left for future boxes, right for Detailed Analysis
+   # ---------------------- Main Page Layout ----------------------
+    left_col, right_col = st.columns([1, 2])  # left for summarized/millet-wise, right for Detailed Analysis
     
+    # ---- Left Column: Summarized & Millet-wise Analysis ----
+    with left_col:
+        # Summarized Analysis box
+        st.markdown("<h4 style='text-align:center; margin-bottom:10px;'>Summarized Analysis</h4>", unsafe_allow_html=True)
+        if st.button("Go to Summarized Analysis", key="summarized"):
+            go_to("summarized_analysis")  # replace with actual page function
+    
+        st.write("")  # spacing
+    
+        # Millet-wise Analysis box
+        st.markdown("<h4 style='text-align:center; margin-bottom:10px;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
+        if st.button("Go to Millet-wise Analysis", key="milletwise"):
+            go_to("milletwise_analysis")  # replace with actual page function
+    
+    # ---- Right Column: Detailed Analysis ----
     with right_col:
         # Detailed Analysis heading
-        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Detailed Analysis</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Meta Data</h4>", unsafe_allow_html=True)
         st.write("")  # spacing
     
         # Three buttons stacked vertically
-        if st.button("EC Analysis"):
+        if st.button("EC Analysis", key="detailed_ec"):
             go_to("ec_analysis")
         
-        if st.button("KO Analysis"):
+        if st.button("KO Analysis", key="detailed_ko"):
             go_to("ko_analysis")
         
-        if st.button("Pathway Analysis"):
+        if st.button("Pathway Analysis", key="detailed_pwy"):
             go_to("pwy_analysis")
+
 
 
 # ---------------------- Millet Data Mapping ----------------------
