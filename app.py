@@ -141,7 +141,7 @@ def ec_page():
     
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
      # ---------------------- Sidebar with instructions ----------------------
-    with st.sidebar.expander("How to Use this Page", expanded=True):
+    with st.sidebar.expander("How to Use this Page", expanded=False):
         st.markdown("""
         **Instructions:**
         1. Select the millet LAB from the dropdown at the top.
