@@ -347,15 +347,29 @@ def ko_page():
         st.dataframe(df, use_container_width=True)
 
     # ---- Right Column: Textual Interpretation ----
-    with right_col:
+   with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
+        
         if selected_ko:
-            ko_text = text_df[text_df['ko_id'] == selected_ko]
+            ko_text = ko_text_df[ko_text_df['ko_id'] == selected_ko]
             if not ko_text.empty:
-                st.markdown(f"**{selected_ko}**")
-                st.markdown(ko_text.iloc[0]['description'])
+                # Display KO ID in larger bold font
+                st.markdown(f"<h3 style='text-align:center;'>{selected_ko}</h3>", unsafe_allow_html=True)
+                
+                # Split the description by semicolon
+                description = ko_text.iloc[0]['description']
+                parts = [part.strip() for part in description.split(';')]
+                
+                for part in parts:
+                    # Split at the first colon to bold the section title
+                    if ':' in part:
+                        title, text = part.split(':', 1)
+                        st.markdown(f"<p style='font-size:16px;'><strong>{title}:</strong> {text.strip()}</p>", unsafe_allow_html=True)
+                    else:
+                        st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
-                st.warning("No textual description found for this KO number.")
+                st.warning("No textual description found for this KO ID.")
+
 
     st.write("")  # spacing
     if st.button("Back to Home"):
@@ -449,11 +463,24 @@ def pwy_page():
     # ---- Right Column: Textual Interpretation ----
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
+        
         if selected_pwy:
-            pwy_text = text_df[text_df['Pathway'] == selected_pwy]
+            pwy_text = pwy_text_df[pwy_text_df['Pathway'] == selected_pwy]
             if not pwy_text.empty:
-                st.markdown(f"**{selected_pwy}**")
-                st.markdown(pwy_text.iloc[0]['description'])
+                # Display Pathway ID in larger bold font
+                st.markdown(f"<h3 style='text-align:center;'>{selected_pwy}</h3>", unsafe_allow_html=True)
+                
+                # Split the description/interpretation by semicolon (if available)
+                description = pwy_text.iloc[0]['description']  # make sure your dataframe has a 'description' column
+                parts = [part.strip() for part in description.split(';')]
+                
+                for part in parts:
+                    # Split at first colon to bold section titles
+                    if ':' in part:
+                        title, text = part.split(':', 1)
+                        st.markdown(f"<p style='font-size:16px;'><strong>{title}:</strong> {text.strip()}</p>", unsafe_allow_html=True)
+                    else:
+                        st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
                 st.warning("No textual description found for this pathway.")
 
