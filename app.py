@@ -86,7 +86,7 @@ def go_to(page):
 # ---------------------- Home Page ----------------------
 def home():
     st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align:center;'>Linking genomic potential to food and probiotic applications</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h3>", unsafe_allow_html=True)
 
     # ---------------------- Sidebar with Project Description ----------------------
     with st.sidebar.expander("About This App", expanded=False):
