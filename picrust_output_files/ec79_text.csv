@@ -3,9 +3,10 @@ EC:3.6.4.12,yes
 EC:2.7.7.7,yes
 EC:2.7.1.69,yes
 EC:1.1.1.1,yes
-EC:6.3.5.5,"Function: Synthesizes carbamoyl phosphate from glutamine, CO?, and ATP, providing a key precursor for amino acids (arginine) and nucleotides (pyrimidines).;Role in LAB Metabolism: Supports LAB growth and protein synthesis by supplying essential nitrogen-containing building blocks.;Probiotic/Food Relevance: Enhances fermentation efficiency and contributes to the production of metabolites that improve flavor, texture, and nutritional quality in fermented foods.;Functional Insight: Bridges nitrogen metabolism and nucleotide/amino acid biosynthesis, playing a central role in LAB growth and functionality in food fermentation."
+EC:6.3.5.5,"Function: Makes carbamoyl phosphate, which helps produce amino acids and nucleotides.;Role in LAB: Supports LAB growth and protein production.;Probiotic/Food Relevance: Helps fermentation and improves flavor, texture, and nutrition of foods.;Functional Insight: Important for LAB metabolism and overall activity in fermentation."
 EC:6.4.1.2,
 EC:3.6.3.21,
 EC:2.7.7.6,
 EC:5.99.1.3,
 EC:5.4.2.12,
+
