@@ -47,18 +47,16 @@ def footer():
         left: 50%;
         bottom: 10px;  /* distance from bottom */
         transform: translateX(-50%);
-        background-color: #FFD700;  /* Yellow box */
+        background-color: #FEF7A2;  /* Yellow box */
         color: black;
         padding: 10px 20px;
         font-size: 14px;
         border-radius: 8px;  /* rounded corners */
-        border: 1px solid #e6c200;  /* optional border */
         z-index: 100;
         text-align: center;
-        box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
     }
     .footer-container a {
-        color: #00008B;  /* Dark blue links */
+        color: 	 #004d66;  /* Dark blue links */
         text-decoration: none;
         font-weight: bold;
     }
@@ -71,7 +69,7 @@ def footer():
         Jointly created by 
         <a href="https://github.com/VarshaS-37" target="_blank">Varsha</a> &
         <a href="https://github.com/Sandhyae2" target="_blank">Sandhya</a> |
-        <a href="https://github.com/VarshaS-37/Grain2Gut/tree/main" target="_blank">GitHub Repository</a>
+        <a href="https://github.com/VarshaS-37/Grain2Gut/tree/main" target="_blank">GitHub Repo</a>
     </div>
     """, unsafe_allow_html=True)
 
