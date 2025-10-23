@@ -87,7 +87,7 @@ def go_to(page):
 def home():
     st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h3>", unsafe_allow_html=True)
-
+    st.write("") 
     # ---------------------- Sidebar with Project Description ----------------------
     with st.sidebar.expander("About This App", expanded=False):
         st.markdown("""
@@ -128,6 +128,7 @@ def home():
                 if st.button(label, key=label):
                     go_to(page_key)
     footer()
+     
 
 # ---------------------- Millet Data Mapping ----------------------
 millet_map = {
@@ -239,7 +240,7 @@ def ec_page():
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
-
+    footer()
 
 # ---------------------- KO Page: Side-by-Side + Sidebar ----------------------
 def ko_page():
@@ -314,7 +315,7 @@ def ko_page():
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
-
+    footer()
 
 
 # ---------------------- Pathway Page: Side-by-Side + Sidebar ----------------------
@@ -391,7 +392,7 @@ def pwy_page():
     if st.button("Back to Home"):
         go_to("home")
 
-
+    footer()
 
 # ---------------------- Navigation ----------------------
 page = st.session_state.page
