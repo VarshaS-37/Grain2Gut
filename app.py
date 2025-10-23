@@ -42,29 +42,32 @@ h2, h1 {
 def footer():
     st.markdown("""
     <style>
-    .footer {
+    .footer-container {
         position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        background-color: #FEF7A2;  /* Yellow box */
+        left: 50%;
+        bottom: 10px;  /* distance from bottom */
+        transform: translateX(-50%);
+        background-color: #FFD700;  /* Yellow box */
         color: black;
-        padding: 10px 0;
+        padding: 10px 20px;
         font-size: 14px;
+        border-radius: 8px;  /* rounded corners */
+        border: 1px solid #e6c200;  /* optional border */
         z-index: 100;
+        text-align: center;
+        box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
     }
-    .footer a {
+    .footer-container a {
         color: #00008B;  /* Dark blue links */
         text-decoration: none;
         font-weight: bold;
     }
-    .footer a:hover {
+    .footer-container a:hover {
         text-decoration: underline;
     }
     </style>
 
-    <div class="footer">
+    <div class="footer-container">
         Jointly created by 
         <a href="https://github.com/VarshaS-37" target="_blank">Varsha</a> &
         <a href="https://github.com/Sandhyae2" target="_blank">Sandhya</a> |
