@@ -351,7 +351,7 @@ def ko_page():
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         
         if selected_ko:
-            ko_text = ko_text_df[ko_text_df['ko_id'] == selected_ko]
+            ko_text = text_df[text_df['ko_id'] == selected_ko]
             if not ko_text.empty:
                 # Display KO ID in larger bold font
                 st.markdown(f"<h3 style='text-align:center;'>{selected_ko}</h3>", unsafe_allow_html=True)
@@ -465,7 +465,7 @@ def pwy_page():
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         
         if selected_pwy:
-            pwy_text = pwy_text_df[pwy_text_df['Pathway'] == selected_pwy]
+            pwy_text = text_df[text_df['Pathway'] == selected_pwy]
             if not pwy_text.empty:
                 # Display Pathway ID in larger bold font
                 st.markdown(f"<h3 style='text-align:center;'>{selected_pwy}</h3>", unsafe_allow_html=True)
