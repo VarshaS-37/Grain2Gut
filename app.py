@@ -39,17 +39,38 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 
-
 def footer():
     st.markdown("""
-    <hr style='border:1px solid #ddd;'>
-    <p style='text-align:center; font-size:14px; color:gray;'>
-    Jointly created by 
-    <a href="https://github.com/VarshaS-37" target="_blank" style='color:#4F8BF9;'>Varsha</a> &
-    <a href="https://github.com/Sandhyae2" target="_blank" style='color:#4F8BF9;'>Sandhya</a> |
-    <a href="https://github.com/VarshaS-37/Grain2Gut/tree/main" target="_blank" style='color:#4F8BF9;'>GitHub Repository</a>
-    </p>
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        color: black;
+        padding: 10px 0;
+        font-size: 14px;
+        z-index: 100;
+        background: transparent;
+    }
+    .footer a {
+        color: #4F8BF9;
+        text-decoration: none;
+    }
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    </style>
+
+    <div class="footer">
+        Jointly created by 
+        <a href="https://github.com/VarshaS-37" target="_blank">Varsha</a> &
+        <a href="https://github.com/Sandhyae2" target="_blank">Sandhya</a> |
+        <a href="https://github.com/VarshaS-37/Grain2Gut/tree/main" target="_blank">GitHub Repository</a>
+    </div>
     """, unsafe_allow_html=True)
+
 
 
 # ---------------------- Page Control ----------------------
