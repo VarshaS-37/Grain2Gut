@@ -347,7 +347,7 @@ def ko_page():
         st.dataframe(df, use_container_width=True)
 
     # ---- Right Column: Textual Interpretation ----
-   with right_col:
+    with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         
         if selected_ko:
