@@ -150,6 +150,24 @@ def ec_page():
         4. The right column will show the textual interpretation for the selected EC number.
         5. Use the "Back to Home" button at the bottom to return to the home page.
         """)
+    with st.sidebar.expander("What is an EC Number?", expanded=False):
+        st.markdown("""
+        **EC (Enzyme Commission) numbers** are a numerical classification scheme for enzymes, 
+        based on the chemical reactions they catalyze.  
+        - Each EC number consists of four numbers separated by periods (e.g., `2.7.1.1`).  
+        - The first number represents the main enzyme class (6 major classes: Oxidoreductases, Transferases, Hydrolases, Lyases, Isomerases, Ligases).  
+        - The subsequent numbers give more specific subclass, sub-subclass, and the serial number of the enzyme.  
+        """)
+     with st.sidebar.expander("Why is it relevant?", expanded=False):
+        st.markdown("""
+        EC numbers tell us **what each enzyme in a LAB strain can do**.
+        For example:  
+        - Which sugars or fibers the bacteria can break down  
+        - Which beneficial compounds (like vitamins or organic acids) they might produce  
+        - How they might interact in food or the gut  
+        So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities** and explore their probiotic properties.
+        """)
+    
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
