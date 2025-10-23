@@ -240,7 +240,7 @@ def ec_page():
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
-    footer()
+  
 
 # ---------------------- KO Page: Side-by-Side + Sidebar ----------------------
 def ko_page():
@@ -315,7 +315,7 @@ def ko_page():
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
-    footer()
+ 
 
 
 # ---------------------- Pathway Page: Side-by-Side + Sidebar ----------------------
@@ -392,7 +392,6 @@ def pwy_page():
     if st.button("Back to Home"):
         go_to("home")
 
-    footer()
 
 # ---------------------- Navigation ----------------------
 page = st.session_state.page
