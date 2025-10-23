@@ -167,7 +167,7 @@ def ec_page():
         - How they might interact in food or the gut  
     So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
         """)
-    with st.sidebar.expander("What is in the EC Dataframe", expanded=False):
+    with st.sidebar.expander("What is in the EC Dataframe?", expanded=False):
         st.markdown("""
     Here's what each column represents:
     - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
