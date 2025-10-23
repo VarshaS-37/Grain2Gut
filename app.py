@@ -228,21 +228,21 @@ def ec_page():
 
     # ---- Right Column: Textual Interpretation ----
     with right_col:
-    st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
-    
-    if selected_ec:
-        ec_text = text_df[text_df['ec_number'] == selected_ec]
-        if not ec_text.empty:
-            st.markdown(f"**{selected_ec}**")
-            
-            # Split the description by semicolon and display each part
-            description = ec_text.iloc[0]['description']
-            parts = [part.strip() for part in description.split(';')]
-            
-            for part in parts:
-                st.markdown(f"- {part}")  # display as bullet points
-        else:
-            st.warning("No textual description found for this EC number.")
+        st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
+        
+        if selected_ec:
+            ec_text = text_df[text_df['ec_number'] == selected_ec]
+            if not ec_text.empty:
+                st.markdown(f"**{selected_ec}**")
+                
+                # Split the description by semicolon and display each part
+                description = ec_text.iloc[0]['description']
+                parts = [part.strip() for part in description.split(';')]
+                
+                for part in parts:
+                    st.markdown(f"- {part}")  # display as bullet points
+            else:
+                st.warning("No textual description found for this EC number.")
 
 
     st.write("")  # spacing
