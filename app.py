@@ -48,15 +48,16 @@ def footer():
         bottom: 0;
         width: 100%;
         text-align: center;
+        background-color: #FEF7A2;  /* Yellow box */
         color: black;
         padding: 10px 0;
-        font-size: 18px;
+        font-size: 14px;
         z-index: 100;
-        background: transparent;
     }
     .footer a {
-        color: #4F8BF9;
+        color: #00008B;  /* Dark blue links */
         text-decoration: none;
+        font-weight: bold;
     }
     .footer a:hover {
         text-decoration: underline;
