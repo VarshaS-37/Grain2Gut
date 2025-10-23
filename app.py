@@ -3,7 +3,7 @@ import pandas as pd
 
 st.set_page_config(layout="wide")
 
-# ---------------------- CSS ----------------------
+# ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
 .stApp {
@@ -38,7 +38,7 @@ h2, h1 {
 
 </style>
 """, unsafe_allow_html=True)
-
+# ------------------------------------------------footer----------------------------------------------------------------------------------
 def footer():
     st.markdown("""
     <style>
@@ -64,7 +64,7 @@ def footer():
         text-decoration: underline;
     }
     </style>
-
+    
     <div class="footer-container">
         Jointly created by 
         <a href="https://github.com/VarshaS-37" target="_blank">Varsha</a> &
@@ -73,9 +73,7 @@ def footer():
     </div>
     """, unsafe_allow_html=True)
 
-
-
-# ---------------------- Page Control ----------------------
+# ----------------------------------------------------------- Page Control -------------------------------------------------------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
 
@@ -83,12 +81,12 @@ def go_to(page):
     st.session_state.page = page
     st.rerun()
 
-# ---------------------- Home Page ----------------------
+# ------------------------------------------------------------ Home Page -----------------------------------------------------------------------
 def home():
     st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h3>", unsafe_allow_html=True)
     st.write("") 
-    # ---------------------- Sidebar with Project Description ----------------------
+    # ----------------------------------- Sidebar with Project Description ------------------------------------------------------------------------
     with st.sidebar.expander("About This App", expanded=False):
         st.markdown("""
         1. This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets([research paper link](https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf)).
@@ -98,29 +96,21 @@ def home():
         5. Each dataframe was independently linked to reference information from databases.
         6. These dataframes are present in the **Meta Data** section and are used for further analysis.
         """)
-
-
    
-    # ---------------------- Main Page Layout ----------------------
     left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
     
-    # ---- Left Column: additional buttons ----
+    # -------------------------------------------------Summarized Analysis-------------------------------------------------------------
     with left_col:
         if st.button("Summarized Analysis"):
             go_to("summarized_analysis")
-        
-    
-    # ---- Middle Column: additional buttons ----
+    # ------------------------------------------------Millet-wise Analysis---------------------------------------------------------------
     with middle_col:
         if st.button("Millet-wise Analysis"):
             go_to("milletwise_analysis")
-        
-    
+   # -------------------------------------------------- Meta Data ---------------------------------------------------------------------------
     with right_col:
         # Detailed Analysis heading
         st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Meta Data</h4>", unsafe_allow_html=True)
-       
-    
         # Center buttons below the heading
         for label, page_key in [("EC Analysis", "ec_analysis"), ("KO Analysis", "ko_analysis"), ("Pathway Analysis", "pwy_analysis")]:
             col1, col2, col3 = st.columns([1, 2, 1])  # middle column holds the button
@@ -129,19 +119,17 @@ def home():
                     go_to(page_key)
     footer()
      
-
-# ---------------------- Millet Data Mapping ----------------------
+# -------------------------------------------------- Millet Data Mapping -------------------------------------------------------------------
 millet_map = {
     "Enterococcus casseliflavus (Proso Millet)": "77",
     "Weisella cibaria NM01 (Foxtail Millet)": "78",
     "Weisella cibaria NM01 (Little Millet)": "79",
     "Lactococcus lactis (Little Millet)": "80"
 }
-# ---------------------- EC Page: Dropdown Above Full DF ----------------------
+# ---------------------------------------------------- EC Analysis ------------------------------------------------------------------------------
 def ec_page():
-    
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
-     # ---------------------- Sidebar with instructions ----------------------
+     # ------------------------------------------ Sidebar with instructions -----------------------------------------------------
     with st.sidebar.expander("How to Use this Page", expanded=False):
         st.markdown("""
         **Instructions:**
@@ -183,7 +171,7 @@ def ec_page():
     - **brite_subclass**: KEGG BRITE hierarchy subclass for this enzyme.
     - **brite_class**: KEGG BRITE hierarchy main class for this enzyme.
     """)
-    
+    #--------------------------------------------------------Select LAB----------------------------------------------------------------------
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
@@ -194,7 +182,7 @@ def ec_page():
             key=f"strain_select_{st.session_state.page}",
         )
     suffix = millet_map[selected_strain]
-
+    
     # Load EC dataframe
     try:
         df = pd.read_csv(f"picrust_output_files/ec{suffix}.csv")
@@ -208,13 +196,12 @@ def ec_page():
     except FileNotFoundError:
         st.error(f"Text file ec{suffix}_text.csv not found.")
         return
-
     st.write("")  # spacing
 
-    # ---------------------- Side-by-Side Columns ----------------------
+    # ----------------------------------------------- Side-by-Side Columns ---------------------------------------------------------------------------
     left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
 
-    # ---- Left Column: EC number dropdown + Full EC DataFrame ----
+    # ----------------------------------- Left Column: EC number dropdown + Full EC DataFrame ----------------------------------------------------
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a EC Number</h4>", unsafe_allow_html=True)
         if 'ec_number' in df.columns:
@@ -222,24 +209,20 @@ def ec_page():
         else:
             st.warning("Column 'ec_number' not found in dataframe.")
             selected_ec = None
-
         st.markdown("<h4 style='text-align:center;'>EC DataFrame</h4>", unsafe_allow_html=True)
         st.dataframe(df, use_container_width=True)
 
-    # ---- Right Column: Textual Interpretation ----
+    # -------------------------------------------- Right Column: Textual Interpretation -------------------------------------------------------
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
-        
         if selected_ec:
             ec_text = text_df[text_df['ec_number'] == selected_ec]
             if not ec_text.empty:
                 # Display EC number in larger bold font
                 st.markdown(f"<h3 style='text-align:center;'>{selected_ec}</h3>", unsafe_allow_html=True)
-                
                 # Split the description by semicolon
                 description = ec_text.iloc[0]['description']
                 parts = [part.strip() for part in description.split(';')]
-                
                 for part in parts:
                     # Split at the first colon to bold the section title
                     if ':' in part:
@@ -254,13 +237,10 @@ def ec_page():
     if st.button("Back to Home"):
         go_to("home")
   
-
-# ---------------------- KO Page: Side-by-Side + Sidebar ----------------------
+# --------------------------------------------------- KO Page: Side-by-Side + Sidebar -------------------------------------------------------------
 def ko_page():
-    
     st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
-    
-    # ---------------------- Sidebar with instructions ----------------------
+    # ------------------------------------- Sidebar with instructions ----------------------------------------------------------------------
     with st.sidebar.expander("How to Use this Page", expanded=False):
         st.markdown("""
         **Instructions:**
@@ -276,7 +256,6 @@ def ko_page():
         - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
         - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
         """)
-
     with st.sidebar.expander("Why is it relevant?", expanded=False):
         st.markdown("""
         KO IDs are important because they tell us **what functions a LAB strain may carry out at the gene level**.  
@@ -286,7 +265,6 @@ def ko_page():
         - How the predicted functions relate to **probiotic and food applications**  
     In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
         """)
-    
     with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
         st.markdown("""
         Here's what each column in the KO dataframe represents:
@@ -302,8 +280,7 @@ def ko_page():
         - **brite_class**: KEGG BRITE hierarchy main class for this KO.
         - **ec_abundance**: Abundance of the linked EC(s).
         """)
-
-    # ---------------------- Millet LAB Selection ----------------------
+    # ------------------------------------------ Millet LAB Selection --------------------------------------------------------------------------
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
@@ -314,27 +291,22 @@ def ko_page():
             key=f"ko_strain_select_{st.session_state.page}",
         )
     suffix = millet_map[selected_strain]
-
-    # ---------------------- Load KO DataFrame ----------------------
+    # Load KO DataFrame
     try:
         df = pd.read_csv(f"picrust_output_files/ko{suffix}.csv")
     except FileNotFoundError:
         st.error(f"File ko{suffix}.csv not found.")
         return
-
     # Load textual interpretation CSV
     try:
         text_df = pd.read_csv(f"picrust_output_files/ko{suffix}_text.csv")  # columns: ko_number, description
     except FileNotFoundError:
         st.error(f"Text file ko{suffix}_text.csv not found.")
         return
-
     st.write("")  # spacing
-
-    # ---------------------- Side-by-Side Columns ----------------------
+    # ------------------------------------------------- Side-by-Side Columns ---------------------------------------------------------------------------
     left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
-
-    # ---- Left Column: KO number dropdown + Full KO DataFrame ----
+    # ---------------------------------------- Left Column: KO number dropdown + Full KO DataFrame ----------------------------------------------
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a KO ID</h4>", unsafe_allow_html=True)
         if 'ko_id' in df.columns:
@@ -342,24 +314,19 @@ def ko_page():
         else:
             st.warning("Column 'ko_number' not found in dataframe.")
             selected_ko = None
-
         st.markdown("<h4 style='text-align:center;'>KO DataFrame</h4>", unsafe_allow_html=True)
         st.dataframe(df, use_container_width=True)
-
-    # ---- Right Column: Textual Interpretation ----
+    # ---------------------------------------- Right Column: Textual Interpretation -------------------------------------------------------------
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
-        
         if selected_ko:
             ko_text = text_df[text_df['ko_id'] == selected_ko]
             if not ko_text.empty:
                 # Display KO ID in larger bold font
                 st.markdown(f"<h3 style='text-align:center;'>{selected_ko}</h3>", unsafe_allow_html=True)
-                
                 # Split the description by semicolon
                 description = ko_text.iloc[0]['description']
                 parts = [part.strip() for part in description.split(';')]
-                
                 for part in parts:
                     # Split at the first colon to bold the section title
                     if ':' in part:
@@ -369,20 +336,13 @@ def ko_page():
                         st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
                 st.warning("No textual description found for this KO ID.")
-
-
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
- 
-
-
-# ---------------------- Pathway Page: Side-by-Side + Sidebar ----------------------
+# --------------------------------------------------- Pathway Page: Side-by-Side + Sidebar ----------------------------------------------------------
 def pwy_page():
-    
     st.markdown("<h3 style='text-align:center;'>Pathway Analysis</h3>", unsafe_allow_html=True)
-    
-    # ---------------------- Sidebar with instructions ----------------------
+    # ---------------------------------------------------- Sidebar with instructions ------------------------------------------------------------------
     with st.sidebar.expander("How to Use this Page", expanded=False):
         st.markdown("""
         **Instructions:**
@@ -396,7 +356,6 @@ def pwy_page():
         st.markdown("""
         **Pathways** represent a series of biochemical reactions or processes that occur in the cell, often involving multiple enzymes and genes.  
         """)
-
     with st.sidebar.expander("Why is it relevant?", expanded=False):
         st.markdown("""
         Pathway analysis shows **how the predicted enzymes and genes work together** in biological processes.  
@@ -405,7 +364,6 @@ def pwy_page():
         - How complete these pathways are  
         - The potential **functional and probiotic properties** of the strain
         """)
-
     with st.sidebar.expander("What is in the Pathway Dataframe?", expanded=False):
         st.markdown("""
         Here's what each column in the pathway dataframe represents:
@@ -415,9 +373,7 @@ def pwy_page():
         - **completeness**: Fraction of the pathway that is present (0–1), calculated as `fam_found / fam_total`.  
         - **pathway_name**: Descriptive name of the pathway (e.g., `glycolysis III (from glucose)`).  
         """)
-
-    
-    # ---------------------- Millet LAB Selection ----------------------
+    # ---------------------------------------------- Millet LAB Selection -------------------------------------------------------------------
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
@@ -428,27 +384,22 @@ def pwy_page():
             key=f"pwy_strain_select_{st.session_state.page}",
         )
     suffix = millet_map[selected_strain]
-
-    # ---------------------- Load Pathway DataFrame ----------------------
+    # Load Pathway DataFrame
     try:
         df = pd.read_csv(f"picrust_output_files/pwy_{suffix}.csv")
     except FileNotFoundError:
         st.error(f"File pwy_{suffix}.csv not found.")
         return
-
     # Load textual interpretation CSV
     try:
         text_df = pd.read_csv(f"picrust_output_files/pwy{suffix}_text.csv")  # columns: pathway_id, description
     except FileNotFoundError:
         st.error(f"Text file pwy{suffix}_text.csv not found.")
         return
-
     st.write("")  # spacing
-
-    # ---------------------- Side-by-Side Columns ----------------------
+    # ---------------------------------------------------- Side-by-Side Columns -----------------------------------------------------------------
     left_col, right_col = st.columns([1, 2])  # left smaller, right bigger
-
-    # ---- Left Column: Pathway ID dropdown + Full Pathway DataFrame ----
+    # ------------------------------------- Left Column: Pathway ID dropdown + Full Pathway DataFrame -------------------------------------------------
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a Pathway</h4>", unsafe_allow_html=True)
         if 'Pathway' in df.columns:
@@ -456,24 +407,19 @@ def pwy_page():
         else:
             st.warning("Column 'pathway_id' not found in dataframe.")
             selected_pwy = None
-
         st.markdown("<h4 style='text-align:center;'>Pathway DataFrame</h4>", unsafe_allow_html=True)
         st.dataframe(df, use_container_width=True)
-
-    # ---- Right Column: Textual Interpretation ----
+    # -------------------------------------------- Right Column: Textual Interpretation -------------------------------------------------------
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
-        
         if selected_pwy:
             pwy_text = text_df[text_df['Pathway'] == selected_pwy]
             if not pwy_text.empty:
                 # Display Pathway ID in larger bold font
                 st.markdown(f"<h3 style='text-align:center;'>{selected_pwy}</h3>", unsafe_allow_html=True)
-                
                 # Split the description/interpretation by semicolon (if available)
                 description = pwy_text.iloc[0]['description']  # make sure your dataframe has a 'description' column
                 parts = [part.strip() for part in description.split(';')]
-                
                 for part in parts:
                     # Split at first colon to bold section titles
                     if ':' in part:
@@ -483,15 +429,11 @@ def pwy_page():
                         st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
                 st.warning("No textual description found for this pathway.")
-
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
-
-
-# ---------------------- Navigation ----------------------
+# --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
-
 if page == "home":
     home()
 elif page == "ec_analysis":
