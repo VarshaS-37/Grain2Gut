@@ -50,7 +50,7 @@ def footer():
         text-align: center;
         color: black;
         padding: 10px 0;
-        font-size: 14px;
+        font-size: 18px;
         z-index: 100;
         background: transparent;
     }
