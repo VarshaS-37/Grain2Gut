@@ -135,47 +135,50 @@ millet_map = {
 def ec_page():
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
      # ------------------------------------------ Sidebar with instructions -----------------------------------------------------
-    with st.sidebar.expander("How to Use this Page", expanded=False):
-        st.markdown("""
-        **Instructions:**
-        1. Select the millet LAB from the dropdown at the top.
-        2. On the left, the entire EC dataframe for the selected LAB is displayed.
-        3. Use the **EC number dropdown** above the dataframe to select an EC number.
-        4. The right column will show the textual interpretation for the selected EC number.
-        5. Use the "Back to Home" button at the bottom to return to the home page.
+    with st.sidebar:
+        if st.button("Back to Home"):
+            go_to("home")  # Your navigation function
+        with st.sidebar.expander("How to Use this Page", expanded=False):
+            st.markdown("""
+            **Instructions:**
+            1. Select the millet LAB from the dropdown at the top.
+            2. On the left, the entire EC dataframe for the selected LAB is displayed.
+            3. Use the **EC number dropdown** above the dataframe to select an EC number.
+            4. The right column will show the textual interpretation for the selected EC number.
+            5. Use the "Back to Home" button at the bottom to return to the home page.
+            """)
+        with st.sidebar.expander("What is an EC Number?", expanded=False):
+            st.markdown("""
+            **EC (Enzyme Commission) numbers** are a numerical classification scheme for enzymes, 
+            based on the chemical reactions they catalyze.  
+            - Each EC number consists of four numbers separated by periods (e.g., `2.7.1.1`).  
+            - The first number represents the main enzyme class (6 major classes: Oxidoreductases, Transferases, Hydrolases, Lyases, Isomerases, Ligases).  
+            - The subsequent numbers give more specific subclass, sub-subclass, and the serial number of the enzyme.  
+            """)
+        with st.sidebar.expander("Why is it relevant?", expanded=False):
+            st.markdown("""
+            EC numbers tell us **what each enzyme in a LAB can do**.
+            For example:  
+            - Which sugars or fibers the bacteria can break down  
+            - Which beneficial compounds (like vitamins or organic acids) they might produce  
+            - How they might interact in food or the gut  
+        So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
+            """)
+        with st.sidebar.expander("What is in the EC Dataframe?", expanded=False):
+            st.markdown("""
+        Here's what each column represents:
+        - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
+        - **ec_abundance**: How many times this enzyme is predicted to be present in the strain.
+        - **ec_function**: Description of the enzyme's function.
+        - **ec_class**: The main EC class (number 1–6) the enzyme belongs to.
+        - **ec_class_name**: The name of the EC class (e.g., Transferases, Hydrolases).
+        - **ko_ids**: KEGG Orthology IDs linked to this enzyme.
+        - **ko_functions**: Descriptions of the KO functions linked to this enzyme.
+        - **pathway_ids**: KEGG pathway IDs associated with this enzyme.
+        - **pathway_names**: Names of the KEGG pathways this enzyme participates in.
+        - **brite_subclass**: KEGG BRITE hierarchy subclass for this enzyme.
+        - **brite_class**: KEGG BRITE hierarchy main class for this enzyme.
         """)
-    with st.sidebar.expander("What is an EC Number?", expanded=False):
-        st.markdown("""
-        **EC (Enzyme Commission) numbers** are a numerical classification scheme for enzymes, 
-        based on the chemical reactions they catalyze.  
-        - Each EC number consists of four numbers separated by periods (e.g., `2.7.1.1`).  
-        - The first number represents the main enzyme class (6 major classes: Oxidoreductases, Transferases, Hydrolases, Lyases, Isomerases, Ligases).  
-        - The subsequent numbers give more specific subclass, sub-subclass, and the serial number of the enzyme.  
-        """)
-    with st.sidebar.expander("Why is it relevant?", expanded=False):
-        st.markdown("""
-        EC numbers tell us **what each enzyme in a LAB can do**.
-        For example:  
-        - Which sugars or fibers the bacteria can break down  
-        - Which beneficial compounds (like vitamins or organic acids) they might produce  
-        - How they might interact in food or the gut  
-    So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
-        """)
-    with st.sidebar.expander("What is in the EC Dataframe?", expanded=False):
-        st.markdown("""
-    Here's what each column represents:
-    - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
-    - **ec_abundance**: How many times this enzyme is predicted to be present in the strain.
-    - **ec_function**: Description of the enzyme's function.
-    - **ec_class**: The main EC class (number 1–6) the enzyme belongs to.
-    - **ec_class_name**: The name of the EC class (e.g., Transferases, Hydrolases).
-    - **ko_ids**: KEGG Orthology IDs linked to this enzyme.
-    - **ko_functions**: Descriptions of the KO functions linked to this enzyme.
-    - **pathway_ids**: KEGG pathway IDs associated with this enzyme.
-    - **pathway_names**: Names of the KEGG pathways this enzyme participates in.
-    - **brite_subclass**: KEGG BRITE hierarchy subclass for this enzyme.
-    - **brite_class**: KEGG BRITE hierarchy main class for this enzyme.
-    """)
     #--------------------------------------------------------Select LAB----------------------------------------------------------------------
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
@@ -239,52 +242,54 @@ def ec_page():
                 st.warning("No textual description found for this EC number.")
 
     st.write("")  # spacing
-    if st.button("Back to Home"):
-        go_to("home")
+    
   
 # --------------------------------------------------- KO Page: Side-by-Side + Sidebar -------------------------------------------------------------
 def ko_page():
     st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
     # ------------------------------------- Sidebar with instructions ----------------------------------------------------------------------
-    with st.sidebar.expander("How to Use this Page", expanded=False):
-        st.markdown("""
-        **Instructions:**
-        1. Select the millet LAB from the dropdown at the top.
-        2. On the left, the entire KO dataframe for the selected LAB is displayed.
-        3. Use the **KO ID dropdown** above the dataframe to select a KO ID.
-        4. The right column will show the textual interpretation for the selected KO number.
-        5. Use the "Back to Home" button at the bottom to return to the home page.
-        """)
-    with st.sidebar.expander("What is a KO ID?", expanded=False):
-        st.markdown("""
-        **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
-        - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
-        - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
-        """)
-    with st.sidebar.expander("Why is it relevant?", expanded=False):
-        st.markdown("""
-        KO IDs are important because they tell us **what functions a LAB strain may carry out at the gene level**.  
-        For example:  
-        - Which transporters, enzymes, or proteins are present  
-        - Which metabolic or signaling pathways the strain may be capable of  
-        - How the predicted functions relate to **probiotic and food applications**  
-    In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
-        """)
-    with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
-        st.markdown("""
-        Here's what each column in the KO dataframe represents:
-        - **ko_id**: KEGG Orthology ID for a gene/protein with a specific function.
-        - **ko_abundance**: Number of times this KO is predicted in the strain.
-        - **ko_function**: Description of the KO’s functional role.
-        - **ec_id**: Associated EC number(s) for this KO (if available).
-        - **ec_class**: The EC class of the linked enzyme.
-        - **ec_function**: Function of the linked enzyme.
-        - **map_ids**: KEGG pathway map IDs associated with this KO.
-        - **pathway_names**: Names of KEGG pathways this KO participates in.
-        - **brite_subclass**: KEGG BRITE hierarchy subclass for this KO.
-        - **brite_class**: KEGG BRITE hierarchy main class for this KO.
-        - **ec_abundance**: Abundance of the linked EC(s).
-        """)
+    with st.sidebar:
+        if st.button("Back to Home"):
+            go_to("home")  # Your navigation function
+        with st.sidebar.expander("How to Use this Page", expanded=False):
+            st.markdown("""
+            **Instructions:**
+            1. Select the millet LAB from the dropdown at the top.
+            2. On the left, the entire KO dataframe for the selected LAB is displayed.
+            3. Use the **KO ID dropdown** above the dataframe to select a KO ID.
+            4. The right column will show the textual interpretation for the selected KO number.
+            5. Use the "Back to Home" button at the bottom to return to the home page.
+            """)
+        with st.sidebar.expander("What is a KO ID?", expanded=False):
+            st.markdown("""
+            **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
+            - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
+            - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
+            """)
+        with st.sidebar.expander("Why is it relevant?", expanded=False):
+            st.markdown("""
+            KO IDs are important because they tell us **what functions a LAB strain may carry out at the gene level**.  
+            For example:  
+            - Which transporters, enzymes, or proteins are present  
+            - Which metabolic or signaling pathways the strain may be capable of  
+            - How the predicted functions relate to **probiotic and food applications**  
+        In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
+            """)
+        with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
+            st.markdown("""
+            Here's what each column in the KO dataframe represents:
+            - **ko_id**: KEGG Orthology ID for a gene/protein with a specific function.
+            - **ko_abundance**: Number of times this KO is predicted in the strain.
+            - **ko_function**: Description of the KO’s functional role.
+            - **ec_id**: Associated EC number(s) for this KO (if available).
+            - **ec_class**: The EC class of the linked enzyme.
+            - **ec_function**: Function of the linked enzyme.
+            - **map_ids**: KEGG pathway map IDs associated with this KO.
+            - **pathway_names**: Names of KEGG pathways this KO participates in.
+            - **brite_subclass**: KEGG BRITE hierarchy subclass for this KO.
+            - **brite_class**: KEGG BRITE hierarchy main class for this KO.
+            - **ec_abundance**: Abundance of the linked EC(s).
+            """)
     # ------------------------------------------ Millet LAB Selection --------------------------------------------------------------------------
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
