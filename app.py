@@ -257,7 +257,39 @@ def ko_page():
         4. The right column will show the textual interpretation for the selected KO number.
         5. Use the "Back to Home" button at the bottom to return to the home page.
         """)
+    with st.sidebar.expander("What is a KO ID?", expanded=False):
+    st.markdown("""
+    **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
+    - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
+    - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
+    """)
+
+    with st.sidebar.expander("Why is it relevant?", expanded=False):
+        st.markdown("""
+        KO IDs are important because they tell us **what functions a LAB strain may carry out at the gene level**.  
+        For example:  
+        - Which transporters, enzymes, or proteins are present  
+        - Which metabolic or signaling pathways the strain may be capable of  
+        - How the predicted functions relate to **probiotic and food applications**  
+    In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
+        """)
     
+    with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
+        st.markdown("""
+        Here's what each column in the KO dataframe represents:
+        - **ko_id**: KEGG Orthology ID for a gene/protein with a specific function.
+        - **ko_abundance**: Number of times this KO is predicted in the strain.
+        - **ko_function**: Description of the KO’s functional role.
+        - **ec_id**: Associated EC number(s) for this KO (if available).
+        - **ec_class**: The EC class of the linked enzyme.
+        - **ec_function**: Function of the linked enzyme.
+        - **map_ids**: KEGG pathway map IDs associated with this KO.
+        - **pathway_names**: Names of KEGG pathways this KO participates in.
+        - **brite_subclass**: KEGG BRITE hierarchy subclass for this KO.
+        - **brite_class**: KEGG BRITE hierarchy main class for this KO.
+        - **ec_abundance**: Abundance of the linked EC(s).
+        """)
+
     # ---------------------- Millet LAB Selection ----------------------
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
