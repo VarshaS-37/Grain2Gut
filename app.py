@@ -258,11 +258,11 @@ def ko_page():
         5. Use the "Back to Home" button at the bottom to return to the home page.
         """)
     with st.sidebar.expander("What is a KO ID?", expanded=False):
-    st.markdown("""
-    **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
-    - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
-    - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
-    """)
+        st.markdown("""
+        **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
+        - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
+        - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
+        """)
 
     with st.sidebar.expander("Why is it relevant?", expanded=False):
         st.markdown("""
