@@ -299,7 +299,7 @@ def ko_page():
         return
     # Load textual interpretation CSV
     try:
-        text_df = pd.read_csv(f"picrust_output_files/ko{suffix}_text.csv")  # columns: ko_number, description
+        text_df = pd.read_csv(f"picrust_output_files/ko{suffix}_text.csv", encoding='ISO-8859-1')  # columns: ko_number, description
     except FileNotFoundError:
         st.error(f"Text file ko{suffix}_text.csv not found.")
         return
