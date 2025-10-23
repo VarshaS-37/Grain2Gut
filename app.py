@@ -40,6 +40,18 @@ h2, h1 {
 """, unsafe_allow_html=True)
 
 
+def footer():
+    st.markdown("""
+    <hr style='border:1px solid #ddd;'>
+    <p style='text-align:center; font-size:14px; color:gray;'>
+    Jointly created by 
+    <a href="https://github.com/VarshaS-37" target="_blank" style='color:#4F8BF9;'>Varsha</a> &
+    <a href="https://github.com/Sandhyae2" target="_blank" style='color:#4F8BF9;'>Sandhya</a> |
+    <a href="https://github.com/VarshaS-37/Grain2Gut/tree/main" target="_blank" style='color:#4F8BF9;'>GitHub Repository</a>
+    </p>
+    """, unsafe_allow_html=True)
+
+
 # ---------------------- Page Control ----------------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
@@ -92,8 +104,7 @@ def home():
             with col2:
                 if st.button(label, key=label):
                     go_to(page_key)
-           
-    
+    footer()
 
 # ---------------------- Millet Data Mapping ----------------------
 millet_map = {
