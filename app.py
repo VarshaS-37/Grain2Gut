@@ -47,7 +47,7 @@ def footer():
         left: 50%;
         bottom: 10px;  /* distance from bottom */
         transform: translateX(-50%);
-        background-color: #FEF7A2;  /* Yellow box */
+        background-color: #ffff66;  /* Yellow box */
         color: black;
         padding: 10px 20px;
         font-size: 14px;
