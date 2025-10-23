@@ -167,8 +167,8 @@ def ec_page():
         - How they might interact in food or the gut  
     So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
         """)
-        with st.sidebar.expander("What is in the EC Dataframe", expanded=False):
-    st.markdown("""
+    with st.sidebar.expander("What is in the EC Dataframe", expanded=False):
+        st.markdown("""
     Here's what each column represents:
     - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
     - **ec_abundance**: How many times this enzyme is predicted to be present in the strain.
@@ -181,8 +181,6 @@ def ec_page():
     - **pathway_names**: Names of the KEGG pathways this enzyme participates in.
     - **brite_subclass**: KEGG BRITE hierarchy subclass for this enzyme.
     - **brite_class**: KEGG BRITE hierarchy main class for this enzyme.
-
-    This information allows you to explore **enzyme functions, their abundance, and metabolic pathways** in each LAB strain, helping you understand their potential probiotic and metabolic capabilities.
     """)
     
     col1, col2, col3 = st.columns([3, 3, 3])
