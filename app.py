@@ -248,7 +248,7 @@ def ko_page():
     st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
     
     # ---------------------- Sidebar with instructions ----------------------
-    with st.sidebar.expander("How to Use this Page", expanded=True):
+    with st.sidebar.expander("How to Use this Page", expanded=False):
         st.markdown("""
         **Instructions:**
         1. Select the millet LAB from the dropdown at the top.
@@ -356,7 +356,7 @@ def pwy_page():
     st.markdown("<h3 style='text-align:center;'>Pathway Analysis</h3>", unsafe_allow_html=True)
     
     # ---------------------- Sidebar with instructions ----------------------
-    with st.sidebar.expander("How to Use this Page", expanded=True):
+    with st.sidebar.expander("How to Use this Page", expanded=False):
         st.markdown("""
         **Instructions:**
         1. Select the millet LAB from the dropdown at the top.
