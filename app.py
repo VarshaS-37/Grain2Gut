@@ -192,7 +192,7 @@ def ec_page():
 
     # Load textual interpretation CSV
     try:
-        text_df = pd.read_csv(f"picrust_output_files/ec{suffix}_text.csv", encoding='utf-8')  # columns: ec_number, description
+        text_df = pd.read_csv(f"picrust_output_files/ec{suffix}_text.csv", encoding='ISO-8859-1')  # columns: ec_number, description
     except FileNotFoundError:
         st.error(f"Text file ec{suffix}_text.csv not found.")
         return
