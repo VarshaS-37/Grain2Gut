@@ -365,6 +365,30 @@ def pwy_page():
         4. The right column will show the textual interpretation for the selected pathway.
         5. Use the "Back to Home" button at the bottom to return to the home page.
         """)
+    with st.sidebar.expander("What is a Pathway?", expanded=False):
+        st.markdown("""
+        **Pathways** represent a series of biochemical reactions or processes that occur in the cell, often involving multiple enzymes and genes.  
+        """)
+
+    with st.sidebar.expander("Why is it relevant?", expanded=False):
+        st.markdown("""
+        Pathway analysis shows **how the predicted enzymes and genes work together** in biological processes.  
+        This helps us understand:  
+        - Which **metabolic or biosynthetic pathways** are present in the LAB strain  
+        - How complete these pathways are  
+        - The potential **functional and probiotic properties** of the strain
+        """)
+
+    with st.sidebar.expander("What is in the Pathway Dataframe?", expanded=False):
+        st.markdown("""
+        Here's what each column in the pathway dataframe represents:
+        - **Pathway**: Unique pathway ID in the database (e.g., `ANAGLYCOLYSIS-PWY`).  
+        - **fam_total**: Total number of gene families expected in this pathway.  
+        - **fam_found**: Number of gene families found in the LAB strain for this pathway.  
+        - **completeness**: Fraction of the pathway that is present (0–1), calculated as `fam_found / fam_total`.  
+        - **pathway_name**: Descriptive name of the pathway (e.g., `glycolysis III (from glucose)`).  
+        """)
+
     
     # ---------------------- Millet LAB Selection ----------------------
     col1, col2, col3 = st.columns([3, 3, 3])
