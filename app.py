@@ -158,7 +158,7 @@ def ec_page():
         - The first number represents the main enzyme class (6 major classes: Oxidoreductases, Transferases, Hydrolases, Lyases, Isomerases, Ligases).  
         - The subsequent numbers give more specific subclass, sub-subclass, and the serial number of the enzyme.  
         """)
-     with st.sidebar.expander("Why is it relevant?", expanded=False):
+    with st.sidebar.expander("Why is it relevant?", expanded=False):
         st.markdown("""
         EC numbers tell us **what each enzyme in a LAB strain can do**.
         For example:  
