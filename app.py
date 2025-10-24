@@ -162,8 +162,8 @@ def ec_page():
         So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
             """)
         with st.sidebar.expander("What is in the EC Dataframe?", expanded=False):
-            st.markdown("""
-        Here's what each column represents:
+            st.markdown("""Only EC numbers with abundance greater than 1 are considered.
+            Here's what each column means:
         - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
         - **ec_abundance**: How many times this enzyme is predicted to be present in the strain.
         - **ec_function**: Description of the enzyme's function.
@@ -273,8 +273,8 @@ def ko_page():
         In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
             """)
         with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
-            st.markdown("""
-            Here's what each column in the KO dataframe represents:
+            st.markdown(""""Only KO ids with abundance greater than 2 are considered.
+            Here's what each column in the KO dataframe means:
             - **ko_id**: KEGG Orthology ID for a gene/protein with a specific function.
             - **ko_abundance**: Number of times this KO is predicted in the strain.
             - **ko_function**: Description of the KO’s functional role.
@@ -375,8 +375,8 @@ def pwy_page():
             - The potential **functional and probiotic properties** of the strain
             """)
         with st.sidebar.expander("What is in the Pathway Dataframe?", expanded=False):
-            st.markdown("""
-            Here's what each column in the pathway dataframe represents:
+            st.markdown(""""Only pathways with completeness greater than 0.79 are considered.
+            Here's what each column in the dataframe means:
             - **Pathway**: Unique pathway ID in the database (e.g., `ANAGLYCOLYSIS-PWY`).  
             - **fam_total**: Total number of gene families expected in this pathway.  
             - **fam_found**: Number of gene families found in the LAB strain for this pathway.  
