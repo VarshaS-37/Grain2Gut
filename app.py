@@ -443,12 +443,9 @@ def pwy_page():
     if st.button("Back to Home"):
         go_to("home")
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
-import pandas as pd
-import streamlit as st
+
 
 def millet():
-    st.markdown("<h3 style='text-align:center;'>Millet Analysis</h3>", unsafe_allow_html=True)
-    st.write("") 
     millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
         "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
@@ -464,13 +461,20 @@ def millet():
             "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
             "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"
         ],
-        "NCBI ID": ['PP355677', 'PP355678', 'PP355679', 'PP355680']
     }
+
     millet_df = pd.DataFrame(millet_data)
-    millet_df["NCBI ID"] = millet_df.apply(
-        lambda x: f"[{x['NCBI ID']}]({x['NCBI Link']})", axis=1
+
+    # Display DataFrame
+    st.data_editor(
+        millet_df,
+        column_config={
+            "NCBI Link": st.column_config.LinkColumn("NCBI ID", display_text="Open Link")
+        },
+        hide_index=True,
+        use_container_width=True
     )
-    millet_df = millet_df.drop("NCBI Link", axis=1)
+
     left_col, right_col = st.columns([2, 2])
     with left_col:
         st.markdown("#### Millet Data")
