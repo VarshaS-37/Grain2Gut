@@ -163,19 +163,19 @@ def ec_page():
             """)
         with st.sidebar.expander("What is in the EC Dataframe?", expanded=False):
             st.markdown("""
-        1.Only EC numbers with abundance greater than 1 are considered.
-        2.Here's what each column means:
-        - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
-        - **ec_abundance**: How many times this enzyme is predicted to be present in the strain.
-        - **ec_function**: Description of the enzyme's function.
-        - **ec_class**: The main EC class (number 1–6) the enzyme belongs to.
-        - **ec_class_name**: The name of the EC class (e.g., Transferases, Hydrolases).
-        - **ko_ids**: KEGG Orthology IDs linked to this enzyme.
-        - **ko_functions**: Descriptions of the KO functions linked to this enzyme.
-        - **pathway_ids**: KEGG pathway IDs associated with this enzyme.
-        - **pathway_names**: Names of the KEGG pathways this enzyme participates in.
-        - **brite_subclass**: KEGG BRITE hierarchy subclass for this enzyme.
-        - **brite_class**: KEGG BRITE hierarchy main class for this enzyme.
+            1. Only EC numbers with abundance greater than 1 are considered.
+            2. Here's what each column means:
+            - **ec_number**: The Enzyme Commission (EC) number classifying the enzyme's activity.
+            - **ec_abundance**: How many times this enzyme is predicted to be present in the strain.
+            - **ec_function**: Description of the enzyme's function.
+            - **ec_class**: The main EC class (number 1–6) the enzyme belongs to.
+            - **ec_class_name**: The name of the EC class (e.g., Transferases, Hydrolases).
+            - **ko_ids**: KEGG Orthology IDs linked to this enzyme.
+            - **ko_functions**: Descriptions of the KO functions linked to this enzyme.
+            - **pathway_ids**: KEGG pathway IDs associated with this enzyme.
+            - **pathway_names**: Names of the KEGG pathways this enzyme participates in.
+            - **brite_subclass**: KEGG BRITE hierarchy subclass for this enzyme.
+            - **brite_class**: KEGG BRITE hierarchy main class for this enzyme.
         """)
     #--------------------------------------------------------Select LAB----------------------------------------------------------------------
     col1, col2, col3 = st.columns([3, 3, 3])
@@ -275,8 +275,8 @@ def ko_page():
             """)
         with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
             st.markdown("""
-            1.Only KO ids with abundance greater than 2 are considered.
-            2.Here's what each column in the KO dataframe means:
+            1. Only KO ids with abundance greater than 2 are considered.
+            2. Here's what each column in the KO dataframe means:
             - **ko_id**: KEGG Orthology ID for a gene/protein with a specific function.
             - **ko_abundance**: Number of times this KO is predicted in the strain.
             - **ko_function**: Description of the KO’s functional role.
@@ -378,8 +378,8 @@ def pwy_page():
             """)
         with st.sidebar.expander("What is in the Pathway Dataframe?", expanded=False):
             st.markdown("""
-            1.Only pathways with completeness greater than 0.79 are considered.
-            2.Here's what each column in the dataframe means:
+            1. Only pathways with completeness greater than 0.79 are considered.
+            2. Here's what each column in the dataframe means:
             - **Pathway**: Unique pathway ID in the database (e.g., `ANAGLYCOLYSIS-PWY`).  
             - **fam_total**: Total number of gene families expected in this pathway.  
             - **fam_found**: Number of gene families found in the LAB strain for this pathway.  
