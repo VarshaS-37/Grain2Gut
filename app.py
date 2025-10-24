@@ -566,9 +566,6 @@ def function():
             st.markdown("### Interpretation")
             st.write(f"""
             - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
-            - Indicates strong enzymatic activity related to carbohydrate and amino acid metabolism.
-            - Such enzymes are essential for LAB fermentation and growth.
-            - Reflects the metabolic adaptability of *{selected_strain.split('(')[0].strip()}* to millet-based substrates.
             """)
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
