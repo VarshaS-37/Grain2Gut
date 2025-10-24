@@ -486,7 +486,7 @@ elif page == "ko_analysis":
     ko_page()
 elif page == "pwy_analysis":
     pwy_page()
-elif page == "summarized_analysis"
+elif page == "summarized_analysis":
     summary()
-elif page == "milletwise_analysis"
+elif page == "milletwise_analysis":
     millet()
