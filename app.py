@@ -442,6 +442,40 @@ def pwy_page():
     st.write("")  # spacing
     if st.button("Back to Home"):
         go_to("home")
+#---------------------------------------------------millet analysis --------------------------------------------------------------------------
+    def millet():
+        st.markdown("<h3 style='text-align:center;'>Millet Analysis</h3>", unsafe_allow_html=True)
+        st.write("") 
+        millet_data = {
+            "Millet Source": ["Proso","Foxtail", "Little","Little"],
+            "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
+            "Organism": ["Enterococcus casseliflavus", "Weissella cibaria", "Weissella cibaria", "Lactococcus lactis"],
+            "NCBI Link": ["https://www.ncbi.nlm.nih.gov/nuccore/PP355677.1/", 
+                                  "https://www.ncbi.nlm.nih.gov/nuccore/pp355678", 
+                                  "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
+                                  "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"]
+            "NCBI ID": ['PP355677','PP355678','PP355679','PP355680']
+        }
+        millet_df = pd.DataFrame(millet_data)
+        millet_df["NCBI ID"] = millet_df.apply(lambda x: f"<a href='{x['NCBI Link']}' target='_blank'>{x['NCBI ID']}</a>", axis=1)
+        left_col, mid_col, right_col = st.columns([2, 0.5, 2])
+        # ------- LEFT COLUMN: Display DataFrame ---
+        with left_col:
+            st.markdown("#### Millet Data")
+            st.markdown(millet_df.to_html(escape=False, index=False), unsafe_allow_html=True)
+    
+        # --- RIGHT COLUMN: Buttons for different analyses ---
+        with right_col:
+            st.markdown("#### Explore Analyses")
+            if st.button("Summarized Analysis"):
+                go_to("summarized_analysis")
+            if st.button("EC-based Analysis"):
+                go_to("ec_analysis")
+            if st.button("KO-based Analysis"):
+                go_to("ko_analysis")
+            if st.button("Pathway-based Analysis"):
+                go_to("pwy_analysis")
+    
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
@@ -452,3 +486,7 @@ elif page == "ko_analysis":
     ko_page()
 elif page == "pwy_analysis":
     pwy_page()
+elif page == "summarized_analysis"
+    summary()
+elif page == "milletwise_analysis"
+    millet()
