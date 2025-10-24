@@ -502,6 +502,18 @@ def millet():
         with col4:
             if st.button("Comparative Analysis"):
                 go_to("comparison")
+#--------------------------------------------------------------Summary--------------------------------------------------------------------------
+def summary():
+    with st.sidebar:
+        if st.button("Back to Home"):
+            go_to("home") 
+        with st.sidebar.expander("Summary", expanded=False):
+            st.markdown("""
+            To be added
+            """)
+    st.markdown("<h4 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
+    st.markdown("hence these millets can be used for probiotics and foof applications")
+    
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
