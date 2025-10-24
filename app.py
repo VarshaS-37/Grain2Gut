@@ -444,6 +444,17 @@ def pwy_page():
         go_to("home")
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
 def millet():
+    with st.sidebar:
+        if st.button("Back to Home"):
+            go_to("home") 
+        with st.sidebar.expander("Millet Data", expanded=False):
+            st.markdown("""
+            Contains data about the four millet derived LAB used and their NCBI links are provided.
+            """)
+        with st.sidebar.expander("Analysis", expanded=False):
+            st.markdown("""
+            To be added
+            """)
     millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
         "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
@@ -479,18 +490,18 @@ def millet():
         st.markdown("<h4 style='text-align:center;'>Explore Analysis</h4>", unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
-            if st.button("Summarized Analysis"):
-                go_to("summarized_analysis")
+            if st.button("Functional Distribution"):
+                go_to("functional")
         with col2:
-            if st.button("EC-based Analysis"):
-                go_to("ec_analysis")
+            if st.button("Unique Properties"):
+                go_to("unique")
         col3, col4 = st.columns(2)
         with col3:
-            if st.button("KO-based Analysis"):
-                go_to("ko_analysis")
+            if st.button("Common Properties"):
+                go_to("common")
         with col4:
-            if st.button("Pathway-based Analysis"):
-                go_to("pwy_analysis")
+            if st.button("Comparative Analysis"):
+                go_to("comparison")
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
