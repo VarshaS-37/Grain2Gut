@@ -548,16 +548,28 @@ def function():
         # Count enzymes by EC class
         class_counts = df["ec_class_name"].value_counts().reset_index()
         class_counts.columns = ["EC Class", "Count"]
+# --- Layout: Left (figure) + Right (interpretation) ---
+        left_col, right_col = st.columns([2, 2])
 
-        # Plot EC class distribution
-        fig, ax = plt.subplots(figsize=(8, 4))
-        ax.bar(class_counts["EC Class"], class_counts["Count"])
-        ax.set_xlabel("EC Class")
-        ax.set_ylabel("Number of Enzymes")
-        ax.set_title(f"EC Class Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
+        with left_col:
+            # Plot EC class distribution
+            fig, ax = plt.subplots(figsize=(6, 4))
+            ax.bar(class_counts["EC Class"], class_counts["Count"], color="#4C72B0")
+            ax.set_xlabel("EC Class", fontsize=10)
+            ax.set_ylabel("Number of Enzymes", fontsize=10)
+            ax.set_title(f"EC Class Distribution - {selected_strain}", fontsize=12)
+            plt.xticks(rotation=45, ha="right")
+            plt.tight_layout()
+            st.pyplot(fig)
 
-        st.pyplot(fig)
+        with right_col:
+            st.markdown("### Interpretation")
+            st.write(f"""
+            - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
+            - Indicates strong enzymatic activity related to carbohydrate and amino acid metabolism.
+            - Such enzymes are essential for LAB fermentation and growth.
+            - Reflects the metabolic adaptability of *{selected_strain.split('(')[0].strip()}* to millet-based substrates.
+            """)
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     with st.sidebar:
