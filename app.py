@@ -462,43 +462,56 @@ def millet():
 
     millet_df = pd.DataFrame(millet_data)
 
-    # Create clickable NCBI ID links
     millet_df["NCBI ID"] = millet_df.apply(
         lambda x: f"<a href='{x['NCBI Link']}' target='_blank'>{x['NCBI ID']}</a>", axis=1
     )
 
-    # Drop the NCBI Link column so it doesn't display
     millet_df = millet_df.drop("NCBI Link", axis=1)
 
-    # ---- Layout columns ----
-    left_col, mid_col, right_col = st.columns([2, 0.5, 2])
+    # --- Add CSS to prevent overlap and keep spacing consistent ---
+    st.markdown("""
+        <style>
+            .block-container {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            .stDataFrame, .dataframe {
+                overflow-x: auto;
+            }
+            .button-grid button {
+                width: 100%;
+            }
+        </style>
+    """, unsafe_allow_html=True)
 
-    # ------- LEFT COLUMN: Display DataFrame -------
+    # --- Main layout ---
+    left_col, right_col = st.columns([2, 2])
+
     with left_col:
         st.markdown("#### Millet Data")
         st.markdown(millet_df.to_html(escape=False, index=False), unsafe_allow_html=True)
 
-    # ------- RIGHT COLUMN: Buttons for different analyses -------
     with right_col:
         st.markdown("#### Explore Analyses")
-        
-        # Row 1
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Summarized Analysis"):
-                go_to("summarized_analysis")
-        with col2:
-            if st.button("EC-based Analysis"):
-                go_to("ec_analysis")
+        button_container = st.container()
 
-        # Row 2
-        col3, col4 = st.columns(2)
-        with col3:
-            if st.button("KO-based Analysis"):
-                go_to("ko_analysis")
-        with col4:
-            if st.button("Pathway-based Analysis"):
-                go_to("pwy_analysis")
+        with button_container:
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("Summarized Analysis"):
+                    go_to("summarized_analysis")
+            with col2:
+                if st.button("EC-based Analysis"):
+                    go_to("ec_analysis")
+
+            col3, col4 = st.columns(2)
+            with col3:
+                if st.button("KO-based Analysis"):
+                    go_to("ko_analysis")
+            with col4:
+                if st.button("Pathway-based Analysis"):
+                    go_to("pwy_analysis")
+
 
     
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
