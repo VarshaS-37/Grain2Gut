@@ -443,14 +443,7 @@ def pwy_page():
     if st.button("Back to Home"):
         go_to("home")
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
-import streamlit as st
-import pandas as pd
-
 def millet():
-    st.markdown("<h3 style='text-align:center;'>Millet Analysis</h3>", unsafe_allow_html=True)
-    st.write("")
-
-    # --- Millet data ---
     millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
         "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
@@ -460,40 +453,30 @@ def millet():
             "Weissella cibaria", 
             "Lactococcus lactis"
         ],
+        "NCBI ID": ['PP355677', 'PP355678', 'PP355679', 'PP355680'],
         "NCBI Link": [
             "https://www.ncbi.nlm.nih.gov/nuccore/PP355677.1/", 
-            "https://www.ncbi.nlm.nih.gov/nuccore/PP355678", 
-            "https://www.ncbi.nlm.nih.gov/nuccore/PP355679",
-            "https://www.ncbi.nlm.nih.gov/nuccore/PP355680"
-        ],
-        "NCBI ID": ['PP355677', 'PP355678', 'PP355679', 'PP355680']
+            "https://www.ncbi.nlm.nih.gov/nuccore/pp355678", 
+            "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
+            "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"] 
     }
-
     millet_df = pd.DataFrame(millet_data)
-
-    # ---- Layout: Data on the left, Buttons on the right ----
     left_col, right_col = st.columns([2, 2]) 
-
     with left_col:
-        st.markdown("#### Millet Data")
-
-        # ✅ Make "NCBI ID" column clickable using LinkColumn
+        st.markdown("<h4 style='text-align:center;'>Millet Data</h4>", unsafe_allow_html=True)
         st.data_editor(
             millet_df,
             column_config={
-                "NCBI ID": st.column_config.LinkColumn(
-                    "NCBI ID",  # Column header shown
-                    display_text=None,  # Use the cell's text (PP355677, etc.)
-                    link="NCBI Link"  # Use URLs from this column
-                )
+                "NCBI Link": st.column_config.LinkColumn(
+                    "NCBI Link",
+                    display_text="NCBI Link" 
+                ),
             },
             hide_index=True,
             use_container_width=True
         )
-
-    # ---- Right column: Buttons ----
     with right_col:
-        st.markdown("#### Explore Analyses")
+        st.markdown("<h4 style='text-align:center;'>Explore Analysis</h4>", unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
             if st.button("Summarized Analysis"):
@@ -501,7 +484,6 @@ def millet():
         with col2:
             if st.button("EC-based Analysis"):
                 go_to("ec_analysis")
-
         col3, col4 = st.columns(2)
         with col3:
             if st.button("KO-based Analysis"):
@@ -509,7 +491,6 @@ def millet():
         with col4:
             if st.button("Pathway-based Analysis"):
                 go_to("pwy_analysis")
-
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
