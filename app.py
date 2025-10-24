@@ -462,10 +462,7 @@ def millet():
             "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"
         ],
     }
-
     millet_df = pd.DataFrame(millet_data)
-
-    # Display DataFrame
     st.data_editor(
         millet_df,
         column_config={
@@ -474,11 +471,7 @@ def millet():
         hide_index=True,
         use_container_width=True
     )
-
-    left_col, right_col = st.columns([2, 2])
-    with left_col:
-        st.markdown("#### Millet Data")
-        st.dataframe(millet_df, use_container_width=True)  
+    left_col, right_col = st.columns([2, 2])  
     with right_col:
         st.markdown("#### Explore Analyses")
         col1, col2 = st.columns(2)
