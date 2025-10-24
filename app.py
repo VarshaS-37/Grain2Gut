@@ -453,7 +453,7 @@ def pwy_page():
             "NCBI Link": ["https://www.ncbi.nlm.nih.gov/nuccore/PP355677.1/", 
                                   "https://www.ncbi.nlm.nih.gov/nuccore/pp355678", 
                                   "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
-                                  "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"]
+                                  "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"],
             "NCBI ID": ['PP355677','PP355678','PP355679','PP355680']
         }
         millet_df = pd.DataFrame(millet_data)
