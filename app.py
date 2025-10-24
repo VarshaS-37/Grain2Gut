@@ -443,7 +443,7 @@ def pwy_page():
     if st.button("Back to Home"):
         go_to("home")
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
-    def millet():
+def millet():
         st.markdown("<h3 style='text-align:center;'>Millet Analysis</h3>", unsafe_allow_html=True)
         st.write("") 
         millet_data = {
