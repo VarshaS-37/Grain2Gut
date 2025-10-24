@@ -490,11 +490,11 @@ def millet():
             use_container_width=True
         )
     with right_col:
-        st.markdown("<h4 style='text-align:center;'>Explore Analysis</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
             if st.button("Functional Distribution"):
-                go_to("functional")
+                go_to("function")
         with col2:
             if st.button("Unique Properties"):
                 go_to("unique")
@@ -505,6 +505,31 @@ def millet():
         with col4:
             if st.button("Comparative Analysis"):
                 go_to("comparison")
+def function():
+    with st.sidebar:
+        if st.button("Back to Home"):
+            go_to("home") 
+        with st.sidebar.expander("ec distribution", expanded=False):
+            st.markdown("""
+            To be added
+            """)
+    col1, col2, col3 = st.columns([3, 3, 3])
+    with col2:
+        st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
+        selected_strain = st.selectbox(
+            "",
+            list(millet_map.keys()),
+            label_visibility="collapsed",
+            key=f"pwy_strain_select_{st.session_state.page}",
+        )
+        st.markdown("<h4 style='text-align:center; margin-top:20px;'>Select Functional Distribution</h4>", unsafe_allow_html=True)
+        selected_distribution = st.selectbox(
+            "",
+            ["EC Distribution", "KO Distribution", "Pathway Distribution"],
+            label_visibility="collapsed",
+            key=f"func_distribution_select_{st.session_state.page}",
+        )
+    suffix = millet_map[selected_strain]
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     with st.sidebar:
@@ -531,3 +556,5 @@ elif page == "summarized_analysis":
     summary()
 elif page == "milletwise_analysis":
     millet()
+elif page == "function":
+    function()
