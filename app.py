@@ -492,20 +492,26 @@ def millet():
         )
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
+        col1, col2,col3 = st.columns(3)
         with col1:
-            if st.button("Functional Distribution"):
+            if st.button("Functional Trait, EC class, BRITE Distribution"):
                 go_to("function")
         with col2:
-            if st.button("Unique Properties"):
+            if st.button("Unique Traits"):
                 go_to("unique")
-        col3, col4 = st.columns(2)
         with col3:
-            if st.button("Common Properties"):
-                go_to("common")
+            if st.button("Common Traits"):
+                go_to("common")        
+        col4, col5,col6= st.columns(3)
         with col4:
             if st.button("Comparative Analysis"):
                 go_to("comparison")
+        with col5:
+            if st.button("Mapping Analysis"):
+                go_to("mapping")
+        with col6:
+            if st.button("Pathway Enrichment"):
+                go_to("common")
 def function():
     with st.sidebar:
         if st.button("Back to Home"):
