@@ -530,6 +530,32 @@ def function():
             key=f"func_distribution_select_{st.session_state.page}",
         )
     suffix = millet_map[selected_strain]
+    if selected_distribution == "EC Distribution":
+        file_path = f"picrust_processed_output_files/ec{suffix}.csv"
+
+        if os.path.exists(file_path):
+            # Load EC CSV
+            df = pd.read_csv(file_path)
+
+            # Check column existence
+            if "ec_class_name" in df.columns:
+                # Count enzymes by EC class
+                class_counts = df["ec_class_name"].value_counts().reset_index()
+                class_counts.columns = ["EC Class", "Count"]
+
+                # Plot
+                fig, ax = plt.subplots(figsize=(8, 4))
+                ax.bar(class_counts["EC Class"], class_counts["Count"])
+                ax.set_xlabel("EC Class")
+                ax.set_ylabel("Number of Enzymes")
+                ax.set_title(f"EC Class Distribution - {selected_strain}")
+                plt.xticks(rotation=45, ha="right")
+
+                st.pyplot(fig)
+            else:
+                st.warning(f"'ec_class_name' column not found in {file_path}")
+        else:
+            st.error(f"File not found: {file_path}")
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     with st.sidebar:
