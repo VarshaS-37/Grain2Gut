@@ -510,8 +510,8 @@ def millet():
             if st.button("Comparative Traits"):
                 go_to("comp")
         with col6:
-            if st.button("Pathway Enrichment Comparative Analysis , Mapping Analysis"):
-                go_to("common")
+            if st.button("Pathway Enrichment, Comparative Analysis , Mapping Analysis"):
+                go_to("pe")
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
@@ -891,7 +891,108 @@ def comp():
     st.markdown(f"<h5 style='text-align:center;'>Traits Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(common_2_rows))
     
-    
+#------------------------------------------------------enrichment-------------------------------------------------------------------
+from scipy.stats import fisher_exact
+from statsmodels.stats.multitest import multipletests
+import streamlit as st
+import glob
+import os
+
+def pathway_enrichment():
+    st.markdown("<h4 style='text-align:center;'>Pathway Enrichment Analysis</h4>", unsafe_allow_html=True)
+
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home")
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis")
+
+    with st.sidebar.expander("About Enrichment", expanded=False):
+        st.markdown("""
+        **Pathway Enrichment Analysis**
+        compares the frequency of pathways in a selected millet LAB 
+        against all other millets to find significantly overrepresented pathways.
+        """)
+
+    # --- Select Millet LAB ---
+    col1, col2, col3 = st.columns([3, 3, 3])
+    with col2:
+        st.markdown("<p style='text-align:center;'>Select Millet LAB</p>", unsafe_allow_html=True)
+        selected_strain = st.selectbox(
+            "",
+            list(millet_map.keys()),
+            label_visibility="collapsed",
+            key=f"pwy_enrich_select_{st.session_state.page}",
+        )
+
+    suffix = millet_map[selected_strain]
+    data_dir = "picrust_processed_output_files"
+
+    # --- Read EC file for selected millet ---
+    ec_file = os.path.join(data_dir, f"ec{suffix}.csv")
+    if not os.path.exists(ec_file):
+        st.error(f"File not found: {ec_file}")
+        return
+
+    df_ec = pd.read_csv(ec_file)
+    if "pathway_ids" not in df_ec.columns:
+        st.warning("No 'pathway_ids' column found in EC file.")
+        return
+
+    # --- Extract millet pathways ---
+    df_ec["pathway_ids"] = df_ec["pathway_ids"].astype(str).str.replace(" ", "").str.split(",")
+    millet_pathways = df_ec["pathway_ids"].explode().dropna().tolist()
+    millet_counts = pd.Series(millet_pathways).value_counts()
+
+    # --- Build background from all other millets ---
+    all_ec_files = glob.glob(os.path.join(data_dir, "ec*.csv"))
+    background_pathways = []
+    for f in all_ec_files:
+        if not f.endswith(f"{suffix}.csv"):  # skip current strain
+            df_bg = pd.read_csv(f)
+            if "pathway_ids" in df_bg.columns:
+                df_bg["pathway_ids"] = df_bg["pathway_ids"].astype(str).str.replace(" ", "").str.split(",")
+                background_pathways.extend(df_bg["pathway_ids"].explode().dropna().tolist())
+
+    bg_counts = pd.Series(background_pathways).value_counts()
+
+    # --- Perform Fisher’s Exact Test ---
+    results = []
+    for pathway, count_in_millet in millet_counts.items():
+        count_in_bg = bg_counts.get(pathway, 0)
+        table = [
+            [count_in_millet, len(millet_pathways) - count_in_millet],
+            [count_in_bg, len(background_pathways) - count_in_bg]
+        ]
+        try:
+            odds, p = fisher_exact(table, alternative="greater")
+        except ValueError:
+            continue
+        results.append({"Pathway": pathway, "Count": count_in_millet, "p-value": p})
+
+    if not results:
+        st.warning("No pathways found for enrichment.")
+        return
+
+    res_df = pd.DataFrame(results)
+    res_df["FDR"] = multipletests(res_df["p-value"], method="fdr_bh")[1]
+    res_df = res_df.sort_values("FDR")
+
+    # --- Show results table ---
+    st.subheader(f"Top Enriched Pathways in {selected_strain}")
+    st.dataframe(res_df.head(20).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
+
+    # --- Plot top pathways ---
+    top = res_df.head(10)
+    fig, ax = plt.subplots(figsize=(7, 5))
+    ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
+    ax.set_xlabel("-log10(FDR)")
+    ax.set_ylabel("Pathway")
+    ax.set_title(f"Top Enriched Pathways - {selected_strain}")
+    ax.invert_yaxis()
+    plt.tight_layout()
+    st.pyplot(fig)
+
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
@@ -929,3 +1030,5 @@ elif page=="couq":
     couq()
 elif page == "comp":
     comp()
+elif page=="pe":
+     pathway_enrichment()
