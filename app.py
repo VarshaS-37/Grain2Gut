@@ -577,7 +577,8 @@ def brite_class():
     with st.sidebar.expander("brite distribution", expanded=False): 
         st.markdown(""" To be added """) 
     col1, col2, col3 = st.columns([3, 3, 3]) 
-    with col2: st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
+    with col2: 
+        st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "Select the Millet LAB",
             list(millet_map.keys()),
