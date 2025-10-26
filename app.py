@@ -511,7 +511,7 @@ def millet():
             if st.button("Comparative Traits"):
                 go_to("comp")
         with col6:
-            if st.button("Pathway Enrichment, Comparative Analysis , Mapping Analysis"):
+            if st.button("Pathway Enrichment"):
                 go_to("pe")
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
