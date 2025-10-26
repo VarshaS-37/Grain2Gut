@@ -582,15 +582,15 @@ def brite_class():
         st.markdown(""" To be added """) 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
-        st.markdown("<h6 style='text-align:center;'>Select the distribution category</h6>", unsafe_allow_html=True)
+        st.markdown("<p style='text-align:center; font-size:12px;'>Select the distribution category</p>",unsafe_allow_html=True)
         selected_dist = st.selectbox(
             "",
             ['EC Distribution','KO Distriution'],
             label_visibility="collapsed",
             key=f"brite_class_select_{st.session_state.page}",
         )
-        st.markdown(f"<h6 style='text-align:center;'>BRITE distribution of associated map ids</h6>", unsafe_allow_html=True)
-        st.markdown("<h6 style='text-align:center;'>Select the Millet LAB</h6>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align:center; font-size:12px;'>BRITE distribution of associated map ids</p>",unsafe_allow_html=True)
+        st.markdown("<p style='text-align:center; font-size:12px;'>Select the Millet LAB</p>",unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
@@ -632,7 +632,7 @@ def brite_class():
         left_col, right_col = st.columns([2, 2])
     
         with left_col:
-            fig, ax = plt.subplots(figsize=(6, 4))
+            fig, ax = plt.subplots(figsize=(10, 6))
             bars=ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
             ax.set_xlabel("Brite Class")
             ax.set_ylabel("Count")
