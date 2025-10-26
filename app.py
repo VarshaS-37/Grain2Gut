@@ -212,7 +212,7 @@ def ec_page():
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a EC Number</h4>", unsafe_allow_html=True)
         if 'ec_number' in df.columns:
-            selected_ec = st.selectbox("",df['ec_number'].unique(), key="ec_select")
+            selected_ec = st.selectbox("",df['ec_number'].unique(), label_visibility="collapsed",key="ec_select")
         else:
             st.warning("Column 'ec_number' not found in dataframe.")
             selected_ec = None
@@ -320,7 +320,7 @@ def ko_page():
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a KO ID</h4>", unsafe_allow_html=True)
         if 'ko_id' in df.columns:
-            selected_ko = st.selectbox("", df['ko_id'].unique(), key="ko_select")
+            selected_ko = st.selectbox("", df['ko_id'].unique(), label_visibility="collapsed",key="ko_select")
         else:
             st.warning("Column 'ko_number' not found in dataframe.")
             selected_ko = None
@@ -417,7 +417,7 @@ def pwy_page():
     with left_col:
         st.markdown("<h4 style='text-align:center;'>Select a Pathway</h4>", unsafe_allow_html=True)
         if 'Pathway' in df.columns:
-            selected_pwy = st.selectbox("", df['Pathway'].unique(), key="pwy_select")
+            selected_pwy = st.selectbox("", df['Pathway'].unique(), label_visibility="collapsed",key="pwy_select")
         else:
             st.warning("Column 'pathway_id' not found in dataframe.")
             selected_pwy = None
@@ -586,6 +586,7 @@ def brite_class():
         selected_dist = st.selectbox(
             "",
             ['EC Distribution','KO Distriution'],
+            label_visibility="collapsed",
             key=f"brite_class_select_{st.session_state.page}",
         )
         st.markdown(f"<h4 style='text-align:center;'>{selected_dist} associated map ids, their BRITE distribution</h4>", unsafe_allow_html=True)
@@ -593,6 +594,7 @@ def brite_class():
         selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
+            label_visibility="collapsed",
             key=f"pwy_strain_select_{st.session_state.page}",
         )
         suffix = millet_map[selected_strain]
