@@ -757,38 +757,46 @@ def couq():
             st.warning(f"File {file_path} not found.")
             continue
             
+    # --- Venn Diagram for 3 sets (counts only) ---
     if len(sets) == 3:
         keys = list(sets.keys())
-        plt.figure(figsize=(8,8))
-        v = venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
-                  set_labels=[keys[0], keys[1], keys[2]])
-    
-        # --- Add trait names to each subset ---
-        for i, subset in enumerate(['100','010','110','001','101','011','111']):
-            if v.get_label_by_id(subset) is not None:
-                # Get the traits in that subset
-                if subset == '100':
-                    traits = sets[keys[0]] - sets[keys[1]] - sets[keys[2]]
-                elif subset == '010':
-                    traits = sets[keys[1]] - sets[keys[0]] - sets[keys[2]]
-                elif subset == '001':
-                    traits = sets[keys[2]] - sets[keys[0]] - sets[keys[1]]
-                elif subset == '110':
-                    traits = (sets[keys[0]] & sets[keys[1]]) - sets[keys[2]]
-                elif subset == '101':
-                    traits = (sets[keys[0]] & sets[keys[2]]) - sets[keys[1]]
-                elif subset == '011':
-                    traits = (sets[keys[1]] & sets[keys[2]]) - sets[keys[0]]
-                elif subset == '111':
-                    traits = sets[keys[0]] & sets[keys[1]] & sets[keys[2]]
-    
-                # Join traits as string (max 3 per line)
-                text = "\n".join([", ".join(list(traits)[i:i+3]) for i in range(0,len(traits),3)])
-                v.get_label_by_id(subset).set_text(text)
-    
-        plt.title(f"Common & Unique Traits - {selected_strain}")
+        plt.figure(figsize=(6,6))
+        venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
+              set_labels=[keys[0], keys[1], keys[2]])
+        plt.title(f"Common and Unique Traits - {selected_strain}")
         st.pyplot(plt)
-
+    
+        # --- Common and Unique Traits ---
+        set1, set2, set3 = sets[keys[0]], sets[keys[1]], sets[keys[2]]
+        
+        common_traits = set1 & set2 & set3
+        unique_traits = {
+            keys[0]: set1 - (set2 | set3),
+            keys[1]: set2 - (set1 | set3),
+            keys[2]: set3 - (set1 | set2)
+        }
+    
+        # --- Display table ---
+        st.markdown(f"### Traits for {selected_strain}")
+        
+        # Common traits
+        st.markdown("**Common Traits (in all 3 sets)**")
+        if common_traits:
+            st.dataframe(pd.DataFrame({"Trait": sorted(common_traits)}))
+        else:
+            st.write("No common traits")
+    
+        # Unique traits per set
+        st.markdown("**Unique Traits per Set**")
+        unique_df = pd.DataFrame({
+            key: [", ".join(sorted(unique_traits[key]))] if unique_traits[key] else ["None"]
+            for key in keys
+        })
+        st.dataframe(unique_df)
+    
+    else:
+        st.warning("Venn diagram requires exactly 3 sets. Showing list instead.")
+        st.write({k: list(v) for k, v in sets.items()})
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
