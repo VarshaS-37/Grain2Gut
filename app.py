@@ -814,7 +814,8 @@ def comp():
 
     with st.sidebar.expander("comparative Common & Unique Traits", expanded=False): 
         st.markdown("To be added") 
-    st.markdown(f"<h5 style='text-align:center;'>comparative traits</h5>", unsafe_allow_html=True) 
+    st.write('')
+    st.markdown(f"<h5 style='text-align:center;'>Comparative traits</h5>", unsafe_allow_html=True) 
     from itertools import combinations
     millet_sets={}
     # Combine EC, KO, PWY for each millet LAB
