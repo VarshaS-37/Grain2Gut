@@ -758,45 +758,55 @@ def couq():
             continue
             
     # --- Venn Diagram for 3 sets (counts only) ---
+    from itertools import combinations
+
     if len(sets) == 3:
         keys = list(sets.keys())
-        plt.figure(figsize=(6,6))
-        venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
-              set_labels=[keys[0], keys[1], keys[2]])
-        plt.title(f"Common and Unique Traits - {selected_strain}")
-        st.pyplot(plt)
-    
-        # --- Common and Unique Traits ---
         set1, set2, set3 = sets[keys[0]], sets[keys[1]], sets[keys[2]]
         
-        common_traits = set1 & set2 & set3
-        unique_traits = {
-            keys[0]: set1 - (set2 | set3),
-            keys[1]: set2 - (set1 | set3),
-            keys[2]: set3 - (set1 | set2)
-        }
-    
-        # --- Display table ---
-        st.markdown(f"### Traits for {selected_strain}")
+        # Common to all 3
+        common_3 = set1 & set2 & set3
         
-        # Common traits
-        st.markdown("**Common Traits (in all 3 sets)**")
-        if common_traits:
-            st.dataframe(pd.DataFrame({"Trait": sorted(common_traits)}))
-        else:
-            st.write("No common traits")
+        # Common to exactly 2
+        common_2 = {}
+        for combo in combinations(keys, 2):
+            s1, s2 = sets[combo[0]], sets[combo[1]]
+            common_pair = (s1 & s2) - common_3
+            common_2[" & ".join(combo)] = common_pair
+        
+        # Unique traits
+        unique_traits = {key: sets[key] - (set1 | set2 | set3 - sets[key]) for key in keys}
     
-        # Unique traits per set
-        st.markdown("**Unique Traits per Set**")
-        unique_df = pd.DataFrame({
-            key: [", ".join(sorted(unique_traits[key]))] if unique_traits[key] else ["None"]
-            for key in keys
-        })
-        st.dataframe(unique_df)
+        # Build table
+        table_rows = []
     
+        # Add common to 3
+        for trait in sorted(common_3):
+            table_rows.append({"Type": "Common to all 3", "Sets": ", ".join(keys), "Trait": trait})
+        
+        # Add common to 2
+        for pair, traits in common_2.items():
+            for trait in sorted(traits):
+                table_rows.append({"Type": "Common to 2", "Sets": pair, "Trait": trait})
+        
+        # Add unique traits
+        for key in keys:
+            for trait in sorted(unique_traits[key]):
+                table_rows.append({"Type": "Unique", "Sets": key, "Trait": trait})
+        
+        df_table = pd.DataFrame(table_rows)
+        st.markdown(f"### Traits Table for {selected_strain}")
+        st.dataframe(df_table)
+        
+        # Optional: Venn diagram for counts only
+        plt.figure(figsize=(6,6))
+        venn3([set1, set2, set3], set_labels=keys)
+        plt.title(f"Common and Unique Traits - {selected_strain}")
+        st.pyplot(plt)
     else:
         st.warning("Venn diagram requires exactly 3 sets. Showing list instead.")
         st.write({k: list(v) for k, v in sets.items()})
+
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
