@@ -806,7 +806,15 @@ def couq():
         st.write({k: list(v) for k, v in sets.items()})
 #--------------------------------------------------------------comparative traits----------------------------------------------------------
 def comp():
-    
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home") 
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis") 
+
+    with st.sidebar.expander("comparative Common & Unique Traits", expanded=False): 
+        st.markdown("To be added") 
+    st.markdown(f"<h5 style='text-align:center;'>comparative traits</h5>", unsafe_allow_html=True) 
     from itertools import combinations
     millet_sets={}
     # Combine EC, KO, PWY for each millet LAB
