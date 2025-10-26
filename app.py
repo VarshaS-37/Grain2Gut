@@ -806,6 +806,7 @@ def couq():
         st.write({k: list(v) for k, v in sets.items()})
 #--------------------------------------------------------------comparative traits----------------------------------------------------------
 def comp():
+    
     from itertools import combinations
     
     # Combine EC, KO, PWY for each millet LAB
