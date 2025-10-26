@@ -714,70 +714,63 @@ def trait():
     plt.tight_layout()
     st.pyplot(fig)
 #-------------------------------------------------common & unique-----------------------------------------------------------------------------
-from matplotlib_venn import venn3  # For 3 sets
-import os
+from matplotlib_venn import venn3
+
 def couq():
+    # --- Sidebar ---
     with st.sidebar:
         if st.button("Back to Home"): 
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
-    with st.sidebar.expander("common n unique", expanded=False): 
-        st.markdown(""" To be added """) 
-    col1, col2, col3 = st.columns([3, 3, 3]) 
+
+    with st.sidebar.expander("Common & Unique Traits", expanded=False): 
+        st.markdown("To be added") 
+
+    # --- Main UI ---
+    col1, col2, col3 = st.columns([3,3,3])
     with col2:
         st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
             label_visibility="collapsed",
-            key=f"couq_strain_select_{st.session_state.page}",
+            key=f"couq_strain_select_{st.session_state.page}"
         )
+
     suffix = millet_map[selected_strain]
-    import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib_venn import venn3  # For 3 sets
-import requests
-from io import StringIO
 
-def couq():
-    with st.sidebar:
-        if st.button("Back to Home"): 
-            go_to("home") 
-        if st.button("Back to Analysis Menu"):
-            go_to("milletwise_analysis") 
-
-    with st.sidebar.expander("common n unique", expanded=False): 
-        st.markdown("To be added") 
-
-    github_base = "picrust_processed_output_files/"
-    files = ['ec77','ec78','ec79','ec80','ko77','ko78','ko79','ko80','pwy_77','pwy_78','pwy_79','pwy_80']
+    # --- File paths ---
+    base_path = "picrust_processed_output_files/"
+    file_types = ["ec", "ko", "pwy"]  # filenames prefixes
     sets = {}
-    for f in files:
-        url = github_base + f+'.csv'
+
+    for ftype in file_types:
+        file_path = f"{base_path}/{ftype}{suffix}_word.csv"
         try:
-            s = requests.get(url).text
-            df = pd.read_csv(StringIO(s))
+            df = pd.read_csv(file_path)
             if "trait" not in df.columns:
-                st.warning(f"'trait' column not found in {f}")
+                st.warning(f"'trait' column not found in {file_path}")
                 continue
-            set_name = f.split("_")[0].upper()  # EC, KO, PWY
-            sets[set_name] = set(df["trait"].dropna().unique())
-        except Exception as e:
-            st.warning(f"Error reading {f}: {e}")
+            sets[ftype.upper()] = set(df["trait"].dropna().unique())
+        except FileNotFoundError:
+            st.warning(f"File {file_path} not found.")
             continue
 
-    # --- Venn Diagram for 3 sets ---
-    if len(sets) >= 3:
-        keys = list(sets.keys())[:3]
+    # --- Plot Venn diagram if all 3 sets exist ---
+    if len(sets) == 3:
+        keys = list(sets.keys())
         plt.figure(figsize=(6,6))
         venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
               set_labels=[keys[0], keys[1], keys[2]])
-        plt.title(f"Common and Unique Traits - {selected_strain}")
+        plt.title(f"Common & Unique Traits - {selected_strain}")
         st.pyplot(plt)
     else:
-        st.warning("Venn diagram requires at least 3 sets. Showing list instead.")
-        st.write({k: list(v) for k, v in sets.items()})
+        st.warning("Venn diagram requires all 3 sets. Showing available sets as lists instead.")
+        for k, v in sets.items():
+            st.markdown(f"**{k} traits ({len(v)})**")
+            st.write(sorted(list(v)))
+
   
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
