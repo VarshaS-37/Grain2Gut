@@ -578,6 +578,7 @@ def brite_class():
         st.markdown(""" To be added """) 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2: 
+        st.markdown("<h4 style='text-align:center;'>EC associated KOs distribution</h4>", unsafe_allow_html=True)
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
@@ -619,7 +620,7 @@ def brite_class():
         ax.set_xlabel("Brite Class")
         ax.set_ylabel("Count")
         ax.set_title(f"Brite Class Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
+        plt.xticks(rotation=60, ha="right")
         plt.tight_layout()
         st.pyplot(fig)
 
@@ -629,7 +630,7 @@ def brite_class():
         ax.set_xlabel("Brite Subclass")
         ax.set_ylabel("Count")
         ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
+        plt.xticks(rotation=60, ha="right")
         plt.tight_layout()
         st.pyplot(fig)
 
