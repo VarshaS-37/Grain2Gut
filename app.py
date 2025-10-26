@@ -553,11 +553,14 @@ def ec_class():
     with left_col:
         # Plot EC class distribution
         fig, ax = plt.subplots(figsize=(6, 4))
-        ax.bar(class_counts["EC Class"], class_counts["Count"], color="#4C72B0")
+        bars=ax.bar(class_counts["EC Class"], class_counts["Count"], color="#4C72B0")
         ax.set_xlabel("EC Class", fontsize=10)
         ax.set_ylabel("Number of Enzymes", fontsize=10)
         ax.set_title(f"EC Class Distribution - {selected_strain}", fontsize=12)
         plt.xticks(rotation=45, ha="right")
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
         plt.tight_layout()
         st.pyplot(fig)
 
