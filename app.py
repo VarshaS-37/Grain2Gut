@@ -600,14 +600,20 @@ def brite_class():
             st.warning(f"'{col}' column not found in the CSV.")
             return
 
-    # --- Split semicolon-separated entries and count ---
+  # --- Split semicolon-separated entries and count ---
     # Brite Class
-    class_counts = df["brite_class"].dropna().str.split(";").explode().str.strip().value_counts()
+    class_counts = (
+        df["brite_class"].dropna().str.split(";").explode().str.strip().value_counts()
+    )
+    class_counts = class_counts[class_counts >= 3]  # Keep only counts >= 3
     class_counts = class_counts.reset_index()
     class_counts.columns = ["Brite Class", "Count"]
-
+    
     # Brite Subclass
-    subclass_counts = df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
+    subclass_counts = (
+        df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
+    )
+    subclass_counts = subclass_counts[subclass_counts >= 3]  # Keep only counts >= 3
     subclass_counts = subclass_counts.reset_index()
     subclass_counts.columns = ["Brite Subclass", "Count"]
 
@@ -620,7 +626,7 @@ def brite_class():
         ax.set_xlabel("Brite Class")
         ax.set_ylabel("Count")
         ax.set_title(f"Brite Class Distribution - {selected_strain}")
-        plt.xticks(rotation=60, ha="right")
+        plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
         st.pyplot(fig)
 
@@ -630,7 +636,7 @@ def brite_class():
         ax.set_xlabel("Brite Subclass")
         ax.set_ylabel("Count")
         ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
-        plt.xticks(rotation=60, ha="right")
+        plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
         st.pyplot(fig)
 
