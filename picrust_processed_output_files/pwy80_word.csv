@@ -1,4 +1,4 @@
-ko_id,trait 
+pathway,trait 
 K01990,Nutrient uptake
 K07024,Carbohydrate metabolism
 K01992, Nutrient uptake
@@ -29,3 +29,4 @@ K00661,Carbohydrate metabolism
 K02028,Amino acid metabolism
 K15580,Amino acid metabolism
 K15634,Energy / fermentation efficiency
+
