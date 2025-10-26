@@ -728,6 +728,7 @@ def couq():
         st.markdown("To be added") 
 
     # --- Main UI ---
+    st.write('')
     col1, col2, col3 = st.columns([3,3,3])
     with col2:
         st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>", unsafe_allow_html=True)
@@ -767,14 +768,26 @@ def couq():
          #  Venn diagram for counts only
         plt.figure(figsize=(6,6))
         venn3([set1, set2, set3], set_labels=keys)
-        plt.title(f"Venn Diagram - {selected_strain}")
+        plt.title(f"Venn Diagram")
         st.pyplot(plt)
         
         # --- Common to all 3 ---
         common_3 = set1 & set2 & set3
         df_common_3 = pd.DataFrame({"Trait": sorted(common_3)})
-        st.markdown(f"<h5 style='text-align:center;'>Common Traits {selected_strain}</h5>", unsafe_allow_html=True)
+        st.markdown(f"<h5 style='text-align:center;'>Common Traits</h5>", unsafe_allow_html=True)
         st.dataframe(df_common_3)
+
+        # --- Unique traits per set ---
+        unique_rows = []
+        all_sets_union = set1 | set2 | set3
+        for key in keys:
+            unique_traits = sets[key] - (all_sets_union - sets[key])
+            for trait in sorted(unique_traits):
+                unique_rows.append({"Set": key, "Trait": trait})
+                
+        df_unique = pd.DataFrame(unique_rows)
+        st.markdown(f"<h5 style='text-align:center;'>Unique Traits</h5>", unsafe_allow_html=True)
+        st.dataframe(df_unique)
         
         # --- Common to exactly 2 ---
         common_2_rows = []
@@ -785,20 +798,9 @@ def couq():
                 common_2_rows.append({"Sets": " & ".join(combo), "Trait": trait})
         
         df_common_2 = pd.DataFrame(common_2_rows)
-        st.markdown(f"<h5 style='text-align:center;'>Traits Common to 2 categories {selected_strain}</h5>", unsafe_allow_html=True)
+        st.markdown(f"<h5 style='text-align:center;'>Traits Common to 2 categories</h5>", unsafe_allow_html=True)
         st.dataframe(df_common_2)
-
-        df_unique = pd.DataFrame(unique_rows)
-        st.markdown(f"<h5 style='text-align:center;'>Unique Traits {selected_strain}</h5>", unsafe_allow_html=True)
-        st.dataframe(df_unique)
         
-        # --- Unique traits per set ---
-        unique_rows = []
-        all_sets_union = set1 | set2 | set3
-        for key in keys:
-            unique_traits = sets[key] - (all_sets_union - sets[key])
-            for trait in sorted(unique_traits):
-                unique_rows.append({"Set": key, "Trait": trait})
         
     else:
         st.warning("Venn diagram requires exactly 3 sets. Showing list instead.")
