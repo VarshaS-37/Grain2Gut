@@ -629,7 +629,7 @@ def brite_class():
         subclass_counts.columns = ["Brite Subclass", "Count"]
     
         # --- Plot ---
-        left_col, right_col = st.columns([2, 2])
+        left_col, right_col = st.columns([3, 3])
     
         with left_col:
             fig, ax = plt.subplots(figsize=(10, 6))
