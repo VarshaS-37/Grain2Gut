@@ -494,7 +494,7 @@ def millet():
         st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
         col1, col2,col3 = st.columns(3)
         with col1:
-            if st.button("Functional Trait, EC class, BRITE Distribution"):
+            if st.button("EC class Distribution"):
                 go_to("function")
         with col2:
             if st.button("Unique Traits"):
@@ -504,7 +504,7 @@ def millet():
                 go_to("common")        
         col4, col5,col6= st.columns(3)
         with col4:
-            if st.button("Comparative Analysis"):
+            if st.button("Comparative Analysis , BRITE Functional Trait,"):
                 go_to("comparison")
         with col5:
             if st.button("Mapping Analysis"):
@@ -515,7 +515,9 @@ def millet():
 def function():
     with st.sidebar:
         if st.button("Back to Home"):
-            go_to("home") 
+            go_to("home")
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis")    
         with st.sidebar.expander("ec distribution", expanded=False):
             st.markdown("""
             To be added
@@ -529,50 +531,40 @@ def function():
             label_visibility="collapsed",
             key=f"pwy_strain_select_{st.session_state.page}",
         )
-        st.markdown("<h4 style='text-align:center; margin-top:20px;'>Select Functional Distribution</h4>", unsafe_allow_html=True)
-        selected_distribution = st.selectbox(
-            "",
-            ["EC Distribution", "KO Distribution", "Pathway Distribution"],
-            label_visibility="collapsed",
-            key=f"func_distribution_select_{st.session_state.page}",
-        )
     suffix = millet_map[selected_strain]
     # ---- EC DISTRIBUTION ----
-    if selected_distribution == "EC Distribution":
-        try:
-            # Load EC CSV from local folder
-            df = pd.read_csv(f"picrust_processed_output_files/ec{suffix}.csv")
-        except FileNotFoundError:
-            st.error(f"File ec{suffix}.csv not found in 'picrust_processed_output_files/' folder.")
-            return
-
-        # Validate presence of required column
-        if "ec_class_name" not in df.columns:
-            st.warning(f"'ec_class_name' column not found in ec{suffix}.csv.")
-            return
-
-        # Count enzymes by EC class
-        class_counts = df["ec_class_name"].value_counts().reset_index()
-        class_counts.columns = ["EC Class", "Count"]
+    try:
+        # Load EC CSV from local folder
+        df = pd.read_csv(f"picrust_processed_output_files/ec{suffix}.csv")
+    except FileNotFoundError:
+        st.error(f"File ec{suffix}.csv not found in 'picrust_processed_output_files/' folder.")
+        return
+    # Validate presence of required column
+    if "ec_class_name" not in df.columns:
+        st.warning(f"'ec_class_name' column not found in ec{suffix}.csv.")
+        return
+    # Count enzymes by EC class
+    class_counts = df["ec_class_name"].value_counts().reset_index()
+    class_counts.columns = ["EC Class", "Count"]
 # --- Layout: Left (figure) + Right (interpretation) ---
-        left_col, right_col = st.columns([2, 2])
+    left_col, right_col = st.columns([2, 2])
 
-        with left_col:
-            # Plot EC class distribution
-            fig, ax = plt.subplots(figsize=(6, 4))
-            ax.bar(class_counts["EC Class"], class_counts["Count"], color="#4C72B0")
-            ax.set_xlabel("EC Class", fontsize=10)
-            ax.set_ylabel("Number of Enzymes", fontsize=10)
-            ax.set_title(f"EC Class Distribution - {selected_strain}", fontsize=12)
-            plt.xticks(rotation=45, ha="right")
-            plt.tight_layout()
-            st.pyplot(fig)
+    with left_col:
+        # Plot EC class distribution
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.bar(class_counts["EC Class"], class_counts["Count"], color="#4C72B0")
+        ax.set_xlabel("EC Class", fontsize=10)
+        ax.set_ylabel("Number of Enzymes", fontsize=10)
+        ax.set_title(f"EC Class Distribution - {selected_strain}", fontsize=12)
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        st.pyplot(fig)
 
-        with right_col:
-            st.markdown("### Interpretation")
-            st.write(f"""
-            - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
-            """)
+    with right_col:
+        st.markdown("### Interpretation")
+        st.write(f"""
+        - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
+        """)
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     with st.sidebar:
