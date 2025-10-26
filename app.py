@@ -949,7 +949,11 @@ def pathway_enrichment():
     background_pathways = []
     for f in all_ec_files:
         if not f.endswith(f"{suffix}.csv"):  # skip current strain
-            df_bg = pd.read_csv(f)
+            try:
+                df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
+            except UnicodeDecodeError:
+                df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
+
             if "pathway_ids" in df_bg.columns:
                 df_bg["pathway_ids"] = df_bg["pathway_ids"].astype(str).str.replace(" ", "").str.split(",")
                 background_pathways.extend(df_bg["pathway_ids"].explode().dropna().tolist())
