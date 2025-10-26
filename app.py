@@ -590,7 +590,7 @@ def brite_class():
             key=f"brite_class_select_{st.session_state.page}",
         )
         st.markdown(f"<h5 style='text-align:center;'>BRITE distribution of associated map ids</h5>", unsafe_allow_html=True)
-        st.markdown("<h5 style='text-align:center;'>Select the Millet LAB"</h5>, unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>, unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
