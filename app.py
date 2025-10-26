@@ -830,7 +830,28 @@ def comp():
             except FileNotFoundError:
                 st.warning(f"File {f} not found, skipping.")
         millet_sets[strain_name] = combined_traits
+
     
+    from upsetplot import UpSet
+    from collections import defaultdict
+    
+    
+    # --- Create DataFrame for UpSet ---
+    all_traits = set.union(*millet_sets.values())
+    data = defaultdict(list)
+    for trait in all_traits:
+        for millet, traits in millet_sets.items():
+            data[millet].append(trait in traits)
+    
+    df_upset = pd.DataFrame(data, index=all_traits)
+    
+    # --- Plot UpSet ---
+    plt.figure(figsize=(10,6))
+    upset = UpSet(df_upset, subset_size='count', show_counts=True)
+    upset.plot()
+    plt.title("Trait Overlaps Across 4 Millets")
+    st.pyplot(plt)
+
     # --- Common to all 4 LABs ---
     common_4 = set.intersection(*millet_sets.values())
     st.markdown(f"<h5 style='text-align:center;'>Traits Common to All 4 Millets</h5>", unsafe_allow_html=True)
@@ -871,7 +892,7 @@ def comp():
     st.markdown(f"<h5 style='text-align:center;'>Traits Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(common_2_rows))
     
-
+    
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
