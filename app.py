@@ -812,7 +812,7 @@ def comp():
     # Combine EC, KO, PWY for each millet LAB
     for strain_name, suffix in millet_map.items():
         combined_traits = set()
-        files = [f"ec{suffix}.csv", f"ko{suffix}.csv", f"pwy{suffix}.csv"]
+        files = [f"ec{suffix}_word.csv", f"ko{suffix}_word.csv", f"pwy{suffix}_word.csv"]
         for f in files:
             try:
                 df = pd.read_csv(f"picrust_processed_output_files/{f}")
