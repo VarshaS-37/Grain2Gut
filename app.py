@@ -697,12 +697,12 @@ def common():
     trait_counts = (
         df["trait"].dropna().value_counts()
     )
-    trait_counts = trait_counts[class_counts >= 3]  # Keep only counts >= 3
+    trait_counts = trait_counts[trait_counts >= 3]  # Keep only counts >= 3
     trait_counts = trait_counts.reset_index()
     trait_counts.columns = ["Trait", "Count"]
     
     fig, ax = plt.subplots(figsize=(6, 4))
-    bars=ax.bar(trait_counts["trait"], class_counts["Count"], color="#4C72B0")
+    bars=ax.bar(trait_counts["trait"], trait_counts["Count"], color="#4C72B0")
     ax.set_xlabel("Trait")
     ax.set_ylabel("Count")
     ax.set_title(f"Trait Distribution - {selected_strain}")
