@@ -582,6 +582,7 @@ def brite_class():
         st.markdown(""" To be added """) 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
+        st.write("")
         st.markdown("<h5 style='text-align:center;'>Select distribution category</h5>", unsafe_allow_html=True)
         selected_dist = st.selectbox(
             "",
@@ -589,7 +590,6 @@ def brite_class():
             label_visibility="collapsed",
             key=f"brite_class_select_{st.session_state.page}",
         )
-        st.markdown(f"<h5 style='text-align:center;'>BRITE distribution of associated map ids</h5>", unsafe_allow_html=True)
         st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
@@ -628,30 +628,32 @@ def brite_class():
         subclass_counts = subclass_counts.reset_index()
         subclass_counts.columns = ["Brite Subclass", "Count"]
 
-        fig, ax = plt.subplots(figsize=(12, 6))
-        bars=ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
-        ax.set_xlabel("Brite Class")
-        ax.set_ylabel("Count")
-        ax.set_title(f"Brite Class Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
-        # Add value labels on top of bars
-        for bar in bars:
-            height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)), ha='center', va='bottom', fontsize=9)
-        plt.tight_layout()
-        st.pyplot(fig)
-        
-        fig, ax = plt.subplots(figsize=(12, 6))
-        bars=ax.bar(subclass_counts["Brite Subclass"], subclass_counts["Count"], color="#4C72B0")
-        ax.set_xlabel("Brite Subclass")
-        ax.set_ylabel("Count")
-        ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
-        for bar in bars:
-            height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
-        plt.tight_layout()
-        st.pyplot(fig)
+        left_col, right_col = st.columns([2, 2])
+        with left_col:
+            fig, ax = plt.subplots(figsize=(6, 4))
+            bars=ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
+            ax.set_xlabel("Brite Class")
+            ax.set_ylabel("Count")
+            ax.set_title(f"Brite Class Distribution - {selected_strain}")
+            plt.xticks(rotation=45, ha="right")
+            # Add value labels on top of bars
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)), ha='center', va='bottom', fontsize=9)
+            plt.tight_layout()
+            st.pyplot(fig)
+        with right_col:
+            fig, ax = plt.subplots(figsize=(6, 4))
+            bars=ax.bar(subclass_counts["Brite Subclass"], subclass_counts["Count"], color="#4C72B0")
+            ax.set_xlabel("Brite Subclass")
+            ax.set_ylabel("Count")
+            ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
+            plt.xticks(rotation=45, ha="right")
+            for bar in bars:
+                height = bar.get_height()
+                ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
+            plt.tight_layout()
+            st.pyplot(fig)
             
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
