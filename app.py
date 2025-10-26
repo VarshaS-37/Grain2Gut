@@ -697,7 +697,7 @@ def common():
     trait_counts = (
         df["trait"].dropna().value_counts()
     )
-    trait_counts = trait_counts[trait_counts >= 3]  # Keep only counts >= 3
+    trait_counts = trait_counts[trait_counts >= 2]  # Keep only counts >= 3
     trait_counts = trait_counts.reset_index()
     trait_counts.columns = ["Trait", "Count"]
     
