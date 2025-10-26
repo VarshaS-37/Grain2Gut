@@ -934,7 +934,12 @@ def pathway_enrichment():
     for prefix in ["ec", "ko", "pwy"]:
         st.markdown(f"<h5 style='text-align:center;'>{prefix.upper()}-based Enrichment</h5>", unsafe_allow_html=True)
 
-        file_path = os.path.join(data_dir, f"{prefix}{suffix}.csv")
+        # Handle different filename patterns
+        if prefix == "pwy":
+            file_path = os.path.join(data_dir, f"pwy_{suffix}.csv")  # <-- underscore
+        else:
+            file_path = os.path.join(data_dir, f"{prefix}{suffix}.csv")
+
         if not os.path.exists(file_path):
             st.warning(f"File not found: {file_path}")
             continue
@@ -952,7 +957,7 @@ def pathway_enrichment():
             st.warning(f"No pathway column found in {prefix.upper()} file.")
             continue
 
-        df[pathway_col] = df[pathway_col].astype(str).str.replace(" ", "").str.split(",")
+        df[pathway_col] = ( df[pathway_col].astype(str).str.replace(" ", "").str.replace(";", ",").str.split(","))
         millet_pathways = df[pathway_col].explode().dropna().tolist()
         if not millet_pathways:
             st.info(f"No pathway entries found in {prefix.upper()} data.")
@@ -961,7 +966,11 @@ def pathway_enrichment():
         millet_counts = pd.Series(millet_pathways).value_counts()
 
         # --- Build background from all other millets of same file type ---
-        all_files = glob.glob(os.path.join(data_dir, f"{prefix}*.csv"))
+        if prefix == "pwy":
+            all_files = glob.glob(os.path.join(data_dir, "pwy_*.csv"))
+        else:
+            all_files = glob.glob(os.path.join(data_dir, f"{prefix}*.csv"))
+
         background_pathways = []
         for f in all_files:
             if not f.endswith(f"{suffix}.csv"):
