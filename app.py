@@ -836,14 +836,16 @@ def comp():
     from collections import defaultdict
     
     
-    # --- Create DataFrame for UpSet ---
-    all_traits = set.union(*millet_sets.values())
+       # --- Create DataFrame for UpSet ---
+    all_traits = set.union(*millet_sets.values())  # combine all traits across millets
+    all_traits = sorted(all_traits)  # convert to sorted list
     data = defaultdict(list)
     for trait in all_traits:
         for millet, traits in millet_sets.items():
             data[millet].append(trait in traits)
-    all_traits = sorted(set(...))  # convert to list
+    
     df_upset = pd.DataFrame(data, index=all_traits)
+
 
     
     
