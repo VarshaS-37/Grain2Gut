@@ -500,12 +500,12 @@ def millet():
             if st.button("BRITE class & subclass Distribution"):
                 go_to("brite")
         with col3:
-            if st.button("Common Traits"):
-                go_to("common")        
+            if st.button("Trait Distribution"):
+                go_to("trait")        
         col4, col5,col6= st.columns(3)
         with col4:
-            if st.button("Unique Traits"):
-                go_to("comparison")
+            if st.button("Common & Unique Traits"):
+                go_to("couq")
         with col5:
             if st.button("Mapping Analysis"):
                 go_to("mapping")
@@ -657,8 +657,8 @@ def brite_class():
         plt.tight_layout()
         st.pyplot(fig)
         
-#----------------------------------------------------common traits--------------------------------------------------------------------------------            
-def common():
+#----------------------------------------------------trait distribution--------------------------------------------------------------------------------            
+def trait():
     with st.sidebar:
         if st.button("Back to Home"): 
             go_to("home") 
@@ -713,7 +713,72 @@ def common():
         ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)), ha='center', va='bottom', fontsize=9)
     plt.tight_layout()
     st.pyplot(fig)
+#-------------------------------------------------common & unique-----------------------------------------------------------------------------
+from matplotlib_venn import venn3  # For 3 sets
+import os
+def couq():
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home") 
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis") 
+    with st.sidebar.expander("common n unique", expanded=False): 
+        st.markdown(""" To be added """) 
+    col1, col2, col3 = st.columns([3, 3, 3]) 
+    with col2:
+        st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>", unsafe_allow_html=True)
+        selected_strain = st.selectbox(
+            "",
+            list(millet_map.keys()),
+            label_visibility="collapsed",
+            key=f"couq_strain_select_{st.session_state.page}",
+        )
+    suffix = millet_map[selected_strain]
+    import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib_venn import venn3  # For 3 sets
+import requests
+from io import StringIO
 
+def couq():
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home") 
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis") 
+
+    with st.sidebar.expander("common n unique", expanded=False): 
+        st.markdown("To be added") 
+
+    github_base = "picrust_processed_output_files/"
+    files = ['ec77','ec78','ec79','ec80','ko77','ko78','ko79','ko80','pwy_77','pwy_78','pwy_79','pwy_80']
+    sets = {}
+    for f in files:
+        url = github_base + f+'.csv'
+        try:
+            s = requests.get(url).text
+            df = pd.read_csv(StringIO(s))
+            if "trait" not in df.columns:
+                st.warning(f"'trait' column not found in {f}")
+                continue
+            set_name = f.split("_")[0].upper()  # EC, KO, PWY
+            sets[set_name] = set(df["trait"].dropna().unique())
+        except Exception as e:
+            st.warning(f"Error reading {f}: {e}")
+            continue
+
+    # --- Venn Diagram for 3 sets ---
+    if len(sets) >= 3:
+        keys = list(sets.keys())[:3]
+        plt.figure(figsize=(6,6))
+        venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
+              set_labels=[keys[0], keys[1], keys[2]])
+        plt.title(f"Common and Unique Traits - {selected_strain}")
+        st.pyplot(plt)
+    else:
+        st.warning("Venn diagram requires at least 3 sets. Showing list instead.")
+        st.write({k: list(v) for k, v in sets.items()})
+  
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
@@ -745,5 +810,7 @@ elif page == "ec_class":
     ec_class()
 elif page == "brite":
     brite_class() 
-elif page=="common":
-    common()
+elif page=="trait":
+    trait()
+elif page=="couq":
+    couq()
