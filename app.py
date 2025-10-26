@@ -893,6 +893,7 @@ def comp():
     st.dataframe(pd.DataFrame(common_2_rows))
     
 #------------------------------------------------------enrichment-------------------------------------------------------------------
+
 from scipy.stats import fisher_exact
 from statsmodels.stats.multitest import multipletests
 import streamlit as st
@@ -929,74 +930,94 @@ def pathway_enrichment():
     suffix = millet_map[selected_strain]
     data_dir = "picrust_processed_output_files"
 
-    # --- Read EC file for selected millet ---
-    ec_file = os.path.join(data_dir, f"ec{suffix}.csv")
-    if not os.path.exists(ec_file):
-        st.error(f"File not found: {ec_file}")
-        return
+    # --- Loop over EC, KO, and PWY ---
+    for prefix in ["ec", "ko", "pwy"]:
+        st.markdown(f"<h5 style='text-align:center;'>{prefix.upper()}-based Enrichment</h5>", unsafe_allow_html=True)
 
-    df_ec = pd.read_csv(ec_file)
-    if "pathway_ids" not in df_ec.columns:
-        st.warning("No 'pathway_ids' column found in EC file.")
-        return
-
-    # --- Extract millet pathways ---
-    df_ec["pathway_ids"] = df_ec["pathway_ids"].astype(str).str.replace(" ", "").str.split(",")
-    millet_pathways = df_ec["pathway_ids"].explode().dropna().tolist()
-    millet_counts = pd.Series(millet_pathways).value_counts()
-
-    # --- Build background from all other millets ---
-    all_ec_files = glob.glob(os.path.join(data_dir, "ec*.csv"))
-    background_pathways = []
-    for f in all_ec_files:
-        if not f.endswith(f"{suffix}.csv"):  # skip current strain
-            try:
-                df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
-            except UnicodeDecodeError:
-                df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
-
-            if "pathway_ids" in df_bg.columns:
-                df_bg["pathway_ids"] = df_bg["pathway_ids"].astype(str).str.replace(" ", "").str.split(",")
-                background_pathways.extend(df_bg["pathway_ids"].explode().dropna().tolist())
-
-    bg_counts = pd.Series(background_pathways).value_counts()
-
-    # --- Perform Fisher’s Exact Test ---
-    results = []
-    for pathway, count_in_millet in millet_counts.items():
-        count_in_bg = bg_counts.get(pathway, 0)
-        table = [
-            [count_in_millet, len(millet_pathways) - count_in_millet],
-            [count_in_bg, len(background_pathways) - count_in_bg]
-        ]
-        try:
-            odds, p = fisher_exact(table, alternative="greater")
-        except ValueError:
+        file_path = os.path.join(data_dir, f"{prefix}{suffix}.csv")
+        if not os.path.exists(file_path):
+            st.warning(f"File not found: {file_path}")
             continue
-        results.append({"Pathway": pathway, "Count": count_in_millet, "p-value": p})
 
-    if not results:
-        st.warning("No pathways found for enrichment.")
-        return
+        df = pd.read_csv(file_path, encoding="utf-8", on_bad_lines="skip")
 
-    res_df = pd.DataFrame(results)
-    res_df["FDR"] = multipletests(res_df["p-value"], method="fdr_bh")[1]
-    res_df = res_df.sort_values("FDR")
+        # --- Identify the correct column containing pathway IDs ---
+        pathway_col = None
+        for possible in ["pathway_ids", "map_ids", "Pathway"]:
+            if possible in df.columns:
+                pathway_col = possible
+                break
 
-    # --- Show results table ---
-    st.subheader(f"Top Enriched Pathways in {selected_strain}")
-    st.dataframe(res_df.head(20).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
+        if not pathway_col:
+            st.warning(f"No pathway column found in {prefix.upper()} file.")
+            continue
 
-    # --- Plot top pathways ---
-    top = res_df.head(10)
-    fig, ax = plt.subplots(figsize=(7, 5))
-    ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
-    ax.set_xlabel("-log10(FDR)")
-    ax.set_ylabel("Pathway")
-    ax.set_title(f"Top Enriched Pathways - {selected_strain}")
-    ax.invert_yaxis()
-    plt.tight_layout()
-    st.pyplot(fig)
+        df[pathway_col] = df[pathway_col].astype(str).str.replace(" ", "").str.split(",")
+        millet_pathways = df[pathway_col].explode().dropna().tolist()
+        if not millet_pathways:
+            st.info(f"No pathway entries found in {prefix.upper()} data.")
+            continue
+
+        millet_counts = pd.Series(millet_pathways).value_counts()
+
+        # --- Build background from all other millets of same file type ---
+        all_files = glob.glob(os.path.join(data_dir, f"{prefix}*.csv"))
+        background_pathways = []
+        for f in all_files:
+            if not f.endswith(f"{suffix}.csv"):
+                try:
+                    df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
+                except UnicodeDecodeError:
+                    df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
+
+                if pathway_col in df_bg.columns:
+                    df_bg[pathway_col] = df_bg[pathway_col].astype(str).str.replace(" ", "").str.split(",")
+                    background_pathways.extend(df_bg[pathway_col].explode().dropna().tolist())
+
+        if not background_pathways:
+            st.warning(f"No background pathways found for {prefix.upper()}.")
+            continue
+
+        bg_counts = pd.Series(background_pathways).value_counts()
+
+        # --- Fisher’s exact test for enrichment ---
+        results = []
+        for pathway, count_in_millet in millet_counts.items():
+            count_in_bg = bg_counts.get(pathway, 0)
+            table = [
+                [count_in_millet, len(millet_pathways) - count_in_millet],
+                [count_in_bg, len(background_pathways) - count_in_bg]
+            ]
+            try:
+                odds, p = fisher_exact(table, alternative="greater")
+            except ValueError:
+                continue
+            results.append({"Pathway": pathway, "Count": count_in_millet, "p-value": p})
+
+        if not results:
+            st.warning(f"No significant pathways found for {prefix.upper()}.")
+            continue
+
+        res_df = pd.DataFrame(results)
+        res_df["FDR"] = multipletests(res_df["p-value"], method="fdr_bh")[1]
+        res_df = res_df.sort_values("FDR")
+
+        # --- Plot top pathways ---
+        top = res_df.head(10)
+        fig, ax = plt.subplots(figsize=(7, 5))
+        ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
+        ax.set_xlabel("-log10(FDR)")
+        ax.set_ylabel("Pathway")
+        ax.set_title(f"Top Enriched Pathways ({prefix.upper()}) - {selected_strain}")
+        ax.invert_yaxis()
+        plt.tight_layout()
+        st.pyplot(fig)
+
+        # --- Show top table ---
+        st.dataframe(res_df.head(20).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
+
+
+    
 
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
