@@ -578,7 +578,9 @@ def brite_class():
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
-    with st.sidebar.expander("brite distribution", expanded=False): 
+    with st.sidebar.expander("ko brite distribution", expanded=False): 
+        st.markdown(""" To be added """) 
+    with st.sidebar.expander("ec brite distribution", expanded=False): 
         st.markdown(""" To be added """) 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
