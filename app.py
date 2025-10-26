@@ -758,7 +758,7 @@ def couq():
             continue
             
     # --- Venn Diagram for 3 sets (counts only) ---
-  from itertools import combinations
+    from itertools import combinations
 
     if len(sets) == 3:
         keys = list(sets.keys())
