@@ -773,7 +773,6 @@ def couq():
         # --- Common to all 3 ---
         common_3 = set1 & set2 & set3
         df_common_3 = pd.DataFrame({"Trait": sorted(common_3)})
-        "<h5 style='text-align:center;'>Common Traits {selected_strain}</h5>", unsafe_allow_html=True
         st.markdown(f"<h5 style='text-align:center;'>Common Traits {selected_strain}</h5>", unsafe_allow_html=True)
         st.dataframe(df_common_3)
         
