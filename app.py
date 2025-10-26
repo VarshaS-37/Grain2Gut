@@ -842,8 +842,10 @@ def comp():
     for trait in all_traits:
         for millet, traits in millet_sets.items():
             data[millet].append(trait in traits)
-    
+    all_traits = sorted(set(...))  # convert to list
     df_upset = pd.DataFrame(data, index=all_traits)
+
+    
     
     # --- Plot UpSet ---
     plt.figure(figsize=(10,6))
