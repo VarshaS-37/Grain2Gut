@@ -702,7 +702,7 @@ def common():
     trait_counts.columns = ["Trait", "Count"]
     
     fig, ax = plt.subplots(figsize=(6, 4))
-    bars=ax.bar(trait_counts["trait"], trait_counts["Count"], color="#4C72B0")
+    bars=ax.bar(trait_counts["Trait"], trait_counts["Count"], color="#4C72B0")
     ax.set_xlabel("Trait")
     ax.set_ylabel("Count")
     ax.set_title(f"Trait Distribution - {selected_strain}")
