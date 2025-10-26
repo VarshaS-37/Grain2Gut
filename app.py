@@ -597,63 +597,63 @@ def brite_class():
             label_visibility="collapsed",
             key=f"pwy_strain_select_{st.session_state.page}",
         )
-        suffix = millet_map[selected_strain]
-        try:
-            df = pd.read_csv(f"picrust_processed_output_files/{selected_dist[0:2].lower()}{suffix}.csv")
-        except FileNotFoundError:
-            st.error(f"File {selected_dist[0:2].lower()}{suffix}.csv not found.")
-            return
-        
-        # Validate columns
-        required_cols = ["brite_class", "brite_subclass"]
-        for col in required_cols:
-            if col not in df.columns:
-                st.warning(f"'{col}' column not found in the CSV.")
-                return
+    suffix = millet_map[selected_strain]
+    try:
+        df = pd.read_csv(f"picrust_processed_output_files/{selected_dist[0:2].lower()}{suffix}.csv")
+    except FileNotFoundError:
+        st.error(f"File {selected_dist[0:2].lower()}{suffix}.csv not found.")
+        return
     
-      # --- Split semicolon-separated entries and count ---
-        # Brite Class
-        class_counts = (
-            df["brite_class"].dropna().str.split(";").explode().str.strip().value_counts()
-        )
-        class_counts = class_counts[class_counts >= 3]  # Keep only counts >= 3
-        class_counts = class_counts.reset_index()
-        class_counts.columns = ["Brite Class", "Count"]
-        
-        # Brite Subclass
-        subclass_counts = (
-            df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
-        )
-        subclass_counts = subclass_counts[subclass_counts >= 3]  # Keep only counts >= 3
-        subclass_counts = subclass_counts.reset_index()
-        subclass_counts.columns = ["Brite Subclass", "Count"]
+    # Validate columns
+    required_cols = ["brite_class", "brite_subclass"]
+    for col in required_cols:
+        if col not in df.columns:
+            st.warning(f"'{col}' column not found in the CSV.")
+            return
 
-        left_col, right_col = st.columns([2, 2])
-        with left_col:
-            fig, ax = plt.subplots(figsize=(6, 4))
-            bars=ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
-            ax.set_xlabel("Brite Class")
-            ax.set_ylabel("Count")
-            ax.set_title(f"Brite Class Distribution - {selected_strain}")
-            plt.xticks(rotation=45, ha="right")
-            # Add value labels on top of bars
-            for bar in bars:
-                height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)), ha='center', va='bottom', fontsize=9)
-            plt.tight_layout()
-            st.pyplot(fig)
-        with right_col:
-            fig, ax = plt.subplots(figsize=(6, 4))
-            bars=ax.bar(subclass_counts["Brite Subclass"], subclass_counts["Count"], color="#4C72B0")
-            ax.set_xlabel("Brite Subclass")
-            ax.set_ylabel("Count")
-            ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
-            plt.xticks(rotation=45, ha="right")
-            for bar in bars:
-                height = bar.get_height()
-                ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
-            plt.tight_layout()
-            st.pyplot(fig)
+  # --- Split semicolon-separated entries and count ---
+    # Brite Class
+    class_counts = (
+        df["brite_class"].dropna().str.split(";").explode().str.strip().value_counts()
+    )
+    class_counts = class_counts[class_counts >= 3]  # Keep only counts >= 3
+    class_counts = class_counts.reset_index()
+    class_counts.columns = ["Brite Class", "Count"]
+    
+    # Brite Subclass
+    subclass_counts = (
+        df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
+    )
+    subclass_counts = subclass_counts[subclass_counts >= 3]  # Keep only counts >= 3
+    subclass_counts = subclass_counts.reset_index()
+    subclass_counts.columns = ["Brite Subclass", "Count"]
+
+    left_col, right_col = st.columns([2, 2])
+    with left_col:
+        fig, ax = plt.subplots(figsize=(6, 4))
+        bars=ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
+        ax.set_xlabel("Brite Class")
+        ax.set_ylabel("Count")
+        ax.set_title(f"Brite Class Distribution - {selected_strain}")
+        plt.xticks(rotation=45, ha="right")
+        # Add value labels on top of bars
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)), ha='center', va='bottom', fontsize=9)
+        plt.tight_layout()
+        st.pyplot(fig)
+    with right_col:
+        fig, ax = plt.subplots(figsize=(6, 4))
+        bars=ax.bar(subclass_counts["Brite Subclass"], subclass_counts["Count"], color="#4C72B0")
+        ax.set_xlabel("Brite Subclass")
+        ax.set_ylabel("Count")
+        ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
+        plt.xticks(rotation=45, ha="right")
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
+        plt.tight_layout()
+        st.pyplot(fig)
             
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
