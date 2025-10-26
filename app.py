@@ -495,24 +495,25 @@ def millet():
         col1, col2,col3 = st.columns(3)
         with col1:
             if st.button("EC class Distribution"):
-                go_to("function")
+                go_to("ec_class")
         with col2:
-            if st.button("Unique Traits"):
-                go_to("unique")
+            if st.button("BRITE class & subclass Distribution"):
+                go_to("brite")
         with col3:
             if st.button("Common Traits"):
                 go_to("common")        
         col4, col5,col6= st.columns(3)
         with col4:
-            if st.button("Comparative Analysis , BRITE Functional Trait,"):
+            if st.button("Unique Traits"):
                 go_to("comparison")
         with col5:
             if st.button("Mapping Analysis"):
                 go_to("mapping")
         with col6:
-            if st.button("Pathway Enrichment"):
+            if st.button("Pathway Enrichment Comparative Analysis , Functional Trait, "):
                 go_to("common")
-def function():
+#--------------------------------------ec class------------------------------------------------------------------------------------------------
+def ec_class():
     with st.sidebar:
         if st.button("Back to Home"):
             go_to("home")
@@ -565,6 +566,72 @@ def function():
         st.write(f"""
         - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
         """)
+#-----------------------------------------------------------brite class-------------------------------------------------------------------
+def brite_class():
+    # ... your sidebar code ...
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home") 
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis") 
+    with st.sidebar.expander("brite distribution", expanded=False): 
+        st.markdown(""" To be added """) 
+    col1, col2, col3 = st.columns([3, 3, 3]) 
+    with col2: st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
+        selected_strain = st.selectbox(
+            "Select the Millet LAB",
+            list(millet_map.keys()),
+            key=f"pwy_strain_select_{st.session_state.page}",
+        )
+        suffix = millet_map[selected_strain]
+
+    try:
+        df = pd.read_csv(f"picrust_processed_output_files/ec{suffix}.csv")
+    except FileNotFoundError:
+        st.error(f"File ec{suffix}.csv not found.")
+        return
+
+    # Validate columns
+    required_cols = ["brite_class", "brite_subclass"]
+    for col in required_cols:
+        if col not in df.columns:
+            st.warning(f"'{col}' column not found in the CSV.")
+            return
+
+    # --- Split semicolon-separated entries and count ---
+    # Brite Class
+    class_counts = df["brite_class"].dropna().str.split(";").explode().str.strip().value_counts()
+    class_counts = class_counts.reset_index()
+    class_counts.columns = ["Brite Class", "Count"]
+
+    # Brite Subclass
+    subclass_counts = df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
+    subclass_counts = subclass_counts.reset_index()
+    subclass_counts.columns = ["Brite Subclass", "Count"]
+
+    # --- Plot ---
+    left_col, right_col = st.columns([2, 2])
+
+    with left_col:
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
+        ax.set_xlabel("Brite Class")
+        ax.set_ylabel("Count")
+        ax.set_title(f"Brite Class Distribution - {selected_strain}")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        st.pyplot(fig)
+
+    with right_col:
+        fig, ax = plt.subplots(figsize=(6, 4))
+        ax.bar(subclass_counts["Brite Subclass"], subclass_counts["Count"], color="#4C72B0")
+        ax.set_xlabel("Brite Subclass")
+        ax.set_ylabel("Count")
+        ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
+        plt.xticks(rotation=45, ha="right")
+        plt.tight_layout()
+        st.pyplot(fig)
+
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     with st.sidebar:
@@ -591,5 +658,7 @@ elif page == "summarized_analysis":
     summary()
 elif page == "milletwise_analysis":
     millet()
-elif page == "function":
-    function()
+elif page == "ec_class":
+    ec_class()
+elif page == "brite":
+    brite_class()    
