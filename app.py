@@ -714,7 +714,7 @@ def trait():
     plt.tight_layout()
     st.pyplot(fig)
 #-------------------------------------------------common & unique-----------------------------------------------------------------------------
-from matplotlib_venn import venn3  # For 3 sets
+from matplotlib-venn import venn3  # For 3 sets
 import os
 def couq():
     with st.sidebar:
