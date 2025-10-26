@@ -831,30 +831,25 @@ def comp():
                 st.warning(f"File {f} not found, skipping.")
         millet_sets[strain_name] = combined_traits
 
-    
-    from upsetplot import UpSet
-    from collections import defaultdict
-    
-    
-       # --- Create DataFrame for UpSet ---
-    all_traits = set.union(*millet_sets.values())  # combine all traits across millets
-    all_traits = sorted(all_traits)  # convert to sorted list
-    data = defaultdict(list)
-    for trait in all_traits:
-        for millet, traits in millet_sets.items():
-            data[millet].append(trait in traits)
-    
-    df_upset = pd.DataFrame(data, index=all_traits)
+    from upsetplot import UpSet, from_memberships
+   
 
-
+    # millet_sets: dict of millet_name -> set of traits
+    memberships = []
+    for millet, traits in millet_sets.items():
+        for trait in traits:
+            memberships.append((trait, millet))
     
+    # Create the UpSet data
+    data = from_memberships(
+        [[millet for millet in millet_sets if trait in millet_sets[millet]] for trait in set.union(*millet_sets.values())]
+    )
     
-    # --- Plot UpSet ---
-    plt.figure(figsize=(10,6))
-    upset = UpSet(df_upset, subset_size='count', show_counts=True)
+    plt.figure(figsize=(8,6))
+    upset = UpSet(data, subset_size='count', show_counts=True)
     upset.plot()
-    plt.title("Trait Overlaps Across 4 Millets")
     st.pyplot(plt)
+
 
     # --- Common to all 4 LABs ---
     common_4 = set.intersection(*millet_sets.values())
