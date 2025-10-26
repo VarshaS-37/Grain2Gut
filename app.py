@@ -685,7 +685,7 @@ def common():
         )
     suffix = millet_map[selected_strain]
     try:
-        df = pd.read_csv(f"picrust_processed_output_files/{selected_dist.strip(' ')[0].lower()}{suffix}_word.csv")
+        df = pd.read_csv(f"picrust_processed_output_files/{selected_dist.split(' ')[0].lower()}{suffix}_word.csv")
     except FileNotFoundError:
         st.error(f"File {selected_dist.strip(' ')[0].lower()}{suffix}.csv not found.")
         return
