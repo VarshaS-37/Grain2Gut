@@ -714,7 +714,7 @@ def trait():
     plt.tight_layout()
     st.pyplot(fig)
 #-------------------------------------------------common & unique-----------------------------------------------------------------------------
-from matplotlib_venn import venn3
+from matplotlib_venn import venn3,venn3_circles
 
 def couq():
     # --- Sidebar ---
@@ -756,22 +756,39 @@ def couq():
         except FileNotFoundError:
             st.warning(f"File {file_path} not found.")
             continue
-
-    # --- Plot Venn diagram if all 3 sets exist ---
+            
     if len(sets) == 3:
         keys = list(sets.keys())
-        plt.figure(figsize=(6,6))
-        venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
-              set_labels=[keys[0], keys[1], keys[2]])
+        plt.figure(figsize=(8,8))
+        v = venn3([sets[keys[0]], sets[keys[1]], sets[keys[2]]],
+                  set_labels=[keys[0], keys[1], keys[2]])
+    
+        # --- Add trait names to each subset ---
+        for i, subset in enumerate(['100','010','110','001','101','011','111']):
+            if v.get_label_by_id(subset) is not None:
+                # Get the traits in that subset
+                if subset == '100':
+                    traits = sets[keys[0]] - sets[keys[1]] - sets[keys[2]]
+                elif subset == '010':
+                    traits = sets[keys[1]] - sets[keys[0]] - sets[keys[2]]
+                elif subset == '001':
+                    traits = sets[keys[2]] - sets[keys[0]] - sets[keys[1]]
+                elif subset == '110':
+                    traits = (sets[keys[0]] & sets[keys[1]]) - sets[keys[2]]
+                elif subset == '101':
+                    traits = (sets[keys[0]] & sets[keys[2]]) - sets[keys[1]]
+                elif subset == '011':
+                    traits = (sets[keys[1]] & sets[keys[2]]) - sets[keys[0]]
+                elif subset == '111':
+                    traits = sets[keys[0]] & sets[keys[1]] & sets[keys[2]]
+    
+                # Join traits as string (max 3 per line)
+                text = "\n".join([", ".join(list(traits)[i:i+3]) for i in range(0,len(traits),3)])
+                v.get_label_by_id(subset).set_text(text)
+    
         plt.title(f"Common & Unique Traits - {selected_strain}")
         st.pyplot(plt)
-    else:
-        st.warning("Venn diagram requires all 3 sets. Showing available sets as lists instead.")
-        for k, v in sets.items():
-            st.markdown(f"**{k} traits ({len(v)})**")
-            st.write(sorted(list(v)))
 
-  
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
