@@ -582,15 +582,15 @@ def brite_class():
         st.markdown(""" To be added """) 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
-        st.markdown("<p style='text-align:center; font-size:12px;'>Select the distribution category</p>",unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>'Select distribution category'</h4>", unsafe_allow_html=True)
         selected_dist = st.selectbox(
             "",
             ['EC Distribution','KO Distriution'],
             label_visibility="collapsed",
             key=f"brite_class_select_{st.session_state.page}",
         )
-        st.markdown(f"<p style='text-align:center; font-size:12px;'>BRITE distribution of associated map ids</p>",unsafe_allow_html=True)
-        st.markdown("<p style='text-align:center; font-size:12px;'>Select the Millet LAB</p>",unsafe_allow_html=True)
+        st.markdown(f"<h4 style='text-align:center;'>'BRITE distribution of associated map ids'</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>'Select the Millet LAB'</h4>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
             list(millet_map.keys()),
