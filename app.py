@@ -808,7 +808,7 @@ def couq():
 def comp():
     
     from itertools import combinations
-    
+    millet_sets={}
     # Combine EC, KO, PWY for each millet LAB
     for strain_name, suffix in millet_map.items():
         combined_traits = set()
