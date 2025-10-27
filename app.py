@@ -98,8 +98,20 @@ def home():
         3. These sequences have been used for functional prediction using PICRUSt (Phylogenetic Investigation of Communities by Reconstruction of Unobserved States).
         4. The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.
         5. Each dataframe was independently linked to reference information from databases.
-        6. These dataframes are present in the **Meta Data** section and are used for further analysis.
         """)
+    with st.sidebar.expander("Summarized Analysis", expanded=False):
+        st.markdown("""
+        This contains the overall summary of our results.
+        """)
+    with st.sidebar.expander("Millet-wise Analysis", expanded=False):
+        st.markdown("""
+        This contains the detailed analysis and functional comparison across millets.
+        """)
+    with st.sidebar.expander("Meta Data", expanded=False):
+        st.markdown("""
+        This contains all the processed dataframes created from the raw files and are used for further analysis.
+        """)
+     
    
     left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
     
