@@ -481,7 +481,7 @@ def millet():
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
             """)
-       with st.sidebar.expander("to be added", expanded=False):
+        with st.sidebar.expander("to be added", expanded=False):
             st.markdown("""
             to be added
             """)
