@@ -169,11 +169,13 @@ def ec_page():
         with st.sidebar.expander("Why is it relevant?", expanded=False):
             st.markdown("""
             EC numbers tell us **what each enzyme in a LAB can do**. 
+            
             For example:   
             - Which sugars or fibers the bacteria can break down  
             - Which beneficial compounds (like vitamins or organic acids) they might produce  
             - How they might interact in food or the gut  
-        So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
+            
+            So EC numbers help in **connecting the functional predictions from PICRUSt to real biological activities**.
             """)
         with st.sidebar.expander("What is in the EC Dataframe?", expanded=False):
             st.markdown("""
