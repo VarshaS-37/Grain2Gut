@@ -504,11 +504,11 @@ def millet():
             if st.button("Common & Unique Traits"):
                 go_to("couq")
         with col5:
-            if st.button("---"):
-                go_to("---")
-        with col6:
             if st.button("Pathway Enrichment"):
                 go_to("pe")
+        with col6:
+            if st.button("to be added"):
+                go_to("---")
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
