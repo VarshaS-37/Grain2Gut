@@ -464,20 +464,26 @@ def millet():
             st.markdown("""
             Contains data about the four millet derived LAB used and their NCBI links are provided.
             """)
-        with st.sidebar.expander("Analysis", expanded=False):
+        with st.sidebar.expander("EC class Distribution", expanded=False):
+            st.markdown("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
+        with st.sidebar.expander("BRITE class & subclass Distribution", expanded=False):
             st.markdown("""
-            1. **EC class Distribution:** 
-            - Shows the distribution of EC numbers across the six major EC classes for each millet.
-            2. **BRITE class & subclass Distribution:** 
             - For each EC number & KO id, multiple map ids (pathway ids) are retrieved.
             - These map ids are then mapped to their BRITE class & subclasses whose distribution across each millet is plotted.
-            3. **Trait Distribution:** 
+            """)
+        with st.sidebar.expander("Trait Distribution", expanded=False):
+            st.markdown("""
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
-            4. **Common & Unique Traits:** 
+            """)
+        with st.sidebar.expander("Common & Unique Traits", expanded=False):
+            st.markdown("""
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
-            5. **to be added**
+            """)
+       with st.sidebar.expander("to be added", expanded=False):
+            st.markdown("""
+            to be added
             """)
     millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
