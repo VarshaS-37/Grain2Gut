@@ -624,10 +624,24 @@ def brite_class():
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
-    with st.sidebar.expander("ko brite distribution", expanded=False): 
-        st.markdown(""" To be added """) 
-    with st.sidebar.expander("ec brite distribution", expanded=False): 
-        st.markdown(""" To be added """) 
+    with st.sidebar.expander("What is a BRITE class?", expanded=False): 
+        st.markdown("""
+        - BRITE classes are top-level functional categories in the KEGG database.  
+        - They group genes, proteins, and pathways based on broad biological roles, such as enzymes, transporters, or signaling proteins.
+        """, unsafe_allow_html=True)
+    with st.sidebar.expander("What is a BRITE subclass?", expanded=False): 
+        st.markdown("""
+        - BRITE subclasses are more specific categories within each BRITE class.  
+        - They further organize proteins or pathways by detailed functions, like specific enzyme families, types of transporters, or metabolic pathways.
+        """, unsafe_allow_html=True)
+    with st.sidebar.expander("Why are they relevant?", expanded=False): 
+        st.markdown("""
+        - Helps identify enzymes and pathways that probiotic bacteria can use to metabolize food components.
+        - Shows which bioactive compounds (vitamins, organic acids, peptides) they might produce.
+        - Reveals mechanisms for survival and interaction</b> in food or the gut, like stress response or nutrient transport.
+        """, unsafe_allow_html=True)
+
+ 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
         st.write("")
