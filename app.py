@@ -504,8 +504,8 @@ def millet():
             if st.button("Common & Unique Traits"):
                 go_to("couq")
         with col5:
-            if st.button("Comparative Traits"):
-                go_to("comp")
+            if st.button("---"):
+                go_to("---")
         with col6:
             if st.button("Pathway Enrichment"):
                 go_to("pe")
@@ -711,10 +711,7 @@ def trait():
     plt.tight_layout()
     st.pyplot(fig)
 #-------------------------------------------------common & unique-----------------------------------------------------------------------------
-from matplotlib_venn import venn3,venn3_circles
-
 def couq():
-    # --- Sidebar ---
     with st.sidebar:
         if st.button("Back to Home"): 
             go_to("home") 
@@ -723,96 +720,8 @@ def couq():
 
     with st.sidebar.expander("Common & Unique Traits", expanded=False): 
         st.markdown("To be added") 
-
-    # --- Main UI ---
     st.write('')
-    col1, col2, col3 = st.columns([3,3,3])
-    with col2:
-        st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>", unsafe_allow_html=True)
-        selected_strain = st.selectbox(
-            "",
-            list(millet_map.keys()),
-            label_visibility="collapsed",
-            key=f"couq_strain_select_{st.session_state.page}"
-        )
-
-    suffix = millet_map[selected_strain]
-
-    # --- File paths ---
-    base_path = "picrust_processed_output_files/"
-    file_types = ["ec", "ko", "pwy"]  # filenames prefixes
-    sets = {}
-
-    for ftype in file_types:
-        file_path = f"{base_path}/{ftype}{suffix}_word.csv"
-        try:
-            df = pd.read_csv(file_path)
-            if "trait" not in df.columns:
-                st.warning(f"'trait' column not found in {file_path}")
-                continue
-            sets[ftype.upper()] = set(df["trait"].dropna().unique())
-        except FileNotFoundError:
-            st.warning(f"File {file_path} not found.")
-            continue
-            
-    # --- Venn Diagram for 3 sets (counts only) ---
-    from itertools import combinations
-
-    if len(sets) == 3:
-        keys = list(sets.keys())
-        set1, set2, set3 = sets[keys[0]], sets[keys[1]], sets[keys[2]]
-
-         #  Venn diagram for counts only
-        plt.figure(figsize=(6,6))
-        venn3([set1, set2, set3], set_labels=keys)
-        plt.title(f"Venn Diagram")
-        st.pyplot(plt)
-        
-        # --- Common to all 3 ---
-        common_3 = set1 & set2 & set3
-        df_common_3 = pd.DataFrame({"Trait": sorted(common_3)})
-        st.markdown(f"<h5 style='text-align:center;'>Common Traits</h5>", unsafe_allow_html=True)
-        st.dataframe(df_common_3)
-
-        # --- Unique traits per set ---
-        unique_rows = []
-        all_sets_union = set1 | set2 | set3
-        for key in keys:
-            unique_traits = sets[key] - (all_sets_union - sets[key])
-            for trait in sorted(unique_traits):
-                unique_rows.append({"Set": key, "Trait": trait})
-                
-        df_unique = pd.DataFrame(unique_rows)
-        st.markdown(f"<h5 style='text-align:center;'>Unique Traits</h5>", unsafe_allow_html=True)
-        st.dataframe(df_unique)
-        
-        # --- Common to exactly 2 ---
-        common_2_rows = []
-        for combo in combinations(keys, 2):
-            s1, s2 = sets[combo[0]], sets[combo[1]]
-            common_pair = (s1 & s2) - common_3  # remove traits in all 3
-            for trait in sorted(common_pair):
-                common_2_rows.append({"Sets": " & ".join(combo), "Trait": trait})
-        
-        df_common_2 = pd.DataFrame(common_2_rows)
-        st.markdown(f"<h5 style='text-align:center;'>Traits Common to 2 categories</h5>", unsafe_allow_html=True)
-        st.dataframe(df_common_2)
-        
-    else:
-        st.warning("Venn diagram requires exactly 3 sets. Showing list instead.")
-        st.write({k: list(v) for k, v in sets.items()})
-#--------------------------------------------------------------comparative traits----------------------------------------------------------
-def comp():
-    with st.sidebar:
-        if st.button("Back to Home"): 
-            go_to("home") 
-        if st.button("Back to Analysis Menu"):
-            go_to("milletwise_analysis") 
-
-    with st.sidebar.expander("comparative Common & Unique Traits", expanded=False): 
-        st.markdown("To be added") 
-    st.write('')
-    st.markdown(f"<h5 style='text-align:center;'>Comparative traits</h5>", unsafe_allow_html=True) 
+    st.markdown(f"<h5 style='text-align:center;'>Common & Unique traits</h5>", unsafe_allow_html=True) 
     from itertools import combinations
     millet_sets={}
     # Combine EC, KO, PWY for each millet LAB
@@ -1059,7 +968,5 @@ elif page=="trait":
     trait()
 elif page=="couq":
     couq()
-elif page == "comp":
-    comp()
 elif page=="pe":
      pathway_enrichment()
