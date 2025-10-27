@@ -463,6 +463,7 @@ def pwy_page():
     
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
 def millet():
+    st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
     with st.sidebar:
         if st.button("Back to Home"):
             go_to("home") 
@@ -477,7 +478,7 @@ def millet():
             - For each EC number & KO id, multiple map ids (pathway ids) are retrieved.
             - These map ids are then mapped to their BRITE class & subclasses whose distribution across each millet is plotted.
             """)
-        with st.sidebar.expander("Trait Distribution", expanded=False):
+        with st.sidebar.expander("Biological Trait Distribution", expanded=False):
             st.markdown("""
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
@@ -571,7 +572,7 @@ def ec_class():
             """)
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
-        st.markdown("<h4 style='text-align:center;'>EC class distribution</h4>", unsafe_allow_html=True)
+        st.markdown("<h4 style='text-align:center;'>EC class Distribution</h4>", unsafe_allow_html=True)
         st.markdown("<h4 style='text-align:center;'>Select the Millet LAB</h4>", unsafe_allow_html=True)
         selected_strain = st.selectbox(
             "",
@@ -619,6 +620,7 @@ def ec_class():
 #-----------------------------------------------------------brite class-------------------------------------------------------------------
 def brite_class():
     # ... your sidebar code ...
+    st.markdown("<h4 style='text-align:center;'>BRITE class & subclass Distribution</h4>", unsafe_allow_html=True)
     with st.sidebar:
         if st.button("Back to Home"): 
             go_to("home") 
@@ -719,13 +721,18 @@ def brite_class():
         
 #----------------------------------------------------trait distribution--------------------------------------------------------------------------------            
 def trait():
+    st.markdown("<h4 style='text-align:center;'>Biological Trait Distribution</h4>", unsafe_allow_html=True)
     with st.sidebar:
         if st.button("Back to Home"): 
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
-    with st.sidebar.expander("common", expanded=False): 
-        st.markdown(""" To be added """) 
+    with st.sidebar.expander("Why are they relevant?", expanded=False): 
+        st.markdown("""
+        By assigning biological traits, we can predict how a LAB may behave in food or in the gut,  
+        which helps identify **better LAB strains** for use in food applications.
+        """, unsafe_allow_html=True)
+ 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
         st.write("")
