@@ -123,7 +123,7 @@ def home():
             go_to("summarized_analysis")
     # ------------------------------------------------Millet-wise Analysis---------------------------------------------------------------
     with middle_col:
-        for _ in range(7):
+        for _ in range(8):
             st.write("")
         if st.button("Millet-wise Analysis"):
             go_to("milletwise_analysis")
