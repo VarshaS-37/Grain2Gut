@@ -276,18 +276,22 @@ def ko_page():
             """)
         with st.sidebar.expander("What is a KO ID?", expanded=False):
             st.markdown("""
+            
             **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
             - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
             - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
+            
             """)
         with st.sidebar.expander("Why is it relevant?", expanded=False):
             st.markdown("""
-            KO IDs are important because they tell us **what functions a LAB strain may carry out at the gene level**.  
+            KO IDs are important because they tell us **what functions a LAB strain may carry out at the gene level**.
+            
             For example:  
             - Which transporters, enzymes, or proteins are present  
             - Which metabolic or signaling pathways the strain may be capable of  
-            - How the predicted functions relate to **probiotic and food applications**  
-        In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
+            - How the predicted functions relate to **probiotic and food applications** 
+            
+            In this app, KO IDs help connect **genomic predictions to real biological activities** and link them to EC numbers and pathways.
             """)
         with st.sidebar.expander("What is in the KO Dataframe?", expanded=False):
             st.markdown("""
