@@ -241,7 +241,7 @@ def ec_page():
             else:
                 st.warning("No textual description found for this EC number.")
 
-    st.write("")  # spacing
+
     
   
 # --------------------------------------------------- KO Page: Side-by-Side + Sidebar -------------------------------------------------------------
@@ -347,9 +347,7 @@ def ko_page():
                         st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
                 st.warning("No textual description found for this KO ID.")
-    st.write("")  # spacing
-    if st.button("Back to Home"):
-        go_to("home")
+   
 # --------------------------------------------------- Pathway Page: Side-by-Side + Sidebar ----------------------------------------------------------
 def pwy_page():
     st.markdown("<h3 style='text-align:center;'>Pathway Analysis</h3>", unsafe_allow_html=True)
@@ -444,9 +442,7 @@ def pwy_page():
                         st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
                 st.warning("No textual description found for this pathway.")
-    st.write("")  # spacing
-    if st.button("Back to Home"):
-        go_to("home")
+    
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
 def millet():
     with st.sidebar:
