@@ -156,7 +156,7 @@ def ec_page():
             2. On the left, the entire EC dataframe for the selected LAB is displayed.
             3. Use the **EC number dropdown** above the dataframe to select an EC number.
             4. The right column will show the textual interpretation for the selected EC number.
-            5. Use the "Back to Home" button at the bottom to return to the home page.
+            5. Use the **"Back to Home"** button at the bottom to return to the home page.
             """)
         with st.sidebar.expander("What is an EC Number?", expanded=False):
             st.markdown("""
@@ -272,7 +272,7 @@ def ko_page():
             2. On the left, the entire KO dataframe for the selected LAB is displayed.
             3. Use the **KO ID dropdown** above the dataframe to select a KO ID.
             4. The right column will show the textual interpretation for the selected KO number.
-            5. Use the "Back to Home" button at the bottom to return to the home page.
+            5. Use the **"Back to Home"** button at the bottom to return to the home page.
             """)
         with st.sidebar.expander("What is a KO ID?", expanded=False):
             st.markdown("""
@@ -380,7 +380,7 @@ def pwy_page():
             2. On the left, the entire pathway dataframe for the selected LAB is displayed.
             3. Use the **Pathway ID dropdown** above the dataframe to select a pathway.
             4. The right column will show the textual interpretation for the selected pathway.
-            5. Use the "Back to Home" button at the bottom to return to the home page.
+            5. Use the **"Back to Home"** button at the bottom to return to the home page.
             """)
         with st.sidebar.expander("What is a Pathway?", expanded=False):
             st.markdown("""
