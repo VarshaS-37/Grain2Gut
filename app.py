@@ -545,9 +545,35 @@ def ec_class():
             go_to("home")
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis")    
-        with st.sidebar.expander("ec distribution", expanded=False):
+        with st.sidebar.expander("What are the major EC classes?", expanded=False):
             st.markdown("""
-            To be added
+            **1. Oxidoreductases (EC 1):**  
+            Catalyzes redox reactions, moves electrons between molecules.  
+            **2. Transferases (EC 2):**  
+            Moves functional groups from one molecule to another.  
+            **3. Hydrolases (EC 3):**  
+            Breaks molecules using water.  
+            **4. Lyases (EC 4):**  
+            Breaks bonds in molecules without water or oxidation.  
+            **5. Isomerases (EC 5):**  
+            Rearranges molecules into different forms.  
+            **6. Ligases (EC 6):**  
+            Joins two molecules together using energy.
+            """)
+        with st.sidebar.expander("Why are they relevant?", expanded=False):
+            st.markdown("""
+            **1. Oxidoreductases (EC 1):**  
+            Helps fermentation and makes acids; contributes to antioxidant effects.  
+            **2. Transferases (EC 2):**  
+            Supports vitamin and amino acid synthesis.  
+            **3. Hydrolases (EC 3):**  
+            Breaks down food molecules, improves digestibility, and generates bioactive compounds.  
+            **4. Lyases (EC 4):**  
+            Produces flavor compounds and enables flexible metabolism.  
+            **5. Isomerases (EC 5):**  
+            Modifies sugars and amino acids, aids prebiotic and bioactive compound formation.  
+            **6. Ligases (EC 6):**  
+            Supports growth and stability of probiotics in food.
             """)
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
@@ -592,7 +618,7 @@ def ec_class():
         st.pyplot(fig)
 
     with right_col:
-        st.markdown("### Interpretation")
+        st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         st.write(f"""
         - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
         """)
