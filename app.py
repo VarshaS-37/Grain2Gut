@@ -469,10 +469,11 @@ def millet():
             1. **EC class Distribution:** 
             - Shows the distribution of EC numbers across the six major EC classes for each millet.
             2. **BRITE class & subclass Distribution:** 
-            - For each EC number & KO id multiple map ids (pathway ids) are retrieved.
+            - For each EC number & KO id, multiple map ids (pathway ids) are retrieved.
             - These map ids are then mapped to their BRITE class & subclasses whose distribution across each millet is plotted.
             3. **Trait Distribution:** 
-            - Based on our understanding of all the data, we assigned biological traits to each EC, KO, PWY. Their ditribution is plotted for each millet.
+            - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
+            - Their distribution is plotted for each millet.
             4. **Common & Unique Traits:** 
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
