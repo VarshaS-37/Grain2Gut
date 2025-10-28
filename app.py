@@ -1398,5 +1398,5 @@ elif page=="pe":
 elif page=="cocl":
     cocl(millet_map) 
 elif page=="brcl":
-    brcl()
+
     brsc()
