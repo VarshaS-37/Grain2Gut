@@ -485,11 +485,24 @@ def millet():
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
             """)
+        with st.sidebar.expander("Common & Unique EC classes", expanded=False):
+            st.markdown("""
+            - Shows EC classes **shared or unique** across millet LAB strains.  
+            - Common = core enzymatic functions, Unique = strain-specific functions.
+            """)
+
+        with st.sidebar.expander("Common & Unique BRITE classes & subclasses", expanded=False):
+            st.markdown("""
+            - Shows BRITE classes & subclasses **shared or unique** across strains.  
+            - Common = shared pathways, Unique = strain-specific functionalities.
+            """)
+
         with st.sidebar.expander("Common & Unique Traits", expanded=False):
             st.markdown("""
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
             """)
+        
         with st.sidebar.expander("Pathway Enrichment", expanded=False):
             st.markdown("""
             Pathway enrichment helps identify **which biological pathways are more represented or more active** in one LAB strain **compared to others**.
