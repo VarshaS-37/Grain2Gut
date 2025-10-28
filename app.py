@@ -561,15 +561,18 @@ def ec_class():
             5. **Isomerases (EC 5):** Rearranges molecules into different forms.  
             6. **Ligases (EC 6):** Joins two molecules together using energy.
             """)
-        with st.sidebar.expander("Why are they relevant?", expanded=False):
+        with st.sidebar.expander("How are they relevant?", expanded=False):
             st.markdown("""
-            1. **Oxidoreductases (EC 1):** Helps fermentation and makes acids; contributes to antioxidant effects.  
-            2. **Transferases (EC 2):** Supports vitamin and amino acid synthesis.  
-            3. **Hydrolases (EC 3):** Breaks down food molecules, improves digestibility, and generates bioactive compounds.  
-            4. **Lyases (EC 4):** Produces flavor compounds and enables flexible metabolism.  
-            5. **Isomerases (EC 5):** Modifies sugars and amino acids, aids prebiotic and bioactive compound formation.  
-            6. **Ligases (EC 6):** Supports growth and stability of probiotics in food.
+            The presence of these enzymes implies their diverse functional capabilities related to food fermentation and probiotic activity:
+        
+            1. **Oxidoreductases (EC 1):** Helps in fermentation, making acids, and giving antioxidant benefits.  
+            2. **Transferases (EC 2):** Helps in making vitamins and amino acids that improve nutrition.  
+            3. **Hydrolases (EC 3):** Helps in breaking food molecules, improving digestibility, and releasing helpful compounds.  
+            4. **Lyases (EC 4):** Helps in forming flavor compounds and allowing flexible use of nutrients.  
+            5. **Isomerases (EC 5):** Helps in changing sugars and amino acids into useful forms and making prebiotics.  
+            6. **Ligases (EC 6):** Helps in bacterial growth and stability in foods.
             """)
+
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         st.markdown("<h4 style='text-align:center;'>EC class Distribution</h4>", unsafe_allow_html=True)
