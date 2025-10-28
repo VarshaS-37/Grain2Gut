@@ -1220,13 +1220,11 @@ def brt():
         - BRITE classes are top-level KEGG functional categories.
         - Overlap analysis shows shared vs unique functional potentials across millet LAB strains.
         """)
-     
-     selected_c = st.selectbox(
+    selected_c = st.selectbox(
             "",
             ['BRITE Class','BRITE Sublass' ],
             label_visibility="collapsed",
-            key=f"combined_enrich_select_{st.session_state.page}",
-        )
+            key=f"combined_enrich_select_{st.session_state.page}",)
     st.markdown(f"<h4 style='text-align:center;'>{selected_c} Overlap Across Millets</h4>", unsafe_allow_html=True)
     if selected_c=='BRITE Class':
         brcl()
