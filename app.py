@@ -539,14 +539,18 @@ def millet():
                 go_to("trait")        
         col4, col5,col6= st.columns(3)
         with col4:
-            if st.button("Common & Unique EC classes & BRITE classes and subclasses"):
+            if st.button("Common & Unique EC classes"):
                 go_to("cocl")
         with col5:
             if st.button("Common & Unique Traits"):
                 go_to("couq")
         with col6:
+            if st.button("Common & Unique BRITE classes and subclasses"):
+                go_to("brcl")
+        col7, col8,col9= st.columns([3,3,3])
+        with col8:
             if st.button("Pathway Enrichment"):
-                go_to("pe")
+                go_to("pe")       
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
@@ -1205,6 +1209,185 @@ def cocl(millet_map):
             common_2_rows.append({"Millets": " & ".join(combo), "EC Class": ec})
     st.markdown("<h5 style='text-align:center;'>EC Classes Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(common_2_rows))
+#-------------------------------------------------------------brite class n subclass--------------------------------------------------------------------------------
+def brcl():
+    
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home") 
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis")
+        
+        st.markdown("### BRITE Class UpSet Plot Explanation")
+        with st.expander("How to Read the UpSet Plot?", expanded=False): 
+            st.markdown("""    
+            The plot has two main parts for **BRITE classes**:
+
+            ### 1) Dot Matrix (Bottom Panel)
+            This shows **which millet-derived LAB strains share BRITE classes**.
+            
+            | Pattern | Meaning |
+            |--------|---------|
+            | ● A single dot under one strain | BRITE class is **unique** to that strain |
+            | ● ● Two dots connected by a line | BRITE class is **shared** between those two strains |
+            | ● ● ● Three connected dots | BRITE class is **shared by three strains** |
+            | ● ● ● ● All four connected dots | BRITE class is **common to all four LAB strains** |
+            
+            ### 2) Vertical Bars (Top Panel)
+            The **bar height** tells **how many BRITE classes** fall into that particular combination.
+            
+            ### 3) Left Vertical Bars (Side Panel)
+            The **bars on the left side** indicate the **total number of BRITE classes per strain**, giving dataset size.
+            """)
+
+    # Load all BRITE class CSVs
+    millet_sets = {}
+    for strain_name, suffix in millet_map.items():
+        try:
+            df = pd.read_csv(f"picrust_processed_output_files/pwy{suffix}.csv")
+            if "brite_class" in df.columns:
+                # split semicolon-separated entries and make set
+                millet_sets[strain_name] = set(df["brite_class"].dropna().str.split(";").explode().str.strip())
+            else:
+                st.warning(f"'brite_class' column missing in pwy{suffix}.csv")
+                millet_sets[strain_name] = set()
+        except FileNotFoundError:
+            st.warning(f"File pwy{suffix}.csv not found.")
+            millet_sets[strain_name] = set()
+
+    # Prepare UpSet data
+    data = from_memberships(
+        [[millet for millet in millet_sets if cls in millet_sets[millet]] for cls in set.union(*millet_sets.values())]
+    )
+    plt.figure(figsize=(8,6))
+    upset = UpSet(data, subset_size='count', show_counts=True)
+    upset.plot()
+    st.pyplot(plt)
+
+    # --- Common to all 4 LABs ---
+    common_4 = set.intersection(*millet_sets.values())
+    st.markdown(f"<h5 style='text-align:center;'>BRITE Classes Common to All 4 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame({"BRITE Class": sorted(common_4)}))
+
+    # --- Unique per strain ---
+    unique_rows = []
+    for millet, traits in millet_sets.items():
+        other_traits = set.union(*(t for m, t in millet_sets.items() if m != millet))
+        unique_traits = traits - other_traits
+        for trait in sorted(unique_traits):
+            unique_rows.append({"Millet": millet, "BRITE Class": trait})
+    st.markdown(f"<h5 style='text-align:center;'>Unique BRITE Classes</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(unique_rows))
+
+    # --- Common to exactly 3 LABs ---
+    common_3_rows = []
+    for combo in combinations(millet_sets.keys(), 3):
+        common_3 = set.intersection(*(millet_sets[c] for c in combo)) - common_4
+        for trait in sorted(common_3):
+            common_3_rows.append({"Millets": " & ".join(combo), "BRITE Class": trait})
+    st.markdown(f"<h5 style='text-align:center;'>BRITE Classes Common to Exactly 3 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(common_3_rows))
+
+    # --- Common to exactly 2 LABs ---
+    common_2_rows = []
+    for combo in combinations(millet_sets.keys(), 2):
+        common_2 = set.intersection(*(millet_sets[c] for c in combo)) - common_4
+        for combo3 in combinations(millet_sets.keys(), 3):
+            common_3 = set.intersection(*(millet_sets[c] for c in combo3)) - common_4
+            common_2 -= common_3
+        for trait in sorted(common_2):
+            common_2_rows.append({"Millets": " & ".join(combo), "BRITE Class": trait})
+    st.markdown(f"<h5 style='text-align:center;'>BRITE Classes Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(common_2_rows))
+#-----------------------------------------------brite subclass--------------------------------------------------
+
+def brsc():
+
+    with st.sidebar:
+        if st.button("Back to Home"): 
+            go_to("home") 
+        if st.button("Back to Analysis Menu"):
+            go_to("milletwise_analysis")
+        
+        st.markdown("### BRITE Subclass UpSet Plot Explanation")
+        with st.expander("How to Read the UpSet Plot?", expanded=False): 
+            st.markdown("""    
+            The plot has two main parts for **BRITE subclasses**:
+
+            ### 1) Dot Matrix (Bottom Panel)
+            This shows **which millet-derived LAB strains share BRITE subclasses**.
+            
+            | Pattern | Meaning |
+            |--------|---------|
+            | ● A single dot under one strain | BRITE subclass is **unique** to that strain |
+            | ● ● Two dots connected by a line | BRITE subclass is **shared** between those two strains |
+            | ● ● ● Three connected dots | BRITE subclass is **shared by three strains** |
+            | ● ● ● ● All four connected dots | BRITE subclass is **common to all four LAB strains** |
+            
+            ### 2) Vertical Bars (Top Panel)
+            The **bar height** tells **how many BRITE subclasses** fall into that particular combination.
+            
+            ### 3) Left Vertical Bars (Side Panel)
+            The **bars on the left side** indicate the **total number of BRITE subclasses per strain**, giving dataset size.
+            """)
+
+    # Load all BRITE subclass CSVs
+    millet_sets = {}
+    for strain_name, suffix in millet_map.items():
+        try:
+            df = pd.read_csv(f"picrust_processed_output_files/pwy{suffix}.csv")
+            if "brite_subclass" in df.columns:
+                millet_sets[strain_name] = set(df["brite_subclass"].dropna().str.split(";").explode().str.strip())
+            else:
+                st.warning(f"'brite_subclass' column missing in pwy{suffix}.csv")
+                millet_sets[strain_name] = set()
+        except FileNotFoundError:
+            st.warning(f"File pwy{suffix}.csv not found.")
+            millet_sets[strain_name] = set()
+
+    data = from_memberships(
+        [[millet for millet in millet_sets if cls in millet_sets[millet]] for cls in set.union(*millet_sets.values())]
+    )
+    plt.figure(figsize=(8,6))
+    upset = UpSet(data, subset_size='count', show_counts=True)
+    upset.plot()
+    st.pyplot(plt)
+
+    # --- Common to all 4 LABs ---
+    common_4 = set.intersection(*millet_sets.values())
+    st.markdown(f"<h5 style='text-align:center;'>BRITE Subclasses Common to All 4 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame({"BRITE Subclass": sorted(common_4)}))
+
+    # --- Unique per strain ---
+    unique_rows = []
+    for millet, traits in millet_sets.items():
+        other_traits = set.union(*(t for m, t in millet_sets.items() if m != millet))
+        unique_traits = traits - other_traits
+        for trait in sorted(unique_traits):
+            unique_rows.append({"Millet": millet, "BRITE Subclass": trait})
+    st.markdown(f"<h5 style='text-align:center;'>Unique BRITE Subclasses</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(unique_rows))
+
+    # --- Common to exactly 3 LABs ---
+    common_3_rows = []
+    for combo in combinations(millet_sets.keys(), 3):
+        common_3 = set.intersection(*(millet_sets[c] for c in combo)) - common_4
+        for trait in sorted(common_3):
+            common_3_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": trait})
+    st.markdown(f"<h5 style='text-align:center;'>BRITE Subclasses Common to Exactly 3 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(common_3_rows))
+
+    # --- Common to exactly 2 LABs ---
+    common_2_rows = []
+    for combo in combinations(millet_sets.keys(), 2):
+        common_2 = set.intersection(*(millet_sets[c] for c in combo)) - common_4
+        for combo3 in combinations(millet_sets.keys(), 3):
+            common_3 = set.intersection(*(millet_sets[c] for c in combo3)) - common_4
+            common_2 -= common_3
+        for trait in sorted(common_2):
+            common_2_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": trait})
+    st.markdown(f"<h5 style='text-align:center;'>BRITE Subclasses Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(common_2_rows))
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
@@ -1243,4 +1426,8 @@ elif page=="couq":
 elif page=="pe":
      pathway_enrichment()
 elif page=="cocl":
-    cocl(millet_map)    
+    cocl(millet_map) 
+elif page=="brcl":
+    brcl()
+elif page=="brsc":
+    brsc()
