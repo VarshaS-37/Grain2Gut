@@ -1167,10 +1167,10 @@ def cocl(millet_map):
         members = [millet for millet in millet_ec if ec in millet_ec[millet]]
         memberships.append(members)
 
-    upset_data = from_memberships(memberships)
-    plt.figure(figsize=(8,6))
-    UpSet(upset_data, subset_size='count', show_counts=True).plot()
-    st.pyplot(plt)
+    fig = plt.figure(figsize=(8,6))
+    upset = UpSet(data, subset_size='count', show_counts=True)
+    upset.plot(fig=fig)  # pass the figure explicitly
+    st.pyplot(fig)
 
     # --- Common to all 4 millets ---
     common_4 = set.intersection(*millet_ec.values())
