@@ -1294,10 +1294,10 @@ def brcl():
     data = from_memberships(
         [[strain for strain in millet_sets if cls in millet_sets[strain]] for cls in set.union(*millet_sets.values())]
     )
-    plt.figure(figsize=(8,6))
+    fig = plt.figure(figsize=(8,6))
     upset = UpSet(data, subset_size='count', show_counts=True)
-    upset.plot()
-    st.pyplot(plt)
+    upset.plot(fig=fig)  # pass the figure explicitly
+    st.pyplot(fig)
 
     # --- Common to all 4 ---
     common_4 = set.intersection(*millet_sets.values())
@@ -1359,10 +1359,10 @@ def brsc():
     data = from_memberships(
         [[strain for strain in millet_sets if sc in millet_sets[strain]] for sc in set.union(*millet_sets.values())]
     )
-    plt.figure(figsize=(8,6))
+    fig = plt.figure(figsize=(8,6))
     upset = UpSet(data, subset_size='count', show_counts=True)
-    upset.plot()
-    st.pyplot(plt)
+    upset.plot(fig=fig)  # pass the figure explicitly
+    st.pyplot(fig)
 
     # --- Common to all 4 ---
     common_4 = set.intersection(*millet_sets.values())
