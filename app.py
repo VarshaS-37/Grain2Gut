@@ -791,8 +791,62 @@ def couq():
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
 
-    with st.sidebar.expander("Common & Unique Traits", expanded=False): 
-        st.markdown("To be added") 
+    with st.sidebar.expander("Why is this relevant?", expanded=False): 
+        st.markdown("""
+        - Common traits indicates shared core metabolic functions and probiotic capabilities.
+        - Unique traits indicates special metabolic or adaptive features linked to each millet.""")
+    with st.sidebar.expander("What is an Upset plot?", expanded=False): 
+        st.markdown("""     
+        - An **UpSet Plot** is a visualization used to compare **overlaps between multiple groups**.  
+        - Here, it is used to compare **functional traits** (EC, KO, Pathway features) across the **four millet-derived LAB strains**.
+        - It serves a similar purpose as a **Venn diagram**, but works much better when comparing **more than 3 groups**.
+        """)
+    with st.sidebar.expander("How to Read the UpSet Plot?", expanded=False): 
+        st.markdown("""    
+        The plot has two main parts:
+        ### 1) Dot Matrix (Bottom Panel)
+        This shows **which strain combinations are being compared**.
+        
+        | Pattern | Meaning |
+        |--------|---------|
+        | ● A single dot under one strain | Trait is **unique** to that strain |
+        | ● ● Two dots connected by a line | Trait is **shared** between those two strains |
+        | ● ● ● Three connected dots | Trait is **shared by three strains** |
+        | ● ● ● ● All four connected dots | Trait is **common to all four LAB strains** |
+        
+        So, **the dots tell *who shares the trait*.**
+        
+        ---
+        
+        ### 2) Vertical Bars (Top Panel)
+        The **bar height** tells **how many traits** fall into that particular combination.
+        
+        | Bar Height | Interpretation |
+        |------------|----------------|
+        | Tall Bar | Many traits in that group/overlap |
+        | Short Bar | Fewer traits in that group/overlap |
+        
+        So:
+        - A **tall bar with all dots connected** = Many **core shared traits**
+        - A **tall bar with only one dot** = Many **unique traits for that strain**
+        
+        ---
+        
+        ## 🧠 Meaning in Your LAB Analysis
+        
+        - **Shared traits** across all strains → **Core metabolic & probiotic functions**.
+        - **Unique traits** → **Millet-specific adaptation**, specialty pathways, niche fermentation advantage.
+        - **Traits shared by 2 or 3 strains** → Suggest **functional similarity or evolutionary closeness**.
+        
+        ---
+        
+        ## 🥡 Summary (One Line)
+        
+        > The UpSet plot helps identify how many functional traits are **common or unique** among the LAB strains and which strains share them.
+        
+        ---
+        """)
+
     st.write('')
     st.markdown(f"<h5 style='text-align:center;'>Common & Unique traits</h5>", unsafe_allow_html=True) 
     from itertools import combinations
