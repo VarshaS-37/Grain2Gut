@@ -928,9 +928,8 @@ def pathway_enrichment():
 
     with st.sidebar.expander("About Combined Enrichment", expanded=False):
         st.markdown("""
-        This combines pathways derived from **EC**, **KO**, and **PWY** annotations for each millet LAB.
-        It identifies pathways that are statistically overrepresented in the selected strain
-        compared to all other millets.
+        - This combines pathways derived from **EC**, **KO**, and **PWY** annotations for each millet LAB.
+        - Plot shows pathways that are significantly more abundant in a selected millet LAB strain compared to others, revealing its unique functional capabilities.
         """)
 
     # --- Select Millet LAB ---
