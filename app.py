@@ -918,7 +918,7 @@ import glob
 import os
 
 def pathway_enrichment():
-    st.markdown("<h4 style='text-align:center;'>Pathway Enrichment Analysis</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align:center;'>Combined EC–KO–PWY Pathway Enrichment</h4>", unsafe_allow_html=True)
 
     with st.sidebar:
         if st.button("Back to Home"): 
@@ -926,11 +926,11 @@ def pathway_enrichment():
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis")
 
-    with st.sidebar.expander("About Enrichment", expanded=False):
+    with st.sidebar.expander("About Combined Enrichment", expanded=False):
         st.markdown("""
-        **Pathway Enrichment Analysis**
-        compares the frequency of pathways in a selected millet LAB 
-        against all other millets to find significantly overrepresented pathways.
+        This combines pathways derived from **EC**, **KO**, and **PWY** annotations for each millet LAB.
+        It identifies pathways that are statistically overrepresented in the selected strain
+        compared to all other millets.
         """)
 
     # --- Select Millet LAB ---
@@ -941,19 +941,18 @@ def pathway_enrichment():
             "",
             list(millet_map.keys()),
             label_visibility="collapsed",
-            key=f"pwy_enrich_select_{st.session_state.page}",
+            key=f"combined_enrich_select_{st.session_state.page}",
         )
 
     suffix = millet_map[selected_strain]
     data_dir = "picrust_processed_output_files"
 
-    # --- Loop over EC, KO, and PWY ---
-    for prefix in ["ec", "ko", "pwy"]:
-        st.markdown(f"<h5 style='text-align:center;'>{prefix.upper()}-based Enrichment</h5>", unsafe_allow_html=True)
+    # --- Collect all pathways from EC, KO, and PWY ---
+    all_pathways = []
 
-        # Handle different filename patterns
+    for prefix in ["ec", "ko", "pwy"]:
         if prefix == "pwy":
-            file_path = os.path.join(data_dir, f"pwy_{suffix}.csv")  # <-- underscore
+            file_path = os.path.join(data_dir, f"pwy_{suffix}.csv")
         else:
             file_path = os.path.join(data_dir, f"{prefix}{suffix}.csv")
 
@@ -963,84 +962,95 @@ def pathway_enrichment():
 
         df = pd.read_csv(file_path, encoding="utf-8", on_bad_lines="skip")
 
-        # --- Identify the correct column containing pathway IDs ---
-        pathway_col = None
-        for possible in ["pathway_ids", "map_ids", "Pathway"]:
-            if possible in df.columns:
-                pathway_col = possible
+        # Identify correct column
+        for col in ["pathway_ids", "map_ids", "Pathway"]:
+            if col in df.columns:
+                df[col] = (
+                    df[col].astype(str)
+                    .str.replace(" ", "")
+                    .str.replace(";", ",")
+                    .str.split(",")
+                )
+                all_pathways.extend(df[col].explode().dropna().tolist())
                 break
 
-        if not pathway_col:
-            st.warning(f"No pathway column found in {prefix.upper()} file.")
-            continue
+    if not all_pathways:
+        st.warning("No pathway data found for selected millet.")
+        return
 
-        df[pathway_col] = ( df[pathway_col].astype(str).str.replace(" ", "").str.replace(";", ",").str.split(","))
-        millet_pathways = df[pathway_col].explode().dropna().tolist()
-        if not millet_pathways:
-            st.info(f"No pathway entries found in {prefix.upper()} data.")
-            continue
+    millet_counts = pd.Series(all_pathways).value_counts()
 
-        millet_counts = pd.Series(millet_pathways).value_counts()
-
-        # --- Build background from all other millets of same file type ---
+    # --- Build background from all other millets ---
+    background_pathways = []
+    for prefix in ["ec", "ko", "pwy"]:
         if prefix == "pwy":
-            all_files = glob.glob(os.path.join(data_dir, "pwy_*.csv"))
+            files = glob.glob(os.path.join(data_dir, "pwy_*.csv"))
         else:
-            all_files = glob.glob(os.path.join(data_dir, f"{prefix}*.csv"))
+            files = glob.glob(os.path.join(data_dir, f"{prefix}*.csv"))
 
-        background_pathways = []
-        for f in all_files:
-            if not f.endswith(f"{suffix}.csv"):
-                try:
-                    df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
-                except UnicodeDecodeError:
-                    df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
-
-                if pathway_col in df_bg.columns:
-                    df_bg[pathway_col] = df_bg[pathway_col].astype(str).str.replace(" ", "").str.split(",")
-                    background_pathways.extend(df_bg[pathway_col].explode().dropna().tolist())
-
-        if not background_pathways:
-            st.warning(f"No background pathways found for {prefix.upper()}.")
-            continue
-
-        bg_counts = pd.Series(background_pathways).value_counts()
-
-        # --- Fisher’s exact test for enrichment ---
-        results = []
-        for pathway, count_in_millet in millet_counts.items():
-            count_in_bg = bg_counts.get(pathway, 0)
-            table = [
-                [count_in_millet, len(millet_pathways) - count_in_millet],
-                [count_in_bg, len(background_pathways) - count_in_bg]
-            ]
-            try:
-                odds, p = fisher_exact(table, alternative="greater")
-            except ValueError:
+        for f in files:
+            if f.endswith(f"{suffix}.csv"):  # skip current strain
                 continue
-            results.append({"Pathway": pathway, "Count": count_in_millet, "p-value": p})
 
-        if not results:
-            st.warning(f"No significant pathways found for {prefix.upper()}.")
+            try:
+                df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
+            except UnicodeDecodeError:
+                df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
+
+            for col in ["pathway_ids", "map_ids", "Pathway"]:
+                if col in df_bg.columns:
+                    df_bg[col] = (
+                        df_bg[col].astype(str)
+                        .str.replace(" ", "")
+                        .str.replace(";", ",")
+                        .str.split(",")
+                    )
+                    background_pathways.extend(df_bg[col].explode().dropna().tolist())
+                    break
+
+    if not background_pathways:
+        st.warning("No background pathway data found.")
+        return
+
+    bg_counts = pd.Series(background_pathways).value_counts()
+
+    # --- Fisher’s Exact Test for enrichment ---
+    results = []
+    for pwy, count_in_millet in millet_counts.items():
+        count_in_bg = bg_counts.get(pwy, 0)
+        table = [
+            [count_in_millet, len(all_pathways) - count_in_millet],
+            [count_in_bg, len(background_pathways) - count_in_bg]
+        ]
+        try:
+            _, p = fisher_exact(table, alternative="greater")
+        except ValueError:
             continue
+        results.append({"Pathway": pwy, "Count": count_in_millet, "p-value": p})
 
-        res_df = pd.DataFrame(results)
-        res_df["FDR"] = multipletests(res_df["p-value"], method="fdr_bh")[1]
-        res_df = res_df.sort_values("FDR")
+    if not results:
+        st.warning("No significant enrichment found.")
+        return
 
-        # --- Plot top pathways ---
-        top = res_df.head(10)
-        fig, ax = plt.subplots(figsize=(7, 5))
-        ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
-        ax.set_xlabel("-log10(FDR)")
-        ax.set_ylabel("Pathway")
-        ax.set_title(f"Top Enriched Pathways ({prefix.upper()}) - {selected_strain}")
-        ax.invert_yaxis()
-        plt.tight_layout()
-        st.pyplot(fig)
+    res_df = pd.DataFrame(results)
+    res_df["FDR"] = multipletests(res_df["p-value"], method="fdr_bh")[1]
+    res_df = res_df.sort_values("FDR")
 
-        # --- Show top table ---
-        st.dataframe(res_df.head(20).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
+    # --- Visualization ---
+    top = res_df.head(15)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
+    ax.set_xlabel("-log10(FDR)")
+    ax.set_ylabel("Pathway")
+    ax.set_title(f"Combined EC–KO–PWY Enrichment: {selected_strain}")
+    ax.invert_yaxis()
+    plt.tight_layout()
+    st.pyplot(fig)
+
+    # --- Table output ---
+    st.subheader(f"Top Enriched Pathways in {selected_strain}")
+    st.dataframe(res_df.head(25).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
+
 
 
     
