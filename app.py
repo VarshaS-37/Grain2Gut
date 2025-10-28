@@ -1139,7 +1139,7 @@ def cocl(millet_map):
         The **bars on the left side of the plot** indicate the **total number of EC classes per millet strain**.
         """)
 
-    st.markdown("<h5 style='text-align:center;'>EC Class Overlap Across Millets</h5>", unsafe_allow_html=True)
+    st.markdown("<h5 style='text-align:center;'>Common & Unique EC Classes</h5>", unsafe_allow_html=True)
 
     # Load EC classes for each millet
     millet_ec = {}
