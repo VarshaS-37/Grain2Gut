@@ -1108,36 +1108,36 @@ def cocl(millet_map):
         - It serves a similar purpose as a **Venn diagram**, but works much better when comparing **more than 3 groups**.
         """)
     with st.sidebar.expander("How to Read the UpSet Plot?", expanded=False): 
-    st.markdown("""    
-    The plot has two main parts for **EC classes**:
-
-    ### 1) Dot Matrix (Bottom Panel)
-    This shows **which millet-derived LAB strains share EC classes**.
+        st.markdown("""    
+        The plot has two main parts for **EC classes**:
     
-    | Pattern | Meaning |
-    |--------|---------|
-    | ● A single dot under one strain | EC class is **unique** to that strain |
-    | ● ● Two dots connected by a line | EC class is **shared** between those two strains |
-    | ● ● ● Three connected dots | EC class is **shared by three strains** |
-    | ● ● ● ● All four connected dots | EC class is **common to all four LAB strains** |
+        ### 1) Dot Matrix (Bottom Panel)
+        This shows **which millet-derived LAB strains share EC classes**.
+        
+        | Pattern | Meaning |
+        |--------|---------|
+        | ● A single dot under one strain | EC class is **unique** to that strain |
+        | ● ● Two dots connected by a line | EC class is **shared** between those two strains |
+        | ● ● ● Three connected dots | EC class is **shared by three strains** |
+        | ● ● ● ● All four connected dots | EC class is **common to all four LAB strains** |
+        
+        So, **the dots tell *who shares the EC class*.**
     
-    So, **the dots tell *who shares the EC class*.**
-
-    ### 2) Vertical Bars (Top Panel)
-    The **bar height** tells **how many EC classes** fall into that particular combination.
+        ### 2) Vertical Bars (Top Panel)
+        The **bar height** tells **how many EC classes** fall into that particular combination.
+        
+        | Bar Height | Interpretation |
+        |------------|----------------|
+        | Tall Bar | Many EC classes in that group/overlap |
+        | Short Bar | Fewer EC classes in that group/overlap |
+        
+        So:
+        - A **tall bar with all dots connected** = Many **core shared EC classes**
+        - A **tall bar with only one dot** = Many **unique EC classes for that strain**
     
-    | Bar Height | Interpretation |
-    |------------|----------------|
-    | Tall Bar | Many EC classes in that group/overlap |
-    | Short Bar | Fewer EC classes in that group/overlap |
-    
-    So:
-    - A **tall bar with all dots connected** = Many **core shared EC classes**
-    - A **tall bar with only one dot** = Many **unique EC classes for that strain**
-
-    ### 3) Left Vertical Bars (Side Panel)
-    The **bars on the left side of the plot** indicate the **total number of EC classes per millet strain**.
-    """)
+        ### 3) Left Vertical Bars (Side Panel)
+        The **bars on the left side of the plot** indicate the **total number of EC classes per millet strain**.
+        """)
 
     st.markdown("<h5 style='text-align:center;'>EC Class Overlap Across Millets</h5>", unsafe_allow_html=True)
 
@@ -1205,11 +1205,6 @@ def cocl(millet_map):
             common_2_rows.append({"Millets": " & ".join(combo), "EC Class": ec})
     st.markdown("<h5 style='text-align:center;'>EC Classes Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(common_2_rows))
-
-
-
-    
-
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
