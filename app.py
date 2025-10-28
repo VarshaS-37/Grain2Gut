@@ -1213,4 +1213,4 @@ elif page=="couq":
 elif page=="pe":
      pathway_enrichment()
 elif page=="cocl":
-    cocl()    
+    cocl(millet_map)    
