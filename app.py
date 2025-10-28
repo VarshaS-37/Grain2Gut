@@ -1244,12 +1244,12 @@ def brcl():
     millet_sets = {}
     for strain_name, suffix in millet_map.items():
         try:
-            df = pd.read_csv(f"picrust_processed_output_files/pwy{suffix}.csv")
+            df = pd.read_csv(f"picrust_processed_output_files/pwy_{suffix}.csv")
             if "brite_class" in df.columns:
                 # split semicolon-separated entries and make set
                 millet_sets[strain_name] = set(df["brite_class"].dropna().str.split(";").explode().str.strip())
             else:
-                st.warning(f"'brite_class' column missing in pwy{suffix}.csv")
+                st.warning(f"'brite_class' column missing in pwy_{suffix}.csv")
                 millet_sets[strain_name] = set()
         except FileNotFoundError:
             st.warning(f"File pwy{suffix}.csv not found.")
@@ -1335,11 +1335,11 @@ def brsc():
     millet_sets = {}
     for strain_name, suffix in millet_map.items():
         try:
-            df = pd.read_csv(f"picrust_processed_output_files/pwy{suffix}.csv")
+            df = pd.read_csv(f"picrust_processed_output_files/pwy_{suffix}.csv")
             if "brite_subclass" in df.columns:
                 millet_sets[strain_name] = set(df["brite_subclass"].dropna().str.split(";").explode().str.strip())
             else:
-                st.warning(f"'brite_subclass' column missing in pwy{suffix}.csv")
+                st.warning(f"'brite_subclass' column missing in pwy_{suffix}.csv")
                 millet_sets[strain_name] = set()
         except FileNotFoundError:
             st.warning(f"File pwy{suffix}.csv not found.")
