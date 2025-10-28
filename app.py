@@ -873,7 +873,7 @@ def couq():
     fig = plt.figure(figsize=(8,6))
     upset = UpSet(data, subset_size='count', show_counts=True)
     upset.plot(fig=fig)  # pass the figure explicitly
-    st.pyplot(fig))
+    st.pyplot(fig)
 
 
     # --- Common to all 4 LABs ---
