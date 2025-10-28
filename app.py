@@ -1297,67 +1297,67 @@ def brsc():
             - Overlap analysis highlights shared and unique detailed functions across millet LAB strains.
             """)
         
-        st.markdown("<h4 style='text-align:center;'>BRITE Subclass Overlap Across Millets</h4>", unsafe_allow_html=True)
-    
-        millet_sets = {}
-        for strain, suffix in millet_map.items():
-            subclasses = set()
-            for prefix in ["ec", "ko"]:
-                filename = f"picrust_processed_output_files/{prefix}{suffix}.csv"
-                try:
-                    df = pd.read_csv(filename)
-                    if "brite_subclass" in df.columns:
-                        subclasses.update(df["brite_subclass"].dropna().str.split(";").explode().str.strip())
-                except FileNotFoundError:
-                    st.warning(f"File {filename} not found, skipping.")
-            millet_sets[strain] = subclasses
-    
-        # UpSet plot
-        data = from_memberships(
-            [[strain for strain in millet_sets if sc in millet_sets[strain]] for sc in set.union(*millet_sets.values())]
-        )
-        plt.figure(figsize=(8,6))
-        upset = UpSet(data, subset_size='count', show_counts=True)
-        upset.plot()
-        st.pyplot(plt)
-    
-        # --- Common to all 4 ---
-        common_4 = set.intersection(*millet_sets.values())
-        st.markdown("<h5 style='text-align:center;'>Subclasses Common to All 4 Millets</h5>", unsafe_allow_html=True)
-        st.dataframe(pd.DataFrame({"BRITE Subclass": sorted(common_4)}))
-    
-        # --- Unique per strain ---
-        unique_rows = []
-        for strain, subclasses in millet_sets.items():
-            other_subclasses = set.union(*(c for s, c in millet_sets.items() if s != strain))
-            for sc in sorted(subclasses - other_subclasses):
-                unique_rows.append({"Millet": strain, "BRITE Subclass": sc})
-        st.markdown("<h5 style='text-align:center;'>Unique Subclasses per Millet</h5>", unsafe_allow_html=True)
-        st.dataframe(pd.DataFrame(unique_rows))
-    
-        # --- Common to exactly 3 ---
-        common_3_rows = []
-        for combo in combinations(millet_sets.keys(), 3):
-            s1, s2, s3 = millet_sets[combo[0]], millet_sets[combo[1]], millet_sets[combo[2]]
-            common_3 = (s1 & s2 & s3) - common_4
-            for sc in sorted(common_3):
-                common_3_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": sc})
-        st.markdown("<h5 style='text-align:center;'>Subclasses Common to Exactly 3 Millets</h5>", unsafe_allow_html=True)
-        st.dataframe(pd.DataFrame(common_3_rows))
-    
-        # --- Common to exactly 2 ---
-        common_2_rows = []
-        for combo in combinations(millet_sets.keys(), 2):
-            s1, s2 = millet_sets[combo[0]], millet_sets[combo[1]]
-            common_2 = (s1 & s2) - common_4
-            # remove common_3 overlaps
-            for combo3 in combinations(millet_sets.keys(), 3):
-                common_3 = set.intersection(*(millet_sets[c] for c in combo3)) - common_4
-                common_2 -= common_3
-            for sc in sorted(common_2):
-                common_2_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": sc})
-        st.markdown("<h5 style='text-align:center;'>Subclasses Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
-        st.dataframe(pd.DataFrame(common_2_rows))
+    st.markdown("<h4 style='text-align:center;'>BRITE Subclass Overlap Across Millets</h4>", unsafe_allow_html=True)
+
+    millet_sets = {}
+    for strain, suffix in millet_map.items():
+        subclasses = set()
+        for prefix in ["ec", "ko"]:
+            filename = f"picrust_processed_output_files/{prefix}{suffix}.csv"
+            try:
+                df = pd.read_csv(filename)
+                if "brite_subclass" in df.columns:
+                    subclasses.update(df["brite_subclass"].dropna().str.split(";").explode().str.strip())
+            except FileNotFoundError:
+                st.warning(f"File {filename} not found, skipping.")
+        millet_sets[strain] = subclasses
+
+    # UpSet plot
+    data = from_memberships(
+        [[strain for strain in millet_sets if sc in millet_sets[strain]] for sc in set.union(*millet_sets.values())]
+    )
+    plt.figure(figsize=(8,6))
+    upset = UpSet(data, subset_size='count', show_counts=True)
+    upset.plot()
+    st.pyplot(plt)
+
+    # --- Common to all 4 ---
+    common_4 = set.intersection(*millet_sets.values())
+    st.markdown("<h5 style='text-align:center;'>Subclasses Common to All 4 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame({"BRITE Subclass": sorted(common_4)}))
+
+    # --- Unique per strain ---
+    unique_rows = []
+    for strain, subclasses in millet_sets.items():
+        other_subclasses = set.union(*(c for s, c in millet_sets.items() if s != strain))
+        for sc in sorted(subclasses - other_subclasses):
+            unique_rows.append({"Millet": strain, "BRITE Subclass": sc})
+    st.markdown("<h5 style='text-align:center;'>Unique Subclasses per Millet</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(unique_rows))
+
+    # --- Common to exactly 3 ---
+    common_3_rows = []
+    for combo in combinations(millet_sets.keys(), 3):
+        s1, s2, s3 = millet_sets[combo[0]], millet_sets[combo[1]], millet_sets[combo[2]]
+        common_3 = (s1 & s2 & s3) - common_4
+        for sc in sorted(common_3):
+            common_3_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": sc})
+    st.markdown("<h5 style='text-align:center;'>Subclasses Common to Exactly 3 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(common_3_rows))
+
+    # --- Common to exactly 2 ---
+    common_2_rows = []
+    for combo in combinations(millet_sets.keys(), 2):
+        s1, s2 = millet_sets[combo[0]], millet_sets[combo[1]]
+        common_2 = (s1 & s2) - common_4
+        # remove common_3 overlaps
+        for combo3 in combinations(millet_sets.keys(), 3):
+            common_3 = set.intersection(*(millet_sets[c] for c in combo3)) - common_4
+            common_2 -= common_3
+        for sc in sorted(common_2):
+            common_2_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": sc})
+    st.markdown("<h5 style='text-align:center;'>Subclasses Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
+    st.dataframe(pd.DataFrame(common_2_rows))
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
