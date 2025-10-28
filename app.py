@@ -1168,7 +1168,7 @@ def cocl(millet_map):
         memberships.append(members)
 
     fig = plt.figure(figsize=(8,6))
-    upset = UpSet(data, subset_size='count', show_counts=True)
+    upset = UpSet(memberships, subset_size='count', show_counts=True)
     upset.plot(fig=fig)  # pass the figure explicitly
     st.pyplot(fig)
 
