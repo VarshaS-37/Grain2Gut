@@ -1399,5 +1399,4 @@ elif page=="cocl":
     cocl(millet_map) 
 elif page=="brcl":
     brcl()
-elif page=="brsc":
     brsc()
