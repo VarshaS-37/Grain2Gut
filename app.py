@@ -830,21 +830,6 @@ def couq():
         - A **tall bar with all dots connected** = Many **core shared traits**
         - A **tall bar with only one dot** = Many **unique traits for that strain**
         
-        ---
-        
-        ## 🧠 Meaning in Your LAB Analysis
-        
-        - **Shared traits** across all strains → **Core metabolic & probiotic functions**.
-        - **Unique traits** → **Millet-specific adaptation**, specialty pathways, niche fermentation advantage.
-        - **Traits shared by 2 or 3 strains** → Suggest **functional similarity or evolutionary closeness**.
-        
-        ---
-        
-        ## 🥡 Summary (One Line)
-        
-        > The UpSet plot helps identify how many functional traits are **common or unique** among the LAB strains and which strains share them.
-        
-        ---
         """)
 
     st.write('')
