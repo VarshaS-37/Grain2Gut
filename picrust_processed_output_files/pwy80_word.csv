@@ -1,5 +1,5 @@
 pathway,trait
-ANAGLYCOLYSIS-PWY,fermentation efficiency
+ANAGLYCOLYSIS-PWY,Energy / fermentation efficiency
 DTDPRHAMSYN-PWY,Cell wall integrity
 ARGSYNBSUB-PWY,Amino acid metabolism
 ARGSYN-PWY,Amino acid metabolism
@@ -61,3 +61,4 @@ P161-PWY,Carbohydrate metabolism
 POLYISOPRENSYN-PWY,Membrane integrity
 PWY-6122,DNA replication
 PWY-6277,DNA replication
+
