@@ -1209,9 +1209,8 @@ def cocl(millet_map):
             common_2_rows.append({"Millets": " & ".join(combo), "EC Class": ec})
     st.markdown("<h5 style='text-align:center;'>EC Classes Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(common_2_rows))
-#-------------------------------------------------------------brite class n subclass--------------------------------------------------------------------------------
-def brcl():
- 
+#-------------------brite-----------------------------------------------------------------------------------
+def brt():
     with st.sidebar:
         if st.button("Back to Home"):
             go_to("home")
@@ -1221,9 +1220,23 @@ def brcl():
         - BRITE classes are top-level KEGG functional categories.
         - Overlap analysis shows shared vs unique functional potentials across millet LAB strains.
         """)
+     
+     selected_c = st.selectbox(
+            "",
+            ['BRITE Class','BRITE Sublass' ],
+            label_visibility="collapsed",
+            key=f"combined_enrich_select_{st.session_state.page}",
+        )
+    st.markdown(f"<h4 style='text-align:center;'>{selected_c} Overlap Across Millets</h4>", unsafe_allow_html=True)
+    if selected_c=='BRITE Class':
+        brcl()
+    elif selected_c=='BRITE Sublass':
+        brsc()
     
-    st.markdown("<h4 style='text-align:center;'>BRITE Class Overlap Across Millets</h4>", unsafe_allow_html=True)
-
+#-------------------------------------------------------------brite class n subclass--------------------------------------------------------------------------------
+def brcl():
+ 
+   
     millet_sets = {}
     for strain, suffix in millet_map.items():
         classes = set()
@@ -1287,17 +1300,7 @@ def brcl():
 #-----------------------------------------------brite subclass--------------------------------------------------
 
 def brsc():
-    with st.sidebar:
-            if st.button("Back to Home"):
-                go_to("home")
-            if st.button("Back to Analysis Menu"):
-                go_to("milletwise_analysis")
-            st.markdown("""
-            - BRITE subclasses are finer functional categories within each class.
-            - Overlap analysis highlights shared and unique detailed functions across millet LAB strains.
-            """)
-        
-    st.markdown("<h4 style='text-align:center;'>BRITE Subclass Overlap Across Millets</h4>", unsafe_allow_html=True)
+    
 
     millet_sets = {}
     for strain, suffix in millet_map.items():
@@ -1398,5 +1401,4 @@ elif page=="pe":
 elif page=="cocl":
     cocl(millet_map) 
 elif page=="brcl":
-
-    brsc()
+    brt()
