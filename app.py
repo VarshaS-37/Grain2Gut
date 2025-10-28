@@ -831,7 +831,8 @@ def couq():
         So:
         - A **tall bar with all dots connected** = Many **core shared traits**
         - A **tall bar with only one dot** = Many **unique traits for that strain**
-        
+         ### 3) Left Vertical Bars (Side Panel)
+    The **bars on the left side of the plot** indicate the **total number of traits per millet strain**.
         """)
 
     st.write('')
@@ -1104,7 +1105,39 @@ def cocl(millet_map):
         st.markdown("""
         - An **UpSet Plot** shows overlaps between multiple groups.
         - Here, it compares **EC classes** across four millet-derived LAB strains.
+        - It serves a similar purpose as a **Venn diagram**, but works much better when comparing **more than 3 groups**.
         """)
+    with st.sidebar.expander("How to Read the UpSet Plot?", expanded=False): 
+    st.markdown("""    
+    The plot has two main parts for **EC classes**:
+
+    ### 1) Dot Matrix (Bottom Panel)
+    This shows **which millet-derived LAB strains share EC classes**.
+    
+    | Pattern | Meaning |
+    |--------|---------|
+    | ● A single dot under one strain | EC class is **unique** to that strain |
+    | ● ● Two dots connected by a line | EC class is **shared** between those two strains |
+    | ● ● ● Three connected dots | EC class is **shared by three strains** |
+    | ● ● ● ● All four connected dots | EC class is **common to all four LAB strains** |
+    
+    So, **the dots tell *who shares the EC class*.**
+
+    ### 2) Vertical Bars (Top Panel)
+    The **bar height** tells **how many EC classes** fall into that particular combination.
+    
+    | Bar Height | Interpretation |
+    |------------|----------------|
+    | Tall Bar | Many EC classes in that group/overlap |
+    | Short Bar | Fewer EC classes in that group/overlap |
+    
+    So:
+    - A **tall bar with all dots connected** = Many **core shared EC classes**
+    - A **tall bar with only one dot** = Many **unique EC classes for that strain**
+
+    ### 3) Left Vertical Bars (Side Panel)
+    The **bars on the left side of the plot** indicate the **total number of EC classes per millet strain**.
+    """)
 
     st.markdown("<h5 style='text-align:center;'>EC Class Overlap Across Millets</h5>", unsafe_allow_html=True)
 
