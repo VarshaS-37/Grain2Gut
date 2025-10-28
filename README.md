@@ -16,7 +16,7 @@
 ### [📁 Picrust Input Files](https://github.com/VarshaS-37/Grain2Gut/tree/main/picrust_input_files)  
 -  Input data used for PICRUSt prediction.
 
-### [📁 Picrust Raw Output Files](https://github.com/VarshaS-37/Grain2Gut/blob/main/picrust_raw_output_files)  
+### [📁 Picrust Raw Output Files](https://drive.google.com/drive/folders/1fKQznN1tq5POdLJSAScWgDadDqiUoqKF?usp=drive_link)  
 - Unprocessed output from PICRUSt (KO/EC/pathway tables).
 
 ### [📁 Picrust Analysis Notebooks](https://github.com/VarshaS-37/Grain2Gut/tree/main/picrust_analysis_notebooks)  
