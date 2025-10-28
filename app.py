@@ -488,9 +488,9 @@ def millet():
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
             """)
-        with st.sidebar.expander("to be added", expanded=False):
+        with st.sidebar.expander("Pathway Enrichment", expanded=False):
             st.markdown("""
-            to be added
+            Pathway enrichment helps identify **which biological pathways are more represented or more active** in one LAB strain **compared to others**.
             """)
     millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
@@ -922,11 +922,6 @@ def pathway_enrichment():
             go_to("home")
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis")
-
-    with st.sidebar.expander("What is Pathway Enrichment?", expanded=False):
-        st.markdown("""
-        Pathway enrichment helps identify **which biological pathways are more represented or more active** in one LAB strain **compared to others**.
-        """)
     with st.sidebar.expander("Why is it relevant?", expanded=False):
         st.markdown("""
         Instead of looking at single genes or enzymes individually, enrichment focuses on **whole biological processes**.  
