@@ -141,7 +141,7 @@ def home():
 millet_map = {
     "Enterococcus casseliflavus (Proso Millet)": "77",
     "Weisella cibaria NM01 (Foxtail Millet)": "78",
-    "Weisella cibaria NM01 (Little Millet)": "79",
+    "Weisella cibaria SM01 (Little Millet)": "79",
     "Lactococcus lactis (Little Millet)": "80"
 }
 # ---------------------------------------------------- EC Analysis ------------------------------------------------------------------------------
