@@ -547,14 +547,15 @@ def millet():
                 go_to("trait")        
         col4, col5,col6= st.columns(3)
         with col4:
+            if st.button("Pathway Enrichment"):
+                go_to("pe")  
+        with col5:
             if st.button("Common & Unique BRITE classes and subclasses"):
                 go_to("brcl")
-        with col5:
+        with col6:
             if st.button("Common & Unique Traits"):
                 go_to("couq")
-        with col6:
-            if st.button("Pathway Enrichment"):
-                go_to("pe")       
+                 
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
