@@ -1115,7 +1115,7 @@ def summary():
     st.markdown("""Answer""")
     st.markdown("<h6 style='text-align:left;'>4. Which are the biological traits contributed by ECs?  </h6>", unsafe_allow_html=True)
     st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>6. Which are the biological traits contributed by KOs?  </h6>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align:left;'>5. Which are the biological traits contributed by KOs?  </h6>", unsafe_allow_html=True)
     st.markdown("""Answer""")
     st.markdown("<h6 style='text-align:left;'>6. Which are the biological traits contributed by PWYs?  </h6>", unsafe_allow_html=True)
     st.markdown("""Answer""")
