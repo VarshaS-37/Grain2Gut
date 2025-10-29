@@ -1426,7 +1426,7 @@ def summary():
             st.markdown("""
             To be added
             """)
-    st.markdown("<h4 style='text-align:left;'>Summary</h4>", unsafe_allow_html=True) 
+    st.markdown("<h4 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
     st.markdown("<h6 style='text-align:left;'>Which are the top abundant ec ko pwy ids what doe they mean </h6>", unsafe_allow_html=True)
     st.markdown("<h6 style='text-align:left;'>among the mapped pwy ids in ko n ec which r enriched</h6>", unsafe_allow_html=True) 
     st.markdown("<h6 style='text-align:left;'>which r the dominant ec classes n wt they mean</h6>", unsafe_allow_html=True) 
