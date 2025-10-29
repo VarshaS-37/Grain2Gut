@@ -914,7 +914,7 @@ import glob
 import os
 
 def pathway_enrichment():
-    st.markdown("<h4 style='text-align:center;'>Combined EC–KO–PWY Pathway Enrichment</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align:center;'>Pathway Enrichment</h4>", unsafe_allow_html=True)
 
     with st.sidebar:
         if st.button("Back to Home"): 
@@ -932,7 +932,7 @@ def pathway_enrichment():
         """) 
     with st.sidebar.expander("How is it done?", expanded=False):
         st.markdown("""
-        1. Pathway information obtained from **EC, KO, PWY** annotations for the selected millet-derived LAB strain is combined.
+        1. Pathway information obtained from **PWY** annotations for the selected millet-derived LAB strain is combined.
         2. Pathway frequencies from the remaining strains (background) is combined.
         3. **Fisher’s Exact Test** is performed to find pathways that occur:
            - **More frequently** in the selected strain than in the combined background strains.
@@ -980,29 +980,25 @@ def pathway_enrichment():
     # --- Collect all pathways from EC, KO, and PWY ---
     all_pathways = []
 
-    for prefix in ["ec", "ko", "pwy"]:
-        if prefix == "pwy":
-            file_path = os.path.join(data_dir, f"pwy_{suffix}.csv")
-        else:
-            file_path = os.path.join(data_dir, f"{prefix}{suffix}.csv")
+    file_path = os.path.join(data_dir, f"pwy_{suffix}.csv")
 
-        if not os.path.exists(file_path):
-            st.warning(f"File not found: {file_path}")
-            continue
+    if not os.path.exists(file_path):
+        st.warning(f"File not found: {file_path}")
+        continue
 
-        df = pd.read_csv(file_path, encoding="utf-8", on_bad_lines="skip")
+    df = pd.read_csv(file_path, encoding="utf-8", on_bad_lines="skip")
 
-        # Identify correct column
-        for col in ["pathway_ids", "map_ids", "Pathway"]:
-            if col in df.columns:
-                df[col] = (
-                    df[col].astype(str)
-                    .str.replace(" ", "")
-                    .str.replace(";", ",")
-                    .str.split(",")
-                )
-                all_pathways.extend(df[col].explode().dropna().tolist())
-                break
+    # Identify correct column
+    for col in ["pathway_ids", "map_ids", "Pathway"]:
+        if col in df.columns:
+            df[col] = (
+                df[col].astype(str)
+                .str.replace(" ", "")
+                .str.replace(";", ",")
+                .str.split(",")
+            )
+            all_pathways.extend(df[col].explode().dropna().tolist())
+            break
 
     if not all_pathways:
         st.warning("No pathway data found for selected millet.")
@@ -1012,31 +1008,27 @@ def pathway_enrichment():
 
     # --- Build background from all other millets ---
     background_pathways = []
-    for prefix in ["ec", "ko", "pwy"]:
-        if prefix == "pwy":
-            files = glob.glob(os.path.join(data_dir, "pwy_*.csv"))
-        else:
-            files = glob.glob(os.path.join(data_dir, f"{prefix}*.csv"))
+    files = glob.glob(os.path.join(data_dir, "pwy_*.csv"))
 
-        for f in files:
-            if f.endswith(f"{suffix}.csv"):  # skip current strain
-                continue
+    for f in files:
+        if f.endswith(f"{suffix}.csv"):  # skip current strain
+            continue
 
-            try:
-                df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
-            except UnicodeDecodeError:
-                df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
+        try:
+            df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
+        except UnicodeDecodeError:
+            df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
 
-            for col in ["pathway_ids", "map_ids", "Pathway"]:
-                if col in df_bg.columns:
-                    df_bg[col] = (
-                        df_bg[col].astype(str)
-                        .str.replace(" ", "")
-                        .str.replace(";", ",")
-                        .str.split(",")
-                    )
-                    background_pathways.extend(df_bg[col].explode().dropna().tolist())
-                    break
+        for col in ["pathway_ids", "map_ids", "Pathway"]:
+            if col in df_bg.columns:
+                df_bg[col] = (
+                    df_bg[col].astype(str)
+                    .str.replace(" ", "")
+                    .str.replace(";", ",")
+                    .str.split(",")
+                )
+                background_pathways.extend(df_bg[col].explode().dropna().tolist())
+                break
 
     if not background_pathways:
         st.warning("No background pathway data found.")
@@ -1072,7 +1064,7 @@ def pathway_enrichment():
     ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
     ax.set_xlabel("-log10(FDR)")
     ax.set_ylabel("Pathway")
-    ax.set_title(f"Combined EC–KO–PWY Enrichment: {selected_strain}")
+    ax.set_title(f"PWY Enrichment: {selected_strain}")
     ax.invert_yaxis()
     plt.tight_layout()
     st.pyplot(fig)
