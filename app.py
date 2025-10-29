@@ -475,21 +475,11 @@ def millet():
             """)
         with st.sidebar.expander("EC class Distribution", expanded=False):
             st.markdown("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
-        with st.sidebar.expander("BRITE class & subclass Distribution", expanded=False):
-            st.markdown("""
-            - For each EC number & KO id, multiple map ids (pathway ids) are retrieved.
-            - These map ids are then mapped to their BRITE class & subclasses whose distribution across each millet is plotted.
-            """)
+    
         with st.sidebar.expander("Biological Trait Distribution", expanded=False):
             st.markdown("""
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
-            """)
-
-        with st.sidebar.expander("Common & Unique BRITE classes & subclasses", expanded=False):
-            st.markdown("""
-            - Shows BRITE classes & subclasses **shared or unique** across strains.  
-            - Common = shared pathways, Unique = strain-specific functionalities.
             """)
 
         with st.sidebar.expander("Common & Unique Traits", expanded=False):
@@ -535,24 +525,18 @@ def millet():
         )
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
-        col1, col2,col3 = st.columns(3)
+        col1, col2 = st.columns(2)
         with col1:
             if st.button("EC class Distribution"):
                 go_to("ec_class")
         with col2:
-            if st.button("BRITE class & subclass Distribution"):
-                go_to("brite")
-        with col3:
             if st.button("Trait Distribution"):
                 go_to("trait")        
-        col4, col5,col6= st.columns(3)
+        col4, col5= st.columns(2)
         with col4:
             if st.button("Pathway Enrichment"):
                 go_to("pe")  
         with col5:
-            if st.button("Common & Unique BRITE classes and subclasses"):
-                go_to("brcl")
-        with col6:
             if st.button("Common & Unique Traits"):
                 go_to("couq")
                  
@@ -1097,199 +1081,6 @@ def pathway_enrichment():
     st.subheader(f"Top Enriched Pathways in {selected_strain}")
     st.dataframe(res_df.head(25).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
 
-#-------------------brite-----------------------------------------------------------------------------------
-def brt():
-    selected_c = st.selectbox(
-            "",
-            ['BRITE Class','BRITE Sublass' ],
-            label_visibility="collapsed",
-            key=f"combined_enrich_select_{st.session_state.page}",)
-    with st.sidebar:
-        if st.button("Back to Home"):
-            go_to("home")
-        if st.button("Back to Analysis Menu"):
-            go_to("milletwise_analysis")
-        with st.sidebar.expander("Why is this relevant?", expanded=False): 
-            st.markdown("""
-            - **Brite classes** group enzymes by broad metabolic functions.  
-            - **Brite subclasses** show more specific enzyme roles within each class.  
-            - Shared classes indicate core fermentation functions; unique ones show special activities for each millet.
-            """)
-        with st.sidebar.expander("What is an UpSet plot?", expanded=False): 
-            st.markdown(f"""
-            - An **UpSet Plot** shows overlaps between multiple groups.
-            - Here, it compares **{selected_c}** across four millet-derived LAB strains.
-            - It serves a similar purpose as a **Venn diagram**, but works much better when comparing **more than 3 groups**.
-            """)
-        
-        with st.sidebar.expander("How to Read the UpSet Plot?", expanded=False): 
-            st.markdown(f"""    
-            The plot has two main parts for **{selected_c}**:
-            
-            ### 1) Dot Matrix (Bottom Panel)
-            This shows **which millet-derived LAB strains share {selected_c}**.
-            
-            | Pattern | Meaning |
-            |--------|---------|
-            | ● A single dot under one strain | {selected_c} is **unique** to that strain |
-            | ● ● Two dots connected by a line | {selected_c} is **shared** between those two strains |
-            | ● ● ● Three connected dots | {selected_c} is **shared by three strains** |
-            | ● ● ● ● All four connected dots | {selected_c} is **common to all four LAB strains** |
-            
-            So, **the dots tell *who shares the {selected_c}*.**
-        
-            ### 2) Vertical Bars (Top Panel)
-            The **bar height** tells **how many {selected_c} fall into that particular combination**.
-            
-            | Bar Height | Interpretation |
-            |------------|----------------|
-            | Tall Bar | Many {selected_c} in that group/overlap |
-            | Short Bar | Fewer {selected_c} in that group/overlap |
-            
-            So:
-            - A **tall bar with all dots connected** = Many **core shared {selected_c}**
-            - A **tall bar with only one dot** = Many **unique {selected_c} for that strain**
-        
-            ### 3) Left Vertical Bars (Side Panel)
-            The **bars on the left side of the plot** indicate the **total number of {selected_c} per millet strain**.
-            """)
-
-    st.write("")
-    st.markdown(f"<h4 style='text-align:center;'>{selected_c} Overlap Across Millets</h4>", unsafe_allow_html=True)
-    if selected_c=='BRITE Class':
-        brcl()
-    elif selected_c=='BRITE Sublass':
-        brsc()
-    
-#-------------------------------------------------------------brite class n subclass--------------------------------------------------------------------------------
-def brcl():
- 
-   
-    millet_sets = {}
-    for strain, suffix in millet_map.items():
-        classes = set()
-        for prefix in ["ec", "ko"]:
-            filename = f"picrust_processed_output_files/{prefix}{suffix}.csv"
-            try:
-                df = pd.read_csv(filename)
-                if "brite_class" in df.columns:
-                    classes.update(df["brite_class"].dropna().str.split(";").explode().str.strip())
-            except FileNotFoundError:
-                st.warning(f"File {filename} not found, skipping.")
-        millet_sets[strain] = classes
-
-    # UpSet plot
-    data = from_memberships(
-        [[strain for strain in millet_sets if cls in millet_sets[strain]] for cls in set.union(*millet_sets.values())]
-    )
-    fig = plt.figure(figsize=(8,6))
-    upset = UpSet(data, subset_size='count', show_counts=True)
-    upset.plot(fig=fig)  # pass the figure explicitly
-    st.pyplot(fig)
-
-    # --- Common to all 4 ---
-    common_4 = set.intersection(*millet_sets.values())
-    st.markdown("<h5 style='text-align:center;'>Classes Common to All 4 Millets</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame({"BRITE Class": sorted(common_4)}))
-
-    # --- Unique per strain ---
-    unique_rows = []
-    for strain, classes in millet_sets.items():
-        other_classes = set.union(*(c for s, c in millet_sets.items() if s != strain))
-        for cls in sorted(classes - other_classes):
-            unique_rows.append({"Millet": strain, "BRITE Class": cls})
-    st.markdown("<h5 style='text-align:center;'>Unique Classes per Millet</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame(unique_rows))
-
-    # --- Common to exactly 3 ---
-    common_3_rows = []
-    for combo in combinations(millet_sets.keys(), 3):
-        s1, s2, s3 = millet_sets[combo[0]], millet_sets[combo[1]], millet_sets[combo[2]]
-        common_3 = (s1 & s2 & s3) - common_4
-        for cls in sorted(common_3):
-            common_3_rows.append({"Millets": " & ".join(combo), "BRITE Class": cls})
-    st.markdown("<h5 style='text-align:center;'>Classes Common to Exactly 3 Millets</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame(common_3_rows))
-
-    # --- Common to exactly 2 ---
-    common_2_rows = []
-    for combo in combinations(millet_sets.keys(), 2):
-        s1, s2 = millet_sets[combo[0]], millet_sets[combo[1]]
-        common_2 = (s1 & s2) - common_4
-        # remove common_3 overlaps
-        for combo3 in combinations(millet_sets.keys(), 3):
-            common_3 = set.intersection(*(millet_sets[c] for c in combo3)) - common_4
-            common_2 -= common_3
-        for cls in sorted(common_2):
-            common_2_rows.append({"Millets": " & ".join(combo), "BRITE Class": cls})
-    
-    st.markdown("<h5 style='text-align:center;'>Classes Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame(common_2_rows))
-
-#-----------------------------------------------brite subclass--------------------------------------------------
-
-def brsc():
-
-    millet_sets = {}
-    for strain, suffix in millet_map.items():
-        subclasses = set()
-        for prefix in ["ec", "ko"]:
-            filename = f"picrust_processed_output_files/{prefix}{suffix}.csv"
-            try:
-                df = pd.read_csv(filename)
-                if "brite_subclass" in df.columns:
-                    subclasses.update(df["brite_subclass"].dropna().str.split(";").explode().str.strip())
-            except FileNotFoundError:
-                st.warning(f"File {filename} not found, skipping.")
-        millet_sets[strain] = subclasses
-
-    # UpSet plot
-    data = from_memberships(
-        [[strain for strain in millet_sets if sc in millet_sets[strain]] for sc in set.union(*millet_sets.values())]
-    )
-    fig = plt.figure(figsize=(8,6))
-    upset = UpSet(data, subset_size='count', show_counts=True)
-    upset.plot(fig=fig)  # pass the figure explicitly
-    st.pyplot(fig)
-
-    # --- Common to all 4 ---
-    common_4 = set.intersection(*millet_sets.values())
-    st.markdown("<h5 style='text-align:center;'>Subclasses Common to All 4 Millets</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame({"BRITE Subclass": sorted(common_4)}))
-
-    # --- Unique per strain ---
-    unique_rows = []
-    for strain, subclasses in millet_sets.items():
-        other_subclasses = set.union(*(c for s, c in millet_sets.items() if s != strain))
-        for sc in sorted(subclasses - other_subclasses):
-            unique_rows.append({"Millet": strain, "BRITE Subclass": sc})
-    st.markdown("<h5 style='text-align:center;'>Unique Subclasses per Millet</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame(unique_rows))
-
-    # --- Common to exactly 3 ---
-    common_3_rows = []
-    for combo in combinations(millet_sets.keys(), 3):
-        s1, s2, s3 = millet_sets[combo[0]], millet_sets[combo[1]], millet_sets[combo[2]]
-        common_3 = (s1 & s2 & s3) - common_4
-        for sc in sorted(common_3):
-            common_3_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": sc})
-    st.markdown("<h5 style='text-align:center;'>Subclasses Common to Exactly 3 Millets</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame(common_3_rows))
-
-    # --- Common to exactly 2 ---
-    common_2_rows = []
-    for combo in combinations(millet_sets.keys(), 2):
-        s1, s2 = millet_sets[combo[0]], millet_sets[combo[1]]
-        common_2 = (s1 & s2) - common_4
-        # remove common_3 overlaps
-        for combo3 in combinations(millet_sets.keys(), 3):
-            common_3 = set.intersection(*(millet_sets[c] for c in combo3)) - common_4
-            common_2 -= common_3
-        for sc in sorted(common_2):
-            common_2_rows.append({"Millets": " & ".join(combo), "BRITE Subclass": sc})
-    st.markdown("<h5 style='text-align:center;'>Subclasses Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
-    st.dataframe(pd.DataFrame(common_2_rows))
-
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     with st.sidebar:
@@ -1323,13 +1114,10 @@ elif page == "milletwise_analysis":
     millet()
 elif page == "ec_class":
     ec_class()
-elif page == "brite":
-    brite_class() 
 elif page=="trait":
     trait()
 elif page=="couq":
     couq()
 elif page=="pe":
      pathway_enrichment() 
-elif page=="brcl":
-    brt()
+
