@@ -1427,12 +1427,12 @@ def summary():
             To be added
             """)
     st.markdown("<h4 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
-    st.markdown("<h2>Which are the top abundant ec ko pwy ids what doe they mean </h2>", unsafe_allow_html=True)
-    st.markdown("<h2>among the mapped pwy ids in ko n ec which r enriched</h2>", unsafe_allow_html=True) 
-    st.markdown("<h2>which r the dominant ec classes n wt they mean</h2>", unsafe_allow_html=True) 
-    st.markdown("<h2>wt r the unique n common trits wt do they mean througgh w hich wc ko pwy this trait is achieved</h2>", unsafe_allow_html=True) 
-    st.markdown("<h2>which r the abundant traits in each millet</h2>", unsafe_allow_html=True) 
-    st.markdown("<h2>which r the dominant pwy  n wt they mean n how enriched r they</h2>", unsafe_allow_html=True) 
+    st.markdown("<h6 style='text-align:center;'>Which are the top abundant ec ko pwy ids what doe they mean </h6>", unsafe_allow_html=True)
+    st.markdown("<h6 style='text-align:center;'>among the mapped pwy ids in ko n ec which r enriched</h6>", unsafe_allow_html=True) 
+    st.markdown("<h6 style='text-align:center;'>which r the dominant ec classes n wt they mean</h6>", unsafe_allow_html=True) 
+    st.markdown("<h6 style='text-align:center;'>wt r the unique n common trits wt do they mean througgh w hich wc ko pwy this trait is achieved</h6>", unsafe_allow_html=True) 
+    st.markdown("<h6 style='text-align:center;'>which r the abundant traits in each millet</h6>", unsafe_allow_html=True) 
+    st.markdown("<h6 style='text-align:center;'>which r the dominant pwy  n wt they mean n how enriched r they</h6>", unsafe_allow_html=True) 
     
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
