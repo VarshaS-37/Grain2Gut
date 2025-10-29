@@ -984,7 +984,7 @@ def pathway_enrichment():
 
     if not os.path.exists(file_path):
         st.warning(f"File not found: {file_path}")
-        continue
+        return
 
     df = pd.read_csv(file_path, encoding="utf-8", on_bad_lines="skip")
 
