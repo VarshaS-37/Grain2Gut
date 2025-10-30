@@ -1037,49 +1037,49 @@ def summary():
     with st.expander("Which are the top abundant EC numbers and what do they imply? "):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
             st.markdown("""
-            1. **EC:2.7.7.7 – DNA-directed RNA Polymerase**
-            - Copies DNA into RNA to support essential gene expression and cell growth.
-            - Ensures stable and consistent bacterial activity during fermentation, enhancing probiotic viability.
-            2. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**
-            - Regulates energy metabolism by adding phosphate groups to key molecules.
-            - Helps the strain efficiently utilize plant sugars, improving fermentation speed and flavor development.
-            3. **EC:3.6.4.12 – DNA Helicase**
-            - Unwinds DNA strands to enable accurate replication and repair.
-            - Maintains genome stability under acidic and processing stress, ensuring strain resilience.
-            4. **EC:3.6.3.14 – Proton-Transporting ATPase**
-            - Pumps protons across the membrane to maintain internal pH balance.
-            - Enhances acid tolerance, improving survival in fermented foods and the gut environment.
-            5. **EC:3.6.3.21 – Amino Acid ABC Transporter**
-            - Transports amino acids into the cell to support protein synthesis and growth.
-            - Contributes to flavor formation and improved fermentation quality through amino acid metabolism.
+            1. **EC:2.7.7.7 – DNA-directed RNA Polymerase**  
+               - This enzyme produces RNA needed for essential gene expression and bacterial growth.  
+               - Stable gene expression ensures consistent fermentation performance and supports long-term probiotic activity.
+            2. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**  
+               - This enzyme regulates energy metabolism by transferring phosphate groups to key molecules.  
+               - Efficient sugar utilization from millet improves fermentation speed, flavor development, and bacterial survival.
+            3. **EC:3.6.4.12 – DNA Helicase**  
+               - This enzyme unwinds DNA during replication and repair to maintain genomic accuracy.  
+               - By preserving DNA integrity under acidic fermentation stress, it helps the strain remain stable and resilient.
+            4. **EC:3.6.3.14 – Proton-Transporting ATPase**  
+               - This enzyme helps maintain internal pH by pumping protons across the membrane.  
+               - Strong acid tolerance allows the strain to survive in fermented foods and persist in gut environments.
+            5. **EC:3.6.3.21 – Amino Acid ABC Transporter**  
+               - This transporter imports amino acids needed for protein synthesis and metabolic activity.  
+               - Enhanced amino acid utilization supports growth and contributes to desirable flavor formation during fermentation.
             
-            ⭐ **Key Takeaway**
-            These enzymes help *E. casseliflavus* maintain genome stability, efficient metabolism, acid tolerance, and nutrient uptake—making it well-suited for strong, stable, and high-quality plant-based fermentation.
+            ⭐ **Key Takeaway**  
+            This enzyme set supports **stable gene expression, efficient sugar metabolism, acid stress tolerance, and nutrient utilization**, making *E. casseliflavus* highly effective for **consistent and high-quality plant-based fermentation**.
             """)
 
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.markdown("""
-            1. **EC:3.6.4.12 – DNA Helicase**
-            - Unwinds DNA during replication and repair to maintain genome stability.
-            - Helps the strain remain resilient under fermentation stress, supporting consistent growth.
-            2. **EC:2.7.7.7 – DNA Polymerase**
-            - Synthesizes new DNA strands to ensure accurate cell replication.
-            - Supports stable strain performance and long-term probiotic viability in fermented foods.
-            3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**
-            - Regulates energy metabolism by transferring phosphate groups.
-            - Enhances sugar utilization and fermentation efficiency, improving growth and flavor outcomes.
-            4. **EC:1.1.1.1 – Alcohol Dehydrogenase**
-            - Converts alcohols and aldehydes to maintain cellular redox balance.
-            - Contributes to flavor formation and metabolic flexibility during fermentation.
-            5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**
-            - Produces precursors needed for amino acid and nucleotide synthesis.
-            - Supports growth and nutrient-related stability, aiding consistent fermentation quality.
-            6. **EC:6.4.1.2 – Acetyl-CoA Carboxylase**
-            - Initiates fatty acid synthesis important for cell membrane structure.
-            - Enhances stress tolerance and improves fermentation robustness and flavor compound development.
-        
-            ⭐ **Key Takeaway**
-            These enzymes enable *Weissella cibaria* to maintain genetic stability, efficiently metabolize nutrients, tolerate fermentation stress, and contribute to flavor — making it highly suitable for stable and flavorful millet-based fermentation.
+            1. **EC:3.6.4.12 – DNA Helicase**  
+               - This enzyme unwinds DNA to enable proper replication and repair.  
+               - By protecting the genome during acidic fermentation, it helps the strain maintain stability and probiotic functionality.
+            2. **EC:2.7.7.7 – DNA Polymerase**  
+               - This enzyme synthesizes new DNA strands during cell division.  
+               - Stable DNA replication ensures reliable strain growth and consistency throughout fermentation.
+            3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**  
+               - This enzyme regulates energy metabolism by transferring phosphate groups.  
+               - It allows efficient use of millet-derived sugars, improving fermentation performance and flavor development.
+            4. **EC:1.1.1.1 – Alcohol Dehydrogenase**  
+               - This enzyme balances redox reactions during carbohydrate fermentation.  
+               - It contributes to desirable flavor compound formation while supporting stress tolerance in low pH conditions.
+            5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**  
+               - This enzyme generates precursors for amino acid and nucleotide biosynthesis.  
+               - It supports growth and protein production even in nutrient-variable plant-based fermentation environments.
+            6. **EC:6.4.1.2 – Acetyl-CoA Carboxylase**  
+               - This enzyme initiates fatty acid synthesis, which is essential for cell membrane formation.  
+               - Strong membrane integrity enhances stress resistance, fermentation stability, and probiotic survival.
+            
+            ⭐ **Key Takeaway**  
+            This enzyme profile highlights strong **genetic stability, sugar metabolism, flavor contribution, and stress tolerance**, making the strain well-suited for robust and high-quality plant-based fermentation.
             """)
             
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
