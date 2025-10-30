@@ -1062,8 +1062,9 @@ def summary():
             - In LAB, it supports protein synthesis, growth, and metabolism during fermentation.
             - It also contributes to flavor and texture development by influencing amino acid-derived metabolites.
             - Overall, it improves nutrient utilization, fermentation quality, and probiotic survival in food systems.
-            ⭐ One-line Takeaway
-                These top enzymes collectively support genome stability, energy metabolism, acid tolerance, nutrient uptake, and probiotic survival, making the strain well-suited for stable and efficient plant-based fermentation.""")
+            
+            ⭐ **One-line Takeaway**
+            These top enzymes collectively support genome stability, energy metabolism, acid tolerance, nutrient uptake, and probiotic survival, making the strain well-suited for stable and efficient plant-based fermentation.""")
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.write("Answer")
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
