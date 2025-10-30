@@ -1052,6 +1052,7 @@ def summary():
             5. **EC:3.6.3.21 – Amino Acid ABC Transporter**
             - Transports amino acids into the cell to support protein synthesis and growth.
             - Contributes to flavor formation and improved fermentation quality through amino acid metabolism.
+            
             ⭐ **Key Takeaway**
             These enzymes help *E. casseliflavus* maintain genome stability, efficient metabolism, acid tolerance, and nutrient uptake—making it well-suited for strong, stable, and high-quality plant-based fermentation.
             """)
@@ -1059,40 +1060,28 @@ def summary():
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.markdown("""
             1. **EC:3.6.4.12 – DNA Helicase**
-            - This enzyme unwinds double-stranded DNA during replication and repair.
-            - In LAB, it ensures accurate DNA duplication and protects the genome under fermentation stress.
-            - This supports bacterial growth, survival, and maintenance of probiotic traits.
-            - It contributes to genetic stability and consistent fermentation performance in food products.
-            
+            - Unwinds DNA during replication and repair to maintain genome stability.
+            - Helps the strain remain resilient under fermentation stress, supporting consistent growth.
             2. **EC:2.7.7.7 – DNA Polymerase**
-            - This enzyme synthesizes new DNA strands by adding nucleotides to a template.
-            - In LAB, it maintains genome integrity and supports proper cell replication.
-            - This helps the bacteria cope with stress conditions found during fermentation.
-            - It ensures stable culture behavior and long-term probiotic viability in fermented foods.
-            
+            - Synthesizes new DNA strands to ensure accurate cell replication.
+            - Supports stable strain performance and long-term probiotic viability in fermented foods.
             3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**
-            - This enzyme adds phosphate groups to molecules, which is key for energy metabolism.
-            - In LAB, it supports efficient use of plant-derived sugars during fermentation.
-            - This boosts energy production and metabolic flexibility in different food environments.
-            - It directly contributes to fermentation speed, flavor development, and probiotic survival.
-            
+            - Regulates energy metabolism by transferring phosphate groups.
+            - Enhances sugar utilization and fermentation efficiency, improving growth and flavor outcomes.
             4. **EC:1.1.1.1 – Alcohol Dehydrogenase**
-            - This enzyme interconverts alcohols and aldehydes, maintaining cellular redox balance.
-            - In LAB, it supports energy production and reduces stress from fermentation byproducts.
-            - This enhances bacterial survival and metabolic adaptability during growth.
-            - It contributes to flavor formation and stable probiotic function in fermented foods.
-            
-           5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**
-            - This enzyme forms key precursors for amino acid and nucleotide synthesis.
-            - In LAB, it supports protein production and DNA maintenance during growth.
-            - This allows the bacteria to remain stable even under nutrient-limited fermentation conditions.
-            - It contributes to consistent fermentation and enhances nutritional quality of food products.
-            
+            - Converts alcohols and aldehydes to maintain cellular redox balance.
+            - Contributes to flavor formation and metabolic flexibility during fermentation.
+            5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**
+            - Produces precursors needed for amino acid and nucleotide synthesis.
+            - Supports growth and nutrient-related stability, aiding consistent fermentation quality.
             6. **EC:6.4.1.2 – Acetyl-CoA Carboxylase**
-            - This enzyme initiates fatty acid biosynthesis by producing malonyl-CoA.
-            - In LAB, it supports cell membrane formation and energy storage capacity.
-            - This improves stress tolerance and structural stability during fermentation.
-            - It enhances fermentation efficiency, probiotic resilience, and flavor compound development.
+            - Initiates fatty acid synthesis important for cell membrane structure.
+            - Enhances stress tolerance and improves fermentation robustness and flavor compound development.
+        
+            ⭐ **Key Takeaway**
+            These enzymes enable *Weissella cibaria* to maintain genetic stability, efficiently metabolize nutrients, tolerate fermentation stress, and contribute to flavor — making it highly suitable for stable and flavorful millet-based fermentation.
+            """)
+
         """)
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
             st.write("Answer")
