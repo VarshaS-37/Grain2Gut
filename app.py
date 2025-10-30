@@ -6,27 +6,22 @@ from upsetplot import UpSet, from_memberships
 from itertools import combinations
 
 st.set_page_config(layout="wide")
-
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
 .stApp {
     background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
     background-size: cover;
-    background-attachment: fixed;
-}
+    background-attachment: fixed;}
 .block-container {
     padding-top: 2rem;
     padding-left: 6rem;
-    padding-right: 6rem;
-}
+    padding-right: 6rem;}
 h2, h1 {
     text-align: center !important;
-    color: #2c3e50;
-}
+    color: #2c3e50;}
 .stColumns {
-    gap: 40px !important;
-}
+    gap: 40px !important;}
 .stButton>button {
     background-color:#FEF7A2;
     color:#2c3e50;
@@ -34,12 +29,9 @@ h2, h1 {
     border-radius:10px;
     padding:10px 20px;
     border:none;
-    transition: background-color 0.3s ease;
-}
+    transition: background-color 0.3s ease;}
 .stButton>button:hover {
-    background-color:#DFFBB9;
-}
-
+    background-color:#DFFBB9;}
 </style>
 """, unsafe_allow_html=True)
 # ------------------------------------------------footer----------------------------------------------------------------------------------
@@ -57,18 +49,14 @@ def footer():
         font-size: 14px;
         border-radius: 8px;  /* rounded corners */
         z-index: 100;
-        text-align: center;
-    }
+        text-align: center;}
     .footer-container a {
         color: 	 #004d66;  /* Dark blue links */
         text-decoration: none;
-        font-weight: bold;
-    }
+        font-weight: bold;}
     .footer-container a:hover {
-        text-decoration: underline;
-    }
+        text-decoration: underline;}
     </style>
-    
     <div class="footer-container">
         Jointly created by 
         <a href="https://github.com/VarshaS-37" target="_blank">Varsha</a> &
@@ -76,23 +64,18 @@ def footer():
         <a href="https://github.com/VarshaS-37/Grain2Gut/tree/main" target="_blank">GitHub Repo</a>
     </div>
     """, unsafe_allow_html=True)
-
 # ----------------------------------------------------------- Page Control -------------------------------------------------------------
 if "page" not in st.session_state:
     st.session_state.page = "home"
-
 def go_to(page):
     st.session_state.page = page
     st.rerun()
-
 # ------------------------------------------------------------ Home Page -----------------------------------------------------------------------
 def home():
     st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center;'><i>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</i></h4>", unsafe_allow_html=True)
     st.write("") 
     # ----------------------------------- Sidebar with Project Description ------------------------------------------------------------------------
-   # "Back to Home" button at the top of the sidebar
-    
     with st.sidebar.expander("About This App", expanded=False):
         st.markdown("""
         1. This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets([research paper link](https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf)).
@@ -113,10 +96,7 @@ def home():
         st.markdown("""
         This contains all the processed dataframes created from the raw files and are used for further analysis.
         """)
-     
-   
     left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
-    
     # -------------------------------------------------Summarized Analysis-------------------------------------------------------------
     with left_col:
         if st.button("Summarized Analysis"):
@@ -136,14 +116,12 @@ def home():
                 if st.button(label, key=label):
                     go_to(page_key)
     footer()
-     
 # -------------------------------------------------- Millet Data Mapping -------------------------------------------------------------------
 millet_map = {
     "Enterococcus casseliflavus (Proso Millet)": "77",
     "Weisella cibaria NM01 (Foxtail Millet)": "78",
     "Weisella cibaria SM01 (Little Millet)": "79",
-    "Lactococcus lactis (Little Millet)": "80"
-}
+    "Lactococcus lactis (Little Millet)": "80"}
 # ---------------------------------------------------- EC Analysis ------------------------------------------------------------------------------
 def ec_page():
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
@@ -256,10 +234,6 @@ def ec_page():
                         st.markdown(f"<p style='font-size:16px;'>{part}</p>", unsafe_allow_html=True)
             else:
                 st.warning("No textual description found for this EC number.")
-
-
-    
-  
 # --------------------------------------------------- KO Page: Side-by-Side + Sidebar -------------------------------------------------------------
 def ko_page():
     st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
@@ -282,7 +256,6 @@ def ko_page():
             **KO (KEGG Orthology) IDs** represent groups of genes/proteins that have the **same functional role** in different organisms.  
             - Each KO ID corresponds to a specific **orthologous gene** in the KEGG database.  
             - KOs help in linking **genes to metabolic pathways** and **enzyme functions**.  
-            
             """)
         with st.sidebar.expander("Why is it relevant?", expanded=False):
             st.markdown("""
@@ -475,19 +448,16 @@ def millet():
             """)
         with st.sidebar.expander("EC class Distribution", expanded=False):
             st.markdown("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
-    
         with st.sidebar.expander("Biological Trait Distribution", expanded=False):
             st.markdown("""
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
             """)
-
         with st.sidebar.expander("Common & Unique Traits", expanded=False):
             st.markdown("""
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
             """)
-        
         with st.sidebar.expander("Pathway Enrichment", expanded=False):
             st.markdown("""
             Pathway enrichment helps identify **which biological pathways are more represented or more active** in one LAB strain **compared to others**.
@@ -538,8 +508,7 @@ def millet():
                 go_to("pe")  
         with col5:
             if st.button("Common & Unique Traits"):
-                go_to("couq")
-                 
+                go_to("couq")   
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
@@ -595,7 +564,6 @@ def ec_class():
     class_counts.columns = ["EC Class", "Count"]
 # --- Layout: Left (figure) + Right (interpretation) ---
     left_col, right_col = st.columns([2, 2])
-
     with left_col:
         # Plot EC class distribution
         fig, ax = plt.subplots(figsize=(6, 4))
@@ -609,7 +577,6 @@ def ec_class():
             ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
         plt.tight_layout()
         st.pyplot(fig)
-
     with right_col:
         st.markdown("<h4 style='text-align:center;'>Interpretation</h4>", unsafe_allow_html=True)
         st.write(f"""
@@ -640,8 +607,6 @@ def brite_class():
         - Shows which bioactive compounds (vitamins, organic acids, peptides) they might produce.
         - Reveals mechanisms for survival and interaction</b> in food or the gut, like stress response or nutrient transport.
         """, unsafe_allow_html=True)
-
- 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
         st.write("")
@@ -672,7 +637,6 @@ def brite_class():
         if col not in df.columns:
             st.warning(f"'{col}' column not found in the CSV.")
             return
-
   # --- Split semicolon-separated entries and count ---
     # Brite Class
     class_counts = (
@@ -681,7 +645,6 @@ def brite_class():
     class_counts = class_counts[class_counts >= 3]  # Keep only counts >= 3
     class_counts = class_counts.reset_index()
     class_counts.columns = ["Brite Class", "Count"]
-    
     # Brite Subclass
     subclass_counts = (
         df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
@@ -689,7 +652,6 @@ def brite_class():
     subclass_counts = subclass_counts[subclass_counts >= 3]  # Keep only counts >= 3
     subclass_counts = subclass_counts.reset_index()
     subclass_counts.columns = ["Brite Subclass", "Count"]
-
     left_col, right_col = st.columns([2, 2])
     with left_col:
         fig, ax = plt.subplots(figsize=(6, 4))
@@ -730,7 +692,6 @@ def trait():
         By assigning biological traits, we can predict how a LAB may behave in food or in the gut,  
         which helps identify **better LAB strains** for use in food applications.
         """, unsafe_allow_html=True)
- 
     col1, col2, col3 = st.columns([3, 3, 3]) 
     with col2:
         st.write("")
@@ -846,7 +807,6 @@ def couq():
         millet_sets[strain_name] = combined_traits
 
     from upsetplot import UpSet, from_memberships
-   
 
     # millet_sets: dict of millet_name -> set of traits
     memberships = []
@@ -858,12 +818,10 @@ def couq():
     data = from_memberships(
         [[millet for millet in millet_sets if trait in millet_sets[millet]] for trait in set.union(*millet_sets.values())]
     )
-    
     fig = plt.figure(figsize=(8,6))
     upset = UpSet(data, subset_size='count', show_counts=True)
     upset.plot(fig=fig)  # pass the figure explicitly
     st.pyplot(fig)
-
 
     # --- Common to all 4 LABs ---
     common_4 = set.intersection(*millet_sets.values())
@@ -906,7 +864,6 @@ def couq():
     st.dataframe(pd.DataFrame(common_2_rows))
     
 #------------------------------------------------------enrichment-------------------------------------------------------------------
-
 from scipy.stats import fisher_exact
 from statsmodels.stats.multitest import multipletests
 import streamlit as st
@@ -915,7 +872,6 @@ import os
 
 def pathway_enrichment():
     st.markdown("<h4 style='text-align:center;'>Pathway Enrichment</h4>", unsafe_allow_html=True)
-
     with st.sidebar:
         if st.button("Back to Home"): 
             go_to("home")
@@ -961,7 +917,6 @@ def pathway_enrichment():
         - The **Y-axis** lists pathway names.
         - **Longer bars = pathways more uniquely abundant in the selected strain**.
        """)
-
 
     # --- Select Millet LAB ---
     col1, col2, col3 = st.columns([3, 3, 3])
@@ -1013,12 +968,10 @@ def pathway_enrichment():
     for f in files:
         if f.endswith(f"{suffix}.csv"):  # skip current strain
             continue
-
         try:
             df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
         except UnicodeDecodeError:
             df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
-
         for col in ["pathway_ids", "map_ids", "Pathway"]:
             if col in df_bg.columns:
                 df_bg[col] = (
@@ -1029,11 +982,9 @@ def pathway_enrichment():
                 )
                 background_pathways.extend(df_bg[col].explode().dropna().tolist())
                 break
-
     if not background_pathways:
         st.warning("No background pathway data found.")
         return
-
     bg_counts = pd.Series(background_pathways).value_counts()
 
     # --- Fisher’s Exact Test for enrichment ---
@@ -1068,7 +1019,6 @@ def pathway_enrichment():
     ax.invert_yaxis()
     plt.tight_layout()
     st.pyplot(fig)
-
     # --- Table output ---
     st.subheader(f"Top Enriched Pathways in {selected_strain}")
     st.dataframe(res_df.head(25).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
@@ -1085,47 +1035,50 @@ def summary():
     st.markdown("<h3 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
     
     st.markdown("<h4 style='text-align:left;'>EC Analysis Summary</h4>", unsafe_allow_html=True) 
-    with st.expander("1.Which are the top abundant EC numbers and what do they imply? "):
+    with st.expander("Which are the top abundant EC numbers and what do they imply? "):
         st.write("Answer")
-    st.markdown("<h6 style='text-align:left;'>2. Which are the dominant EC classes and what do they mean? </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>3. Which are the dominant BRITE classes and subclasses of the pathways associated with each EC number and what do they mean? </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>4. Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications? </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h4 style='text-align:left;'>KO Analysis Summary</h4>", unsafe_allow_html=True) 
-    st.markdown("<h6 style='text-align:left;'>1. Which are the top abundant KO ids and what do they imply? </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>2. Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean? </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>3. Overall, are the predicted KOs supporting the use of these LAB in probiotic/food applications?</h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
+    with st.expander("Which are the dominant EC classes and what do they mean?"):
+        st.write("Answer")
+    with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each EC number and what do they mean?"):
+        st.write("Answer")
+    with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
+        st.write("Answer")
+
+    st.markdown("<h4 style='text-align:left;'>KO Analysis Summary</h4>", unsafe_allow_html=True)
+    with st.expander("Which are the top abundant KO ids and what do they imply?"):
+        st.write("Answer")
+    with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
+        st.write("Answer")
+    with st.expander("Overall, are the predicted KOs supporting the use of these LAB in probiotic/food applications?"):
+        st.write("Answer")
+    with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
+        st.write("Answer")
+     
     st.markdown("<h4 style='text-align:left;'>PWY Analysis Summary</h4>", unsafe_allow_html=True) 
-    st.markdown("<h6 style='text-align:left;'>1. Which are the pathways which have completeness as 1 and what do they imply?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>2. Which pathways are enriched in a LAB than the other LABs?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>3. Overall, how relevant are the predicted pathways in terms of probiotic/food appplications?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
+    with st.expander("Which are the pathways which have completeness as 1 and what do they imply?"):
+        st.write("Answer")
+    with st.expander("Which pathways are enriched in a LAB than the other LABs?"):
+        st.write("Answer")
+    with st.expander("Overall, how relevant are the predicted pathways in terms of probiotic/food appplications?"):
+        st.write("Answer")
+    with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
+        st.write("Answer")
+    
     st.markdown("<h4 style='text-align:left;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
-    st.markdown("<h6 style='text-align:left;'>1. Which are the dominant biological traits and whay do they mean?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>2. Which are the common biological traits and whay do they mean?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>3. Which are the unique biological traits and whay do they mean?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>4. Which are the biological traits contributed by ECs?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>5. Which are the biological traits contributed by KOs?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>6. Which are the biological traits contributed by PWYs?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    st.markdown("<h6 style='text-align:left;'>7. Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?  </h6>", unsafe_allow_html=True)
-    st.markdown("""Answer""")
-    
-    
-    
-    
+    with st.expander("Which are the dominant biological traits and whay do they mean?"):
+        st.write("Answer")
+    with st.expander("Which are the common biological traits and whay do they mean?"):
+        st.write("Answer")
+    with st.expander("Which are the unique biological traits and whay do they mean?"):
+        st.write("Answer")
+    with st.expander("Which are the biological traits contributed by ECs?"):
+        st.write("Answer")
+    with st.expander("Which are the biological traits contributed by KOs?"):
+        st.write("Answer")
+    with st.expander("Which are the biological traits contributed by PWYs?"):
+        st.write("Answer")
+    with st.expander("Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?"):
+        st.write("Answer")
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
@@ -1148,4 +1101,3 @@ elif page=="couq":
     couq()
 elif page=="pe":
      pathway_enrichment() 
-
