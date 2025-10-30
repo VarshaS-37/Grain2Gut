@@ -1064,6 +1064,7 @@ def summary():
             - Overall, it improves nutrient utilization, fermentation quality, and probiotic survival in food systems.
             
             ⭐ **One-line Takeaway**
+            
             These top enzymes collectively support genome stability, energy metabolism, acid tolerance, nutrient uptake, and probiotic survival, making the strain well-suited for stable and efficient plant-based fermentation.""")
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.write("Answer")
