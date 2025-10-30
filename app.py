@@ -530,7 +530,7 @@ def millet():
             if st.button("EC class Distribution"):
                 go_to("ec_class")
         with col2:
-            if st.button("Trait Distribution"):
+            if st.button("Biological Trait Distribution"):
                 go_to("trait")        
         col4, col5= st.columns(2)
         with col4:
