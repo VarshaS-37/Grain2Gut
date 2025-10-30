@@ -1044,7 +1044,7 @@ def summary():
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
 
-    st.markdown("<h4 style='text-align:left;'>KO Analysis Summary</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align:center;'>KO Analysis Summary</h4>", unsafe_allow_html=True)
     with st.expander("Which are the top abundant KO ids and what do they imply?"):
         st.write("Answer")
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
@@ -1054,7 +1054,7 @@ def summary():
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
      
-    st.markdown("<h4 style='text-align:left;'>PWY Analysis Summary</h4>", unsafe_allow_html=True) 
+    st.markdown("<h4 style='text-align:center;'>PWY Analysis Summary</h4>", unsafe_allow_html=True) 
     with st.expander("Which are the pathways which have completeness as 1 and what do they imply?"):
         st.write("Answer")
     with st.expander("Which pathways are enriched in a LAB than the other LABs?"):
@@ -1064,7 +1064,7 @@ def summary():
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
     
-    st.markdown("<h4 style='text-align:left;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align:center;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
     with st.expander("Which are the dominant biological traits and whay do they mean?"):
         st.write("Answer")
     with st.expander("Which are the common biological traits and whay do they mean?"):
