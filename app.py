@@ -1081,8 +1081,7 @@ def summary():
             ⭐ **Key Takeaway**
             These enzymes enable *Weissella cibaria* to maintain genetic stability, efficiently metabolize nutrients, tolerate fermentation stress, and contribute to flavor — making it highly suitable for stable and flavorful millet-based fermentation.
             """)
-
-        """)
+            
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
             st.write("Answer")
         with st.expander("Lactococcus lactis (Little Millet)"):
