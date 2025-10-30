@@ -1085,7 +1085,7 @@ def summary():
     st.markdown("<h3 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
     
     st.markdown("<h4 style='text-align:left;'>EC Analysis Summary</h4>", unsafe_allow_html=True) 
-    with st.expander("1. Which are the top abundant EC numbers and what do they imply? "):
+    with st.expander("1.Which are the top abundant EC numbers and what do they imply? "):
         st.write("Answer")
     st.markdown("<h6 style='text-align:left;'>2. Which are the dominant EC classes and what do they mean? </h6>", unsafe_allow_html=True)
     st.markdown("""Answer""")
