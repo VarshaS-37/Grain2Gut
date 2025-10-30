@@ -1037,37 +1037,63 @@ def summary():
     with st.expander("Which are the top abundant EC numbers and what do they imply? "):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
             st.markdown("""
-            1. **EC:2.7.7.7 DNA-directed RNA Polymerase**
-            - This enzyme is responsible for copying DNA into RNA, which is essential for cell growth and survival.
-            - In LAB, it maintains genome stability and ensures that the bacteria continue growing properly during fermentation.
-            - This supports consistent fermentation performance and helps the bacteria remain active and viable in probiotic foods.
-            - Overall, it contributes to genetic stability, stress tolerance, and reliable culture performance in fermented foods.
-            2. **EC:2.7.1.69 Phosphotransferase / Kinase Activity**
-            - This enzyme adds phosphate groups to molecules, which is key for energy metabolism.
-            - In LAB, it helps the bacteria efficiently use sugars from plant substrates like millet during fermentation.
-            - This boosts energy production, growth, and metabolic flexibility, allowing the bacteria to adapt to different food environments.
-            - It directly contributes to fermentation speed, flavor development, and overall probiotic survival in food products.
-            3. **EC:3.6.4.12 DNA Helicase**
-            - This enzyme unwinds DNA strands, making DNA replication and repair possible.
-            - In LAB, it protects genome integrity, especially under stress conditions such as acidic fermentation environments.
-            - This ensures that the bacteria maintain beneficial traits and remain stable during storage and processing.
-            - It contributes to long-term strain stability, reliability, and resilience in fermented food applications.
-            4. **EC:3.6.3.14 Proton-Transporting ATPase**
-            - This enzyme uses energy to pump protons across membranes, helping maintain internal pH balance.
-            - For LAB, this is crucial during fermentation where the environment becomes acidic.
-            - It increases acid tolerance and survival in both fermented foods and the human gut.
-            - This enzyme strengthens probiotic viability and shelf stability in acidic foods (e.g., curd, pickles, fermented grains).
-            5. **EC:3.6.3.21 Amino Acid ABC Transporter (ATP-driven)**
-            - This enzyme imports amino acids into the cell using energy from ATP.
-            - In LAB, it supports protein synthesis, growth, and metabolism during fermentation.
-            - It also contributes to flavor and texture development by influencing amino acid-derived metabolites.
-            - Overall, it improves nutrient utilization, fermentation quality, and probiotic survival in food systems.
-            
-            ⭐ **One-line Takeaway**
-            
-            These top enzymes collectively support genome stability, energy metabolism, acid tolerance, nutrient uptake, and probiotic survival, making the strain well-suited for stable and efficient plant-based fermentation.""")
+            1. **EC:2.7.7.7 – DNA-directed RNA Polymerase**
+            - Copies DNA into RNA to support essential gene expression and cell growth.
+            - Ensures stable and consistent bacterial activity during fermentation, enhancing probiotic viability.
+            2. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**
+            - Regulates energy metabolism by adding phosphate groups to key molecules.
+            - Helps the strain efficiently utilize plant sugars, improving fermentation speed and flavor development.
+            3. **EC:3.6.4.12 – DNA Helicase**
+            - Unwinds DNA strands to enable accurate replication and repair.
+            - Maintains genome stability under acidic and processing stress, ensuring strain resilience.
+            4. **EC:3.6.3.14 – Proton-Transporting ATPase**
+            - Pumps protons across the membrane to maintain internal pH balance.
+            - Enhances acid tolerance, improving survival in fermented foods and the gut environment.
+            5. **EC:3.6.3.21 – Amino Acid ABC Transporter**
+            - Transports amino acids into the cell to support protein synthesis and growth.
+            - Contributes to flavor formation and improved fermentation quality through amino acid metabolism.
+            ⭐ **Key Takeaway**
+            These enzymes help *E. casseliflavus* maintain genome stability, efficient metabolism, acid tolerance, and nutrient uptake—making it well-suited for strong, stable, and high-quality plant-based fermentation.
+            """)
+
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **EC:3.6.4.12 – DNA Helicase**
+            - This enzyme unwinds double-stranded DNA during replication and repair.
+            - In LAB, it ensures accurate DNA duplication and protects the genome under fermentation stress.
+            - This supports bacterial growth, survival, and maintenance of probiotic traits.
+            - It contributes to genetic stability and consistent fermentation performance in food products.
+            
+            2. **EC:2.7.7.7 – DNA Polymerase**
+            - This enzyme synthesizes new DNA strands by adding nucleotides to a template.
+            - In LAB, it maintains genome integrity and supports proper cell replication.
+            - This helps the bacteria cope with stress conditions found during fermentation.
+            - It ensures stable culture behavior and long-term probiotic viability in fermented foods.
+            
+            3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**
+            - This enzyme adds phosphate groups to molecules, which is key for energy metabolism.
+            - In LAB, it supports efficient use of plant-derived sugars during fermentation.
+            - This boosts energy production and metabolic flexibility in different food environments.
+            - It directly contributes to fermentation speed, flavor development, and probiotic survival.
+            
+            4. **EC:1.1.1.1 – Alcohol Dehydrogenase**
+            - This enzyme interconverts alcohols and aldehydes, maintaining cellular redox balance.
+            - In LAB, it supports energy production and reduces stress from fermentation byproducts.
+            - This enhances bacterial survival and metabolic adaptability during growth.
+            - It contributes to flavor formation and stable probiotic function in fermented foods.
+            
+           5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**
+            - This enzyme forms key precursors for amino acid and nucleotide synthesis.
+            - In LAB, it supports protein production and DNA maintenance during growth.
+            - This allows the bacteria to remain stable even under nutrient-limited fermentation conditions.
+            - It contributes to consistent fermentation and enhances nutritional quality of food products.
+            
+            6. **EC:6.4.1.2 – Acetyl-CoA Carboxylase**
+            - This enzyme initiates fatty acid biosynthesis by producing malonyl-CoA.
+            - In LAB, it supports cell membrane formation and energy storage capacity.
+            - This improves stress tolerance and structural stability during fermentation.
+            - It enhances fermentation efficiency, probiotic resilience, and flavor compound development.
+        """)
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
             st.write("Answer")
         with st.expander("Lactococcus lactis (Little Millet)"):
