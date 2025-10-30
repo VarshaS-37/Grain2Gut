@@ -1084,26 +1084,7 @@ def summary():
             
         with st.expander("Weissella cibaria SM01 (Foxtail Millet)"):
             st.markdown("""
-            1. **EC:3.6.4.12 – DNA Helicase**
-            - This enzyme unwinds DNA strands to allow accurate replication and repair during bacterial growth. 
-            - By maintaining genetic stability under fermentation stress, it supports reliable strain performance and long-term probiotic survival.
-            2. **EC:2.7.7.7 – DNA Polymerase**
-            - This enzyme synthesizes new DNA strands to support proper cell division and genome maintenance.
-            - It ensures stable bacterial replication during fermentation, leading to consistent culture behavior and probiotic viability in food environments.
-            3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**
-            - This enzyme transfers phosphate groups to regulate carbohydrate metabolism and energy production.
-            - Efficient sugar utilization enhances bacterial growth and fermentation efficiency, improving flavor development and product stability.
-            4. **EC:1.1.1.1 – Alcohol Dehydrogenase**
-            - This enzyme converts alcohols and aldehydes while maintaining cellular redox balance.
-            - It supports metabolic flexibility and contributes to the formation of desirable flavor compounds during fermentation.
-            5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**
-            - This enzyme produces key precursors required for amino acid and nucleotide synthesis.
-            - By supporting protein production and cellular growth, it enhances fermentation performance and improves the nutritional quality of the final food product.
-            6. **EC:6.4.1.2 – Acetyl-CoA Carboxylase**
-            - This enzyme initiates fatty acid biosynthesis by converting acetyl-CoA to malonyl-CoA.
-            - It supports cell membrane formation and stress tolerance, helping the strain remain stable and functional during fermentation and storage.
-            ⭐ **Key Takeaway**
-            Together, these enzymes strengthen DNA stability, carbohydrate utilization, stress tolerance, and cell structure, making *W. cibaria* highly effective for robust, flavorful, and nutritionally enriched plant-based fermentation.
+            Same as Weisella cibaria NM01 (Foxtail Millet)
             """)
 
         with st.expander("Lactococcus lactis (Little Millet)"):
@@ -1132,13 +1113,52 @@ def summary():
             st.write("Answer")
     with st.expander("Which are the dominant EC classes and what do they mean?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **Hydrolases**
+            - These enzymes break down complex molecules into simpler usable forms during fermentation.
+            - They enhance nutrient release, flavor development, and overall digestibility in millet-based fermented foods.
+            2. **Transferases**
+            - These enzymes transfer functional groups between molecules, supporting key metabolic and biosynthetic reactions.
+            - Their activity improves energy flow and metabolic flexibility, helping LAB adapt and thrive during fermentation.
+            3. **Lyases**
+            - These enzymes cleave chemical bonds without using water, contributing to the formation of flavor and aroma compounds.
+            - Their action adds to the sensory qualities and fermentation efficiency of probiotic millet-based products.
+        
+            ⭐ **Key Takeaway**
+            Hydrolases, Transferases, and Lyases work together to improve nutrient breakdown, metabolic efficiency, and flavor formation, strengthening the overall fermentation performance and quality of the final food product.
+            """)
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **Transferases**
+            - These enzymes transfer functional groups between molecules to support essential metabolic pathways.
+            - Their activity helps maintain energy balance and facilitates the synthesis of key biomolecules required for LAB growth and fermentation.
+            2. **Hydrolases**
+            - These enzymes break down complex carbohydrates, proteins, and other substrates into simpler, absorbable units.
+            - Their function improves nutrient availability, enhances flavor development, and supports efficient fermentation in millet-based products.
+            3. **Ligases**
+            - These enzymes join molecules together, playing a crucial role in DNA repair, amino acid biosynthesis, and overall cellular maintenance.
+            - Their action ensures cell integrity and stable metabolic functioning during the fermentation process.
+        
+            ⭐ **Key Takeaway**
+            Transferases, Hydrolases, and Ligases collectively strengthen metabolic efficiency, nutrient utilization, and cellular stability, contributing to robust fermentation and improved probiotic function in millet-derived LAB.
+            """)
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
+            st.write("Same as Weisella cibaria NM01 (Foxtail Millet)")
         with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **Hydrolases**
+            - These enzymes break down complex carbohydrates, proteins, and other biopolymers into smaller, usable units.
+            - Their activity enhances nutrient availability, improves fermentation efficiency, and contributes to flavor and texture development in millet-based products.
+            2. **Oxidoreductases**
+            - These enzymes facilitate redox reactions that help maintain cellular energy balance and metabolic stability.
+            - Their function supports stress tolerance, antioxidant potential, and overall survival of LAB during fermentation and food processing.
+            3. **Transferases**
+            - These enzymes move functional groups between molecules to support biosynthesis and metabolic flexibility.
+            - Their activity enables the formation of essential biomolecules and promotes efficient growth and adaptation in diverse fermentation environments.
+        
+            ⭐ **Key Takeaway**
+            Hydrolases, Oxidoreductases, and Transferases work together to enhance nutrient breakdown, metabolic balance, and adaptive growth, resulting in stronger fermentation performance and improved probiotic functionality in millet-derived LAB.
+            """)
         with st.expander("Overall Summary"):
             st.write("Answer")         
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each EC number and what do they mean?"):
