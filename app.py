@@ -1033,52 +1033,194 @@ def summary():
             To be added
             """)
     st.markdown("<h3 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
-    
     st.markdown("<h4 style='text-align:center;'>EC Analysis Summary</h4>", unsafe_allow_html=True) 
     with st.expander("Which are the top abundant EC numbers and what do they imply? "):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which are the dominant EC classes and what do they mean?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")         
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each EC number and what do they mean?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")      
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
 
     st.markdown("<h4 style='text-align:center;'>KO Analysis Summary</h4>", unsafe_allow_html=True)
     with st.expander("Which are the top abundant KO ids and what do they imply?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")      
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")    
     with st.expander("Overall, are the predicted KOs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
-    with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
-        st.write("Answer")
+    
      
     st.markdown("<h4 style='text-align:center;'>PWY Analysis Summary</h4>", unsafe_allow_html=True) 
     with st.expander("Which are the pathways which have completeness as 1 and what do they imply?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which pathways are enriched in a LAB than the other LABs?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Overall, how relevant are the predicted pathways in terms of probiotic/food appplications?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     
     st.markdown("<h4 style='text-align:center;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
     with st.expander("Which are the dominant biological traits and whay do they mean?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which are the common biological traits and whay do they mean?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which are the unique biological traits and whay do they mean?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which are the biological traits contributed by ECs?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which are the biological traits contributed by KOs?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Which are the biological traits contributed by PWYs?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
     with st.expander("Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?"):
-        st.write("Answer")
+        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
+            st.write("Answer")
+        with st.expander("Weisella cibaria SM01 (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Lactococcus lactis (Little Millet)"):
+            st.write("Answer")
+        with st.expander("Overall Summary"):
+            st.write("Answer")
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
