@@ -1178,13 +1178,82 @@ def summary():
     st.markdown("<h4 style='text-align:center;'>KO Analysis Summary</h4>", unsafe_allow_html=True)
     with st.expander("Which are the top abundant KO ids and what do they imply?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **K02003 – ABC Transporter ATP-Binding Protein**
+            - This protein uses ATP hydrolysis to drive the transport of various substrates across the cell membrane.
+            - It supports LAB survival and stress tolerance during fermentation and digestion by enabling efficient nutrient uptake and toxin efflux.
+            2. **K01223 – 6-Phospho-β-D-Glucosidase**
+            - This enzyme breaks down phosphorylated glucosides into fermentable sugars, aiding energy production.
+            - It enhances LAB growth and flavor development in fermented foods by improving carbohydrate utilization.
+            3. **K01990 – ABC-2 Type ATP-Binding Transport Protein**
+            - This protein hydrolyzes ATP to power nutrient and metabolite transport across the membrane.
+            - It strengthens LAB adaptability and stable metabolic activity during fermentation.
+            4. **K01992 – ABC-2 Type Transport System Permease**
+            - This membrane channel component allows selective passage of transported substrates.
+            - It helps LAB maintain nutrient balance and metabolic flexibility in changing food and gut environments.
+            5. **K02004 – ABC Transport System Membrane Component**
+            - This protein forms the membrane-spanning region of an ABC transporter, enabling substrate translocation.
+            - It supports LAB nutrient acquisition and stress response, promoting consistent growth and fermentation efficiency.
+            6. **K02757 – PTS Beta-Glucoside Transport Protein**
+            - This protein transports and phosphorylates beta-glucosides for use as carbon sources.
+            - It enhances LAB carbohydrate metabolism and contributes to improved fermentation performance and flavor formation.
+            7. **K06147 – ABC Transporter (Subfamily B) ATP-Binding Protein**
+            - This protein hydrolyzes ATP to drive import and export of substrates across the membrane.
+            - It promotes LAB survival and activity during fermentation and gut transit by maintaining cellular homeostasis.
+            8. **K07024 – Sucrose-6-Phosphate Hydrolase**
+            - This enzyme breaks down sucrose-6-phosphate, enabling LAB to use sucrose as an energy source.
+            - It contributes to efficient carbohydrate utilization and consistent flavor development during fermentation.
+            9. **K02761 – PTS Cellobiose Transport Protein**
+            - This protein transports and phosphorylates cellobiose, allowing it to be used as a fermentable sugar.
+            - It supports LAB energy metabolism and enhances fermentation efficiency and product quality.
+
+            ⭐ **Key Takeaway**
+            These carbohydrate utilization and ABC transport proteins collectively enhance nutrient uptake, sugar metabolism, and stress resilience, enabling LAB to grow efficiently in millet environments, maintain consistent fermentation, and remain viable as probiotics during digestion.
+            """)
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **K01223 – 6-Phospho-β-Glucosidase**  
+            - This enzyme breaks down phosphorylated β-glucosides into glucose-6-phosphate for energy use.  
+            - It allows LAB to grow when simple sugars are limited, supporting stable fermentation and contributing to flavor and texture.
+            2. **K07024 – Sucrose-6-Phosphate Hydrolase**  
+            - This enzyme converts sucrose-6-phosphate into usable sucrose during metabolism.  
+            - It improves sucrose utilization in fermentation, enhancing sweetness balance and product consistency in fermented foods.
+            3. **K02073 – D-Methionine ABC Transporter (Binding Protein)**  
+            - This protein binds and delivers D-methionine for import to support protein synthesis.  
+            - It helps LAB survive and grow under nutrient-limited conditions, improving adaptation during fermentation and gut transit.
+            4. **K07335 – ABC Transporter Membrane Component**  
+            - This protein forms part of the membrane channel that transports nutrients and metabolites.  
+            - It supports nutrient uptake and environmental resilience, helping LAB maintain growth in diverse fermentation conditions.
+            5. **K03294 – Basic Amino Acid / Polyamine Transporter**  
+            - This transporter exchanges amino acids and polyamines to maintain cellular balance.  
+            - It enhances LAB survival under acidic or stressful fermentation environments by supporting pH homeostasis and growth stability.
+            
+            ⭐ **Key Takeaway**
+            These genes support carbohydrate breakdown, amino acid uptake, and stress tolerance. Together, they help LAB efficiently use available nutrients, maintain growth under varying fermentation conditions, and enhance both the flavor and stability of fermented foods.
+            """)
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
+            st.write("Same as Weisella cibaria NM01 (Foxtail Millet)")
         with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
+            st.markdown("""
+            1. **K01990 – ABC Transport System ATP-Binding Protein**
+            - This protein uses ATP to power the import and export of nutrients and metabolites across the cell membrane.  
+            - It supports efficient growth and metabolic activity during fermentation, helping LAB remain active and stable in food environments.
+            2. **K07024 – Sucrose-6-Phosphate Hydrolase**
+            - This enzyme breaks down sucrose-6-phosphate, allowing the cell to use sucrose as an energy source.
+            - It contributes to efficient sugar metabolism during fermentation, supporting consistent flavor development and bacterial growth.
+            3. **K01992 – ABC-2 Type Transport System Permease**
+            - This protein forms the membrane channel for ABC transport systems, allowing selective molecules to pass in and out of the cell.
+            - It helps maintain internal balance and enhances LAB survival under stress during fermentation and storage.
+            4. **K02003 – ABC Transport System ATP-Binding Component**
+            - This protein provides the energy required for transporting nutrients across the membrane by hydrolyzing ATP.
+            - It strengthens nutrient acquisition and overall stress tolerance, supporting stable fermentation performance.
+            5. **K01223 – 6-Phospho-β-Glucosidase**
+            - This enzyme converts phosphorylated sugars into glucose-6-phosphate that can be used for energy.
+            - It improves carbohydrate metabolism in LAB, enhancing fermentation efficiency and contributing to flavor and texture development in fermented foods.
+            
+            ⭐ **Key Takeaway**  
+            These genes collectively enhance **nutrient uptake, carbohydrate metabolism, and stress survival**, enabling LAB to ferment efficiently, maintain stable growth, and deliver consistent **probiotic and flavor benefits** in fermented foods.
+            """)
         with st.expander("Overall Summary"):
             st.write("Answer")      
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
