@@ -1037,27 +1037,27 @@ def summary():
     with st.expander("Which are the top abundant EC numbers and what do they imply? "):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
             st.markdown("""
-            1. EC:2.7.7.7 DNA-directed RNA Polymerase
+            1. **EC:2.7.7.7 DNA-directed RNA Polymerase**
             - This enzyme is responsible for copying DNA into RNA, which is essential for cell growth and survival.
             - In LAB, it maintains genome stability and ensures that the bacteria continue growing properly during fermentation.
             - This supports consistent fermentation performance and helps the bacteria remain active and viable in probiotic foods.
             - Overall, it contributes to genetic stability, stress tolerance, and reliable culture performance in fermented foods.
-            2. EC:2.7.1.69 Phosphotransferase / Kinase Activity
+            2. **EC:2.7.1.69 Phosphotransferase / Kinase Activity**
             - This enzyme adds phosphate groups to molecules, which is key for energy metabolism.
             - In LAB, it helps the bacteria efficiently use sugars from plant substrates like millet during fermentation.
             - This boosts energy production, growth, and metabolic flexibility, allowing the bacteria to adapt to different food environments.
             - It directly contributes to fermentation speed, flavor development, and overall probiotic survival in food products.
-            3. EC:3.6.4.12 DNA Helicase
+            3. **EC:3.6.4.12 DNA Helicase**
             - This enzyme unwinds DNA strands, making DNA replication and repair possible.
             - In LAB, it protects genome integrity, especially under stress conditions such as acidic fermentation environments.
             - This ensures that the bacteria maintain beneficial traits and remain stable during storage and processing.
             - It contributes to long-term strain stability, reliability, and resilience in fermented food applications.
-            4. EC:3.6.3.14 Proton-Transporting ATPase
+            4. **EC:3.6.3.14 Proton-Transporting ATPase**
             - This enzyme uses energy to pump protons across membranes, helping maintain internal pH balance.
             - For LAB, this is crucial during fermentation where the environment becomes acidic.
             - It increases acid tolerance and survival in both fermented foods and the human gut.
             - This enzyme strengthens probiotic viability and shelf stability in acidic foods (e.g., curd, pickles, fermented grains).
-            5. EC:3.6.3.21 Amino Acid ABC Transporter (ATP-driven)
+            5. **EC:3.6.3.21 Amino Acid ABC Transporter (ATP-driven)**
             - This enzyme imports amino acids into the cell using energy from ATP.
             - In LAB, it supports protein synthesis, growth, and metabolism during fermentation.
             - It also contributes to flavor and texture development by influencing amino acid-derived metabolites.
