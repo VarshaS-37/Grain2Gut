@@ -42,7 +42,7 @@ if st.session_state.show_disclaimer:
         max-width: 400px;
         margin: 10px auto;
         padding: 14px 18px;
-        border-radius: 8px;
+        border-radius: 10px;
         background-color:#FEF7A2;
         font-size: 15px;
         line-height: 1.5;
