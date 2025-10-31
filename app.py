@@ -1039,24 +1039,24 @@ def summary():
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
             st.markdown("""
             1. **EC:2.7.7.7 – DNA-directed RNA Polymerase**  
-               - This enzyme drives RNA synthesis for essential gene expression and cellular function.  
-               - Stable gene expression ensures reliable probiotic activity and long-term viability in the gut environment.
+           - This enzyme drives RNA synthesis for essential gene expression and cellular function.  
+           - Stable gene expression ensures reliable probiotic activity and long-term viability in the gut environment.
             
             2. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**  
-               - Regulates energy metabolism by transferring phosphate groups to key substrates.  
-               - Efficient energy utilization enhances probiotic growth, persistence, and interaction with host cells.
+           - Regulates energy metabolism by transferring phosphate groups to key substrates.  
+           - Efficient energy utilization enhances probiotic growth, persistence, and interaction with host cells.
             
             3. **EC:3.6.4.12 – DNA Helicase**  
-               - Unwinds DNA for accurate replication and repair, maintaining genomic integrity.  
-               - Supports probiotic stability under gut stresses such as bile salts, low pH, and oxidative conditions.
+           - Unwinds DNA for accurate replication and repair, maintaining genomic integrity.  
+           - Supports probiotic stability under gut stresses such as bile salts, low pH, and oxidative conditions.
             
             4. **EC:3.6.3.14 – Proton-Transporting ATPase**  
-               - Maintains intracellular pH balance by actively pumping protons across membranes.  
-               - Enhances acid and bile tolerance, improving probiotic survival through gastrointestinal transit.
+           - Maintains intracellular pH balance by actively pumping protons across membranes.  
+           - Enhances acid and bile tolerance, improving probiotic survival through gastrointestinal transit.
             
             5. **EC:3.6.3.21 – Amino Acid ABC Transporter**  
-               - Facilitates uptake of amino acids for protein synthesis and metabolic processes.  
-               - Supports nutrient assimilation, growth, and production of beneficial metabolites like short-chain fatty acids.
+           - Facilitates uptake of amino acids for protein synthesis and metabolic processes.  
+           - Supports nutrient assimilation, growth, and production of beneficial metabolites like short-chain fatty acids.
             
             ⭐ **Key Takeaway**  
             This enzyme set enables **stable gene expression, energy efficiency, stress resistance, and nutrient utilization**, making *Enterococcus casseliflavus* a robust **probiotic candidate with strong gut survival, metabolic adaptability, and health-promoting potential**.
@@ -1064,29 +1064,29 @@ def summary():
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.markdown("""
             1. **EC:3.6.4.12 – DNA Helicase**  
-               - Unwinds DNA strands for accurate replication and repair.  
-               - By maintaining genomic integrity under gut stresses such as acid and bile exposure, it supports long-term probiotic stability and viability.
+           - Unwinds DNA strands for accurate replication and repair.  
+           - By maintaining genomic integrity under gut stresses such as acid and bile exposure, it supports long-term probiotic stability and viability.
             
             2. **EC:2.7.7.7 – DNA Polymerase**  
-               - Synthesizes new DNA during cell division, ensuring faithful genetic replication.  
-               - Promotes consistent growth and persistence of the probiotic population within the gastrointestinal tract.
+           - Synthesizes new DNA during cell division, ensuring faithful genetic replication.  
+           - Promotes consistent growth and persistence of the probiotic population within the gastrointestinal tract.
             
             3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**  
-               - Regulates energy metabolism through phosphate transfer to key intermediates.  
-               - Enhances carbohydrate utilization and energy efficiency, supporting active colonization and metabolic performance in the gut.
+           - Regulates energy metabolism through phosphate transfer to key intermediates.  
+           - Enhances carbohydrate utilization and energy efficiency, supporting active colonization and metabolic performance in the gut.
             
             4. **EC:1.1.1.1 – Alcohol Dehydrogenase**  
-               - Balances cellular redox reactions during carbohydrate metabolism.  
-               - Contributes to stress adaptation and the production of beneficial metabolites that can influence gut microecology and flavor in fermented foods.
+           - Balances cellular redox reactions during carbohydrate metabolism.  
+           - Contributes to stress adaptation and the production of beneficial metabolites that can influence gut microecology and flavor in fermented foods.
             
             5. **EC:6.3.5.5 – Carbamoyl-Phosphate Synthase**  
-               - Catalyzes the synthesis of precursors for amino acids and nucleotides.  
-               - Supports cell growth, repair, and protein biosynthesis even in nutrient-limited gastrointestinal or plant-based environments.
+           - Catalyzes the synthesis of precursors for amino acids and nucleotides.  
+           - Supports cell growth, repair, and protein biosynthesis even in nutrient-limited gastrointestinal or plant-based environments.
             
             6. **EC:6.4.1.2 – Acetyl-CoA Carboxylase**  
-               - Initiates fatty acid biosynthesis required for cell membrane formation.  
-               - Strengthens membrane integrity, enhancing acid and bile resistance and improving probiotic survival through the digestive tract.
-            
+           - Initiates fatty acid biosynthesis required for cell membrane formation.  
+           - Strengthens membrane integrity, enhancing acid and bile resistance and improving probiotic survival through the digestive tract.
+        
             ⭐ **Key Takeaway**  
             This enzyme profile demonstrates strong **genetic stability, metabolic efficiency, stress resilience, and membrane integrity**, making the strain a powerful **probiotic candidate capable of surviving gut conditions and promoting host health**.
             """)
@@ -1100,24 +1100,24 @@ def summary():
         with st.expander("Lactococcus lactis (Little Millet)"):
             st.markdown("""
             1. **EC:2.7.7.7 – DNA Polymerase**  
-               - Synthesizes new DNA strands during replication and repair to ensure accurate cell division.  
-               - By preserving genome stability under gut and environmental stresses, it supports consistent growth and reliable probiotic performance.
+           - Synthesizes new DNA strands during replication and repair to ensure accurate cell division.  
+           - By preserving genome stability under gut and environmental stresses, it supports consistent growth and reliable probiotic performance.
             
             2. **EC:3.6.4.12 – DNA Helicase**  
-               - Unwinds DNA strands to enable proper replication and repair.  
-               - Maintains genetic integrity under acidic and oxidative stress, enhancing the strain’s survival during gastrointestinal transit and product storage.
+           - Unwinds DNA strands to enable proper replication and repair.  
+           - Maintains genetic integrity under acidic and oxidative stress, enhancing the strain’s survival during gastrointestinal transit and product storage.
             
             3. **EC:2.7.1.69 – Phosphotransferase / Kinase Activity**  
-               - Transfers phosphate groups to regulate carbohydrate metabolism and energy generation.  
-               - Enables efficient utilization of dietary sugars, supporting probiotic energy balance, colonization potential, and cross-feeding within the gut microbiota.
+           - Transfers phosphate groups to regulate carbohydrate metabolism and energy generation.  
+           - Enables efficient utilization of dietary sugars, supporting probiotic energy balance, colonization potential, and cross-feeding within the gut microbiota.
             
             4. **EC:2.7.7.6 – RNA Polymerase**  
-               - Synthesizes RNA from a DNA template to drive gene expression and protein synthesis.  
-               - Active transcription ensures metabolic adaptability, allowing the strain to respond effectively to gut environmental changes and maintain probiotic functionality.
-            
+           - Synthesizes RNA from a DNA template to drive gene expression and protein synthesis.  
+           - Active transcription ensures metabolic adaptability, allowing the strain to respond effectively to gut environmental changes and maintain probiotic functionality.
+        
             5. **EC:2.3.1.128 – Ribosomal Protein Acetyltransferase**  
-               - Modifies ribosomal proteins for proper ribosome assembly and efficient protein synthesis.  
-               - Enhances cellular growth, enzyme production, and stress resilience, promoting effective colonization and metabolic activity in the host gut.
+           - Modifies ribosomal proteins for proper ribosome assembly and efficient protein synthesis.  
+           - Enhances cellular growth, enzyme production, and stress resilience, promoting effective colonization and metabolic activity in the host gut.
             
             ⭐ **Key Takeaway**  
             These enzymes collectively support **genomic stability, efficient energy metabolism, adaptive gene expression, and strong protein synthesis**, equipping the strain for **robust probiotic survival, gut colonization, and health-promoting activity**.
@@ -1145,16 +1145,16 @@ def summary():
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
            st.markdown("""
             1. **Hydrolases**  
-               - Break down complex carbohydrates, proteins, and other macromolecules into simpler, bioavailable nutrients.  
-               - Enhance nutrient release, digestibility, and prebiotic substrate availability, supporting both fermentation efficiency and gut health benefits.
+           - Break down complex carbohydrates, proteins, and other macromolecules into simpler, bioavailable nutrients.  
+           - Enhance nutrient release, digestibility, and prebiotic substrate availability, supporting both fermentation efficiency and gut health benefits.
             
             2. **Transferases**  
-               - Catalyze the transfer of functional groups between molecules, driving essential metabolic and biosynthetic pathways.  
-               - Improve energy balance, metabolic adaptability, and cellular maintenance, enabling probiotics to thrive under variable gut and fermentation conditions.
+           - Catalyze the transfer of functional groups between molecules, driving essential metabolic and biosynthetic pathways.  
+           - Improve energy balance, metabolic adaptability, and cellular maintenance, enabling probiotics to thrive under variable gut and fermentation conditions.
             
             3. **Lyases**  
-               - Catalyze bond cleavage without water, producing key intermediates and volatile compounds.  
-               - Contribute to flavor and aroma formation in fermented foods while supporting stress response and redox balance in probiotic cells.
+           - Catalyze bond cleavage without water, producing key intermediates and volatile compounds.  
+           - Contribute to flavor and aroma formation in fermented foods while supporting stress response and redox balance in probiotic cells.
             
             ⭐ **Key Takeaway**  
             Hydrolases, Transferases, and Lyases collectively enhance **nutrient bioavailability, metabolic adaptability, and sensory quality**, reinforcing the **probiotic efficacy and functional performance** of *Lactic Acid Bacteria* in millet-based fermented foods and within the gut environment.
@@ -1163,16 +1163,16 @@ def summary():
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
            st.markdown("""
             1. **Transferases**  
-               - Catalyze the transfer of functional groups between molecules, driving key metabolic and biosynthetic pathways.  
-               - Support energy balance, biosynthesis of essential biomolecules, and metabolic flexibility, enabling LAB to adapt and remain active in both fermentation and gut environments.
+           - Catalyze the transfer of functional groups between molecules, driving key metabolic and biosynthetic pathways.  
+           - Support energy balance, biosynthesis of essential biomolecules, and metabolic flexibility, enabling LAB to adapt and remain active in both fermentation and gut environments.
             
             2. **Hydrolases**  
-               - Break down complex carbohydrates, proteins, and other macromolecules into simpler, bioavailable units.  
-               - Enhance nutrient availability, digestibility, and flavor development, while supporting probiotic functionality through improved substrate utilization.
+           - Break down complex carbohydrates, proteins, and other macromolecules into simpler, bioavailable units.  
+           - Enhance nutrient availability, digestibility, and flavor development, while supporting probiotic functionality through improved substrate utilization.
             
             3. **Ligases**  
-               - Join molecules together, facilitating DNA repair, amino acid synthesis, and cellular maintenance.  
-               - Strengthen genomic stability and metabolic resilience, promoting consistent growth and survival during fermentation and gastrointestinal transit.
+           - Join molecules together, facilitating DNA repair, amino acid synthesis, and cellular maintenance.  
+           - Strengthen genomic stability and metabolic resilience, promoting consistent growth and survival during fermentation and gastrointestinal transit.
             
             ⭐ **Key Takeaway**  
             Transferases, Hydrolases, and Ligases collectively enhance **metabolic efficiency, nutrient assimilation, and cellular integrity**, contributing to **robust fermentation performance, gut adaptability, and sustained probiotic functionality** in millet-derived *Lactic Acid Bacteria*.
@@ -1183,16 +1183,16 @@ def summary():
         with st.expander("Lactococcus lactis (Little Millet)"):
             st.markdown("""
             1. **Hydrolases**  
-               - Break down complex carbohydrates, proteins, and other biopolymers into smaller, bioavailable molecules.  
-               - Enhance nutrient accessibility, improve fermentation efficiency, and contribute to better digestibility, flavor, and texture in millet-based probiotic foods.
+           - Break down complex carbohydrates, proteins, and other biopolymers into smaller, bioavailable molecules.  
+           - Enhance nutrient accessibility, improve fermentation efficiency, and contribute to better digestibility, flavor, and texture in millet-based probiotic foods.
             
             2. **Oxidoreductases**  
-               - Catalyze redox reactions that maintain cellular energy balance and redox homeostasis.  
-               - Support oxidative stress resistance, enhance antioxidant potential, and improve LAB survival during fermentation, storage, and gastrointestinal passage.
-            
+           - Catalyze redox reactions that maintain cellular energy balance and redox homeostasis.  
+           - Support oxidative stress resistance, enhance antioxidant potential, and improve LAB survival during fermentation, storage, and gastrointestinal passage.
+        
             3. **Transferases**  
-               - Transfer functional groups between molecules, driving key biosynthetic and metabolic processes.  
-               - Facilitate the formation of essential biomolecules, promoting metabolic flexibility, efficient growth, and adaptation in both food matrices and gut environments.
+           - Transfer functional groups between molecules, driving key biosynthetic and metabolic processes.  
+           - Facilitate the formation of essential biomolecules, promoting metabolic flexibility, efficient growth, and adaptation in both food matrices and gut environments.
             
             ⭐ **Key Takeaway**  
             Hydrolases, Oxidoreductases, and Transferases synergistically enhance **nutrient utilization, redox balance, and metabolic adaptability**, leading to **robust fermentation, improved probiotic survival, and functional health benefits** in millet-derived *Lactic Acid Bacteria*.
@@ -1487,36 +1487,36 @@ def summary():
             st.markdown("""
             
             1. **ANAGLYCOLYSIS-PWY – Glycolysis III (from glucose)**  
-               - Provides energy for LAB growth and survival by converting glucose to pyruvate.  
-               - Supports acid production that helps probiotics thrive and contributes to gut health.  
+           - Provides energy for LAB growth and survival by converting glucose to pyruvate.  
+           - Supports acid production that helps probiotics thrive and contributes to gut health.  
             
             2. **ARGSYNBSUB-PWY – L-Arginine Biosynthesis II (Acetyl Cycle)**  
-               - Produces arginine to support protein synthesis and bacterial metabolism.  
-               - Enhances probiotic metabolic versatility and resilience in the gut.  
+           - Produces arginine to support protein synthesis and bacterial metabolism.  
+           - Enhances probiotic metabolic versatility and resilience in the gut.  
             
             3. **PEPTIDOGLYCANSYN-PWY – Peptidoglycan Biosynthesis I**  
-               - Builds strong bacterial cell walls, maintaining structural integrity.  
-               - Ensures probiotic survival under gut stress and during food fermentation.  
+           - Builds strong bacterial cell walls, maintaining structural integrity.  
+           - Ensures probiotic survival under gut stress and during food fermentation.  
             
             4. **PWY-6386 – UDP-N-Acetylmuramoyl-Pentapeptide Biosynthesis II**  
                - Generates lysine-containing peptidoglycan precursors for robust cell walls.  
                - Supports probiotic persistence and stability in the gastrointestinal tract.  
             
             5. **PWY-6387 – UDP-N-Acetylmuramoyl-Pentapeptide Biosynthesis I**  
-               - Forms meso-diaminopimelate-containing peptidoglycan precursors.  
-               - Maintains probiotic viability and resilience under stress conditions.  
+           - Forms meso-diaminopimelate-containing peptidoglycan precursors.  
+           - Maintains probiotic viability and resilience under stress conditions.  
             
             6. **PWY-5100 – Pyruvate Fermentation to Acetate and Lactate II**  
-               - Produces lactate and acetate to generate energy anaerobically.  
-               - Helps probiotics survive in the gut and supports a healthy microbial balance.  
+           - Produces lactate and acetate to generate energy anaerobically.  
+           - Helps probiotics survive in the gut and supports a healthy microbial balance.  
             
             7. **UDPNAGSYN-PWY – UDP-N-Acetyl-D-Glucosamine Biosynthesis I**  
-               - Supplies building blocks for cell wall and peptidoglycan biosynthesis.  
-               - Maintains probiotic integrity and functionality in food and gut environments.  
+           - Supplies building blocks for cell wall and peptidoglycan biosynthesis.  
+           - Maintains probiotic integrity and functionality in food and gut environments.  
             
             8. **GALACTUROCAT-PWY – D-Galacturonate Degradation I**  
-               - Enables utilization of plant-derived sugars as energy sources.  
-               - Supports probiotic growth in plant-based foods and contributes to gut fiber metabolism.  
+           - Enables utilization of plant-derived sugars as energy sources.  
+           - Supports probiotic growth in plant-based foods and contributes to gut fiber metabolism.  
             
             ⭐ **Key Takeaway**  
             These pathways collectively enhance **energy metabolism, cell wall integrity, amino acid utilization, and fiber breakdown**, ensuring probiotics remain active, resilient, and beneficial for gut health.
@@ -1563,9 +1563,6 @@ def summary():
             st.write("Same as Weisella cibaria NM01 (Foxtail Millet)")
         with st.expander("Lactococcus lactis (Little Millet)"):
             st.markdown("""
-            **Overall Probiotic Functional Pattern**  
-            - These pathways collectively support energy production, amino acid metabolism, nucleotide biosynthesis, cell wall integrity, and fermentation efficiency in lactic acid bacteria (LAB), enhancing growth, survival, and probiotic functionality.  
-            
             **1. ANAGLYCOLYSIS-PWY**  
             - Catalyzes glycolysis, converting glucose to pyruvate and generating ATP and NADH, providing primary energy for LAB growth.  
             - Drives fermentation processes, producing acids that improve flavor, texture, and preservation of fermented foods.  
@@ -1716,7 +1713,7 @@ def summary():
         - Possesses cell wall and fermentation pathways, ensuring survival, acidification ability, and probiotic persistence.  
     
         ⭐ **Key Takeaway**  
-        - Collectively, these LAB strains display **robust metabolic versatility, structural integrity, and fermentation efficienc**
+        - Collectively, these LAB strains display **robust metabolic versatility, structural integrity, and fermentation efficiency**
         """)
       
     
