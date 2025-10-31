@@ -1722,7 +1722,7 @@ def summary():
             df = create_trait_table(millet_map, path="picrust_processed_output_files/")
             st.dataframe(df, use_container_width=True)
     with st.expander("Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?"):
-
+            st.write("")
 
 def create_trait_table(millet_map, path=""):
     
