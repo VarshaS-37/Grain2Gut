@@ -7,40 +7,6 @@ from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
 
-if "show_disclaimer" not in st.session_state:
-    st.session_state.show_disclaimer = True
-
-if st.session_state.show_disclaimer:
-
-    # Notice box at top
-    st.markdown(
-        """
-        <div style="
-            max-width: 600px;
-            margin: 10px auto;
-            padding: 12px 18px;
-            border-radius: 8px;
-            background-color: #fff4d6;
-            border: 2px solid #d19a26;
-            text-align: center;
-            font-size: 15px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            line-height: 1.4;
-        ">
-            <b>⚠️ Important Notice</b><br>
-            Please do <b>not</b> use the browser <b>Back</b> button.<br>
-            Use the <b>Sidebar</b> to navigate the app.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    col1, col2, col3 = st.columns([3,1,3])
-    with col2:
-        if st.button("Close"):
-            st.session_state.show_disclaimer = False
-            st.rerun()  
-    st.stop()
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
@@ -69,6 +35,38 @@ h2, h1 {
     background-color:#DFFBB9;}
 </style>
 """, unsafe_allow_html=True)
+if "show_disclaimer" not in st.session_state:
+    st.session_state.show_disclaimer = True
+
+if st.session_state.show_disclaimer:
+
+    # Notice box at top
+    st.markdown(
+        """
+        <div style="
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 12px 18px;
+            border-radius: 8px;
+            background-color:#FEF7A2;
+            text-align: center;
+            font-size: 15px;
+            line-height: 1.4;
+        ">
+            <b>⚠️ Important Notice</b><br>
+            Please do <b>not</b> use the browser <b>Back</b> button.<br>
+            Use the <b>Sidebar</b> to navigate the app.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    col1, col2, col3 = st.columns([3,1,3])
+    with col2:
+        if st.button("Close"):
+            st.session_state.show_disclaimer = False
+            st.rerun()  
+    st.stop()
 # ------------------------------------------------footer----------------------------------------------------------------------------------
 def footer():
     st.markdown("""
