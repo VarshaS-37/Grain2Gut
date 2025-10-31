@@ -56,8 +56,7 @@ if st.session_state.show_disclaimer:
                 <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
                 <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.</li>
             </ul>
-</div>
-
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -68,7 +67,6 @@ if st.session_state.show_disclaimer:
             st.rerun()
 
     st.stop()
-
 
 # ------------------------------------------------footer----------------------------------------------------------------------------------
 def footer():
