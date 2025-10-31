@@ -609,15 +609,11 @@ def brite():
             "top_5_brite_subclass": ec_top_subclass
         }
         # -------- KO --------
-        ko_file = f"picrust_processed_output_files/ko{suffix}_word.csv"
+        ko_file = f"picrust_processed_output_files/ko{suffix}.csv"
         try:
             ko_df = pd.read_csv(ko_file, encoding="latin1")
         except:
             continue
-        if "brite_class" not in ko_df.columns:
-            continue
-        if "brite_subclass" not in ko_df.columns:
-            ko_df["brite_subclass"] = "Unknown"
         ko_df["brite_class"] = ko_df["brite_class"].astype(str).str.split(";")
         ko_df["brite_subclass"] = ko_df["brite_subclass"].astype(str).str.split(";")
         ko_df = ko_df.explode("brite_class").explode("brite_subclass")
