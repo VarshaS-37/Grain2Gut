@@ -583,101 +583,45 @@ def ec_class():
         - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
         """)
 #-----------------------------------------------------------brite class-------------------------------------------------------------------
-def brite_class():
-    # ... your sidebar code ...
-    st.markdown("<h4 style='text-align:center;'>BRITE class & subclass Distribution</h4>", unsafe_allow_html=True)
-    with st.sidebar:
-        if st.button("Back to Home"): 
-            go_to("home") 
-        if st.button("Back to Analysis Menu"):
-            go_to("milletwise_analysis") 
-    with st.sidebar.expander("What is a BRITE class?", expanded=False): 
-        st.markdown("""
-        - BRITE classes are top-level functional categories in the KEGG database.  
-        - They group genes, proteins, and pathways based on broad biological roles, such as enzymes, transporters, or signaling proteins.
-        """, unsafe_allow_html=True)
-    with st.sidebar.expander("What is a BRITE subclass?", expanded=False): 
-        st.markdown("""
-        - BRITE subclasses are more specific categories within each BRITE class.  
-        - They further organize proteins or pathways by detailed functions, like specific enzyme families, types of transporters, or metabolic pathways.
-        """, unsafe_allow_html=True)
-    with st.sidebar.expander("Why are they relevant?", expanded=False): 
-        st.markdown("""
-        - Helps identify enzymes and pathways that probiotic bacteria can use to metabolize food components.
-        - Shows which bioactive compounds (vitamins, organic acids, peptides) they might produce.
-        - Reveals mechanisms for survival and interaction</b> in food or the gut, like stress response or nutrient transport.
-        """, unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([3, 3, 3]) 
-    with col2:
-        st.write("")
-        st.markdown("<h5 style='text-align:center;'>Select distribution category</h5>", unsafe_allow_html=True)
-        selected_dist = st.selectbox(
-            "",
-            ['EC Distribution','KO Distriution'],
-            label_visibility="collapsed",
-            key=f"brite_class_select_{st.session_state.page}",
-        )
-        st.markdown("<h5 style='text-align:center;'>Select the Millet LAB</h5>", unsafe_allow_html=True)
-        selected_strain = st.selectbox(
-            "",
-            list(millet_map.keys()),
-            label_visibility="collapsed",
-            key=f"pwy_strain_select_{st.session_state.page}",
-        )
-    suffix = millet_map[selected_strain]
-    try:
-        df = pd.read_csv(f"picrust_processed_output_files/{selected_dist[0:2].lower()}{suffix}.csv")
-    except FileNotFoundError:
-        st.error(f"File {selected_dist[0:2].lower()}{suffix}.csv not found.")
-        return
-    
-    # Validate columns
-    required_cols = ["brite_class", "brite_subclass"]
-    for col in required_cols:
-        if col not in df.columns:
-            st.warning(f"'{col}' column not found in the CSV.")
-            return
-  # --- Split semicolon-separated entries and count ---
-    # Brite Class
-    class_counts = (
-        df["brite_class"].dropna().str.split(";").explode().str.strip().value_counts()
-    )
-    class_counts = class_counts[class_counts >= 3]  # Keep only counts >= 3
-    class_counts = class_counts.reset_index()
-    class_counts.columns = ["Brite Class", "Count"]
-    # Brite Subclass
-    subclass_counts = (
-        df["brite_subclass"].dropna().str.split(";").explode().str.strip().value_counts()
-    )
-    subclass_counts = subclass_counts[subclass_counts >= 3]  # Keep only counts >= 3
-    subclass_counts = subclass_counts.reset_index()
-    subclass_counts.columns = ["Brite Subclass", "Count"]
-    left_col, right_col = st.columns([2, 2])
-    with left_col:
-        fig, ax = plt.subplots(figsize=(6, 4))
-        bars=ax.bar(class_counts["Brite Class"], class_counts["Count"], color="#4C72B0")
-        ax.set_xlabel("Brite Class")
-        ax.set_ylabel("Count")
-        ax.set_title(f"Brite Class Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
-        # Add value labels on top of bars
-        for bar in bars:
-            height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)), ha='center', va='bottom', fontsize=9)
-        plt.tight_layout()
-        st.pyplot(fig)
-    with right_col:
-        fig, ax = plt.subplots(figsize=(6, 4))
-        bars=ax.bar(subclass_counts["Brite Subclass"], subclass_counts["Count"], color="#4C72B0")
-        ax.set_xlabel("Brite Subclass")
-        ax.set_ylabel("Count")
-        ax.set_title(f"Brite Subclass Distribution - {selected_strain}")
-        plt.xticks(rotation=45, ha="right")
-        for bar in bars:
-            height = bar.get_height()
-            ax.text(bar.get_x() + bar.get_width()/2, height, str(int(height)),ha='center', va='bottom', fontsize=9)
-        plt.tight_layout()
-        st.pyplot(fig)
+
+import glob
+import os
+def brite():
+    result = {"EC": {}, "KO": {}}
+    file_patterns = {
+        "EC": "picrust_processed_output_files/ec*.csv",
+        "KO": "picrust_processed_output_files/ko*.csv"
+    }
+    for trait_type, pattern in file_patterns.items():
+        files = glob.glob(pattern)
+        for f in files:
+            strain_id = os.path.basename(f).replace(".csv", "")  # ec77 or ko79 etc.
+            df = pd.read_csv(f)
+            # Make sure required columns exist
+            if not {"brite_class", "brite_subclass"}.issubset(df.columns):
+                continue
+            # Top 5 Classes
+            top_class = (
+                df["brite_class"]
+                .dropna()
+                .value_counts()
+                .head(5)
+                .to_dict()
+            )
+            # Top 5 Subclasses
+            top_subclass = (
+                df["brite_subclass"]
+                .dropna()
+                .value_counts()
+                .head(5)
+                .to_dict()
+            )
+            result[trait_type][strain_id] = {
+                "top_5_brite_class": top_class,
+                "top_5_brite_subclass": top_subclass
+            }
+    return result
+
         
 #----------------------------------------------------trait distribution--------------------------------------------------------------------------------            
 def trait():
@@ -1033,6 +977,7 @@ def summary():
             To be added
             """)
     st.markdown("<h3 style='text-align:center;'>Summary</h4>", unsafe_allow_html=True) 
+    #---------------------------------ec analysis-------------------------------------------------------
     st.markdown("<h4 style='text-align:center;'>EC Analysis Summary</h4>", unsafe_allow_html=True) 
     with st.expander("Which are the top abundant EC numbers and what do they imply? "):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
@@ -1185,6 +1130,7 @@ def summary():
             | **Ligases** *(distinct in Weissella cibaria)* | Join molecules together, essential for DNA maintenance and biosynthesis. | Supports **cellular stability**, integrity, and **long-term fermentation resilience**. |
             
            ⭐ **Key Takeaway**
+            
             Although each millet-derived LAB strain shows its own enzyme strengths, **Hydrolases and Transferases are consistently dominant**, highlighting:
             - **Strong nutrient breakdown and conversion**
             - **Efficient sugar and energy metabolism**
@@ -1287,7 +1233,7 @@ def summary():
             st.write("Answer")      
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
+            st.write(brite())
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.write("Answer")
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
