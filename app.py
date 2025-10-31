@@ -585,17 +585,8 @@ def ec_class():
 #-----------------------------------------------------------brite class-------------------------------------------------------------------
 import glob
 import os
+
 def brite():
-    import pandas as pd
-
-millet_map = {
-    "Enterococcus casseliflavus (Proso Millet)": "77",
-    "Weisella cibaria NM01 (Foxtail Millet)": "78",
-    "Weisella cibaria SM01 (Little Millet)": "79",
-    "Lactococcus lactis (Little Millet)": "80"
-}
-
-def get_trait_summary():
     result = {"EC": {}, "KO": {}}
 
     for strain_name, suffix in millet_map.items():
