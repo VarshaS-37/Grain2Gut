@@ -1720,6 +1720,7 @@ def summary():
     st.markdown("<h4 style='text-align:center;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
     with st.expander("Which are the common and unique biological traits and whay do they mean?"):
             df = create_trait_table(millet_map, path="picrust_processed_output_files/")
+            df = style_trait_table(df)
             st.dataframe(df, use_container_width=True)
     with st.expander("Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?"):
             st.write("")
@@ -1753,10 +1754,9 @@ def create_trait_table(millet_map, path=""):
     trait_df.index.name = "Trait"
     
     return trait_df
-
-
-
-       
+def style_trait_table(df):
+    return df.style.applymap(lambda x: 'background-color: lightgreen' if x == "Yes" else '')
+     
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
