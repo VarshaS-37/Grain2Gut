@@ -1212,7 +1212,7 @@ def summary():
             
             **Isolate-wise Functional Summary**
             
-            **1) Enterococcus casseliflavus (Proso Millet)**
+            1. **Enterococcus casseliflavus (Proso Millet)**
             
             This strain shows **strong and diverse metabolic abilities**.
             
@@ -1222,11 +1222,8 @@ def summary():
             - **Stable cellular function:** supports growth in different conditions  
             
             **Interpretation:** A **versatile and strong fermenter**, good for dynamic fermentation environments.
-            
-            ---
-            
-            **2) Weisella cibaria NM01 (Foxtail Millet)**  
-            **3) Weisella cibaria SM01 (Little Millet)**
+            2. **Weisella cibaria NM01 (Foxtail Millet)**  
+            3. **Weisella cibaria SM01 (Little Millet)**
             
             Both isolates have **very similar functional behavior**.
             
@@ -1234,12 +1231,9 @@ def summary():
             - **Carbohydrate and energy metabolism:** breaks down plant sugars well  
             - **DNA repair and cell maintenance:** supports steady fermentation  
             - **Moderate amino acid metabolism:** contributes to mild flavor changes  
-            
+        
             **Interpretation:** These are **mild fermenters**, useful for controlled acidity and gentle flavor development.
-            
-            ---
-            
-            **4) Lactococcus lactis (Little Millet)**
+            4. **Lactococcus lactis (Little Millet)**
             
             This strain is **specialized in carbohydrate and amino acid metabolism**.
             
@@ -1250,9 +1244,7 @@ def summary():
             
             **Interpretation:** A **very good starter culture**, helps ensure consistent taste, texture, and fermentation quality.
             
-            ---
-            
-            Key Comparative Insight
+            **Key Comparative Insight**
             
             | Strain | Best Role | Functional Behavior |
             |-------|-----------|-------------------|
