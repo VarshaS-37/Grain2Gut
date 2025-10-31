@@ -6,6 +6,70 @@ from upsetplot import UpSet, from_memberships
 from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
+import streamlit as st
+
+if "show_popup" not in st.session_state:
+    st.session_state.show_popup = True
+
+# Popup CSS + HTML
+popup_style = """
+<style>
+.popup-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+.popup-content {
+    background: #fffef5;
+    padding: 25px 35px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.25);
+    text-align: center;
+    border: 2px solid #e0b252;
+    font-size: 18px;
+}
+.close-btn {
+    margin-top: 15px;
+    padding: 6px 18px;
+    border-radius: 8px;
+    border: none;
+    background-color: #d48b00;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+.close-btn:hover {
+    background-color: #b17300;
+}
+</style>
+"""
+
+# Show Popup
+if st.session_state.show_popup:
+    st.markdown(popup_style, unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div class="popup-box">
+            <div class="popup-content">
+                <b>⚠️ Important:</b><br><br>
+                Please do <b>not</b> use the browser <b>Back</b> button.<br>
+                Use the <b>Sidebar</b> to navigate between pages.<br>
+                <button class="close-btn" onclick="window.location.reload()">Close</button>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+    st.stop()   # Stop the rest of the app until popup is closed
+
+
 
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
