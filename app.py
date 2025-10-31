@@ -7,6 +7,8 @@ from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
 
+import streamlit as st
+
 # Check if user has accepted disclaimer
 if "disclaimer_accepted" not in st.session_state:
     st.session_state.disclaimer_accepted = False
@@ -15,27 +17,31 @@ if not st.session_state.disclaimer_accepted:
     st.markdown(
         """
         <div style="
-            padding: 20px; 
-            border-radius: 10px; 
-            background-color: #ffe8c4; 
-            border: 2px solid #d38b00;
+            max-width: 450px;
+            margin: auto;
+            padding: 12px; 
+            border-radius: 8px; 
+            background-color: #fff4d6; 
+            border: 1.5px solid #d19a26;
             text-align: center;
-            font-size: 18px;
+            font-size: 15px;
+            line-height: 1.4;
         ">
-        <b>⚠️ Disclaimer:</b><br><br>
-        Please do <b>NOT</b> use the browser <b>Back</b> button.<br>
-        It will exit the app.<br><br>
-        Use the <b>Sidebar</b> to move between pages.
+        <b>⚠️ Disclaimer</b><br>
+        Do <b>not</b> use the browser <b>Back</b> button.<br>
+        Use the <b>Sidebar</b> to navigate pages.
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    if st.button("I Understand ✅"):
+    st.write("")  # small space
+
+    if st.button("Close"):
         st.session_state.disclaimer_accepted = True
 
-    # Stop page until the button is clicked
     st.stop()
+
 
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
