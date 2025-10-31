@@ -1205,7 +1205,7 @@ def summary():
             **Overall Functional Pattern**
             
             Across all isolates, **Metabolism** is the most dominant BRITE class.  
-            This means these LAB strains are **actively involved in breaking down nutrients** and **driving fermentation** — helping:
+            This means these LAB strains are actively involved in breaking down nutrients** and driving fermentation helping:
             - Improve flavor  
             - Increase digestibility  
             - Produce useful fermentation products  
@@ -1213,36 +1213,34 @@ def summary():
             **Isolate-wise Functional Summary**
             
             1. **Enterococcus casseliflavus (Proso Millet)**
-            
-            This strain shows **strong and diverse metabolic abilities**.
-            
+          
             **Key Functional Strengths:**
-            - **Amino acid metabolism:** improves taste and nutritional value  
-            - **Signal and transport systems:** helps survival during fermentation  
-            - **Stable cellular function:** supports growth in different conditions  
+            - Amino acid metabolism: improves taste and nutritional value  
+            - Signal and transport systems: helps survival during fermentation  
+            - Stable cellular function: supports growth in different conditions  
             
-            **Interpretation:** A **versatile and strong fermenter**, good for dynamic fermentation environments.
+            **Interpretation:** A versatile and strong fermenter, good for dynamic fermentation environments.
+            
             2. **Weisella cibaria NM01 (Foxtail Millet)**  
             3. **Weisella cibaria SM01 (Little Millet)**
             
-            Both isolates have **very similar functional behavior**.
+            Both isolates have very similar functional behavior.
             
             **Key Functional Strengths:**
-            - **Carbohydrate and energy metabolism:** breaks down plant sugars well  
-            - **DNA repair and cell maintenance:** supports steady fermentation  
-            - **Moderate amino acid metabolism:** contributes to mild flavor changes  
+            - Carbohydrate and energy metabolism: breaks down plant sugars well  
+            - DNA repair and cell maintenance: supports steady fermentation  
+            - Moderate amino acid metabolism: contributes to mild flavor changes  
         
-            **Interpretation:** These are **mild fermenters**, useful for controlled acidity and gentle flavor development.
+            **Interpretation:** These are mild fermenters, useful for controlled acidity and gentle flavor development.
+            
             4. **Lactococcus lactis (Little Millet)**
             
-            This strain is **specialized in carbohydrate and amino acid metabolism**.
-            
             **Key Functional Strengths:**
-            - **Strong carbohydrate metabolism:** excellent as a fermentation starter  
-            - **Amino acid and lipid metabolism:** improves taste and aroma  
-            - **Stable genome:** reliable performance in fermentation  
+            - Strong carbohydrate metabolism: excellent as a fermentation starter  
+            - Amino acid and lipid metabolism: improves taste and aroma  
+            - Stable genome: reliable performance in fermentation  
             
-            **Interpretation:** A **very good starter culture**, helps ensure consistent taste, texture, and fermentation quality.
+            **Interpretation:** A very good starter culture, helps ensure consistent taste, texture, and fermentation quality.
             
             **Key Comparative Insight**
             
