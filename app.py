@@ -583,46 +583,62 @@ def ec_class():
         - **Dominant EC classes:** {', '.join(class_counts['EC Class'].head(3).tolist())}
         """)
 #-----------------------------------------------------------brite class-------------------------------------------------------------------
-
 import glob
 import os
 def brite():
-    result = {"EC": {}, "KO": {}}
-    file_patterns = {
-        "EC": "picrust_processed_output_files/ec*.csv",
-        "KO": "picrust_processed_output_files/ko*.csv"
-    }
-    for trait_type, pattern in file_patterns.items():
-        files = glob.glob(pattern)
-        for f in files:
-            strain_id = os.path.basename(f).replace(".csv", "")  # ec77 or ko79 etc.
-            df = pd.read_csv(f, encoding="latin1")
-            # Make sure required columns exist
-            if not {"brite_class", "brite_subclass"}.issubset(df.columns):
-                print("no col found")
-            # Top 5 Classes
-            top_class = (
-                df["brite_class"]
-                .dropna()
-                .value_counts()
-                .head(5)
-                .to_dict()
-            )
-            # Top 5 Subclasses
-            top_subclass = (
-                df["brite_subclass"]
-                .dropna()
-                .value_counts()
-                .head(5)
-                .to_dict()
-            )
-            result[trait_type][strain_id] = {
-                "top_5_brite_class": top_class,
-                "top_5_brite_subclass": top_subclass
-            }
-    return result
+    import pandas as pd
 
-        
+millet_map = {
+    "Enterococcus casseliflavus (Proso Millet)": "77",
+    "Weisella cibaria NM01 (Foxtail Millet)": "78",
+    "Weisella cibaria SM01 (Little Millet)": "79",
+    "Lactococcus lactis (Little Millet)": "80"
+}
+
+def get_trait_summary():
+    result = {"EC": {}, "KO": {}}
+
+    for strain_name, suffix in millet_map.items():
+
+        # -------- EC --------
+        ec_file = f"picrust_processed_output_files/ec{suffix}_word.csv"
+        try:
+            ec_df = pd.read_csv(ec_file, encoding="latin1")
+        except:
+            continue
+        ec_df["brite_class"] = ec_df["brite_class"].astype(str).str.split(";")
+        ec_df["brite_subclass"] = ec_df["brite_subclass"].astype(str).str.split(";")
+        ec_df = ec_df.explode("brite_class").explode("brite_subclass")
+        ec_df["brite_class"] = ec_df["brite_class"].str.strip()
+        ec_df["brite_subclass"] = ec_df["brite_subclass"].str.strip()
+        ec_top_class = ec_df["brite_class"].dropna().value_counts().head(5).to_dict()
+        ec_top_subclass = ec_df["brite_subclass"].dropna().value_counts().head(5).to_dict()
+        result["EC"][strain_name] = {
+            "top_5_brite_class": ec_top_class,
+            "top_5_brite_subclass": ec_top_subclass
+        }
+        # -------- KO --------
+        ko_file = f"picrust_processed_output_files/ko{suffix}_word.csv"
+        try:
+            ko_df = pd.read_csv(ko_file, encoding="latin1")
+        except:
+            continue
+        if "brite_class" not in ko_df.columns:
+            continue
+        if "brite_subclass" not in ko_df.columns:
+            ko_df["brite_subclass"] = "Unknown"
+        ko_df["brite_class"] = ko_df["brite_class"].astype(str).str.split(";")
+        ko_df["brite_subclass"] = ko_df["brite_subclass"].astype(str).str.split(";")
+        ko_df = ko_df.explode("brite_class").explode("brite_subclass")
+        ko_df["brite_class"] = ko_df["brite_class"].str.strip()
+        ko_df["brite_subclass"] = ko_df["brite_subclass"].str.strip()
+        ko_top_class = ko_df["brite_class"].dropna().value_counts().head(5).to_dict()
+        ko_top_subclass = ko_df["brite_subclass"].dropna().value_counts().head(5).to_dict()
+        result["KO"][strain_name] = {
+            "top_5_brite_class": ko_top_class,
+            "top_5_brite_subclass": ko_top_subclass
+        }
+    return result 
 #----------------------------------------------------trait distribution--------------------------------------------------------------------------------            
 def trait():
     st.markdown("<h4 style='text-align:center;'>Biological Trait Distribution</h4>", unsafe_allow_html=True)
