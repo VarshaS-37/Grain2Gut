@@ -35,6 +35,7 @@ h2, h1 {
     background-color:#DFFBB9;}
 </style>
 """, unsafe_allow_html=True)
+#---------------------------disclaimer-----------------------------
 if "show_disclaimer" not in st.session_state:
     st.session_state.show_disclaimer = True
 
@@ -44,7 +45,6 @@ if st.session_state.show_disclaimer:
     st.markdown(
         """
         <div style="
-            max-width: 600px;
             margin: 10px auto;
             padding: 12px 18px;
             border-radius: 8px;
