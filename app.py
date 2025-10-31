@@ -55,7 +55,6 @@ if st.session_state.show_disclaimer:
             line-height: 1.4;
         ">
             <b>Welcome to Grain2Gut</b><br> 🌾
-            
             ⚠️ <b>Disclaimer</b><br>
             <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
             <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.<br></li>
