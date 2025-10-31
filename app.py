@@ -40,8 +40,7 @@ if "show_disclaimer" not in st.session_state:
     st.session_state.show_disclaimer = True
 
 if st.session_state.show_disclaimer:
-    st.markdown(
-    """
+    st.markdown("""
     <div style="
         max-width: 400px;
         margin: 10px auto;
