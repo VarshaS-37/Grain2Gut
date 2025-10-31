@@ -1201,7 +1201,66 @@ def summary():
                 st.markdown("**Top 5 BRITE Sub-classes:**")
                 st.write(values["top_5_brite_subclass"])
         with st.expander("Overall Summary"):
-            st.write("Answer")      
+            st.markdown("""
+            ## Overall Functional Pattern
+
+            Across all isolates, **Metabolism** is the most dominant BRITE class — indicating that these LAB strains are **highly metabolically active**, contributing to:
+            - Fermentation efficiency  
+            - Nutrient conversion  
+            - Flavor and aroma development in millet-based foods  
+           
+            ## Isolate-wise Functional Summary
+            
+            ### **1) Enterococcus casseliflavus (Proso Millet)**
+            
+            A **highly adaptable** and **metabolically diverse** strain.
+            
+            **Key Functional Strengths:**
+            - **Amino acid metabolism:** flavor enhancement + improved nutrient availability  
+            - **Signal transduction & transport:** survival under fermentation stress  
+            - **Balanced cellular processes:** supports robust growth and adaptability  
+            
+            **Interpretation:** Strong, versatile fermenter suitable for dynamic fermentation environments.
+            
+            ---
+            
+            ### **2) Weisella cibaria NM01 (Foxtail Millet)**  
+            ### **3) Weisella cibaria SM01 (Little Millet)**
+            
+            These two isolates show **very similar functional profiles**.
+            
+            **Key Functional Strengths:**
+            - **Carbohydrate & energy metabolism:** efficient use of plant sugars during fermentation  
+            - **Replication & repair:** supports stable and consistent growth  
+            - **Moderate amino acid metabolism:** contributes to gentle flavor development  
+            
+            **Interpretation:** Efficient **mild fermenters** ideal for balanced acidity and flavor enhancement.
+            
+            ---
+            
+            ### **4) Lactococcus lactis (Little Millet)**
+            
+            A strain with **high metabolic specialization**, especially in carbohydrate and amino acid pathways.
+            
+            **Key Functional Strengths:**
+            - **Carbohydrate metabolism:** efficient fermentation starter  
+            - **Amino acid & lipid metabolism:** richer flavor compound production  
+            - **Stable genome maintenance:** reliable performance  
+            
+            **Interpretation:** **Ideal starter culture** for consistent fermentation, texture, and flavor improvement.
+            
+            ---
+            
+            ## Key Comparative Insight
+            
+            | Strain | Best Functional Role | Functional Signature |
+            |-------|----------------------|---------------------|
+            | **E. casseliflavus** | Versatile fermenter | Broad, adaptive metabolism |
+            | **W. cibaria NM01 & SM01** | Mild, balanced fermenters | Carbohydrate-centered metabolism |
+            | **L. lactis** | Strong fermentation starter | High carbohydrate & amino acid metabolism |
+            
+            """)
+                  
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
 
