@@ -596,7 +596,7 @@ def brite():
         files = glob.glob(pattern)
         for f in files:
             strain_id = os.path.basename(f).replace(".csv", "")  # ec77 or ko79 etc.
-            df = pd.read_csv(f)
+            df = pd.read_csv(f, encoding="latin1")
             # Make sure required columns exist
             if not {"brite_class", "brite_subclass"}.issubset(df.columns):
                 continue
