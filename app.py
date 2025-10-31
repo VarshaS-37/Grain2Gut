@@ -37,7 +37,7 @@ if not st.session_state.disclaimer_accepted:
         unsafe_allow_html=True
     )
 
-    col1, col2, col3 = st.columns([3, 2, 3])
+    col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
         if st.button("Close"):
             st.session_state.disclaimer_accepted = True
