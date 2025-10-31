@@ -7,20 +7,11 @@ from itertools import combinations
 
 st.set_page_config(layout="wide")
 
-drive_link = "https://drive.google.com/file/d/1I-w7gqzXhI0ZTRYfvdUrj-JbuGY-9fSE/view?usp=drive_link"
-
-video_html = f"""
-<iframe src="{drive_link}" 
-style="position: fixed; left: 0; top: 0; min-width: 100%; min-height: 100%; 
-z-index: -1; border:none;" allow="autoplay"></iframe>
-"""
-
-st.markdown(video_html, unsafe_allow_html=True)
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
 .stApp {
-    #background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
+    background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
     background-size: cover;
     background-attachment: fixed;}
 .block-container {
