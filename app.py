@@ -592,7 +592,7 @@ def brite():
     for strain_name, suffix in millet_map.items():
 
         # -------- EC --------
-        ec_file = f"picrust_processed_output_files/ec{suffix}_word.csv"
+        ec_file = f"picrust_processed_output_files/ec{suffix}.csv"
         try:
             ec_df = pd.read_csv(ec_file, encoding="latin1")
         except:
