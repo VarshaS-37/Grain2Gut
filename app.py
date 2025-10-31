@@ -1193,15 +1193,13 @@ def summary():
             - **Stable growth and stress adaptation**
             """)         
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each EC number and what do they mean?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            x=brite()
-            st.write(x)
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
+        dict=brite()
+        for isolate, values dict["EC"].items():
+            with st.expander(isolate):
+                st.markdown("**Top 5 BRITE Classes:**")
+                st.write(values["top_5_brite_class"])
+                st.markdown("**Top 5 BRITE Sub-classes:**")
+                st.write(values["top_5_brite_subclass"])
         with st.expander("Overall Summary"):
             st.write("Answer")      
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
