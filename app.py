@@ -7,51 +7,6 @@ from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
 
-# Check if user has accepted disclaimer
-if "disclaimer_accepted" not in st.session_state:
-    st.session_state.disclaimer_accepted = False
-
-if not st.session_state.disclaimer_accepted:
-
-    st.markdown(
-        """
-        <div style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 60vh;
-        ">
-            <div style="
-                max-width: 420px;
-                padding: 18px 20px;
-                border-radius: 10px;
-                background-color: #fff4d6; 
-                border: 2px solid #d19a26;
-                text-align: center;
-                font-size: 15px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.18);
-                line-height: 1.5;
-            ">
-                <b>⚠️ Disclaimer</b><br><br>
-                Please do <b>not</b> use the browser <b>Back</b> button.<br>
-                Use the <b>Sidebar</b> to move between pages.
-                
-                style="
-                    padding: 6px 20px;
-                    border-radius: 6px;
-                    border: none;
-                    background-color: #d19a26;
-                    color: white;
-                    font-size: 15px;
-                    cursor: pointer;
-                ">Close</button>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-    st.stop()
-
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
