@@ -1481,48 +1481,46 @@ def summary():
         - A reliable probiotic with sustained energy and nutrient metabolism, promoting digestive wellness and balanced gut flora.
         """)
 
-    
-     
     st.markdown("<h4 style='text-align:center;'>PWY Analysis Summary</h4>", unsafe_allow_html=True) 
     with st.expander("Which are the pathways which have completeness as 1 and what do they imply?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-        st.markdown("""
-        
-        1. **ANAGLYCOLYSIS-PWY – Glycolysis III (from glucose)**  
-           - Provides energy for LAB growth and survival by converting glucose to pyruvate.  
-           - Supports acid production that helps probiotics thrive and contributes to gut health.  
-        
-        2. **ARGSYNBSUB-PWY – L-Arginine Biosynthesis II (Acetyl Cycle)**  
-           - Produces arginine to support protein synthesis and bacterial metabolism.  
-           - Enhances probiotic metabolic versatility and resilience in the gut.  
-        
-        3. **PEPTIDOGLYCANSYN-PWY – Peptidoglycan Biosynthesis I**  
-           - Builds strong bacterial cell walls, maintaining structural integrity.  
-           - Ensures probiotic survival under gut stress and during food fermentation.  
-        
-        4. **PWY-6386 – UDP-N-Acetylmuramoyl-Pentapeptide Biosynthesis II**  
-           - Generates lysine-containing peptidoglycan precursors for robust cell walls.  
-           - Supports probiotic persistence and stability in the gastrointestinal tract.  
-        
-        5. **PWY-6387 – UDP-N-Acetylmuramoyl-Pentapeptide Biosynthesis I**  
-           - Forms meso-diaminopimelate-containing peptidoglycan precursors.  
-           - Maintains probiotic viability and resilience under stress conditions.  
-        
-        6. **PWY-5100 – Pyruvate Fermentation to Acetate and Lactate II**  
-           - Produces lactate and acetate to generate energy anaerobically.  
-           - Helps probiotics survive in the gut and supports a healthy microbial balance.  
-        
-        7. **UDPNAGSYN-PWY – UDP-N-Acetyl-D-Glucosamine Biosynthesis I**  
-           - Supplies building blocks for cell wall and peptidoglycan biosynthesis.  
-           - Maintains probiotic integrity and functionality in food and gut environments.  
-        
-        8. **GALACTUROCAT-PWY – D-Galacturonate Degradation I**  
-           - Enables utilization of plant-derived sugars as energy sources.  
-           - Supports probiotic growth in plant-based foods and contributes to gut fiber metabolism.  
-        
-        ⭐ **Key Takeaway**  
-        These pathways collectively enhance **energy metabolism, cell wall integrity, amino acid utilization, and fiber breakdown**, ensuring probiotics remain active, resilient, and beneficial for gut health.
-        """)
+            st.markdown("""
+            
+            1. **ANAGLYCOLYSIS-PWY – Glycolysis III (from glucose)**  
+               - Provides energy for LAB growth and survival by converting glucose to pyruvate.  
+               - Supports acid production that helps probiotics thrive and contributes to gut health.  
+            
+            2. **ARGSYNBSUB-PWY – L-Arginine Biosynthesis II (Acetyl Cycle)**  
+               - Produces arginine to support protein synthesis and bacterial metabolism.  
+               - Enhances probiotic metabolic versatility and resilience in the gut.  
+            
+            3. **PEPTIDOGLYCANSYN-PWY – Peptidoglycan Biosynthesis I**  
+               - Builds strong bacterial cell walls, maintaining structural integrity.  
+               - Ensures probiotic survival under gut stress and during food fermentation.  
+            
+            4. **PWY-6386 – UDP-N-Acetylmuramoyl-Pentapeptide Biosynthesis II**  
+               - Generates lysine-containing peptidoglycan precursors for robust cell walls.  
+               - Supports probiotic persistence and stability in the gastrointestinal tract.  
+            
+            5. **PWY-6387 – UDP-N-Acetylmuramoyl-Pentapeptide Biosynthesis I**  
+               - Forms meso-diaminopimelate-containing peptidoglycan precursors.  
+               - Maintains probiotic viability and resilience under stress conditions.  
+            
+            6. **PWY-5100 – Pyruvate Fermentation to Acetate and Lactate II**  
+               - Produces lactate and acetate to generate energy anaerobically.  
+               - Helps probiotics survive in the gut and supports a healthy microbial balance.  
+            
+            7. **UDPNAGSYN-PWY – UDP-N-Acetyl-D-Glucosamine Biosynthesis I**  
+               - Supplies building blocks for cell wall and peptidoglycan biosynthesis.  
+               - Maintains probiotic integrity and functionality in food and gut environments.  
+            
+            8. **GALACTUROCAT-PWY – D-Galacturonate Degradation I**  
+               - Enables utilization of plant-derived sugars as energy sources.  
+               - Supports probiotic growth in plant-based foods and contributes to gut fiber metabolism.  
+            
+            ⭐ **Key Takeaway**  
+            These pathways collectively enhance **energy metabolism, cell wall integrity, amino acid utilization, and fiber breakdown**, ensuring probiotics remain active, resilient, and beneficial for gut health.
+            """)
 
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.markdown("""
