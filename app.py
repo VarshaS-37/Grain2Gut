@@ -607,8 +607,30 @@ def brite():
         ec_df["brite_class"] = ec_df["brite_class"].replace(["", " ", "nan", None], pd.NA)
         ec_df["brite_subclass"] = ec_df["brite_subclass"].replace(["", " ", "nan", None], pd.NA)
 
-        ec_top_class = ec_df["brite_class"].dropna().value_counts().to_dict()
-        ec_top_subclass = ec_df["brite_subclass"].dropna().value_counts().to_dict()
+        irrelevant_keywords = [
+            "Cancer",
+            "disease",
+            "viral",
+            "bacterial",
+            "parasitic",
+            "Endocrine",
+            "Cardiovascular",
+            "Neurodegenerative",
+            "Immune system",
+            "Substance dependence",
+            "Aging"
+        ]
+        def is_relevant(name):
+            if pd.isna(name): 
+                return False
+            return not any(kw.lower() in name.lower() for kw in irrelevant_keywords)
+  
+        filtered_class = ec_df["brite_class"].dropna().apply(lambda x: x if is_relevant(x) else None).dropna()
+        filtered_subclass = ec_df["brite_subclass"].dropna().apply(lambda x: x if is_relevant(x) else None).dropna()
+      
+        ec_top_class = filtered_class.value_counts().head(5).to_dict()
+        ec_top_subclass = filtered_subclass.value_counts().head(5).to_dict()
+        
         result["EC"][strain_name] = {
             "top_5_brite_class": ec_top_class,
             "top_5_brite_subclass": ec_top_subclass
@@ -628,9 +650,30 @@ def brite():
         
         ko_df["brite_class"] = ko_df["brite_class"].replace(["", " ", "nan", None], pd.NA)
         ko_df["brite_subclass"] = ko_df["brite_subclass"].replace(["", " ", "nan", None], pd.NA)
+        irrelevant_keywords = [
+            "Cancer",
+            "disease",
+            "viral",
+            "bacterial",
+            "parasitic",
+            "Endocrine",
+            "Cardiovascular",
+            "Neurodegenerative",
+            "Immune system",
+            "Substance dependence",
+            "Aging"
+        ]
+        def is_relevant(name):
+            if pd.isna(name): 
+                return False
+            return not any(kw.lower() in name.lower() for kw in irrelevant_keywords)
+  
+        filtered_class = ko_df["brite_class"].dropna().apply(lambda x: x if is_relevant(x) else None).dropna()
+        filtered_subclass = ko_df["brite_subclass"].dropna().apply(lambda x: x if is_relevant(x) else None).dropna()
+      
+        ko_top_class = filtered_class.value_counts().head(5).to_dict()
+        ko_top_subclass = filtered_subclass.value_counts().head(5).to_dict()
 
-        ko_top_class = ko_df["brite_class"].dropna().value_counts().to_dict()
-        ko_top_subclass = ko_df["brite_subclass"].dropna().value_counts().to_dict()
         result["KO"][strain_name] = {
             "top_5_brite_class": ko_top_class,
             "top_5_brite_subclass": ko_top_subclass
