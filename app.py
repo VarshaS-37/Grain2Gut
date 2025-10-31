@@ -1718,83 +1718,45 @@ def summary():
       
     
     st.markdown("<h4 style='text-align:center;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
-    with st.expander("Which are the dominant biological traits and whay do they mean?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
-    with st.expander("Which are the common biological traits and whay do they mean?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
-    with st.expander("Which are the unique biological traits and whay do they mean?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
-    with st.expander("Which are the biological traits contributed by ECs?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
-    with st.expander("Which are the biological traits contributed by KOs?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
-    with st.expander("Which are the biological traits contributed by PWYs?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
+    with st.expander("Which are the common and unique biological traits and whay do they mean?"):
+            df = create_trait_table(millet_map, path="picrust_processed_output_files/")
+            st.dataframe(df, use_container_width=True)
     with st.expander("Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Overall Summary"):
-            st.write("Answer")
+
+
+def create_trait_table(millet_map, path=""):
+    
+    prefixes = ["ec", "ko", "pwy"]
+    millet_traits = {}
+   
+    for millet, number in millet_map.items():
+        traits_set = set()
+        for prefix in prefixes:
+            file_path = f"{path}{prefix}{number}_word.csv"
+            try:
+                df = pd.read_csv(file_path)
+                if "trait" in df.columns:
+                    traits_set.update(df["trait"].dropna().astype(str).tolist())
+                else:
+                    print(f"Warning: 'trait' column not found in {file_path}")
+            except FileNotFoundError:
+                print(f"Warning: {file_path} not found!")
+        millet_traits[millet] = traits_set
+   
+    all_traits = sorted(set().union(*millet_traits.values()))
+
+    data = {}
+    for millet, traits in millet_traits.items():
+        data[millet] = ["Yes" if trait in traits else "No" for trait in all_traits]
+    
+    trait_df = pd.DataFrame(data, index=all_traits)
+    trait_df.index.name = "Trait"
+    
+    return trait_df
+
+
+
+       
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
 if page == "home":
