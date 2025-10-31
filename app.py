@@ -36,9 +36,6 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 #---------------------------disclaimer-----------------------------
-if "show_disclaimer" not in st.session_state:
-    st.session_state.show_disclaimer = True
-
 if st.session_state.show_disclaimer:
     st.markdown("""
     <div style="
@@ -61,17 +58,16 @@ if st.session_state.show_disclaimer:
         </div>
 
     </div>
-    """,
-    unsafe_allow_html=True
-)
+    """, unsafe_allow_html=True)
 
-col1, col2, col3 = st.columns([3,2,3])
-with col2:
-    if st.button("Click here to reach the App 🌾"):
-        st.session_state.show_disclaimer = False
-        st.rerun()
+    col1, col2, col3 = st.columns([3,2,3])
+    with col2:
+        if st.button("Click here to reach the App 🌾"):
+            st.session_state.show_disclaimer = False
+            st.rerun()
 
-st.stop()
+    st.stop()
+
 
 # ------------------------------------------------footer----------------------------------------------------------------------------------
 def footer():
