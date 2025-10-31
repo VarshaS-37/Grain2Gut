@@ -56,7 +56,6 @@ if st.session_state.show_disclaimer:
             <b>⚠️ Disclaimer</b>
         </div>
 
-        <!-- Left align list below -->
         <div style="text-align:left; margin-top:8px;">
             <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
             <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.</li>
