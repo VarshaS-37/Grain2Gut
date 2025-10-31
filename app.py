@@ -7,41 +7,39 @@ from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
 
-if "disclaimer_accepted" not in st.session_state:
-    st.session_state.disclaimer_accepted = False
+if "show_disclaimer" not in st.session_state:
+    st.session_state.show_disclaimer = True
 
-if not st.session_state.disclaimer_accepted:
+if st.session_state.show_disclaimer:
+
+    # Notice box at top
     st.markdown(
         """
         <div style="
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 55vh;
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 12px 18px;
+            border-radius: 8px;
+            background-color: #fff4d6;
+            border: 2px solid #d19a26;
+            text-align: center;
+            font-size: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            line-height: 1.4;
         ">
-            <div style="
-                max-width: 420px;
-                padding: 16px 20px;
-                border-radius: 10px;
-                background-color: #fff4d6;
-                text-align: center;
-                font-size: 15px;
-                line-height: 1.5;
-            ">
-                <b>⚠️ Disclaimer</b><br><br>
-                Please do <b>not</b> use the browser <b>Back</b> button.<br>
-                Use the <b>Sidebar</b> to navigate the app.
-            </div>
+            <b>⚠️ Important Notice</b><br>
+            Please do <b>not</b> use the browser <b>Back</b> button.<br>
+            Use the <b>Sidebar</b> to navigate the app.
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    col1, col2, col3 = st.columns([3, 3, 3])
+    col1, col2, col3 = st.columns([3,1,3])
     with col2:
         if st.button("Close"):
-            st.session_state.disclaimer_accepted = True
-   
+            st.session_state.show_disclaimer = False
+            st.rerun()  
 
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
