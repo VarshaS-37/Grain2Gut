@@ -1110,7 +1110,22 @@ def summary():
             """)
 
         with st.expander("Overall Summary"):
-            st.write("Answer")
+            st.markdown("""
+            | **Functional Feature** | **Key Enzymes** | **Relevance in Fermented Foods & Probiotic Function** |
+            |---|---|---|
+            | **Genome Stability & Controlled Growth** | DNA Polymerase, DNA Helicase, RNA Polymerase | Ensures consistent cell division, stable fermentation, and resilience under acidic stress. |
+            | **Efficient Carbohydrate & Energy Metabolism** | Phosphotransferase / Kinase Enzymes | Enables effective utilization of millet sugars, enhancing acid production, fermentation speed, and flavor development. |
+            | **Acid Tolerance & Stress Resistance** | Proton-Transporting ATPase, Alcohol Dehydrogenase | Supports survival in low pH environments found in fermented foods and during passage through the digestive tract. |
+            | **Nutrient Uptake & Biosynthesis** | Amino Acid ABC Transporters, Carbamoyl-Phosphate Synthase, Acetyl-CoA Carboxylase, Ribosomal Protein Acetyltransferase | Enhances protein synthesis, membrane integrity, growth, and production of desirable flavor and texture compounds. |
+            
+            ⭐ **Key Takeaway**
+            These millet-derived LAB strains exhibit:
+            - **Strong fermentation adaptability**
+            - **Efficient utilization of plant-based nutrients**
+            - **High acid and stress tolerance**
+            - **Stable probiotic functionality**
+            """)
+
     with st.expander("Which are the dominant EC classes and what do they mean?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
             st.markdown("""
