@@ -40,7 +40,7 @@ if st.session_state.show_disclaimer:
         if st.button("Close"):
             st.session_state.show_disclaimer = False
             st.rerun()  
-
+    st.stop()
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
