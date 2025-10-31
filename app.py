@@ -40,35 +40,41 @@ if "show_disclaimer" not in st.session_state:
     st.session_state.show_disclaimer = True
 
 if st.session_state.show_disclaimer:
-
-    # Notice box at top
     st.markdown(
-        """
-        <div style="
-            max-width: 400px;
-            margin: 10px auto;
-            padding: 12px 18px;
-            border-radius: 8px;
-            background-color:#FEF7A2;
-            text-align: center;
-            font-size: 15px;
-            line-height: 1.4;
-        ">
-            <b>Welcome to Grain2Gut</b><br> 🌾
-            ⚠️ <b>Disclaimer</b><br>
-            <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
-            <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.<br></li>
+    """
+    <div style="
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 14px 18px;
+        border-radius: 8px;
+        background-color:#FEF7A2;
+        font-size: 15px;
+        line-height: 1.5;
+    ">
+        <div style="text-align:center;">
+            <b>Welcome to Grain2Gut 🌾</b><br>
+            <b>⚠️ Disclaimer</b>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
 
-    col1, col2, col3 = st.columns([3,2,3])
-    with col2:
-        if st.button("Click here to reach the App 🌾"):
-            st.session_state.show_disclaimer = False
-            st.rerun()  
-    st.stop()
+        <!-- Left align list below -->
+        <div style="text-align:left; margin-top:8px;">
+            <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
+            <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.</li>
+        </div>
+
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+col1, col2, col3 = st.columns([3,2,3])
+with col2:
+    if st.button("Click here to reach the App 🌾"):
+        st.session_state.show_disclaimer = False
+        st.rerun()
+
+st.stop()
+
 # ------------------------------------------------footer----------------------------------------------------------------------------------
 def footer():
     st.markdown("""
