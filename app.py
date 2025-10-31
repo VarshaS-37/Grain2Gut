@@ -1175,7 +1175,21 @@ def summary():
             Hydrolases, Oxidoreductases, and Transferases work together to enhance nutrient breakdown, metabolic balance, and adaptive growth, resulting in stronger fermentation performance and improved probiotic functionality in millet-derived LAB.
             """)
         with st.expander("Overall Summary"):
-            st.write("Answer")         
+            st.markdown("""
+            | **Dominant EC Class** | **Role in Fermentation & Probiotic Function** | **Overall Benefit in Millet-Based Foods** |
+            |---|---|---|
+            | **Hydrolases** | Break down complex carbohydrates, proteins, and other biomolecules into simpler, digestible forms. | Improves **nutrient availability**, **digestibility**, and **flavor development**. |
+            | **Transferases** | Transfer functional groups to support essential metabolic and biosynthetic pathways. | Enhances **energy efficiency**, metabolic flexibility, and supports **consistent microbial growth**. |
+            | **Oxidoreductases** *(notable in Lactococcus lactis)* | Regulate redox balance and help maintain metabolic stability during fermentation. | Strengthens **stress tolerance**, **antioxidant function**, and survival in acidic conditions. |
+            | **Lyases** *(distinct in Enterococcus casseliflavus)* | Form or break chemical bonds without water, influencing aroma and metabolic intermediates. | Contributes to **aroma and flavor formation** in fermented millet foods. |
+            | **Ligases** *(distinct in Weissella cibaria)* | Join molecules together, essential for DNA maintenance and biosynthesis. | Supports **cellular stability**, integrity, and **long-term fermentation resilience**. |
+            
+           ⭐ **Key Takeaway**
+            Although each millet-derived LAB strain shows its own enzyme strengths, **Hydrolases and Transferases are consistently dominant**, highlighting:
+            - **Strong nutrient breakdown and conversion**
+            - **Efficient sugar and energy metabolism**
+            - **Stable growth and stress adaptation**
+            """)         
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each EC number and what do they mean?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
             st.write("Answer")
