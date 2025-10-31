@@ -1179,11 +1179,11 @@ def summary():
             st.markdown("""
             | **Dominant EC Class** | **Role in Fermentation & Probiotic Function** | **Overall Benefit in Millet-Based Foods** |
             |---|---|---|
-            | **Hydrolases** | Break down complex carbohydrates, proteins, and other biomolecules into simpler, digestible forms. | Improves **nutrient availability**, **digestibility**, and **flavor development**. |
-            | **Transferases** | Transfer functional groups to support essential metabolic and biosynthetic pathways. | Enhances **energy efficiency**, metabolic flexibility, and supports **consistent microbial growth**. |
-            | **Oxidoreductases** *(notable in Lactococcus lactis)* | Regulate redox balance and help maintain metabolic stability during fermentation. | Strengthens **stress tolerance**, **antioxidant function**, and survival in acidic conditions. |
-            | **Lyases** *(distinct in Enterococcus casseliflavus)* | Form or break chemical bonds without water, influencing aroma and metabolic intermediates. | Contributes to **aroma and flavor formation** in fermented millet foods. |
-            | **Ligases** *(distinct in Weissella cibaria)* | Join molecules together, essential for DNA maintenance and biosynthesis. | Supports **cellular stability**, integrity, and **long-term fermentation resilience**. |
+            | **Hydrolases** | Break down complex carbohydrates, proteins, and other biomolecules into simpler, digestible forms. | Improves nutrient availability, digestibility, and flavor development. |
+            | **Transferases** | Transfer functional groups to support essential metabolic and biosynthetic pathways. | Enhances energy efficiency, metabolic flexibility, and supports consistent microbial growth. |
+            | **Oxidoreductases** *(notable in Lactococcus lactis)* | Regulate redox balance and help maintain metabolic stability during fermentation. | Strengthens stress tolerance, antioxidant function, and survival in acidic conditions. |
+            | **Lyases** *(distinct in Enterococcus casseliflavus)* | Form or break chemical bonds without water, influencing aroma and metabolic intermediates. | Contributes to aroma and flavor formation in fermented millet foods. |
+            | **Ligases** *(distinct in Weissella cibaria)* | Join molecules together, essential for DNA maintenance and biosynthesis. | Supports cellular stability, integrity, and long-term fermentation resilience. |
             
            ⭐ **Key Takeaway**
             
@@ -1256,16 +1256,16 @@ def summary():
     with st.expander("Overall, are the predicted ECs supporting the use of these LAB in probiotic/food applications?"):
         st.markdown("""
         **Overall Functional Pattern**
-        All strains mainly support nutrient metabolism, suggesting they may help improve digestion and promote a healthier gut environment.
+        - All strains mainly support nutrient metabolism, suggesting they may help improve digestion and promote a healthier gut environment.
         
         **Enterococcus casseliflavus (Proso Millet)**
-        Shows a wide range of metabolic functions. This suggests it may help in breaking down different food components and may support gut adaptation and balance.
+        - Shows a wide range of metabolic functions. This suggests it may help in breaking down different food components and may support gut adaptation and balance.
         
         **Weisella cibaria NM01 (Foxtail Millet) & Weisella cibaria SM01 (Little Millet)**
-        Both strains show similar profiles. They are good at using plant-based sugars and maintaining stable growth. This suggests they may gently support digestion and help maintain a comfortable gut environment.
+        - Both strains show similar profiles. They are good at using plant-based sugars and maintaining stable growth. This suggests they may gently support digestion and help maintain a comfortable gut environment.
         
         **Lactococcus lactis (Little Millet)**
-        Shows strong activity in carbohydrate and amino acid metabolism. This suggests it may help in nutrient breakdown, improve taste components, and support overall digestive comfort and gut health.
+        - Shows strong activity in carbohydrate and amino acid metabolism. This suggests it may help in nutrient breakdown, improve taste components, and support overall digestive comfort and gut health.
         """)
 
 
