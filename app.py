@@ -1349,16 +1349,31 @@ def summary():
             These genes collectively enhance **nutrient uptake, carbohydrate metabolism, and stress survival**, enabling LAB to ferment efficiently, maintain stable growth, and deliver consistent **probiotic and flavor benefits** in fermented foods.
             """)
         with st.expander("Overall Summary"):
-            st.write("Answer")      
+            st.markdown("""
+            | **Functional Feature** | **Key Genes / Proteins** | **Probiotic & Food Relevance** |
+            |---|---|---|
+            | **Carbohydrate Breakdown & Energy Use** | 6-Phospho-β-Glucosidase (K01223), Sucrose-6-Phosphate Hydrolase (K07024), PTS Transport Proteins (K02757 / K02761) | Helps these LAB use millet sugars easily, supports steady growth, and contributes to mild flavor development in foods. |
+            | **Nutrient Transport & Cell Support** | ABC Transport System Proteins (K01990, K01992, K02003, K02004, K07335) | Improves uptake of nutrients and removal of waste, helping the bacteria stay active in food and survive through digestion. |
+            | **Amino Acid Balance & Growth Maintenance** | D-Methionine Transporter (K02073), Polyamine/Amino Acid Transporter (K03294) | Supports protein building and cell protection, helping the strains stay stable in the gut and during storage. |
+            | **Stress Protection & Environmental Adaptation** | Signal Transduction & Membrane Transport Systems | Helps LAB adjust to changing food conditions and acidic gut environments, supporting survival and probiotic stability. |
+            
+            ⭐ **Key Takeaway**
+            These millet-based LAB strains show strengths in:
+            - **Using plant-derived sugars efficiently**
+            - **Maintaining stable growth and cell health**
+            - **Surviving acidic and digestive conditions**
+            - **Supporting gentle gut balance**
+            
+            """)
+      
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.write("Answer") 
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.write("Answer")
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Answer")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.write("Answer")
+        dict=brite()
+        for isolate, values in dict["KO"].items():
+            with st.expander(isolate):
+                st.markdown("**Top 5 BRITE Classes:**")
+                st.write(values["top_5_brite_class"])
+                st.markdown("**Top 5 BRITE Sub-classes:**")
+                st.write(values["top_5_brite_subclass"])
         with st.expander("Overall Summary"):
             st.write("Answer")    
     with st.expander("Overall, are the predicted KOs supporting the use of these LAB in probiotic/food applications?"):
