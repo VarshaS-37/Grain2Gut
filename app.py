@@ -45,7 +45,7 @@ if st.session_state.show_disclaimer:
     st.markdown(
         """
         <div style="
-            max-width: 300px;
+            max-width: 400px;
             margin: 10px auto;
             padding: 12px 18px;
             border-radius: 8px;
