@@ -1377,12 +1377,11 @@ def summary():
         with st.expander("Overall Summary"):
             st.markdown("""
             **Overall Functional Pattern**
-            
-            Across all isolates, **Metabolism** is the most dominant BRITE class.  
-            This reflects that these LAB strains are actively involved in **nutrient breakdown, energy generation, and supporting gut biochemical balance**, contributing to:
-            - Better nutrient absorption  
-            - Smoother digestion  
-            - Maintenance of gut microbial health  
+            - Across all isolates, **Metabolism** is the most dominant BRITE class.  
+            - This reflects that these LAB strains are actively involved in **nutrient breakdown, energy generation, and supporting gut biochemical balance**, contributing to:
+                - Better nutrient absorption  
+                - Smoother digestion  
+                - Maintenance of gut microbial health  
             
             **Isolate-wise Functional Summary**
             
