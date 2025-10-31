@@ -1718,12 +1718,48 @@ def summary():
       
     
     st.markdown("<h4 style='text-align:center;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
-    with st.expander("Which are the common and unique biological traits and whay do they mean?"):
+    with st.expander("Which are the common and unique biological traits?"):
             df = create_trait_table(millet_map, path="picrust_processed_output_files/")
             df = style_trait_table(df)
             st.dataframe(df, use_container_width=True)
     with st.expander("Overall, what are the biological traits supporting the use of these LABs in probiotic/food applications?"):
-            st.write("")
+            st.markdown("""
+            **Enterococcus casseliflavus (Proso Millet)** 
+            
+            **Traits:** Acid tolerance, adhesion to intestinal cells, amino acid & carbohydrate metabolism, cell wall integrity, DNA repair, enzyme regulation, fermentation efficiency, flavor enhancement, genomic stability, lactic acid production, membrane integrity, oxidative stress resistance, protein synthesis, salt tolerance, signal transduction, stress response, temperature resistance.  
+            
+            **Probiotic Relevance:**  
+            1. Strong acid tolerance, adhesion, and oxidative stress resistance → high potential to survive gut conditions and interact with intestinal cells.  
+            2. Lactic acid production, fermentation efficiency, and flavor enhancement → useful for gut health and food fermentation applications.  
+            
+            **Weissella cibaria NM01 (Foxtail Millet)**
+            
+            **Traits:** Amino acid & carbohydrate metabolism, cell wall integrity, DNA replication, enzyme regulation, fermentation efficiency, lactic acid production, membrane integrity, oxidative stress resistance, stress response.  
+            
+            **Probiotic Relevance:**  
+            1. Limited acid tolerance and adhesion → moderate gut survival, but stress response and oxidative stress resistance support resilience.  
+            2. Maintains metabolic and fermentation functions → suitable for food applications rather than strong gut colonization.  
+            
+            **Weissella cibaria SM01 (Little Millet)** 
+            
+            **Traits:** Amino acid & carbohydrate metabolism, cell wall integrity, DNA replication, energy metabolism, fermentation efficiency, flavor enhancement, genomic stability, lactic acid production, membrane integrity, oxidative stress resistance, nutrient uptake, stress resistance, transport.  
+            
+            **Probiotic Relevance:**  
+            1. Limited acid tolerance and adhesion → weaker gut colonization potential.  
+            2. Strong metabolic versatility, energy metabolism, and stress resistance → useful for food fermentation and nutrient processing.  
+            
+            **Lactococcus lactis (Little Millet)**  
+            
+            **Traits:** Acid tolerance, adhesion, amino acid & carbohydrate metabolism, antioxidant activity, cell wall integrity, DNA repair & replication, energy metabolism, environmental adaptation, enzyme regulation, fermentation, fermentation efficiency, flavor enhancement, genomic stability, lactic acid production, membrane integrity, metabolic regulation, nutrient uptake, oxidative stress resistance, protein processing & synthesis, redox balance, salt tolerance, stress response & tolerance, substrate utilization.  
+            
+            **Probiotic Relevance:**  
+            1. Exhibits nearly all probiotic-relevant traits → high potential for gut survival, functionality, and colonization.  
+            2. Antioxidant activity, protein synthesis, and substrate utilization → additional health-promoting effects and fermentation versatility.  
+            
+            **Overall Summary**
+            1. **Gut survival & health impact:** Millet 1 and Millet 4 LAB are most promising due to acid tolerance, adhesion, and stress resistance. Millet 2 and 3 are less robust but metabolically capable.  
+            2. **Fermentation & functional foods:** All strains contribute to fermentation, lactic acid production, and flavor enhancement, with Millet 4 being the most versatile, followed by Millet 1.  
+            """)
 
 def create_trait_table(millet_map, path=""):
     
