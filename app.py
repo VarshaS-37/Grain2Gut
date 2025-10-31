@@ -62,7 +62,7 @@ if st.session_state.show_disclaimer:
 
     col1, col2, col3 = st.columns([3,2,3])
     with col2:
-        if st.button("Click here to reach the App 🌾"):
+        if st.button("Click here to reach the App 🦠"):
             st.session_state.show_disclaimer = False
             st.rerun()
 
