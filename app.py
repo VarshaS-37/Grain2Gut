@@ -599,7 +599,7 @@ def brite():
             df = pd.read_csv(f, encoding="latin1")
             # Make sure required columns exist
             if not {"brite_class", "brite_subclass"}.issubset(df.columns):
-                continue
+                print("no col found")
             # Top 5 Classes
             top_class = (
                 df["brite_class"]
