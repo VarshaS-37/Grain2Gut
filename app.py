@@ -1755,7 +1755,7 @@ def create_trait_table(millet_map, path=""):
     
     return trait_df
 def style_trait_table(df):
-    return df.style.applymap(lambda x: 'background-color: lightgreen' if x == "Yes" else '')
+    return df.style.applymap(lambda x: 'background-color: #DFFBB9' if x == "Yes" else '')
      
 # --------------------------------------------------------------------- Navigation ---------------------------------------------------------------------
 page = st.session_state.page
