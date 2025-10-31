@@ -684,23 +684,6 @@ def brite():
         
         ko_df["brite_class"] = ko_df["brite_class"].replace(["", " ", "nan", None], pd.NA)
         ko_df["brite_subclass"] = ko_df["brite_subclass"].replace(["", " ", "nan", None], pd.NA)
-        irrelevant_keywords = [
-            "Cancer",
-            "disease",
-            "viral",
-            "bacterial",
-            "parasitic",
-            "Endocrine",
-            "Cardiovascular",
-            "Neurodegenerative",
-            "Immune system",
-            "Substance dependence",
-            "Aging"
-        ]
-        def is_relevant(name):
-            if pd.isna(name): 
-                return False
-            return not any(kw.lower() in name.lower() for kw in irrelevant_keywords)
   
         filtered_class = ko_df["brite_class"].dropna().apply(lambda x: x if is_relevant(x) else None).dropna()
         filtered_subclass = ko_df["brite_subclass"].dropna().apply(lambda x: x if is_relevant(x) else None).dropna()
