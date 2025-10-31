@@ -846,7 +846,8 @@ def couq():
     common_4 = set.intersection(*millet_sets.values())
     st.markdown(f"<h5 style='text-align:center;'>Traits Common to All 4 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame({"Trait": sorted(common_4)}))
-
+    
+    #copy this #########################################################
     unique_rows = []
     for millet, traits in millet_sets.items():
         # union of all traits in *other* millets
@@ -854,7 +855,7 @@ def couq():
         unique_traits = traits - other_traits  # traits found only in this millet
         for trait in sorted(unique_traits):
             unique_rows.append({"Millet": millet, "Trait": trait})
-    
+    #################################################################
     st.markdown(f"<h5 style='text-align:center;'>Unique Traits</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(unique_rows))
     
@@ -885,9 +886,6 @@ def couq():
 #------------------------------------------------------enrichment-------------------------------------------------------------------
 from scipy.stats import fisher_exact
 from statsmodels.stats.multitest import multipletests
-import streamlit as st
-import glob
-import os
 
 def pathway_enrichment():
     st.markdown("<h4 style='text-align:center;'>Pathway Enrichment</h4>", unsafe_allow_html=True)
