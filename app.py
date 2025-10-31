@@ -1375,7 +1375,60 @@ def summary():
                 st.markdown("**Top 5 BRITE Sub-classes:**")
                 st.write(values["top_5_brite_subclass"])
         with st.expander("Overall Summary"):
-            st.write("Answer")    
+            st.markdown("""
+            **Overall Functional Pattern**
+            
+            Across all isolates, **Metabolism** is the most dominant BRITE class.  
+            This reflects that these LAB strains are actively involved in **nutrient breakdown, energy generation, and supporting gut biochemical balance**, contributing to:
+            - Better nutrient absorption  
+            - Smoother digestion  
+            - Maintenance of gut microbial health  
+            
+            **Isolate-wise Functional Summary**
+            
+            1. **Enterococcus casseliflavus (Proso Millet)**
+            
+            **Key Functional Strengths:**
+            - **Membrane transport:** strong ability to uptake nutrients and survive gut/stress environments  
+            - **Carbohydrate metabolism:** efficiently breaks down dietary sugars  
+            - **Glycan biosynthesis & microbial community interactions:** supports cell wall stability and beneficial gut interactions  
+            - **Energy metabolism:** maintains activity even under stress  
+            
+            **Interpretation:** A **resilient and adaptable strain**, suitable for **gut stability, nutrient utilization, and maintaining digestive balance**.
+        
+            2. **Weisella cibaria NM01 (Foxtail Millet)**  
+            3. **Weisella cibaria SM01 (Little Millet)**
+            
+            Both isolates show **very similar functional patterns**.
+            
+            **Key Functional Strengths:**
+            - **Carbohydrate metabolism:** helps in smooth digestion of plant-derived carbohydrates  
+            - **Amino acid metabolism:** contributes to gentle gut nourishment  
+            - **Membrane transport:** supports cellular balance and survival in gut conditions  
+            - **Signal transduction:** helps the strain respond naturally to gut environment changes  
+            
+            **Interpretation:** These are **mild and gut-friendly probiotics**, ideal for **routine digestive comfort and maintaining microbiome balance**.
+            
+            4. **Lactococcus lactis (Little Millet)**
+            
+            **Key Functional Strengths:**
+            - **Strong carbohydrate metabolism:** ensures reliable energy production and activity  
+            - **Amino acid metabolism:** may contribute to beneficial gut metabolites and improved gut comfort  
+            - **Signal transduction & membrane transport:** enhances environmental adaptability  
+            - **Energy metabolism:** supports stable and sustained probiotic function  
+            
+            **Interpretation:** A **highly reliable and consistent probiotic**, suitable for **digestive wellness and maintaining balanced gut flora**.
+            
+            **Key Comparative Insight**
+            
+            | Strain | Best Role | Functional Behavior |
+            |-------|-----------|-------------------|
+            | **E. casseliflavus** | Strong gut-adaptive and stable performer | Broad metabolic flexibility and survival strength |
+            | **W. cibaria NM01 & SM01** | Gentle digestion and gut comfort support | Smooth carbohydrate breakdown and balanced growth |
+            | **L. lactis** | Reliable probiotic for routine gut wellness | High and steady nutrient metabolism with stable activity |
+            
+            """)
+                
     with st.expander("Overall, are the predicted KOs supporting the use of these LAB in probiotic/food applications?"):
         st.write("Answer")
     
