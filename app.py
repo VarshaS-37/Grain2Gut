@@ -1234,7 +1234,7 @@ def summary():
             st.write("Answer")      
     with st.expander("Which are the dominant BRITE classes and subclasses of the pathways associated with each KO id and what do they mean?"):
         with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            
+            st.write("Answer") 
         with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
             st.write("Answer")
         with st.expander("Weisella cibaria SM01 (Little Millet)"):
