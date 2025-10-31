@@ -54,9 +54,10 @@ if st.session_state.show_disclaimer:
             font-size: 15px;
             line-height: 1.4;
         ">
-            <b>⚠️ Important Notice</b><br>
-            Please do <b>not</b> use the browser <b>Back</b> button.<br>
-            Use the <b>Sidebar</b> to navigate the app.
+            <b>Welcome to Grain2Gut</b><br> 🌾 
+            ⚠️ <b>Disclaimer</b><br>
+            Use the <b>Sidebar</b> to navigate the app sections.
+            <b>Do not</b> use the browser <b>Back</b> button as it will exit the app.<br>
         </div>
         """,
         unsafe_allow_html=True
@@ -64,7 +65,7 @@ if st.session_state.show_disclaimer:
 
     col1, col2, col3 = st.columns([3,2,3])
     with col2:
-        if st.button("Close"):
+        if st.button("Click here to reach the App 🌾"):
             st.session_state.show_disclaimer = False
             st.rerun()  
     st.stop()
