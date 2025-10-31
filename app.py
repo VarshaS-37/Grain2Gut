@@ -599,9 +599,14 @@ def brite():
             continue
         ec_df["brite_class"] = ec_df["brite_class"].astype(str).str.split(";")
         ec_df["brite_subclass"] = ec_df["brite_subclass"].astype(str).str.split(";")
+        
         ec_df = ec_df.explode("brite_class").explode("brite_subclass")
         ec_df["brite_class"] = ec_df["brite_class"].str.strip()
         ec_df["brite_subclass"] = ec_df["brite_subclass"].str.strip()
+
+        ec_df["brite_class"] = ec_df["brite_class"].replace(["", " ", "nan", None], pd.NA)
+        ec_df["brite_subclass"] = ec_df["brite_subclass"].replace(["", " ", "nan", None], pd.NA)
+
         ec_top_class = ec_df["brite_class"].dropna().value_counts().head(5).to_dict()
         ec_top_subclass = ec_df["brite_subclass"].dropna().value_counts().head(5).to_dict()
         result["EC"][strain_name] = {
@@ -616,9 +621,14 @@ def brite():
             continue
         ko_df["brite_class"] = ko_df["brite_class"].astype(str).str.split(";")
         ko_df["brite_subclass"] = ko_df["brite_subclass"].astype(str).str.split(";")
+        
         ko_df = ko_df.explode("brite_class").explode("brite_subclass")
         ko_df["brite_class"] = ko_df["brite_class"].str.strip()
         ko_df["brite_subclass"] = ko_df["brite_subclass"].str.strip()
+        
+        ko_df["brite_class"] = ko_df["brite_class"].replace(["", " ", "nan", None], pd.NA)
+        ko_df["brite_subclass"] = ko_df["brite_subclass"].replace(["", " ", "nan", None], pd.NA)
+
         ko_top_class = ko_df["brite_class"].dropna().value_counts().head(5).to_dict()
         ko_top_subclass = ko_df["brite_subclass"].dropna().value_counts().head(5).to_dict()
         result["KO"][strain_name] = {
