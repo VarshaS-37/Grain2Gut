@@ -51,11 +51,12 @@ if st.session_state.show_disclaimer:
             <b>Welcome to Grain2Gut 🌾</b><br>
             <b>⚠️ Disclaimer</b>
         </div>
-
         <div style="text-align:left; margin-top:8px;">
-            <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
-            <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.</li>
-        </div>
+            <ul style="padding-left:16px; margin:0;">
+                <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
+                <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.</li>
+            </ul>
+</div>
 
     </div>
     """, unsafe_allow_html=True)
