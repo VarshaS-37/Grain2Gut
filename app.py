@@ -35,8 +35,7 @@ if not st.session_state.disclaimer_accepted:
                 <b>⚠️ Disclaimer</b><br><br>
                 Please do <b>not</b> use the browser <b>Back</b> button.<br>
                 Use the <b>Sidebar</b> to move between pages.
-                <br><br>
-                <button class="close-btn" onclick="window.location.reload()"
+                
                 style="
                     padding: 6px 20px;
                     border-radius: 6px;
