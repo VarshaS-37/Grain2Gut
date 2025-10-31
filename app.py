@@ -39,12 +39,9 @@ if not st.session_state.disclaimer_accepted:
 
     col1, col2, col3 = st.columns([3, 3, 3])
     with col2:
-        col4,col5,col6=st.columns([3, 3, 3])
-        with col4:
-            if st.button("Close"):
-                st.session_state.disclaimer_accepted = True
-
-    st.stop()
+        if st.button("Close"):
+            st.session_state.disclaimer_accepted = True
+   
 
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
