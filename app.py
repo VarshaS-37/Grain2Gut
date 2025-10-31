@@ -36,6 +36,8 @@ h2, h1 {
 </style>
 """, unsafe_allow_html=True)
 #---------------------------disclaimer-----------------------------
+if "show_disclaimer" not in st.session_state:
+    st.session_state.show_disclaimer = True
 if st.session_state.show_disclaimer:
     st.markdown("""
     <div style="
