@@ -494,10 +494,6 @@ def millet():
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
             """)
-        with st.sidebar.expander("Pathway Enrichment", expanded=False):
-            st.markdown("""
-            Pathway enrichment helps identify **which biological pathways are more represented or more active** in one LAB strain **compared to others**.
-            """)
     millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
         "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
@@ -538,11 +534,8 @@ def millet():
         with col2:
             if st.button("Trait Distribution"):
                 go_to("trait")        
-        col4, col5= st.columns(2)
+        col3, col4,col5= st.columns(3)
         with col4:
-            if st.button("Pathway Enrichment"):
-                go_to("pe")  
-        with col5:
             if st.button("Common & Unique Traits"):
                 go_to("couq")   
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
@@ -882,163 +875,6 @@ def couq():
             common_2_rows.append({"Millets": " & ".join(combo), "Trait": trait})
     st.markdown(f"<h5 style='text-align:center;'>Traits Common to Exactly 2 Millets</h5>", unsafe_allow_html=True)
     st.dataframe(pd.DataFrame(common_2_rows))
-    
-#------------------------------------------------------enrichment-------------------------------------------------------------------
-from scipy.stats import fisher_exact
-from statsmodels.stats.multitest import multipletests
-
-def pathway_enrichment():
-    st.markdown("<h4 style='text-align:center;'>Pathway Enrichment</h4>", unsafe_allow_html=True)
-    with st.sidebar:
-        if st.button("Back to Home"): 
-            go_to("home")
-        if st.button("Back to Analysis Menu"):
-            go_to("milletwise_analysis")
-    with st.sidebar.expander("Why is it relevant?", expanded=False):
-        st.markdown("""
-        Instead of looking at single genes or enzymes individually, enrichment focuses on **whole biological processes**.  
-        This helps reveal **functional abilities** of the strain, such as:
-        - Stress tolerance
-        - Fermentation efficiency
-        - Vitamin / amino acid production
-        - Probiotic survival traits
-        """) 
-    with st.sidebar.expander("How is it done?", expanded=False):
-        st.markdown("""
-        1. Pathway information obtained from **PWY** annotations for the selected millet-derived LAB strain is combined.
-        2. Pathway frequencies from the remaining strains (background) is combined.
-        3. **Fisher’s Exact Test** is performed to find pathways that occur:
-           - **More frequently** in the selected strain than in the combined background strains.
-        4. **FDR correction**  is applied for statistical validity.
-        5. The **most enriched pathways** are displayed in a bar plot + table.
-        """)
-    with st.sidebar.expander("What is p-value?", expanded=False):
-        st.markdown("""
-        A **p-value** tells us how likely it is that the observed difference happened **by chance**.
-        - **Small p-value** → Unlikely due to chance → **Result is meaningful**
-        - **Large p-value** → Could easily happen randomly → **Not meaningful**
-
-        ### Significance Rule (Common):
-        - p-value < 0.05 → **Statistically significant**
-        """)
-    with st.sidebar.expander("What is FDR?", expanded=False):
-        st.markdown("""     
-        - When testing **many pathways at once**, some pathways may look significant **just by luck**.
-        - **FDR (False Discovery Rate)** correction adjusts p-values to prevent **false positives**.
-        - **FDR is the corrected p-value**
-        - Lower FDR = **More reliable** result
-        """)
-    with st.sidebar.expander("How to Read the Plot?", expanded=False):
-        st.markdown("""
-        - The **X-axis** shows `-log10(FDR)` → higher value = **stronger enrichment**.
-        - The **Y-axis** lists pathway names.
-        - **Longer bars = pathways more uniquely abundant in the selected strain**.
-       """)
-
-    # --- Select Millet LAB ---
-    col1, col2, col3 = st.columns([3, 3, 3])
-    with col2:
-        st.markdown("<p style='text-align:center;'>Select Millet LAB</p>", unsafe_allow_html=True)
-        selected_strain = st.selectbox(
-            "",
-            list(millet_map.keys()),
-            label_visibility="collapsed",
-            key=f"combined_enrich_select_{st.session_state.page}",
-        )
-
-    suffix = millet_map[selected_strain]
-    data_dir = "picrust_processed_output_files"
-
-    # --- Collect all pathways from EC, KO, and PWY ---
-    all_pathways = []
-
-    file_path = os.path.join(data_dir, f"pwy_{suffix}.csv")
-
-    if not os.path.exists(file_path):
-        st.warning(f"File not found: {file_path}")
-        return
-
-    df = pd.read_csv(file_path, encoding="utf-8", on_bad_lines="skip")
-
-    # Identify correct column
-    for col in ["pathway_ids", "map_ids", "Pathway"]:
-        if col in df.columns:
-            df[col] = (
-                df[col].astype(str)
-                .str.replace(" ", "")
-                .str.replace(";", ",")
-                .str.split(",")
-            )
-            all_pathways.extend(df[col].explode().dropna().tolist())
-            break
-
-    if not all_pathways:
-        st.warning("No pathway data found for selected millet.")
-        return
-
-    millet_counts = pd.Series(all_pathways).value_counts()
-
-    # --- Build background from all other millets ---
-    background_pathways = []
-    files = glob.glob(os.path.join(data_dir, "pwy_*.csv"))
-
-    for f in files:
-        if f.endswith(f"{suffix}.csv"):  # skip current strain
-            continue
-        try:
-            df_bg = pd.read_csv(f, encoding="utf-8", on_bad_lines="skip")
-        except UnicodeDecodeError:
-            df_bg = pd.read_csv(f, encoding="latin1", on_bad_lines="skip")
-        for col in ["pathway_ids", "map_ids", "Pathway"]:
-            if col in df_bg.columns:
-                df_bg[col] = (
-                    df_bg[col].astype(str)
-                    .str.replace(" ", "")
-                    .str.replace(";", ",")
-                    .str.split(",")
-                )
-                background_pathways.extend(df_bg[col].explode().dropna().tolist())
-                break
-    if not background_pathways:
-        st.warning("No background pathway data found.")
-        return
-    bg_counts = pd.Series(background_pathways).value_counts()
-
-    # --- Fisher’s Exact Test for enrichment ---
-    results = []
-    for pwy, count_in_millet in millet_counts.items():
-        count_in_bg = bg_counts.get(pwy, 0)
-        table = [
-            [count_in_millet, len(all_pathways) - count_in_millet],
-            [count_in_bg, len(background_pathways) - count_in_bg]
-        ]
-        try:
-            _, p = fisher_exact(table, alternative="greater")
-        except ValueError:
-            continue
-        results.append({"Pathway": pwy, "Count": count_in_millet, "p-value": p})
-
-    if not results:
-        st.warning("No significant enrichment found.")
-        return
-
-    res_df = pd.DataFrame(results)
-    res_df["FDR"] = multipletests(res_df["p-value"], method="fdr_bh")[1]
-    res_df = res_df.sort_values("FDR")
-
-    # --- Visualization ---
-    top = res_df.head(15)
-    fig, ax = plt.subplots(figsize=(8, 5))
-    ax.barh(top["Pathway"], -np.log10(top["FDR"]), color="#4C72B0")
-    ax.set_xlabel("-log10(FDR)")
-    ax.set_ylabel("Pathway")
-    ax.set_title(f"PWY Enrichment: {selected_strain}")
-    ax.invert_yaxis()
-    plt.tight_layout()
-    st.pyplot(fig)
-    # --- Table output ---
-    st.subheader(f"Top Enriched Pathways in {selected_strain}")
-    st.dataframe(res_df.head(25).style.format({"p-value": "{:.3e}", "FDR": "{:.3e}"}))
 
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
@@ -1630,82 +1466,6 @@ def summary():
             - **Utilization of dietary fibers for enhanced gut adaptation**  
             """)
 
-    with st.expander("Which pathways are enriched in a LAB than the other LABs?"):
-        with st.expander("Enterococcus casseliflavus (Proso Millet)"):
-            st.markdown("""
-            | **Functional Feature** | **Key Enzymes / Pathways** | **Relevance to Probiotic Function & Gut Adaptation** |
-            |---|---|---|
-            | **Energy Production & Glycolysis** | ANAGLYCOLYSIS-PWY, GLYCOLYSIS | Converts glucose to pyruvate, generating ATP and NADH to support LAB growth, survival, and fermentation-driven acid production in the gut. |
-            | **Amino Acid Biosynthesis** | ARGSYNBSUB-PWY, VALSYN-PWY | Produces L-arginine and L-valine for protein synthesis and nitrogen metabolism, enhancing bacterial growth, stress resilience, and metabolic versatility. |
-            | **Cell Wall Integrity & Peptidoglycan Formation** | PEPTIDOGLYCANSYN-PWY, PWY-6386, PWY-6387, UDPNAGSYN-PWY, DTDPRHAMSYN-PWY | Synthesizes peptidoglycan precursors and cell wall polysaccharides, maintaining robust cell walls for survival under gut stress and during fermentation. |
-            | **Fermentation & Acid Production** | PWY-5100 | Converts pyruvate to lactate and acetate, supporting anaerobic energy generation, acidification of foods, and healthy microbial balance in the gut. |
-            | **Coenzyme & Nucleotide Biosynthesis** | COA-PWY, PWY-6121, PWY-6123, PWY-7219, PWY-6609 | Supports CoA, purine, and nucleotide biosynthesis, essential for energy metabolism, DNA/RNA synthesis, and growth. |
-            | **Plant Sugar Utilization & Fiber Metabolism** | GALACTUROCAT-PWY, PWY-7242 | Enables utilization of plant-derived sugars and uronic acids for energy, supporting growth in fiber-rich environments and dietary fiber breakdown. |
-            
-            ⭐ **Key Takeaway**  
-            These highly enriched pathways collectively enhance:  
-            - **Energy generation and fermentation efficiency**  
-            - **Amino acid and nucleotide metabolism for growth and stress resilience**  
-            - **Cell wall synthesis for survival in gut and food systems**  
-            - **Utilization of dietary fibers, supporting gut colonization and prebiotic interactions**  
-            """)
-
-        with st.expander("Weisella cibaria NM01 (Foxtail Millet)"):
-            st.markdown("""
-            | **Pathway** | **Function / Role in Probiotics** | **p-value** | **FDR** |
-            |---|---|---|---|
-            | **GALACTUROCAT-PWY** | D-galacturonate degradation: Utilizes plant-derived sugars, supporting probiotic growth and fiber metabolism. | 0.241 | 0.671 |
-            | **ANAGLYCOLYSIS-PWY** | Glycolysis III: Converts glucose to pyruvate, providing energy for LAB growth and fermentation. | 0.425 | 0.671 |
-            | **DTDPRHAMSYN-PWY** | dTDP-L-rhamnose biosynthesis: Essential for cell wall polysaccharide synthesis and structural integrity. | 0.425 | 0.671 |
-            | **VALSYN-PWY** | L-Valine biosynthesis: Provides amino acids for protein synthesis and probiotic metabolic activity. | 0.425 | 0.671 |
-            | **PWY-5100** | Pyruvate fermentation to acetate and lactate: Supports energy production, acidification, and gut adaptation. | 0.565 | 0.671 |
-            
-            ⭐ **Key Takeaway**  
-            These top 5 pathways highlight the most enriched functions contributing to probiotic efficacy:  
-            - **Energy Metabolism & Fermentation:** ANAGLYCOLYSIS-PWY and PWY-5100 provide ATP and drive production of lactate/acetate, supporting survival and gut colonization.  
-            - **Cell Wall Integrity:** DTDPRHAMSYN-PWY ensures robust bacterial cell walls, improving resilience under gut and fermentation stress.  
-            - **Amino Acid Synthesis:** VALSYN-PWY supplies essential amino acids like L-valine, supporting protein metabolism and growth.  
-            - **Fiber & Plant Sugar Utilization:** GALACTUROCAT-PWY allows breakdown of plant-derived sugars, enhancing growth in fiber-rich environments and contributing to gut microbiota interactions.  
-            """)
-        with st.expander("Weisella cibaria SM01 (Little Millet)"):
-            st.write("Same as Weisella cibaria NM01 (Foxtail Millet)")
-        with st.expander("Lactococcus lactis (Little Millet)"):
-            st.markdown("""
-            | **Pathway** | **Function / Role in Probiotics** | **p-value** | **FDR** |
-            |---|---|---|---|
-            | **SER-GLYSYN-PWY** | L-Serine and Glycine biosynthesis: Supplies amino acids critical for protein synthesis and bacterial growth. | 0.339 | 0.811 |
-            | **ANAGLYCOLYSIS-PWY** | Glycolysis III: Converts glucose to pyruvate, providing energy for lactic acid bacteria (LAB) growth and fermentation. | 0.563 | 0.811 |
-            | **DTDPRHAMSYN-PWY** | dTDP-L-rhamnose biosynthesis: Key for cell wall polysaccharide formation and structural integrity. | 0.563 | 0.811 |
-            | **OANTIGEN-PWY** | O-antigen biosynthesis: Supports cell envelope structure and interaction with the host gut environment. | 0.563 | 0.811 |
-            | **VALSYN-PWY** | L-Valine biosynthesis: Supplies essential amino acids for protein synthesis and metabolic activity. | 0.563 | 0.811 |
-            
-            ⭐ **Key Takeaway**  
-            These top 5 pathways highlight enriched functions that are important for probiotic activity:  
-            - **Energy & Fermentation:** ANAGLYCOLYSIS-PWY ensures ATP generation and drives fermentation, supporting survival and colonization in the gut.  
-            - **Cell Wall & Structural Integrity:** DTDPRHAMSYN-PWY and OANTIGEN-PWY maintain robust cell walls, enhancing stress tolerance and gut persistence.  
-            - **Amino Acid Biosynthesis:** SER-GLYSYN-PWY and VALSYN-PWY provide essential building blocks for protein synthesis and overall bacterial metabolism.  
-            """)
-        with st.expander("Overall Summary"):
-            st.markdown("""
-            | **Functional Category** | **Representative Pathways** | **Role in Probiotic Function & Gut Adaptation** |
-            |---|---|---|
-            | **Energy Production & Glycolysis** | ANAGLYCOLYSIS-PWY, GLYCOLYSIS | Converts glucose to pyruvate, producing ATP and NADH to support LAB growth, survival, and fermentation-driven acid production in the gut. |
-            | **Amino Acid Biosynthesis** | ARGSYNBSUB-PWY, VALSYN-PWY, SER-GLYSYN-PWY | Supplies essential amino acids (L-arginine, L-valine, L-serine, glycine) for protein synthesis, nitrogen metabolism, and overall metabolic activity, enhancing growth and stress resilience. |
-            | **Cell Wall & Structural Integrity** | PEPTIDOGLYCANSYN-PWY, PWY-6386, PWY-6387, UDPNAGSYN-PWY, DTDPRHAMSYN-PWY, OANTIGEN-PWY | Ensures robust cell wall formation and peptidoglycan synthesis, promoting bacterial survival under gut stress, fermentation conditions, and host interactions. |
-            | **Fermentation & Acid Production** | PWY-5100 | Converts pyruvate to lactate and acetate, supporting anaerobic energy production, acidification of foods, microbial balance in the gut, and improved sensory qualities of fermented foods. |
-            | **Coenzyme & Nucleotide Metabolism** | COA-PWY, PWY-6121, PWY-6123, PWY-7219, PWY-6609 | Supports biosynthesis of coenzymes, nucleotides, and purines, essential for DNA/RNA synthesis, growth, and metabolic versatility. |
-            | **Plant Sugar & Fiber Utilization** | GALACTUROCAT-PWY, PWY-7242 | Degrades plant-derived sugars and uronic acids, providing energy in fiber-rich environments and supporting gut microbiota interactions and prebiotic metabolism. |
-            
-            ⭐ **Key Takeaway**  
-            Across all millet-adapted LAB strains (Enterococcus casseliflavus, Weisella cibaria NM01/SM01, Lactococcus lactis):  
-            - **Energy & Fermentation:** LAB efficiently metabolize glucose and pyruvate to generate ATP and fermentation acids, enhancing gut colonization and survival.  
-            - **Amino Acid Supply:** Pathways for L-arginine, L-valine, L-serine, and glycine biosynthesis support protein metabolism, bacterial growth, and resilience.  
-            - **Cell Wall Strength & Stress Tolerance:** Peptidoglycan and O-antigen pathways ensure structural integrity, supporting survival under gut stress and fermentation conditions.  
-            - **Nucleotide & Coenzyme Biosynthesis:** Supports replication, gene expression, and metabolic flexibility.  
-            - **Fiber & Plant Sugar Utilization:** Enables LAB to thrive on plant-derived substrates, improving gut interactions and prebiotic utilization.  
-            - Overall, these enriched pathways highlight **robust, resilient, and functionally versatile probiotics** capable of energy-efficient growth, stress adaptation, fermentation activity, and beneficial gut interactions.
-            """)
-
     with st.expander("Overall, how relevant are the predicted pathways in terms of probiotic/food appplications?"):
          
         st.markdown("""
@@ -1826,5 +1586,4 @@ elif page=="trait":
     trait()
 elif page=="couq":
     couq()
-elif page=="pe":
-     pathway_enrichment() 
+
