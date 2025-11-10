@@ -143,8 +143,7 @@ def home():
             4. The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.
             5. Each dataframe was independently linked to reference information from databases.
             """)
-        if st.button("Summarized Analysis"):
-            go_to("summarized_analysis")
+        
     # ------------------------------------------------Millet-wise Analysis---------------------------------------------------------------
     with middle_col:
         if st.button("Summarized Analysis"):
