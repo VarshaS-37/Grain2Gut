@@ -175,7 +175,7 @@ def home():
         
         with row1_col1:
             with st.container(border=True):
-                if st.button("Millet-wise Analysis", use_container_width=True):
+                if st.button("Millet-wise Analysis"):
                     go_to("milletwise_analysis")
                 st.write("Detailed analysis and functional comparison across millets.")
             
