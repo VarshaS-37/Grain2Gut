@@ -17,22 +17,15 @@ st.markdown("""
 .block-container {
     padding-top: 2rem;
     padding-left: 6rem;
-    padding-right: 6rem;}
-.content-box {
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
-    }
-.content-box h5 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #333;
+    padding-right: 6rem;
+
+    /* Match .content-box style */
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+    padding-bottom: 2rem;
 }
-.center-btn {
-    display: flex;
-    justify-content: center;
-}
+
 h2, h1 {
     text-align: center !important;
     color: #2c3e50;}
@@ -148,121 +141,6 @@ def home():
         This contains all the processed dataframes created from the raw files and are used for further analysis.
         """)
 
-
-    # ---- Page Layout ----
-    left_col, right_col = st.columns([1, 2])
-    
-    # ---------- LEFT: About Box ----------
-    with left_col:
-        st.markdown("""
-            <div class="content-box">
-                <h5>🧬 About this App</h5>
-                <ol>
-                    <li>This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets 
-                    (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">research paper link</a>).</li>
-                    <li>Among the isolates, four LAB strains showed probiotic characteristics, and their 16S rRNA partial sequences were submitted to NCBI.</li>
-                    <li>These sequences were used for functional prediction using PICRUSt.</li>
-                    <li>The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.</li>
-                    <li>Each dataframe was linked to reference information from relevant databases.</li>
-                </ol>
-            </div>
-        """, unsafe_allow_html=True)
-    
-    # ---------- RIGHT: Analysis Boxes ----------
-    with right_col:
-        # Millet Data
-        millet_data = {
-            "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
-            "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
-            "Organism": [
-                "Enterococcus casseliflavus",
-                "Weissella cibaria",
-                "Weissella cibaria",
-                "Lactococcus lactis"
-            ],
-            "NCBI ID": ['PP355677', 'PP355678', 'PP355679', 'PP355680'],
-            "NCBI Link": [
-                "https://www.ncbi.nlm.nih.gov/nuccore/PP355677.1/",
-                "https://www.ncbi.nlm.nih.gov/nuccore/pp355678",
-                "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
-                "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"
-            ]
-        }
-        millet_df = pd.DataFrame(millet_data)
-    
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            st.markdown("<h5 style='text-align:center;'>Millet Data</h5>", unsafe_allow_html=True)
-            st.data_editor(
-                millet_df,
-                column_config={
-                    "NCBI Link": st.column_config.LinkColumn(
-                        "NCBI Link", display_text="NCBI Link"
-                    ),
-                },
-                hide_index=True,
-                use_container_width=True
-            )
-    
-        def analysis_box(title, description, button_label, target_page, key):
-            st.markdown(f"<div class='content-box'>", unsafe_allow_html=True)
-            st.markdown("<div class='center-btn'>", unsafe_allow_html=True)
-            if st.button(button_label, key=key):
-                go_to(target_page)
-            st.markdown("</div>", unsafe_allow_html=True)
-            st.markdown(f"<div class='content-text'>{description}</div>", unsafe_allow_html=True)
-            st.markdown("</div>", unsafe_allow_html=True)
-        
-        # ---- First Row ----
-        row1_col1, row1_col2 = st.columns(2)
-        with row1_col1:
-            analysis_box(
-                "Millet-wise Analysis",
-                "Detailed analysis and functional comparison across millets.",
-                "Millet-wise Analysis",
-                "milletwise_analysis",
-                "btn1"
-            )
-        
-        with row1_col2:
-            analysis_box(
-                "Inference",
-                "Overall inference of the results.",
-                "Inference",
-                "summarized_analysis",
-                "btn2"
-            )
-        
-        # ---- Second Row ----
-        row2_col1, row2_col2, row2_col3 = st.columns(3)
-        with row2_col1:
-            analysis_box(
-                "EC Analysis",
-                "Explore enzyme-level information based on EC numbers.",
-                "EC Analysis",
-                "ec_analysis",
-                "btn3"
-            )
-        
-        with row2_col2:
-            analysis_box(
-                "KO Analysis",
-                "Explore KEGG Orthology-based gene functions and mappings.",
-                "KO Analysis",
-                "ko_analysis",
-                "btn4"
-            )
-        
-        with row2_col3:
-            analysis_box(
-                "Pathway Analysis",
-                "Visualize metabolic and biological pathways predicted from sequence data.",
-                "Pathway Analysis",
-                "pwy_analysis",
-                "btn5"
-            )
-
-    '''
     
     # ----- Page Layout -----
     left_col, right_col = st.columns([1, 2])
@@ -270,18 +148,15 @@ def home():
     # ========== LEFT: About Box ==========
     with left_col:
         st.markdown("<h5 style='text-align:center;'>🧬 About this App</h5>", unsafe_allow_html=True)
-        st.markdown("""
-        <div class="content-box">
-            <ol>
-                <li>This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets 
-                (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">research paper link</a>).</li>
-                <li>Among the isolates, four LAB strains showed probiotic characteristics, and their 16S rRNA partial sequences were submitted to NCBI.</li>
-                <li>These sequences were used for functional prediction using PICRUSt.</li>
-                <li>The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.</li>
-                <li>Each dataframe was linked to reference information from relevant databases.</li>
-            </ol>
-        </div>
-        """, unsafe_allow_html=True)
+        with st.container(border=True):
+            st.markdown("""
+                    1. This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets 
+                    (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">research paper link</a>).</li>
+                    2. Among the isolates, four LAB strains showed probiotic characteristics, and their 16S rRNA partial sequences were submitted to NCBI.</li>
+                    3. These sequences were used for functional prediction using PICRUSt.</li>
+                    4. The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.</li>
+                    5. Each dataframe was linked to reference information from relevant databases.</li>
+                """, unsafe_allow_html=True)
     
     # ========== RIGHT: Analysis Boxes ==========
     with right_col:
