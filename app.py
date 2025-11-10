@@ -152,7 +152,7 @@ def home():
     
     # ========== LEFT: About Box ==========
     with left_col:
-        st.markdown("<h5 style='text-align:center;'>🧬 About This App</h5>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align:center;'>🧬 About this App</h5>", unsafe_allow_html=True)
         st.markdown("""
         <div class="content-box">
             <ol>
@@ -168,7 +168,7 @@ def home():
     
     # ========== RIGHT: Analysis Boxes ==========
     with right_col:
-        st.markdown("### 🔍 Data Analysis", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align:center;'>🔍 Data Analysis</h5>", unsafe_allow_html=True)
     
         # First Row
         row1_col1, row1_col2 = st.columns(2)
@@ -180,33 +180,28 @@ def home():
                 st.write("Detailed analysis and functional comparison across millets.")
             
         with row1_col2:
-            st.markdown('<div class="content-box">', unsafe_allow_html=True)
-            if st.button("🌾 Millet-wise Analysis"):
-                go_to("milletwise_analysis")
-            st.markdown("View detailed insights for each millet type individually.")
-            st.markdown("</div>", unsafe_allow_html=True)
+            with st.container(border=True):
+                if st.button("Inference", use_container_width=True):
+                    go_to("summarized_analysis")
+                st.write("Overall inference of the results.")
     
         # Second Row
         row2_col1, row2_col2 = st.columns(2)
         with row2_col1:
-            st.markdown('<div class="content-box">', unsafe_allow_html=True)
-            if st.button("🧫 EC Analysis"):
-                go_to("ec_analysis")
-            st.markdown("Explore enzyme-level information based on EC numbers.")
-            st.markdown("</div>", unsafe_allow_html=True)
+            with st.container(border=True):
+                if st.button("EC Analysis", use_container_width=True):
+                    go_to("ec_analysis")
+                st.write("Explore enzyme-level information based on EC numbers.")
         with row2_col2:
-            st.markdown('<div class="content-box">', unsafe_allow_html=True)
-            if st.button("🧩 KO Analysis"):
-                go_to("ko_analysis")
-            st.markdown("Analyze KEGG Orthology-based gene functions and mappings.")
-            st.markdown("</div>", unsafe_allow_html=True)
+            with st.container(border=True):
+                if st.button("KO Analysis", use_container_width=True):
+                    go_to("ko_analysis")
+                st.write("Explore KEGG Orthology-based gene functions and mappings.")
+        with st.container(border=True):
+                if st.button("Pathway Analysis", use_container_width=True):
+                    go_to("pwy_analysis")
+                st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
     
-        # Third Row (centered)
-        st.markdown('<div class="content-box" style="width:48%; margin:auto;">', unsafe_allow_html=True)
-        if st.button("🧠 Pathway Analysis"):
-            go_to("pwy_analysis")
-        st.markdown("Visualize metabolic and biological pathways predicted from sequence data.")
-        st.markdown("</div>", unsafe_allow_html=True)
 
     '''
     left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
