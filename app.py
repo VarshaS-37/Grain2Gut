@@ -132,7 +132,84 @@ def home():
         st.markdown("""
         This contains all the processed dataframes created from the raw files and are used for further analysis.
         """)
+   
+
+    # ----- Existing Style (yours) -----
+    st.markdown("""
+    <style>
+    /* Custom content boxes */
+    .content-box {
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    # ----- Page Layout -----
+    left_col, right_col = st.columns([1, 2])
+    
+    # ========== LEFT: About Box ==========
+    with left_col:
+        st.markdown("### 🧬 About This App", unsafe_allow_html=True)
+        st.markdown("""
+        <div class="content-box">
+            <ol>
+                <li>This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets 
+                (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">research paper link</a>).</li>
+                <li>Among the isolates, four LAB strains showed probiotic characteristics, and their 16S rRNA partial sequences were submitted to NCBI.</li>
+                <li>These sequences were used for functional prediction using PICRUSt.</li>
+                <li>The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.</li>
+                <li>Each dataframe was linked to reference information from relevant databases.</li>
+            </ol>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # ========== RIGHT: Analysis Boxes ==========
+    with right_col:
+        st.markdown("### 🔍 Data Analysis", unsafe_allow_html=True)
+    
+        # First Row
+        row1_col1, row1_col2 = st.columns(2)
+        with row1_col1:
+            st.markdown('<div class="content-box">', unsafe_allow_html=True)
+            if st.button("📊 Summarized Analysis"):
+                go_to("summarized_analysis")
+            st.markdown("This section provides an overview and summary of all results obtained.")
+            st.markdown("</div>", unsafe_allow_html=True)
+        with row1_col2:
+            st.markdown('<div class="content-box">', unsafe_allow_html=True)
+            if st.button("🌾 Millet-wise Analysis"):
+                go_to("milletwise_analysis")
+            st.markdown("View detailed insights for each millet type individually.")
+            st.markdown("</div>", unsafe_allow_html=True)
+    
+        # Second Row
+        row2_col1, row2_col2 = st.columns(2)
+        with row2_col1:
+            st.markdown('<div class="content-box">', unsafe_allow_html=True)
+            if st.button("🧫 EC Analysis"):
+                go_to("ec_analysis")
+            st.markdown("Explore enzyme-level information based on EC numbers.")
+            st.markdown("</div>", unsafe_allow_html=True)
+        with row2_col2:
+            st.markdown('<div class="content-box">', unsafe_allow_html=True)
+            if st.button("🧩 KO Analysis"):
+                go_to("ko_analysis")
+            st.markdown("Analyze KEGG Orthology-based gene functions and mappings.")
+            st.markdown("</div>", unsafe_allow_html=True)
+    
+        # Third Row (centered)
+        st.markdown('<div class="content-box" style="width:48%; margin:auto;">', unsafe_allow_html=True)
+        if st.button("🧠 Pathway Analysis"):
+            go_to("pwy_analysis")
+        st.markdown("Visualize metabolic and biological pathways predicted from sequence data.")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    '''
     left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
+    
     # -------------------------------------------------Summarized Analysis-------------------------------------------------------------
     with left_col:
         with st.expander("About This App", expanded=False):
@@ -148,6 +225,9 @@ def home():
     with middle_col:
         if st.button("Summarized Analysis"):
             go_to("summarized_analysis")
+         st.markdown("""
+        This contains the overall summary of our results.
+        """)
         if st.button("Millet-wise Analysis"):
             go_to("milletwise_analysis")
    # -------------------------------------------------- Meta Data ---------------------------------------------------------------------------
@@ -160,6 +240,7 @@ def home():
             with col2:
                 if st.button(label, key=label):
                     go_to(page_key)
+ '''
     footer()
 # -------------------------------------------------- Millet Data Mapping -------------------------------------------------------------------
 millet_map = {
