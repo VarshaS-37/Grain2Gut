@@ -189,16 +189,16 @@ def home():
         row2_col1, row2_col2 = st.columns(2)
         with row2_col1:
             with st.container(border=True):
-                if st.button("EC Analysis", use_container_width=True):
+                if st.button("EC Analysis"):
                     go_to("ec_analysis")
                 st.write("Explore enzyme-level information based on EC numbers.")
         with row2_col2:
             with st.container(border=True):
-                if st.button("KO Analysis", use_container_width=True):
+                if st.button("KO Analysis"):
                     go_to("ko_analysis")
                 st.write("Explore KEGG Orthology-based gene functions and mappings.")
         with st.container(border=True):
-                if st.button("Pathway Analysis", use_container_width=True):
+                if st.button("Pathway Analysis"):
                     go_to("pwy_analysis")
                 st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
     
