@@ -168,7 +168,6 @@ def home():
     
     # ========== RIGHT: Analysis Boxes ==========
     with right_col:
-        st.markdown("<h5 style='text-align:center;'>🔍 Data Analysis</h5>", unsafe_allow_html=True)
         millet_data = {
         "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
         "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
@@ -186,19 +185,20 @@ def home():
             "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"] 
         }
         millet_df = pd.DataFrame(millet_data)
-        
-        st.markdown("<h4 style='text-align:center;'>Millet Data</h4>", unsafe_allow_html=True)
-        st.data_editor(
-            millet_df,
-            column_config={
-                "NCBI Link": st.column_config.LinkColumn(
-                    "NCBI Link",
-                    display_text="NCBI Link" 
-                ),
-            },
-            hide_index=True,
-            use_container_width=True
-        )
+        col1,col2,col3=([1,2,1])
+        with col2:
+            st.markdown("<h5 style='text-align:center;'>Millet Data</h5>", unsafe_allow_html=True)
+            st.data_editor(
+                millet_df,
+                column_config={
+                    "NCBI Link": st.column_config.LinkColumn(
+                        "NCBI Link",
+                        display_text="NCBI Link" 
+                    ),
+                },
+                hide_index=True,
+                use_container_width=True
+            )
         # First Row
         row1_col1, row1_col2 = st.columns(2)
         
