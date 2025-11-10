@@ -172,12 +172,13 @@ def home():
     
         # First Row
         row1_col1, row1_col2 = st.columns(2)
+        
         with row1_col1:
-            st.markdown('<div class="content-box">', unsafe_allow_html=True)
-            if st.button("📊 Summarized Analysis"):
-                go_to("summarized_analysis")
-            st.markdown("This section provides an overview and summary of all results obtained.")
-            st.markdown("</div>", unsafe_allow_html=True)
+            with st.container(border=True):
+                if st.button("Millet-wise Analysis", use_container_width=True):
+                    go_to("milletwise_analysis")
+                st.write("Detailed analysis and functional comparison across millets.")
+            
         with row1_col2:
             st.markdown('<div class="content-box">', unsafe_allow_html=True)
             if st.button("🌾 Millet-wise Analysis"):
