@@ -210,12 +210,12 @@ def home():
             
         with row1_col2:
             with st.container(border=True):
-                if st.button("Inference", use_container_width=True):
+                if st.button("Inference"):
                     go_to("summarized_analysis")
                 st.write("Overall inference of the results.")
     
         # Second Row
-        row2_col1, row2_col2 = st.columns(2)
+        row2_col1, row2_col2,row2_col3 = st.columns(3)
         with row2_col1:
             with st.container(border=True):
                 if st.button("EC Analysis"):
@@ -226,10 +226,11 @@ def home():
                 if st.button("KO Analysis"):
                     go_to("ko_analysis")
                 st.write("Explore KEGG Orthology-based gene functions and mappings.")
-        with st.container(border=True):
-                if st.button("Pathway Analysis"):
-                    go_to("pwy_analysis")
-                st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
+        with row2_col3:
+            with st.container(border=True):
+                    if st.button("Pathway Analysis"):
+                        go_to("pwy_analysis")
+                    st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
     
 
     '''
