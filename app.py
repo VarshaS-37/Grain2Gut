@@ -204,54 +204,63 @@ def home():
                 use_container_width=True
             )
     
-        # Function to create uniform boxes
-        def analysis_box(title, description, button_label, target_page):
-            st.markdown(f"""
-                <div class="content-box">
-                    <h5>{title}</h5>
-                    <p style="text-align:center;">{description}</p>
-                </div>
-            """, unsafe_allow_html=True)
-            with st.container():
-                st.markdown('<div class="center-btn">', unsafe_allow_html=True)
-                if st.button(button_label, key=title):
-                    go_to(target_page)
-                st.markdown('</div>', unsafe_allow_html=True)
-    
+        def analysis_box(title, description, button_label, target_page, key):
+            st.markdown(f"<div class='content-box'>", unsafe_allow_html=True)
+            st.markdown("<div class='center-btn'>", unsafe_allow_html=True)
+            if st.button(button_label, key=key):
+                go_to(target_page)
+            st.markdown("</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='content-text'>{description}</div>", unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+        
         # ---- First Row ----
         row1_col1, row1_col2 = st.columns(2)
         with row1_col1:
-            analysis_box("Millet-wise Analysis",
-                         "Detailed analysis and functional comparison across millets.",
-                         "Go to Millet-wise Analysis",
-                         "milletwise_analysis")
-    
+            analysis_box(
+                "Millet-wise Analysis",
+                "Detailed analysis and functional comparison across millets.",
+                "Millet-wise Analysis",
+                "milletwise_analysis",
+                "btn1"
+            )
+        
         with row1_col2:
-            analysis_box("Inference",
-                         "Overall inference of the results.",
-                         "Go to Inference",
-                         "summarized_analysis")
-    
+            analysis_box(
+                "Inference",
+                "Overall inference of the results.",
+                "Inference",
+                "summarized_analysis",
+                "btn2"
+            )
+        
         # ---- Second Row ----
         row2_col1, row2_col2, row2_col3 = st.columns(3)
         with row2_col1:
-            analysis_box("EC Analysis",
-                         "Explore enzyme-level information based on EC numbers.",
-                         "Go to EC Analysis",
-                         "ec_analysis")
-    
+            analysis_box(
+                "EC Analysis",
+                "Explore enzyme-level information based on EC numbers.",
+                "EC Analysis",
+                "ec_analysis",
+                "btn3"
+            )
+        
         with row2_col2:
-            analysis_box("KO Analysis",
-                         "Explore KEGG Orthology-based gene functions and mappings.",
-                         "Go to KO Analysis",
-                         "ko_analysis")
-    
+            analysis_box(
+                "KO Analysis",
+                "Explore KEGG Orthology-based gene functions and mappings.",
+                "KO Analysis",
+                "ko_analysis",
+                "btn4"
+            )
+        
         with row2_col3:
-            analysis_box("Pathway Analysis",
-                         "Visualize metabolic and biological pathways predicted from sequence data.",
-                         "Go to Pathway Analysis",
-                         "pwy_analysis")
-    
+            analysis_box(
+                "Pathway Analysis",
+                "Visualize metabolic and biological pathways predicted from sequence data.",
+                "Pathway Analysis",
+                "pwy_analysis",
+                "btn5"
+            )
 
     '''
     
