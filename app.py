@@ -152,7 +152,7 @@ def home():
     
     # ========== LEFT: About Box ==========
     with left_col:
-        st.markdown("<h4 style='text-align:center;'>About This App</h2>", unsafe_allow_html=True)
+        st.markdown("<h5 style='text-align:center;'>About This App</h5>", unsafe_allow_html=True)
         st.markdown("""
         <div class="content-box">
             <ol>
