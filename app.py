@@ -225,7 +225,7 @@ def home():
                         go_to("pwy_analysis")
                     st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
     
-
+    '''
     
     left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
     
