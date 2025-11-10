@@ -15,14 +15,12 @@ st.markdown("""
     background-size: cover;
     background-attachment: fixed;}
 .block-container {
+    background-color: rgba(255, 255, 255, 1); /* opaque white */
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
     padding-top: 2rem;
     padding-left: 6rem;
     padding-right: 6rem;
-
-    /* Match .content-box style */
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 10px;
-    box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
     padding-bottom: 2rem;
 }
 
