@@ -18,6 +18,12 @@ st.markdown("""
     padding-top: 2rem;
     padding-left: 6rem;
     padding-right: 6rem;}
+.content-box {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
+    }
 h2, h1 {
     text-align: center !important;
     color: #2c3e50;}
@@ -134,18 +140,7 @@ def home():
         """)
    
 
-    # ----- Existing Style (yours) -----
-    st.markdown("""
-    <style>
-    /* Custom content boxes */
-    .content-box {
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
-    }
-    </style>
-    """, unsafe_allow_html=True)
+  
     
     # ----- Page Layout -----
     left_col, right_col = st.columns([1, 2])
@@ -186,9 +181,9 @@ def home():
         }
         millet_df = pd.DataFrame(millet_data)
         col1,col2,col3=st.columns([1,2,1])
-        st.markdown("<h5 style='text-align:center;'>Millet Data</h5>", unsafe_allow_html=True)
+        
         with col2:
-            
+            st.markdown("<h5 style='text-align:center;'>Millet Data</h5>", unsafe_allow_html=True)
             st.data_editor(
                 millet_df,
                 column_config={
