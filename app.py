@@ -13,7 +13,8 @@ st.markdown("""
 .stApp {
     background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
     background-size: cover;
-    background-attachment: fixed;}
+    background-attachment: fixed;
+    }
 .block-container {
     background-color: rgba(255, 255, 255, 1); /* opaque white */
     border-radius: 10px;
@@ -123,7 +124,7 @@ def home():
     # ========== LEFT: About Box ==========
     with left_col:
         st.markdown("<h5 style='text-align:center;'>🧬 About this App</h5>", unsafe_allow_html=True)
-        with st.container():
+        with st.container(border=True):
             st.markdown("""
                     1. This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets 
                     (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">research paper link</a>).</li>
