@@ -185,7 +185,7 @@ def home():
             "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"] 
         }
         millet_df = pd.DataFrame(millet_data)
-        col1,col2,col3=([1,2,1])
+        col1,col2,col3=st.columns([1,2,1])
         st.markdown("<h5 style='text-align:center;'>Millet Data</h5>", unsafe_allow_html=True)
         with col2:
             
