@@ -225,41 +225,6 @@ def home():
                         go_to("pwy_analysis")
                     st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
     
-    '''
-    
-    left_col, middle_col, right_col = st.columns([1, 1, 1])  # left & middle for extra buttons/spaces, right for Detailed Analysis
-    
-    # -------------------------------------------------Summarized Analysis-------------------------------------------------------------
-    with left_col:
-        with st.expander("About This App", expanded=False):
-            st.markdown("""
-            1. This app is based on a research paper by our guide, where lactic acid bacteria (LAB) were isolated and characterized from millets([research paper link](https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf)).
-            2. Among the isolates, four LAB strains showed probiotic characteristics, and their 16S rRNA partial sequences were submitted to NCBI.
-            3. These sequences have been used for functional prediction using PICRUSt (Phylogenetic Investigation of Communities by Reconstruction of Unobserved States).
-            4. The raw PICRUSt outputs were processed to obtain KO (KEGG Orthology), EC (Enzyme Commission), and PWY (Pathway) dataframes.
-            5. Each dataframe was independently linked to reference information from databases.
-            """)
-        
-    # ------------------------------------------------Millet-wise Analysis---------------------------------------------------------------
-    with middle_col:
-        if st.button("Summarized Analysis"):
-            go_to("summarized_analysis")
-         st.markdown("""
-        This contains the overall summary of our results.
-        """)
-        if st.button("Millet-wise Analysis"):
-            go_to("milletwise_analysis")
-   # -------------------------------------------------- Meta Data ---------------------------------------------------------------------------
-    with right_col:
-        # Detailed Analysis heading
-        st.markdown("<h4 style='text-align:center; margin-bottom:20px;'>Meta Data</h4>", unsafe_allow_html=True)
-        # Center buttons below the heading
-        for label, page_key in [("EC Analysis", "ec_analysis"), ("KO Analysis", "ko_analysis"), ("Pathway Analysis", "pwy_analysis")]:
-            col1, col2, col3 = st.columns([1, 2, 1])  # middle column holds the button
-            with col2:
-                if st.button(label, key=label):
-                    go_to(page_key)
- '''
     footer()
 # -------------------------------------------------- Millet Data Mapping -------------------------------------------------------------------
 millet_map = {
