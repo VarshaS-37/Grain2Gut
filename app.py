@@ -48,7 +48,7 @@ if st.session_state.show_disclaimer:
         padding: 14px 18px;
         border-radius: 10px;
         background-color:#FEF7A2;
-        font-size: 18px;
+        font-size: 16px;
         line-height: 1.5;
     ">
         <div style="text-align:center;">
