@@ -6,7 +6,11 @@ from upsetplot import UpSet, from_memberships
 from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
-
+st.markdown("""
+    <script>
+        window.scrollTo(0, 0);
+    </script>
+""", unsafe_allow_html=True)
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
