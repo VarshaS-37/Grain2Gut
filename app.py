@@ -117,7 +117,7 @@ def home():
     st.markdown(" ")
    
     # ====== PAGE LAYOUT ======
-    left_col, middle_col, right_col = st.columns([1,2,3)
+    left_col, middle_col, right_col = st.columns([1,2,3])
     
     # ================================
     # LEFT COLUMN
