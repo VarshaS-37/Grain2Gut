@@ -543,16 +543,20 @@ def millet():
             st.write("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
     with col2:
         with st.container(border=True):
-            if st.button("Trait Distribution"):
-                go_to("trait")
+            cola,colb,colc=st.columns([0.5,2,0.5])
+            with colb:
+                if st.button("Trait Distribution"):
+                    go_to("trait")
             st.markdown("""
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
             """)
     with col3:
         with st.container(border=True):
-            if st.button("Common & Unique Traits"):
-                go_to("couq")
+            cola,colb,colc=st.columns([0.5,2,0.5])
+            with colb:
+                if st.button("Common & Unique Traits"):
+                    go_to("couq")
             st.markdown("""
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
