@@ -16,7 +16,7 @@ st.markdown("""
     background-attachment: fixed;
     }
 .block-container {
-    padding-top: 2rem;
+    padding-top: 2rem 2rem;
 }
 h2, h1 {
     text-align: center !important;
