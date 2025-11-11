@@ -16,13 +16,10 @@ st.markdown("""
     background-attachment: fixed;
     }
 .block-container {
-    
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
     padding: 2rem 6rem;
 }
-
-
 h2, h1 {
     text-align: center !important;
     color: #2c3e50;}
@@ -174,7 +171,6 @@ def home():
         
             with col1:
                 with st.container(border=True):
-                    
                     if st.button("Millet-wise Analysis"):
                         go_to("milletwise_analysis")
                     st.write("Detailed comparison of functions across millet strains.")
@@ -193,7 +189,6 @@ def home():
         
             with ec_col:
                 with st.container(border=True):
-                
                     if st.button("Predicted ECs", use_container_width=True):
                         go_to("ec_analysis")
                     st.write("Explore enzyme-level functions based on EC numbers.")
@@ -538,13 +533,14 @@ def millet():
     st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
     if st.button("Back to Home"):
         go_to("home") 
-    st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
     col1, col2,col3 = st.columns(3)
     with col1:
         with st.container(border=True):
-            if st.button("EC class Distribution"):
-                go_to("ec_class")
-            st.write("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
+            cola,colb,colc=st.columns([1,2,1])
+            with colb:
+                if st.button("EC class Distribution"):
+                    go_to("ec_class")
+                st.write("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
     with col2:
         with st.container(border=True):
             if st.button("Trait Distribution"):
