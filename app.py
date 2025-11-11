@@ -204,11 +204,11 @@ def home():
                 with st.container(border=True):
                    if st.button("KO Analysis", use_container_width=True):
                             go_to("ko_analysis")
-                    st.write("Analyze gene functions using KEGG Orthology mappings.")
+                   st.write("Analyze gene functions using KEGG Orthology mappings.")
         
             with pwy_col:
                 with st.container(border=True):
-                   if st.button("Pathway Analysis", use_container_width=True):
+                    if st.button("Pathway Analysis", use_container_width=True):
                             go_to("pwy_analysis")
                     st.write("Visualize metabolic and biological pathways from sequence data.")
 
