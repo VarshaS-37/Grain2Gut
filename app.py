@@ -904,7 +904,7 @@ def summary():
     st.write("")
     if st.button("Back to Home"):
         go_to("home") 
-    st.markdown("<h3 style='text-align:center;'>Inference</h4>", unsafe_allow_html=True) 
+    st.markdown("<h3 style='text-align:center;'>Inference through Q & A</h4>", unsafe_allow_html=True) 
     #---------------------------------ec analysis-------------------------------------------------------
     st.markdown("<h4 style='text-align:center;'>Enzymes</h4>", unsafe_allow_html=True) 
     with st.expander("Which are the top abundant EC numbers and what do they imply? "):
