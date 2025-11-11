@@ -536,69 +536,31 @@ def pwy_page():
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
 def millet():
     st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
-    with st.sidebar:
-        if st.button("Back to Home"):
-            go_to("home") 
-        with st.sidebar.expander("Millet Data", expanded=False):
-            st.markdown("""
-            Contains data about the four millet derived LAB used and their NCBI links are provided.
-            """)
-        with st.sidebar.expander("EC class Distribution", expanded=False):
-            st.markdown("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
-        with st.sidebar.expander("Biological Trait Distribution", expanded=False):
+    if st.button("Back to Home"):
+        go_to("home") 
+    st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
+    col1, col2,col3 = st.columns(3)
+    with col1:
+        with st.container(border=True):
+            if st.button("EC class Distribution"):
+                go_to("ec_class")
+            st.write("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
+    with col2:
+        with st.container(border=True):
+            if st.button("Trait Distribution"):
+                go_to("trait")
             st.markdown("""
             - Based on our understanding of all the data, we have assigned biological traits to each EC, KO, PWY.
             - Their distribution is plotted for each millet.
             """)
-        with st.sidebar.expander("Common & Unique Traits", expanded=False):
+    with col3:
+        with st.container(border=True):
+            if st.button("Common & Unique Traits"):
+                go_to("couq")
             st.markdown("""
             - The assigned biological traits are compared across millets.
             - The common and unique traits across millets are plotted here.
             """)
-    millet_data = {
-        "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
-        "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
-        "Organism": [
-            "Enterococcus casseliflavus", 
-            "Weissella cibaria", 
-            "Weissella cibaria", 
-            "Lactococcus lactis"
-        ],
-        "NCBI ID": ['PP355677', 'PP355678', 'PP355679', 'PP355680'],
-        "NCBI Link": [
-            "https://www.ncbi.nlm.nih.gov/nuccore/PP355677.1/", 
-            "https://www.ncbi.nlm.nih.gov/nuccore/pp355678", 
-            "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
-            "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"] 
-    }
-    millet_df = pd.DataFrame(millet_data)
-    left_col, right_col = st.columns([2, 2]) 
-    with left_col:
-        st.markdown("<h4 style='text-align:center;'>Millet Data</h4>", unsafe_allow_html=True)
-        st.data_editor(
-            millet_df,
-            column_config={
-                "NCBI Link": st.column_config.LinkColumn(
-                    "NCBI Link",
-                    display_text="NCBI Link" 
-                ),
-            },
-            hide_index=True,
-            use_container_width=True
-        )
-    with right_col:
-        st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("EC class Distribution"):
-                go_to("ec_class")
-        with col2:
-            if st.button("Trait Distribution"):
-                go_to("trait")        
-        col3, col4,col5= st.columns(3)
-        with col4:
-            if st.button("Common & Unique Traits"):
-                go_to("couq")   
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
