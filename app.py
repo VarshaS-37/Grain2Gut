@@ -536,11 +536,11 @@ def millet():
     col1, col2,col3 = st.columns(3)
     with col1:
         with st.container(border=True):
-            cola,colb,colc=st.columns([1,2,1])
+            cola,colb,colc=st.columns([0.5,2,0.5])
             with colb:
                 if st.button("EC class Distribution"):
                     go_to("ec_class")
-                st.write("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
+            st.write("""Shows the distribution of EC numbers across the six major EC classes for each millet.""")
     with col2:
         with st.container(border=True):
             if st.button("Trait Distribution"):
