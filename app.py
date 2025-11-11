@@ -17,8 +17,8 @@ st.markdown("""
     }
 .block-container {
     padding-top: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 h2, h1 {
     text-align: center !important;
@@ -115,7 +115,7 @@ def home():
     st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
     st.markdown(" ")
     # ====== PAGE LAYOUT ======
-    left_col, right_col = st.columns([2, 3], gap="large")
+    left_col, right_col = st.columns([3, 2], gap="large")
 
     # ===== LEFT: ABOUT BOX =====
     with left_col:
