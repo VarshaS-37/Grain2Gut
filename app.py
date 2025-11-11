@@ -63,46 +63,7 @@ if st.session_state.show_disclaimer:
         </div>
     </div>
     """, unsafe_allow_html=True)
-    import streamlit as st
-
-    st.markdown("""
-        <style>
-            .sidebar-label {
-                position: fixed;
-                top: 12px;
-                left: 65px; /* adjust to align near the arrow */
-                background: #007bff;
-                color: white;
-                padding: 5px 10px;
-                border-radius: 6px;
-                font-size: 0.85rem;
-                font-weight: 500;
-                cursor: pointer;
-                box-shadow: 0 0 6px rgba(0,0,0,0.3);
-                z-index: 9999;
-                transition: all 0.2s ease-in-out;
-            }
     
-            .sidebar-label:hover {
-                background: #0056b3;
-                transform: scale(1.05);
-                box-shadow: 0 0 10px rgba(0,123,255,0.7);
-            }
-        </style>
-    
-        <div class="sidebar-label" onclick="toggleSidebar()">Sidebar</div>
-    
-        <script>
-            function toggleSidebar() {
-                // Find the built-in Streamlit sidebar toggle button and click it
-                const btn = window.parent.document.querySelector('button[title="Collapse sidebar"]');
-                if (btn) btn.click();
-            }
-        </script>
-    """, unsafe_allow_html=True)
-    
-  
-
     col1, col2, col3 = st.columns([3,2,3])
     with col2:
         if st.button("Click here to reach the App 🦠"):
