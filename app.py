@@ -179,13 +179,13 @@ def home():
         with st.container(border=True):
             if st.button("📊 Millet-wise Analysis", use_container_width=True):
                 go_to("milletwise_analysis")
-            st.caption("Detailed comparison of functions across millet strains.")
+            st.write("Detailed comparison of functions across millet strains.")
 
     with col2:
         with st.container(border=True):
             if st.button("🧠 Inference", use_container_width=True):
                 go_to("summarized_analysis")
-            st.caption("Summarized overall interpretation of results.")
+            st.write("Summarized overall interpretation of results.")
 
     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -197,19 +197,19 @@ def home():
         with st.container(border=True):
             if st.button("⚙️ EC Analysis", use_container_width=True):
                 go_to("ec_analysis")
-            st.caption("Explore enzyme-level functions based on EC numbers.")
+            st.write("Explore enzyme-level functions based on EC numbers.")
 
     with ko_col:
         with st.container(border=True):
             if st.button("🧫 KO Analysis", use_container_width=True):
                 go_to("ko_analysis")
-            st.caption("Analyze gene functions using KEGG Orthology mappings.")
+            st.write("Analyze gene functions using KEGG Orthology mappings.")
 
     with pwy_col:
         with st.container(border=True):
             if st.button("🧩 Pathway Analysis", use_container_width=True):
                 go_to("pwy_analysis")
-            st.caption("Visualize metabolic and biological pathways from sequence data.")
+            st.write("Visualize metabolic and biological pathways from sequence data.")
 
     # ===== FOOTER =====
     footer()
