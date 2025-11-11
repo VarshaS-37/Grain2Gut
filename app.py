@@ -1513,7 +1513,7 @@ def summary():
         """)
       
     
-    st.markdown("<h4 style='text-align:center;'>Biological Traits Analysis Summary</h4>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align:center;'>Biological Traits</h4>", unsafe_allow_html=True)
     with st.expander("Which are the common and unique biological traits?"):
             df = create_trait_table(millet_map, path="picrust_processed_output_files/")
             df = style_trait_table(df)
