@@ -139,7 +139,7 @@ def home():
 
     # ===== RIGHT: MILLET DATA =====
     with right_col:
-        st.markdown(""<h3 style='text-align:center;'>Millet Data Overview</h2>", unsafe_allow_html=True)
+        st.markdown("<h3 style='text-align:center;'>Millet Data Overview</h2>", unsafe_allow_html=True)
 
         millet_data = {
             "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
