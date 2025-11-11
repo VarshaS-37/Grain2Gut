@@ -120,7 +120,7 @@ def home():
     # ====== HEADER ======
     st.markdown("<h2 style='text-align:center;'>🌾 Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
-    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown(" ")
     # ====== PAGE LAYOUT ======
     left_col, right_col = st.columns([2, 3], gap="large")
 
