@@ -6,15 +6,7 @@ from upsetplot import UpSet, from_memberships
 from itertools import combinations
 
 st.set_page_config(layout="wide",page_icon="🌾")
-st.markdown("""
-    <script>
-        // Force scroll to top on every rerun
-        const observer = new MutationObserver(() => {
-            window.scrollTo(0,0);
-        });
-        observer.observe(document.body, {childList: true, subtree: true});
-    </script>
-""", unsafe_allow_html=True)
+
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
