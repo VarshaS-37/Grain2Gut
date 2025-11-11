@@ -16,8 +16,9 @@ st.markdown("""
     background-attachment: fixed;
     }
 .block-container {
-    border-radius: 10px;
-    padding: 2rem 6rem;
+    padding-top: 2rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
 }
 h2, h1 {
     text-align: center !important;
