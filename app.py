@@ -169,7 +169,7 @@ def home():
     with cola:
         # ===== SUMMARY SECTION =====
         with st.container(border=True):
-            st.markdown("<h4 style='text-align:center;'>Summary & Comparison</h4>", unsafe_allow_html=True)
+            st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
             col1, col2 = st.columns(2, gap="large")
         
             with col1:
@@ -188,25 +188,25 @@ def home():
     with colb:
         with st.container(border=True):
             # ===== FUNCTIONAL ANALYSES =====
-            st.markdown("<h4 style='text-align:center;'>Functional Analyses</h4>", unsafe_allow_html=True)
+            st.markdown("<h4 style='text-align:center;'>Functional Prediction</h4>", unsafe_allow_html=True)
             ec_col, ko_col, pwy_col = st.columns(3, gap="large")
         
             with ec_col:
                 with st.container(border=True):
                 
-                    if st.button("EC Analysis", use_container_width=True):
+                    if st.button("Predicted ECs", use_container_width=True):
                         go_to("ec_analysis")
                     st.write("Explore enzyme-level functions based on EC numbers.")
         
             with ko_col:
                 with st.container(border=True):
-                   if st.button("KO Analysis", use_container_width=True):
+                   if st.button("Predicted KOs", use_container_width=True):
                             go_to("ko_analysis")
                    st.write("Analyze gene functions using KEGG Orthology mappings.")
         
             with pwy_col:
                 with st.container(border=True):
-                    if st.button("Pathway Analysis", use_container_width=True):
+                    if st.button("Predicted Pathways", use_container_width=True):
                             go_to("pwy_analysis")
                     st.write("Visualize metabolic and biological pathways from sequence data.")
 
