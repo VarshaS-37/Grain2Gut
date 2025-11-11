@@ -118,28 +118,28 @@ def go_to(page):
 
 def home():
     # ====== HEADER ======
-    st.markdown("<h1 style='text-align:center;'>🧬 Grain2Gut</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
     st.markdown("<hr>", unsafe_allow_html=True)
 
     # ====== PAGE LAYOUT ======
-    left_col, right_col = st.columns([1, 3], gap="large")
+    left_col, right_col = st.columns([2, 3], gap="large")
 
     # ===== LEFT: ABOUT BOX =====
     with left_col:
-        st.markdown("### 📖 About this App")
+        st.markdown("<h3 style='text-align:center;'>About this App</h2>", unsafe_allow_html=True)
         with st.container(border=True):
             st.markdown("""
-            1️⃣ This app is based on a research paper on lactic acid bacteria (LAB) isolated from millets  
+            1. This app is based on a research paper on lactic acid bacteria (LAB) isolated from millets  
             (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">Research Paper</a>)  
-            2️⃣ Four LAB strains showed probiotic potential, and their 16S rRNA sequences were submitted to NCBI.  
-            3️⃣ These sequences were analyzed using PICRUSt for functional prediction.  
-            4️⃣ Outputs were processed into **KO**, **EC**, and **PWY** datasets linked to reference databases.
+            2. Four LAB strains showed probiotic potential, and their 16S rRNA sequences were submitted to NCBI.  
+            3. These sequences were analyzed using PICRUSt for functional prediction.  
+            4. Outputs were processed into **KO**, **EC**, and **PWY** datasets linked to reference databases.
             """, unsafe_allow_html=True)
 
     # ===== RIGHT: MILLET DATA =====
     with right_col:
-        st.markdown("### 📊 Millet Data Overview")
+        st.markdown(""<h3 style='text-align:center;'>Millet Data Overview</h2>", unsafe_allow_html=True)
 
         millet_data = {
             "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
