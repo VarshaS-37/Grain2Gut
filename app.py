@@ -16,14 +16,10 @@ st.markdown("""
     background-attachment: fixed;
     }
 .block-container {
-    background-color: rgba(255, 255, 255, 0.85); /* semi-opaque white */
+    background-color: rgba(255, 255, 255, 0.9); /* slightly opaque white */
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
-    padding-top: 2rem;
-    padding-left: 6rem;
-    padding-right: 6rem;
-    padding-bottom: 2rem;
-    
+    padding: 2rem 6rem;
 }
 
 
