@@ -16,7 +16,7 @@ st.markdown("""
     background-attachment: fixed;
     }
 .block-container {
-    background-color: rgba(255, 255, 255); /* slightly opaque white */
+    
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
     padding: 2rem 6rem;
