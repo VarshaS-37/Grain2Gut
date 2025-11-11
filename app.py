@@ -114,6 +114,107 @@ def go_to(page):
     st.session_state.page = page
     st.rerun()
 # ------------------------------------------------------------ Home Page -----------------------------------------------------------------------
+
+
+def home():
+    # ====== HEADER ======
+    st.markdown("<h1 style='text-align:center;'>🧬 Grain2Gut</h1>", unsafe_allow_html=True)
+    st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
+    st.markdown("<hr>", unsafe_allow_html=True)
+
+    # ====== PAGE LAYOUT ======
+    left_col, right_col = st.columns([1, 3], gap="large")
+
+    # ===== LEFT: ABOUT BOX =====
+    with left_col:
+        st.markdown("### 📖 About this App")
+        with st.container(border=True):
+            st.markdown("""
+            1️⃣ This app is based on a research paper on lactic acid bacteria (LAB) isolated from millets  
+            (<a href="https://github.com/VarshaS-37/Grain2Gut/blob/main/Isolation_%26_characterization_of_biological_traits_of_millet-derived_lactic_acid_bacteria.pdf" target="_blank">Research Paper</a>)  
+            2️⃣ Four LAB strains showed probiotic potential, and their 16S rRNA sequences were submitted to NCBI.  
+            3️⃣ These sequences were analyzed using PICRUSt for functional prediction.  
+            4️⃣ Outputs were processed into **KO**, **EC**, and **PWY** datasets linked to reference databases.
+            """, unsafe_allow_html=True)
+
+    # ===== RIGHT: MILLET DATA =====
+    with right_col:
+        st.markdown("### 📊 Millet Data Overview")
+
+        millet_data = {
+            "Millet Source": ["Proso", "Foxtail", "Little", "Little"],
+            "Strain": ['BM01', 'NM01', 'SM01', 'SM02'],
+            "Organism": [
+                "Enterococcus casseliflavus",
+                "Weissella cibaria",
+                "Weissella cibaria",
+                "Lactococcus lactis"
+            ],
+            "NCBI ID": ['PP355677', 'PP355678', 'PP355679', 'PP355680'],
+            "NCBI Link": [
+                "https://www.ncbi.nlm.nih.gov/nuccore/PP355677.1/",
+                "https://www.ncbi.nlm.nih.gov/nuccore/pp355678",
+                "https://www.ncbi.nlm.nih.gov/nuccore/pp355679",
+                "https://www.ncbi.nlm.nih.gov/nuccore/pp355680"
+            ]
+        }
+        millet_df = pd.DataFrame(millet_data)
+
+        st.data_editor(
+            millet_df,
+            column_config={
+                "NCBI Link": st.column_config.LinkColumn("NCBI Link", display_text="NCBI Link"),
+            },
+            hide_index=True,
+            use_container_width=True
+        )
+
+    st.markdown("<br><hr>", unsafe_allow_html=True)
+
+    # ===== SUMMARY SECTION =====
+    st.markdown("## 🧩 Summary & Comparison")
+    col1, col2 = st.columns(2, gap="large")
+
+    with col1:
+        with st.container(border=True):
+            if st.button("📊 Millet-wise Analysis", use_container_width=True):
+                go_to("milletwise_analysis")
+            st.caption("Detailed comparison of functions across millet strains.")
+
+    with col2:
+        with st.container(border=True):
+            if st.button("🧠 Inference", use_container_width=True):
+                go_to("summarized_analysis")
+            st.caption("Summarized overall interpretation of results.")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+
+    # ===== FUNCTIONAL ANALYSES =====
+    st.markdown("## 🔬 Functional Analyses")
+    ec_col, ko_col, pwy_col = st.columns(3, gap="large")
+
+    with ec_col:
+        with st.container(border=True):
+            if st.button("⚙️ EC Analysis", use_container_width=True):
+                go_to("ec_analysis")
+            st.caption("Explore enzyme-level functions based on EC numbers.")
+
+    with ko_col:
+        with st.container(border=True):
+            if st.button("🧫 KO Analysis", use_container_width=True):
+                go_to("ko_analysis")
+            st.caption("Analyze gene functions using KEGG Orthology mappings.")
+
+    with pwy_col:
+        with st.container(border=True):
+            if st.button("🧩 Pathway Analysis", use_container_width=True):
+                go_to("pwy_analysis")
+            st.caption("Visualize metabolic and biological pathways from sequence data.")
+
+    # ===== FOOTER =====
+    footer()
+
+'''
 def home():
     st.markdown("<h2 style='text-align:center;'>Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center;'><i>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</i></h4>", unsafe_allow_html=True)
@@ -202,6 +303,7 @@ def home():
                     st.write("Visualize metabolic and biological pathways predicted from sequence data.")   
     
     footer()
+    '''
 # -------------------------------------------------- Millet Data Mapping -------------------------------------------------------------------
 millet_map = {
     "Enterococcus casseliflavus (Proso Millet)": "77",
