@@ -183,10 +183,8 @@ def home():
         
             with col2:
                 with st.container(border=True):
-                    c1, c2, c3 = st.columns([1, 2, 1])
-                    with c2:
-                        if st.button("Inference", use_container_width=True):
-                            go_to("summarized_analysis")
+                    if st.button("Inference", use_container_width=True):
+                        go_to("summarized_analysis")
                     st.write("Summarized overall interpretation of results.")
 
     with colb:
@@ -197,25 +195,20 @@ def home():
         
             with ec_col:
                 with st.container(border=True):
-                    c1, c2, c3 = st.columns([1, 2, 1])
-                    with c2:
-                        if st.button("EC Analysis", use_container_width=True):
-                            go_to("ec_analysis")
+                
+                    if st.button("EC Analysis", use_container_width=True):
+                        go_to("ec_analysis")
                     st.write("Explore enzyme-level functions based on EC numbers.")
         
             with ko_col:
                 with st.container(border=True):
-                    c1, c2, c3 = st.columns([1, 2, 1])
-                    with c2:
-                        if st.button("KO Analysis", use_container_width=True):
+                   if st.button("KO Analysis", use_container_width=True):
                             go_to("ko_analysis")
                     st.write("Analyze gene functions using KEGG Orthology mappings.")
         
             with pwy_col:
                 with st.container(border=True):
-                    c1, c2, c3 = st.columns([1, 2, 1])
-                    with c2:
-                        if st.button("🧩 Pathway Analysis", use_container_width=True):
+                   if st.button("Pathway Analysis", use_container_width=True):
                             go_to("pwy_analysis")
                     st.write("Visualize metabolic and biological pathways from sequence data.")
 
