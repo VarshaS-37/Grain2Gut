@@ -218,7 +218,7 @@ def ec_page():
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
      # ------------------------------------------ Sidebar with instructions -----------------------------------------------------
     with st.sidebar:
-        if st.button("Back to Home"):
+        if st.button("Back to Home 🏠"):
             go_to("home")  # Your navigation function
         with st.sidebar.expander("How to Use this Page", expanded=False):
             st.markdown("""
@@ -330,7 +330,7 @@ def ko_page():
     st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
     # ------------------------------------- Sidebar with instructions ----------------------------------------------------------------------
     with st.sidebar:
-        if st.button("Back to Home"):
+        if st.button("Back to Home 🏠"):
             go_to("home")  # Your navigation function
         with st.sidebar.expander("How to Use this Page", expanded=False):
             st.markdown("""
@@ -437,7 +437,7 @@ def pwy_page():
     st.markdown("<h3 style='text-align:center;'>Pathway Analysis</h3>", unsafe_allow_html=True)
     # ---------------------------------------------------- Sidebar with instructions ------------------------------------------------------------------
     with st.sidebar:
-        if st.button("Back to Home"):
+        if st.button("Back to Home 🏠"):
             go_to("home")  # Your navigation function
         with st.sidebar.expander("How to Use this Page", expanded=False):
             st.markdown("""
@@ -530,7 +530,7 @@ def pwy_page():
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
 def millet():
     st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
-    if st.button("Back to Home"):
+    if st.button("Back to Home 🏠"):
         go_to("home") 
     col1, col2,col3 = st.columns(3)
     with col1:
@@ -563,7 +563,7 @@ def millet():
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
-        if st.button("Back to Home"):
+        if st.button("Back to Home 🏠"):
             go_to("home")
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis")    
@@ -717,7 +717,7 @@ def brite():
 def trait():
     st.markdown("<h4 style='text-align:center;'>Biological Trait Distribution</h4>", unsafe_allow_html=True)
     with st.sidebar:
-        if st.button("Back to Home"): 
+        if st.button("Back to Home 🏠"): 
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
@@ -776,7 +776,7 @@ def trait():
 #-------------------------------------------------common & unique-----------------------------------------------------------------------------
 def couq():
     with st.sidebar:
-        if st.button("Back to Home"): 
+        if st.button("Back to Home 🏠"): 
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
@@ -901,7 +901,7 @@ def couq():
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     st.write("")
-    if st.button("Back to Home"):
+    if st.button("Back to Home 🏠"):
         go_to("home") 
     st.markdown("<h3 style='text-align:center;'>Inference through Q & A</h4>", unsafe_allow_html=True) 
     #---------------------------------ec analysis-------------------------------------------------------
