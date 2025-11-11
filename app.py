@@ -117,7 +117,7 @@ def home():
     st.markdown(" ")
    
     # ====== PAGE LAYOUT ======
-    left_col, right_col = st.columns([3, 2], gap="large")
+    left_col, middle_col, right_col = st.columns(3)
     
     # ================================
     # LEFT COLUMN
@@ -166,7 +166,7 @@ def home():
     # ================================
     # RIGHT COLUMN
     # ================================
-    with right_col:
+    with middle_col:
         # ===== Row 1: Analysis Section =====
         with st.container(border=True):
             st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
@@ -185,7 +185,7 @@ def home():
                     st.write("Summarized overall interpretation of results.")
     
         st.markdown(" ")
-    
+    with right_col:
         # ===== Row 2: Functional Prediction Section =====
         with st.container(border=True):
             st.markdown("<h4 style='text-align:center;'>Functional Prediction</h4>", unsafe_allow_html=True)
