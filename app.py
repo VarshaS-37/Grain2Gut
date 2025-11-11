@@ -120,7 +120,7 @@ def home():
     # ====== HEADER ======
     st.markdown("<h2 style='text-align:center;'>🌾 Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
-
+    st.markdown("<hr>", unsafe_allow_html=True)
     # ====== PAGE LAYOUT ======
     left_col, right_col = st.columns([2, 3], gap="large")
 
@@ -170,44 +170,45 @@ def home():
     cola,colb=st.columns([2,3])
     with cola:
         # ===== SUMMARY SECTION =====
-        st.markdown("<h4 style='text-align:center;'>Summary & Comparison</h4>", unsafe_allow_html=True)
-        col1, col2 = st.columns(2, gap="large")
-    
-        with col1:
-            with st.container(border=True):
-                if st.button("📊 Millet-wise Analysis", use_container_width=True):
-                    go_to("milletwise_analysis")
-                st.write("Detailed comparison of functions across millet strains.")
-    
-        with col2:
-            with st.container(border=True):
-                if st.button("🧠 Inference", use_container_width=True):
-                    go_to("summarized_analysis")
-                st.write("Summarized overall interpretation of results.")
+        with st.container(border=True):
+            st.markdown("<h4 style='text-align:center;'>Summary & Comparison</h4>", unsafe_allow_html=True)
+            col1, col2 = st.columns(2, gap="large")
+        
+            with col1:
+                with st.container(border=True):
+                    if st.button("📊 Millet-wise Analysis", use_container_width=True):
+                        go_to("milletwise_analysis")
+                    st.write("Detailed comparison of functions across millet strains.")
+        
+            with col2:
+                with st.container(border=True):
+                    if st.button("🧠 Inference", use_container_width=True):
+                        go_to("summarized_analysis")
+                    st.write("Summarized overall interpretation of results.")
 
     with colb:
-
-        # ===== FUNCTIONAL ANALYSES =====
-        st.markdown("<h4 style='text-align:center;'>Functional Analyses</h4>", unsafe_allow_html=True)
-        ec_col, ko_col, pwy_col = st.columns(3, gap="large")
-    
-        with ec_col:
-            with st.container(border=True):
-                if st.button("⚙️ EC Analysis", use_container_width=True):
-                    go_to("ec_analysis")
-                st.write("Explore enzyme-level functions based on EC numbers.")
-    
-        with ko_col:
-            with st.container(border=True):
-                if st.button("🧫 KO Analysis", use_container_width=True):
-                    go_to("ko_analysis")
-                st.write("Analyze gene functions using KEGG Orthology mappings.")
-    
-        with pwy_col:
-            with st.container(border=True):
-                if st.button("🧩 Pathway Analysis", use_container_width=True):
-                    go_to("pwy_analysis")
-                st.write("Visualize metabolic and biological pathways from sequence data.")
+        with st.container(border=True):
+            # ===== FUNCTIONAL ANALYSES =====
+            st.markdown("<h4 style='text-align:center;'>Functional Analyses</h4>", unsafe_allow_html=True)
+            ec_col, ko_col, pwy_col = st.columns(3, gap="large")
+        
+            with ec_col:
+                with st.container(border=True):
+                    if st.button("⚙️ EC Analysis", use_container_width=True):
+                        go_to("ec_analysis")
+                    st.write("Explore enzyme-level functions based on EC numbers.")
+        
+            with ko_col:
+                with st.container(border=True):
+                    if st.button("🧫 KO Analysis", use_container_width=True):
+                        go_to("ko_analysis")
+                    st.write("Analyze gene functions using KEGG Orthology mappings.")
+        
+            with pwy_col:
+                with st.container(border=True):
+                    if st.button("🧩 Pathway Analysis", use_container_width=True):
+                        go_to("pwy_analysis")
+                    st.write("Visualize metabolic and biological pathways from sequence data.")
 
     # ===== FOOTER =====
     footer()
