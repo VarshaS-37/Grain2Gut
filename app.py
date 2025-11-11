@@ -176,10 +176,9 @@ def home():
         
             with col1:
                 with st.container(border=True):
-                    c1, c2, c3 = st.columns([1, 2, 1])
-                    with c2:
-                        if st.button("Millet-wise Analysis", use_container_width=True):
-                            go_to("milletwise_analysis")
+                    
+                    if st.button("Millet-wise Analysis"):
+                        go_to("milletwise_analysis")
                     st.write("Detailed comparison of functions across millet strains.")
         
             with col2:
