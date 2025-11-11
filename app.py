@@ -16,7 +16,7 @@ st.markdown("""
     background-attachment: fixed;
     }
 .block-container {
-    background-color: rgba(255, 255, 255, 0.9); /* slightly opaque white */
+    background-color: rgba(255, 255, 255); /* slightly opaque white */
     border-radius: 10px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.15);
     padding: 2rem 6rem;
@@ -66,13 +66,11 @@ if st.session_state.show_disclaimer:
         </div>
     </div>
     """, unsafe_allow_html=True)
-
     col1, col2, col3 = st.columns([3,2,3])
     with col2:
         if st.button("Click here to reach the App 🦠"):
             st.session_state.show_disclaimer = False
             st.rerun()
-
     st.stop()
 
 # ------------------------------------------------footer----------------------------------------------------------------------------------
