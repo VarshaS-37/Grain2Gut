@@ -57,12 +57,52 @@ if st.session_state.show_disclaimer:
         </div>
         <div style="text-align:left; margin-top:8px;">
             <ul style="padding-left:16px; margin:0;">
-                <li>Use the <b>Sidebar</b> to navigate the app sections.</li>
+                <li>Use the <b>Sidebar</b> after reaching the App to navigate its sections.</li>
                 <li><b>Do not</b> use the browser <b>Back</b> button as it will exit the app.</li>
             </ul>
         </div>
     </div>
     """, unsafe_allow_html=True)
+    import streamlit as st
+
+    st.markdown("""
+        <style>
+            .sidebar-label {
+                position: fixed;
+                top: 12px;
+                left: 65px; /* adjust to align near the arrow */
+                background: #007bff;
+                color: white;
+                padding: 5px 10px;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                font-weight: 500;
+                cursor: pointer;
+                box-shadow: 0 0 6px rgba(0,0,0,0.3);
+                z-index: 9999;
+                transition: all 0.2s ease-in-out;
+            }
+    
+            .sidebar-label:hover {
+                background: #0056b3;
+                transform: scale(1.05);
+                box-shadow: 0 0 10px rgba(0,123,255,0.7);
+            }
+        </style>
+    
+        <div class="sidebar-label" onclick="toggleSidebar()">Sidebar</div>
+    
+        <script>
+            function toggleSidebar() {
+                // Find the built-in Streamlit sidebar toggle button and click it
+                const btn = window.parent.document.querySelector('button[title="Collapse sidebar"]');
+                if (btn) btn.click();
+            }
+        </script>
+    """, unsafe_allow_html=True)
+    
+  
+
     col1, col2, col3 = st.columns([3,2,3])
     with col2:
         if st.button("Click here to reach the App 🦠"):
@@ -219,7 +259,7 @@ def ec_page():
     st.markdown("<h3 style='text-align:center;'>EC Analysis</h3>", unsafe_allow_html=True)
      # ------------------------------------------ Sidebar with instructions -----------------------------------------------------
     with st.sidebar:
-        if st.button("Back to Home 🏠"):
+        if st.button("Back to Homepage 🏠"):
             go_to("home")  # Your navigation function
         with st.sidebar.expander("How to Use this Page", expanded=False):
             st.markdown("""
@@ -331,7 +371,7 @@ def ko_page():
     st.markdown("<h3 style='text-align:center;'>KO Analysis</h3>", unsafe_allow_html=True)
     # ------------------------------------- Sidebar with instructions ----------------------------------------------------------------------
     with st.sidebar:
-        if st.button("Back to Home 🏠"):
+        if st.button("Back to Homepage 🏠"):
             go_to("home")  # Your navigation function
         with st.sidebar.expander("How to Use this Page", expanded=False):
             st.markdown("""
@@ -438,7 +478,7 @@ def pwy_page():
     st.markdown("<h3 style='text-align:center;'>Pathway Analysis</h3>", unsafe_allow_html=True)
     # ---------------------------------------------------- Sidebar with instructions ------------------------------------------------------------------
     with st.sidebar:
-        if st.button("Back to Home 🏠"):
+        if st.button("Back to Homepage 🏠"):
             go_to("home")  # Your navigation function
         with st.sidebar.expander("How to Use this Page", expanded=False):
             st.markdown("""
@@ -531,7 +571,7 @@ def pwy_page():
 #---------------------------------------------------millet analysis --------------------------------------------------------------------------
 def millet():
     st.markdown("<h4 style='text-align:center;'>Millet-wise Analysis</h4>", unsafe_allow_html=True)
-    if st.button("Back to Home 🏠"):
+    if st.button("Back to Homepage 🏠"):
         go_to("home") 
     col1, col2,col3 = st.columns(3)
     with col1:
@@ -564,7 +604,7 @@ def millet():
 #--------------------------------------ec class------------------------------------------------------------------------------------------------
 def ec_class():
     with st.sidebar:
-        if st.button("Back to Home 🏠"):
+        if st.button("Back to Homepage 🏠"):
             go_to("home")
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis")    
@@ -718,7 +758,7 @@ def brite():
 def trait():
     st.markdown("<h4 style='text-align:center;'>Biological Trait Distribution</h4>", unsafe_allow_html=True)
     with st.sidebar:
-        if st.button("Back to Home 🏠"): 
+        if st.button("Back to Homepage 🏠"): 
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
@@ -777,7 +817,7 @@ def trait():
 #-------------------------------------------------common & unique-----------------------------------------------------------------------------
 def couq():
     with st.sidebar:
-        if st.button("Back to Home 🏠"): 
+        if st.button("Back to Homepage 🏠"): 
             go_to("home") 
         if st.button("Back to Analysis Menu"):
             go_to("milletwise_analysis") 
@@ -902,7 +942,7 @@ def couq():
 #--------------------------------------------------------------Summary--------------------------------------------------------------------------
 def summary():
     st.write("")
-    if st.button("Back to Home 🏠"):
+    if st.button("Back to Homepage 🏠"):
         go_to("home") 
     st.markdown("<h3 style='text-align:center;'>Inference through Q & A</h4>", unsafe_allow_html=True) 
     #---------------------------------ec analysis-------------------------------------------------------
