@@ -167,7 +167,7 @@ def home():
             hide_index=True,
             use_container_width=True
         )
-    st.markdown("<hr>", unsafe_allow_html=True)
+    st.markdown(" ")
     cola,colb=st.columns([2,3])
     
     with cola:
