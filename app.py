@@ -170,7 +170,7 @@ def home():
         # ===== Row 1: Analysis Section =====
         with st.container(border=True):
             st.markdown("<h4 style='text-align:center;'>Analysis</h4>", unsafe_allow_html=True)
-            col1, col2 = st.columns(2, gap="large")
+            col1, col2 = st.columns(2)
     
             with col1:
                 with st.container(border=True):
@@ -189,7 +189,7 @@ def home():
         # ===== Row 2: Functional Prediction Section =====
         with st.container(border=True):
             st.markdown("<h4 style='text-align:center;'>Functional Prediction</h4>", unsafe_allow_html=True)
-            ec_col, ko_col, pwy_col = st.columns(3, gap="large")
+            ec_col, ko_col, pwy_col = st.columns(3)
     
             with ec_col:
                 with st.container(border=True):
