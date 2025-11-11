@@ -168,6 +168,7 @@ def home():
             use_container_width=True
         )
     cola,colb=st.columns([2,3])
+    st.markdown("<hr>", unsafe_allow_html=True)
     with cola:
         # ===== SUMMARY SECTION =====
         with st.container(border=True):
