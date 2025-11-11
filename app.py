@@ -23,7 +23,7 @@ st.markdown("""
     padding-left: 6rem;
     padding-right: 6rem;
     padding-bottom: 2rem;
-    backdrop-filter: blur(4px); /* optional, gives glassy feel */
+    
 }
 
 
