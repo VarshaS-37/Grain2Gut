@@ -829,7 +829,7 @@ def couq():
 
         ---
         
-        ### 3) Left Vertical Bars (Side Panel)
+        ### 3) Left Horizontal Bars (Side Panel)
         The **bars on the left side of the plot** indicate the **total number of traits per millet strain**.
         """)
 
