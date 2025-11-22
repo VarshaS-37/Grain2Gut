@@ -826,6 +826,8 @@ def couq():
         So:
         - A **tall bar with all dots connected** = Many **core shared traits**
         - A **tall bar with only one dot** = Many **unique traits for that strain**
+
+        ---
         
         ### 3) Left Vertical Bars (Side Panel)
         The **bars on the left side of the plot** indicate the **total number of traits per millet strain**.
