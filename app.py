@@ -4,9 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 from upsetplot import UpSet, from_memberships
 from itertools import combinations
+import matplotlib
+import upsetplot
 
 st.set_page_config(layout="wide",page_icon="🌾")
-
+st.write("Pandas:", pd.__version__)
+st.write("Matplotlib:", matplotlib.__version__)
+st.write("UpSetPlot:", upsetplot.__version__)
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
