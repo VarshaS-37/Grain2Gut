@@ -8,9 +8,7 @@ import matplotlib
 import upsetplot
 
 st.set_page_config(layout="wide",page_icon="🌾")
-st.write("Pandas:", pd.__version__)
-st.write("Matplotlib:", matplotlib.__version__)
-st.write("UpSetPlot:", upsetplot.__version__)
+
 # ----------------------------------------------------------------- CSS -----------------------------------------------------------------
 st.markdown("""
 <style>
@@ -118,6 +116,9 @@ def go_to(page):
 
 def home():
     # ====== HEADER ======
+    st.write("Pandas:", pd.__version__)
+    st.write("Matplotlib:", matplotlib.__version__)
+    st.write("UpSetPlot:", upsetplot.__version__)
     st.markdown("<h2 style='text-align:center;'>🌾 Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
     st.markdown(" ")
