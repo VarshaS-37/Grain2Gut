@@ -791,9 +791,7 @@ def couq():
             go_to("milletwise_analysis") 
     
     with st.sidebar.expander("Why is this relevant?", expanded=False): 
-        st.write("Pandas:", pd.__version__)
-        st.write("Matplotlib:", matplotlib.__version__)
-        st.write("UpSetPlot:", upsetplot.__version__)
+       
         st.markdown("""
         - Common traits indicates shared core metabolic functions and probiotic capabilities.
         - Unique traits indicates special metabolic or adaptive features linked to each millet.""")
