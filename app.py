@@ -860,16 +860,15 @@ def couq():
 
    
     
+    
     from upsetplot import UpSet, from_memberships
 
-    # Collect all unique traits
     all_traits = set().union(*millet_sets.values())
 
     if not all_traits:
         st.warning("No traits available to generate the UpSet plot.")
 
     else:
-        # Create membership combinations
         membership_list = [
             [
                 millet
@@ -879,26 +878,33 @@ def couq():
             for trait in sorted(all_traits)
         ]
 
-        # Create UpSet-compatible data
         data = from_memberships(
             membership_list,
             data=[1] * len(membership_list)
         )
 
-        # Generate plot
-        fig = plt.figure(figsize=(10, 7))
+        # Create figure
+        fig = plt.figure(figsize=(12, 8))
 
         upset = UpSet(
             data,
             subset_size="sum",
             show_counts=True,
-            facecolor="#4A7C59"
+            facecolor="#4A7C59",
+            sort_by="cardinality"
         )
 
+        # Generate plot
         upset.plot(fig=fig)
 
-        st.pyplot(fig)
+        # Adjust layout
+        fig.tight_layout()
+
+        # Render in Streamlit
+        st.pyplot(fig, clear_figure=False)
+
         plt.close(fig)
+
 
 
 # --- Common to all 4 LABs ---
