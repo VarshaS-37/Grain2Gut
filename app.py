@@ -851,23 +851,7 @@ def couq():
             except FileNotFoundError:
                 st.warning(f"File {f} not found, skipping.")
         millet_sets[strain_name] = combined_traits
-"""from upsetplot import UpSet, from_memberships
 
-    # millet_sets: dict of millet_name -> set of traits
-    memberships = []
-    for millet, traits in millet_sets.items():
-        for trait in traits:
-            memberships.append((trait, millet))
-    
-    # Create the UpSet data
-    data = from_memberships(
-        [[millet for millet in millet_sets if trait in millet_sets[millet]] for trait in set.union(*millet_sets.values())]
-    )
-    fig = plt.figure(figsize=(8,6))
-    upset = UpSet(data, subset_size='count', show_counts=True)
-    upset.plot(fig=fig)  # pass the figure explicitly
-    st.pyplot(fig)
-"""
 from upsetplot import UpSet, from_memberships
 
 # Collect all unique traits
