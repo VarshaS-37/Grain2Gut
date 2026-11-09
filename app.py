@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from upsetplot import UpSet, from_memberships
 from itertools import combinations
-import matplotlib
-import upsetplot
+
 
 st.set_page_config(layout="wide",page_icon="🌾")
 
