@@ -852,43 +852,43 @@ def couq():
                 st.warning(f"File {f} not found, skipping.")
         millet_sets[strain_name] = combined_traits
 
-from upsetplot import UpSet, from_memberships
-
-# Collect all unique traits
-all_traits = set().union(*millet_sets.values())
-
-# Handle empty data
-if not all_traits:
-    st.warning("No traits available to generate the UpSet plot.")
-
-else:
-    # Create membership combinations
-    membership_list = [
-        [
-            str(millet)
-            for millet, traits in millet_sets.items()
-            if trait in traits
+    from upsetplot import UpSet, from_memberships
+    
+    # Collect all unique traits
+    all_traits = set().union(*millet_sets.values())
+    
+    # Handle empty data
+    if not all_traits:
+        st.warning("No traits available to generate the UpSet plot.")
+    
+    else:
+        # Create membership combinations
+        membership_list = [
+            [
+                str(millet)
+                for millet, traits in millet_sets.items()
+                if trait in traits
+            ]
+            for trait in sorted(all_traits)
         ]
-        for trait in sorted(all_traits)
-    ]
-
-    # Create UpSet-compatible data
-    data = from_memberships(membership_list)
-
-    # Generate plot
-    fig = plt.figure(figsize=(10, 7))
-
-    upset = UpSet(
-        data,
-        subset_size='count',
-        show_counts=True,
-        facecolor='#4A7C59'
-    )
-
-    upset.plot(fig=fig)
-
-    st.pyplot(fig)
-    plt.close(fig)
+    
+        # Create UpSet-compatible data
+        data = from_memberships(membership_list)
+    
+        # Generate plot
+        fig = plt.figure(figsize=(10, 7))
+    
+        upset = UpSet(
+            data,
+            subset_size='count',
+            show_counts=True,
+            facecolor='#4A7C59'
+        )
+    
+        upset.plot(fig=fig)
+    
+        st.pyplot(fig)
+        plt.close(fig)
 # --- Common to all 4 LABs ---
     common_4 = set.intersection(*millet_sets.values())
     st.markdown(f"<h5 style='text-align:center;'>Traits Common to All 4 Millets</h5>", unsafe_allow_html=True)
