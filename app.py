@@ -859,14 +859,17 @@ def couq():
         millet_sets[strain_name] = combined_traits
 
    
+    
     from upsetplot import UpSet, from_memberships
-    
+
+    # Collect all unique traits
     all_traits = set().union(*millet_sets.values())
-    
+
     if not all_traits:
         st.warning("No traits available to generate the UpSet plot.")
-    
+
     else:
+        # Create membership combinations
         membership_list = [
             [
                 millet
@@ -875,28 +878,28 @@ def couq():
             ]
             for trait in sorted(all_traits)
         ]
-    
-        data = from_memberships(membership_list)
-    
+
+        # Create UpSet-compatible data
+        data = from_memberships(
+            membership_list,
+            data=[1] * len(membership_list)
+        )
+
+        # Generate plot
         fig = plt.figure(figsize=(10, 7))
-    
+
         upset = UpSet(
             data,
-            subset_size="count",
+            subset_size="sum",
             show_counts=True,
             facecolor="#4A7C59"
         )
-    
-        # Explicitly set valid matrix dot colours
-        upset.style_subsets(
-            present={"facecolor": "#4A7C59", "edgecolor": "#4A7C59"},
-            absent={"facecolor": "#FFFFFF", "edgecolor": "#808080"}
-        )
-    
+
         upset.plot(fig=fig)
-    
+
         st.pyplot(fig)
         plt.close(fig)
+
 
 # --- Common to all 4 LABs ---
     common_4 = set.intersection(*millet_sets.values())
