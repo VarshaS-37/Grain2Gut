@@ -900,7 +900,7 @@ def couq():
                 data,
                 subset_size="sum",
                 show_counts=False,
-                facecolor="#4A7C59",
+                facecolor="black",
                 sort_by="cardinality"
             )
 
