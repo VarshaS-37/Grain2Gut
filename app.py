@@ -13,12 +13,13 @@ st.set_page_config(layout="wide",page_icon="🌾")
 st.markdown("""
 <style>
 .stApp {
-    background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');  
-    background-size: contain;
+    background-image: url('https://img.freepik.com/premium-vector/paddy-rice-field-background_267448-280.jpg');
+    background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     background-attachment: fixed;
-    }
+    min-height: 100vh;
+}
 .block-container {
     padding-top: 2rem;
     padding-left: 3rem;
@@ -116,9 +117,6 @@ def go_to(page):
 
 def home():
     # ====== HEADER ======
-    st.write("Pandas:", pd.__version__)
-    st.write("Matplotlib:", matplotlib.__version__)
-    st.write("UpSetPlot:", upsetplot.__version__)
     st.markdown("<h2 style='text-align:center;'>🌾 Grain2Gut</h2>", unsafe_allow_html=True)
     st.markdown("<h4 style='text-align:center; font-style:italic;'>Linking genomic potential of Millet derived Lactic Acid Bacteria to food and probiotic applications</h4>", unsafe_allow_html=True)
     st.markdown(" ")
